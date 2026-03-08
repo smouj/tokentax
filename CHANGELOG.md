@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v1.5.0] - 2026-03-08
+
+### Added
+- 🎨 **Complete redesign** - Minimalist black & white aesthetic
+- ✨ **Ultra-modern animations** - Staggered fade-in, smooth transitions
+- 🌟 **Glass morphism** - Translucent panels with blur effects
+- 🎯 **Particle background** - Floating particles for depth
+- 💫 **Micro-animations** - Hover bounces, click feedback
+- 🔥 **Performance optimized** - will-change, translateZ, GPU acceleration
+- 📱 **Responsive grid** - Mobile-first layout
+- 🖱️ **Table row animations** - Staggered reveal on results
+- ✨ **Toast animations** - Slide-in notifications
+- 🌙 **Logo glow effect** - Animated logo pulse
+
+---
+
 ## [v1.4.0] - 2026-03-08
 
 ### Added
