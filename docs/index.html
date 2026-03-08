@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <title>TokenTax AI PRO | Compara +400 Modelos de IA</title>
   <meta name="description" content="Compara +400 modelos de IA de todos los proveedores.">
   <meta name="author" content="smouj">
   <meta name="theme-color" content="#000000">
-  
+
   <link rel="manifest" href="manifest.json">
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
     :root, .theme-dark {
       --bg: #000000; --surface: #0a0a0a; --surface-2: #111111; --surface-3: #141414;
@@ -35,11 +35,11 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { font-size: 14px; -webkit-font-smoothing: antialiased; }
     body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
-    
+
     .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; gap: 0; }
     .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 8px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
     .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px; margin-left: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2px; }
-    
+
     .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; }
     .panel-hover:hover { background: var(--surface-3); }
     .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text); padding: 6px 10px; }
@@ -53,47 +53,57 @@
     .btn-secondary:hover { background: var(--surface-3); }
     .btn-ghost { background: transparent; color: var(--text-3); border: none; cursor: pointer; padding: 4px 8px; }
     .btn-ghost:hover { color: var(--text); }
-    
+
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
     .anim { animation: fadeIn 0.3s ease forwards; opacity: 0; }
+    .loading-pulse { animation: pulse 1.5s ease-in-out infinite; }
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    
-    .table-row { transition: background 0.1s; cursor: pointer; }
-    .table-row:hover { background: var(--surface-3) !important; }
+
+    .table-row { transition: all 0.15s ease; cursor: pointer; }
+    .table-row:hover { background: var(--surface-3) !important; transform: translateX(2px); }
     .table-row.highlight { background: var(--blue-dim) !important; }
     .table-row.top-3 { background: rgba(34, 197, 94, 0.08); }
     .table-row.selected { background: var(--blue-dim) !important; outline: 2px solid var(--blue); }
     .theme-light .table-row.top-3 { background: var(--green-dim); }
-    
+
+    /* Button hover effects */
+    .panel-hover { transition: all 0.15s ease; }
+    .panel-hover:hover { transform: scale(1.02); }
+    .btn-primary { transition: all 0.15s ease; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,255,255,0.1); }
+
     .logo-text { background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    @keyframes toastIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
-    .toast-in { animation: toastIn 0.2s ease forwards; }
-    
+    @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(20px); } }
+    .toast-in { animation: toastIn 0.25s ease forwards; }
+    .toast-out { animation: toastOut 0.25s ease forwards; }
+
     .text-primary { color: var(--text); }
     .text-secondary { color: var(--text-2); }
     .text-tertiary { color: var(--text-3); }
     .text-green { color: var(--green); }
     .text-red { color: var(--red); }
     .stats-bar { background: var(--green-dim); }
-    
+
     .dropdown { position: relative; display: inline-block; }
     .dropdown-content { display: none; position: absolute; right: 0; top: 100%; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; z-index: 100; margin-top: 4px; max-height: 300px; overflow-y: auto; }
     .dropdown:hover .dropdown-content { display: block; }
     .dropdown-item { padding: 8px 12px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
     .dropdown-item:hover { background: var(--surface-3); }
-    
+
     .kbd { display: inline-block; padding: 2px 6px; font-size: 10px; font-family: monospace; background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; color: var(--text-2); }
-    
+
     .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
     .quick-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; gap: 2px; }
-    
+
     .badge { display: inline-flex; align-items: center; padding: 3px 8px; font-size: 9px; font-weight: 600; border-radius: 4px; text-transform: uppercase; }
     .badge-green { background: var(--green-dim); color: var(--green); }
     .badge-blue { background: var(--blue-dim); color: var(--blue); }
     .badge-yellow { background: #fef3c7; color: #d97706; }
-    
+
     /* Provider logos */
     .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
     .logo-openai { background: #10a37f; color: white; }
@@ -112,7 +122,7 @@
     .logo-nvidia { background: #76b900; color: black; }
     .logo-perplexity { background: #000; color: white; }
     .logo-default { background: var(--surface-2); color: var(--text-2); }
-    
+
     .limit-control { display: flex; align-items: center; gap: 8px; }
     .toggle-switch { position: relative; width: 36px; height: 20px; }
     .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -120,10 +130,10 @@
     .toggle-slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: var(--text); transition: 0.2s; border-radius: 50%; }
     input:checked + .toggle-slider { background: var(--green); }
     input:checked + .toggle-slider:before { transform: translateX(16px); }
-    
+
     .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
     .settings-label { font-size: 10px; color: var(--text-2); }
-    
+
     /* Modal */
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: none; align-items: center; justify-content: center; }
     .modal-overlay.active { display: flex; }
@@ -131,20 +141,20 @@
     .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
     .modal-body { padding: 16px; }
     .modal-footer { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; }
-    
+
     /* Compare view */
     .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .compare-item { padding: 12px; background: var(--surface-2); border-radius: 4px; }
     .compare-label { font-size: 9px; color: var(--text-3); text-transform: uppercase; }
     .compare-value { font-size: 14px; font-weight: 600; margin-top: 2px; }
-    
+
     /* Favorites */
     .fav-btn { color: var(--text-3); cursor: pointer; }
     .fav-btn.active { color: #fbbf24; }
   </style>
 </head>
 <body class="theme-dark">
-  
+
   <div id="toast" class="fixed top-3 right-3 z-50"></div>
 
   <!-- Header -->
@@ -157,7 +167,7 @@
           <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green">v3.4</span></p>
         </div>
       </div>
-      
+
       <div class="flex items-center gap-2">
         <!-- Language -->
         <select id="langSelect" onchange="changeLanguage(this.value)" class="px-2 py-1 input-field text-[10px]">
@@ -170,20 +180,20 @@
           <option value="ja">JA</option>
           <option value="zh">ZH</option>
         </select>
-        
+
         <!-- Currency -->
         <select id="currencySelect" onchange="changeCurrency(this.value)" class="px-2 py-1 input-field text-[10px]">
           <option value="USD">$ USD</option>
           <option value="EUR">€ EUR</option>
           <option value="GBP">£ GBP</option>
         </select>
-        
+
         <!-- Theme Toggle -->
         <button onclick="toggleTheme()" id="themeBtn" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Toggle Theme"><i class="fas fa-moon"></i></button>
         <button onclick="setOLEDMode(true)" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="OLED Mode"><i class="fas fa-square-full"></i></button>
         <button onclick="quickEstimate()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Quick Estimate"><i class="fas fa-calculator"></i></button>
         <button onclick="loadPresets()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Load Preset"><i class="fas fa-folder"></i></button>
-        
+
         <!-- Examples -->
         <div class="dropdown">
           <button class="btn-secondary px-2 py-1 text-[10px]"><i class="fas fa-edit"></i> <span id="examplesBtn">Ejemplos</span> ▾</button>
@@ -198,12 +208,12 @@
             <div class="dropdown-item" onclick="useExample('test')"><i class="fas fa-flask"></i> <span data-lang="test">Tests</span></div>
           </div>
         </div>
-        
+
         <div class="flex items-center gap-1.5 px-2 py-1 panel text-[10px] text-tertiary">
-          <span id="loader" class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          <span id="loader" class="w-2 h-2 rounded-full bg-tertiary loading-pulse"></span>
           <span id="modelText">Cargando...</span>
         </div>
-        
+
         <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 panel panel-hover flex items-center justify-center">
           <svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
@@ -213,10 +223,10 @@
 
   <!-- Main -->
   <main class="app-container">
-    
+
     <!-- Left Panel -->
     <aside class="left-panel">
-      
+
       <!-- Prompt -->
       <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
         <div class="flex justify-between items-center mb-1.5">
@@ -237,7 +247,7 @@
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm"><i class="fas fa-bolt"></i> <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+↵</span></button>
+      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm"><i class="fas fa-calculator"></i> <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+Enter</span></button>
 
       <!-- Quick Grid -->
       <div class="quick-grid">
@@ -306,7 +316,7 @@
           <span id="totalSaved" class="text-green">$0</span>
         </div>
       </div>
-      
+
       <!-- Favorites -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
@@ -315,7 +325,7 @@
         </div>
         <div id="favoritesList" class="flex flex-wrap gap-1"></div>
       </div>
-      
+
       <!-- Custom Templates -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
@@ -324,7 +334,7 @@
         </div>
         <div id="templatesList" class="flex flex-wrap gap-1"></div>
       </div>
-      
+
       <!-- Recent -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
@@ -333,7 +343,7 @@
         </div>
         <div id="recentList" class="flex flex-wrap gap-1"></div>
       </div>
-      
+
       <!-- Price Alerts -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
@@ -342,7 +352,7 @@
         </div>
         <div id="alertsList" class="flex flex-col gap-1"></div>
       </div>
-      
+
       <!-- Batch Calculate -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
@@ -355,7 +365,7 @@
 
     <!-- Right Panel -->
     <div class="right-panel panel">
-      
+
       <!-- Filters -->
       <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
         <div class="flex-1 min-w-[150px] relative">
@@ -365,7 +375,7 @@
         <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
           <option value="" data-lang="allProviders">Todos los proveedores</option>
         </select>
-        
+
         <!-- Extra Filters -->
         <select id="typeFilter" class="px-2 py-1.5 input-field text-xs" onchange="applyTypeFilter()">
           <option value="">Todos los tipos</option>
@@ -373,13 +383,13 @@
           <option value="reasoning"><i class="fas fa-brain"></i> Reasoning</option>
           <option value="cheapest_provider"><i class="fas fa-dollar-sign"></i> Más barato x provider</option>
         </select>
-        
+
         <!-- Limit -->
         <div class="limit-control">
           <span class="text-[9px] text-tertiary" data-lang="limit">Límite:</span>
           <input type="number" id="limitInput" value="50" min="5" max="500" class="px-2 py-1 input-field text-xs" style="width:50px" onchange="applyLimit()">
         </div>
-        
+
         <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]"><i class="fas fa-times"></i></button>
         <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><i class="fas fa-copy"></i></button>
         <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
@@ -515,31 +525,31 @@
         stats = s;
         updateStats();
       } catch(e) {}
-      
+
       // Load favorites
       try {
         favorites = JSON.parse(localStorage.getItem('tt_favorites') || '[]');
         updateFavoritesUI();
       } catch(e) {}
-      
+
       // Load templates
       try {
         templates = JSON.parse(localStorage.getItem('tt_templates') || '[]');
         updateTemplatesUI();
       } catch(e) {}
-      
+
       // Load recent
       try {
         recentModels = JSON.parse(localStorage.getItem('tt_recent') || '[]');
         updateRecentUI();
       } catch(e) {}
-      
+
       // Load alerts
       loadAlerts();
-      
+
       // Load batch
       loadBatch();
-      
+
       // Load settings
       // Auto-detect system theme preference
       if (!localStorage.getItem('theme')) {
@@ -597,9 +607,9 @@
     function updateQuickProviders() {
       const container = document.getElementById('quickProviders');
       if (!allModels.length) return;
-      
+
       const provs = [...new Set(allModels.map(m => m.provider))].slice(0, 8);
-      container.innerHTML = provs.map(p => 
+      container.innerHTML = provs.map(p =>
         `<button onclick="filterProvider('${p}')" class="badge cursor-pointer" style="background:var(--surface-2);color:var(--text-2)">${p.substring(0,4)}</button>`
       ).join('');
     }
@@ -667,7 +677,7 @@
       if (!results.length) return;
       const rate = currencyRates[currentCurrency];
       const symbol = currencySymbols[currentCurrency];
-      
+
       let html = `<html><head><title>TokenTax Results</title>
         <style>body{font-family:system-ui;padding:20px}
         table{width:100%;border-collapse:collapse}
@@ -677,7 +687,7 @@
         <h1>TokenTax AI PRO - Results</h1>
         <p>Generated: ${new Date().toLocaleString()}</p>
         <table><tr><th>Provider</th><th>Model</th><th>Input</th><th>Output</th><th>Total</th></tr>`;
-      
+
       results.slice(0, currentLimit).forEach(m => {
         html += `<tr>
           <td>${m.provider}</td>
@@ -687,9 +697,9 @@
           <td class="green">${symbol}${(m.total * rate).toFixed(4)}</td>
         </tr>`;
       });
-      
+
       html += '</table></body></html>';
-      
+
       const win = window.open('', '_blank');
       win.document.write(html);
       win.document.close();
@@ -702,12 +712,12 @@
       if (!results.length) return;
       const rate = currencyRates[currentCurrency];
       const symbol = currencySymbols[currentCurrency];
-      const top3 = results.slice(0, 3).map((m, i) => 
+      const top3 = results.slice(0, 3).map((m, i) =>
         `${i+1}. ${m.provider} - ${m.fullName}: ${symbol}$${m.total.toFixed(4)}`
       ).join('\n');
-      
+
       const text = `TokenTax AI PRO\nTop 3 cheapest:\n${top3}\n\nGenerated: ${new Date().toLocaleDateString()}`;
-      
+
       if (navigator.share) {
         navigator.share({ title: 'TokenTax Results', text: text });
       } else {
@@ -739,7 +749,7 @@
         stats[m.provider].count++;
         stats[m.provider].avgCost += m.total;
       });
-      
+
       let html = '<div class="space-y-2">';
       Object.entries(stats).sort((a,b) => b[1].count - a[1].count).forEach(([p, s]) => {
         html += `<div class="flex justify-between text-xs">
@@ -748,7 +758,7 @@
         </div>`;
       });
       html += '</div>';
-      
+
       document.getElementById('detailsTitle').textContent = 'Provider Stats';
       document.getElementById('detailsContent').innerHTML = html;
       document.getElementById('detailsModal').classList.add('active');
@@ -759,12 +769,12 @@
       const prompt = document.getElementById('prompt').value;
       const out = parseFloat(document.getElementById('outputTokens').value) || 500;
       const inT = estTokens(prompt);
-      
+
       if (!allModels.length || !prompt) return;
-      
+
       const cheapest = allModels[0];
       const cost = (inT * cheapest.input + out * cheapest.output) / 1e6;
-      
+
       toast(`Estimacion rapida: $${cost.toFixed(4)} con ${cheapest.provider}`, 'info');
     }
 
@@ -803,9 +813,9 @@
 
     // Toast notification helper
     function showToast(message, type = 'info', duration = 3000) {
-      const colors = { 
-        info: 'var(--surface)', 
-        success: 'var(--green-dim)', 
+      const colors = {
+        info: 'var(--surface)',
+        success: 'var(--green-dim)',
         error: 'var(--red-dim)',
         warning: '#fef3c7'
       };
@@ -821,7 +831,7 @@
     function savePreset() {
       const name = prompt('Nombre del preset:');
       if (!name) return;
-      
+
       const preset = {
         name,
         outputTokens: document.getElementById('outputTokens').value,
@@ -830,7 +840,7 @@
         pricePer1K,
         autoCalc
       };
-      
+
       const presets = JSON.parse(localStorage.getItem('tt_presets') || '[]');
       presets.push(preset);
       localStorage.setItem('tt_presets', JSON.stringify(presets));
@@ -843,16 +853,16 @@
         toast('No hay presets', 'error');
         return;
       }
-      
+
       let msg = 'Presets disponibles:\n';
       presets.forEach((p, i) => {
         msg += `${i+1}. ${p.name}\n`;
       });
       msg += '\nNumero:';
-      
+
       const idx = prompt(msg);
       if (!idx || idx < 1 || idx > presets.length) return;
-      
+
       const p = presets[idx-1];
       document.getElementById('outputTokens').value = p.outputTokens;
       document.getElementById('limitInput').value = p.limit;
@@ -862,7 +872,7 @@
       pricePer1K = p.pricePer1K;
       document.getElementById('autoCalc').checked = p.autoCalc;
       autoCalc = p.autoCalc;
-      
+
       toast('Preset cargado');
     }
 
@@ -872,10 +882,10 @@
       const prompt = document.getElementById('prompt').value;
       const out = parseFloat(document.getElementById('outputTokens').value) || 500;
       const inT = estTokens(prompt);
-      
+
       // Simple recommendation based on use case
       let recommended = results[0];
-      
+
       if (prompt.toLowerCase().includes('code') || prompt.toLowerCase().includes('programming')) {
         recommended = results.find(m => m.provider.toLowerCase().includes('anthropic') || m.provider.toLowerCase().includes('openai')) || results[0];
       } else if (prompt.length > 1000) {
@@ -883,7 +893,7 @@
       } else if (out > 2000) {
         recommended = results.sort((a, b) => a.output - b.output)[0];
       }
-      
+
       toast(`Recommended: ${recommended.provider} - ${recommended.fullName}`, 'success');
     }
 
@@ -937,7 +947,7 @@
 
     function updateTemplatesUI() {
       const list = document.getElementById('templatesList');
-      list.innerHTML = templates.slice(0, 5).map((t, i) => 
+      list.innerHTML = templates.slice(0, 5).map((t, i) =>
         `<span class="badge badge-blue cursor-pointer" onclick="loadTemplate(${i})">${t.name.substring(0,8)}</span>`
       ).join('');
     }
@@ -1006,7 +1016,7 @@
         list.innerHTML = '<span class="text-[9px] text-tertiary">Sin alertas</span>';
         return;
       }
-      list.innerHTML = priceAlerts.map((a, i) => 
+      list.innerHTML = priceAlerts.map((a, i) =>
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary">< $${a.maxPrice}</span>
           <button onclick="removeAlert(${i})" class="text-red"><i class="fas fa-times"></i></button>
@@ -1048,22 +1058,22 @@
       const resultsDiv = document.createElement('div');
       resultsDiv.className = 'panel p-2 mt-2';
       resultsDiv.innerHTML = '<div class="text-[10px] font-medium mb-1"><i class="fas fa-box"></i> Resultados:</div>';
-      
+
       batchPrompts.forEach(bp => {
         const inT = estTokens(bp.prompt);
         const cheapest = allModels
           .filter(m => typeof m.input === 'number')
           .map(m => ({ ...m, total: (inT * m.input + bp.output * m.output) / 1e6 }))
           .sort((a, b) => a.total - b.total)[0];
-        
+
         if (cheapest) {
           resultsDiv.innerHTML += `<div class="text-[9px] text-secondary mb-1">
-            <span class="text-primary">${bp.name}:</span> 
+            <span class="text-primary">${bp.name}:</span>
             ${cheapest.provider} - $${cheapest.total.toFixed(4)}
           </div>`;
         }
       });
-      
+
       document.getElementById('toast').appendChild(resultsDiv);
       setTimeout(() => resultsDiv.remove(), 10000);
       toast('Cálculo en lote completado');
@@ -1081,7 +1091,7 @@
         list.innerHTML = '<span class="text-[9px] text-tertiary">Sin prompts</span>';
         return;
       }
-      list.innerHTML = batchPrompts.map((bp, i) => 
+      list.innerHTML = batchPrompts.map((bp, i) =>
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary truncate" style="max-width:80px">${bp.name}</span>
           <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red"><i class="fas fa-times"></i></button>
@@ -1095,12 +1105,13 @@
 
     function toast(msg, type = 'info') {
       const colors = { info: 'var(--surface)', success: 'var(--green-dim)', error: 'var(--red-dim)' };
+      const icons = { info: '<i class="fas fa-info-circle"></i>', success: '<i class="fas fa-check-circle"></i>', error: '<i class="fas fa-exclamation-circle"></i>' };
       const t = document.createElement('div');
-      t.className = 'toast-in mb-2 px-3 py-1.5 panel text-xs';
+      t.className = 'toast-in mb-2 px-3 py-2 panel text-sm flex items-center gap-2';
       t.style.background = colors[type] || colors.info;
-      t.textContent = msg;
+      t.innerHTML = `<span>${icons[type] || icons.info} ${msg}</span>`;
       document.getElementById('toast').appendChild(t);
-      setTimeout(() => t.remove(), 2500);
+      setTimeout(() => { t.classList.add('toast-out'); setTimeout(()=>t.remove(),250); }, 2500);
     }
 
     function updateSortIcons() {
@@ -1127,11 +1138,11 @@
       isDark = !isDark;
     }
 
-    function clearPrompt() { 
-      document.getElementById('prompt').value = ''; 
-      updateCount(); 
+    function clearPrompt() {
+      document.getElementById('prompt').value = '';
+      updateCount();
     }
-    
+
     function clearAll() {
       clearPrompt();
       clearFilters();
@@ -1140,7 +1151,7 @@
       document.getElementById('emptyState').classList.remove('hidden');
       document.getElementById('statsBar').classList.add('hidden');
     }
-    
+
     function clearFilters() {
       document.getElementById('search').value = '';
       document.getElementById('providerFilter').value = '';
@@ -1151,12 +1162,12 @@
       document.getElementById('clearBtn').classList.add('hidden');
       calcularCostos();
     }
-    
+
     function applyLimit() {
       currentLimit = parseInt(document.getElementById('limitInput').value) || 50;
       renderResults();
     }
-    
+
     function useExample(type) {
       const ex = {
         code: '// React login form\nfunction LoginForm() {\n  const [email, setEmail] = useState("");\n  return <input value={email} onChange={e => setEmail(e.target.value)} />;\n}',
@@ -1174,11 +1185,11 @@
       toast('Ejemplo cargado');
     }
 
-    function sortBy(f) { 
-      if (sortF === f) sortA = !sortA; 
+    function sortBy(f) {
+      if (sortF === f) sortA = !sortA;
       else { sortF = f; sortA = true; }
-      updateSortIcons(); 
-      renderResults(); 
+      updateSortIcons();
+      renderResults();
     }
 
     function selectModel(index, e) {
@@ -1208,7 +1219,7 @@
       const m2 = results[selectedModels[1]];
       const rate = currencyRates[currentCurrency];
       const symbol = currencySymbols[currentCurrency];
-      
+
       document.getElementById('compareContent').innerHTML = `
         <div class="compare-item">
           <div class="text-xs text-tertiary mb-2">${m1.provider} - ${m1.fullName}</div>
@@ -1242,7 +1253,7 @@
       const m = results[index];
       const rate = currencyRates[currentCurrency];
       const symbol = currencySymbols[currentCurrency];
-      
+
       document.getElementById('detailsTitle').textContent = m.fullName;
       document.getElementById('detailsContent').innerHTML = `
         <div class="space-y-3">
@@ -1270,7 +1281,7 @@
       if (!results.length) return;
       const rate = currencyRates[currentCurrency];
       const symbol = currencySymbols[currentCurrency];
-      const text = results.slice(0, currentLimit).map(m => 
+      const text = results.slice(0, currentLimit).map(m =>
         `${m.provider} - ${m.fullName}: ${symbol}${(m.total * rate).toFixed(4)}`
       ).join('\n');
       navigator.clipboard.writeText(text);
@@ -1283,21 +1294,21 @@
       modelText.textContent = 'Cargando...';
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
-      
+
       try {
         const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
         if (!res.ok) throw new Error('Error de red');
         const data = await res.json();
-        
+
         allModels = Object.keys(data)
           .filter(k => { const m = data[k]; return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0; })
           .map(k => {
             const m = data[k];
-            return { 
-              provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1), 
-              name: k.length > 40 ? k.substring(0,37) + '...' : k, 
-              fullName: k, 
-              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)), 
+            return {
+              provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1),
+              name: k.length > 40 ? k.substring(0,37) + '...' : k,
+              fullName: k,
+              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
               output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
               context: m.max_model_len || m.context_window || 0
             };
@@ -1306,22 +1317,22 @@
         // Provider count
         const provCounts = {};
         allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
-        
+
         const provs = Object.keys(provCounts).sort();
         const sel = document.getElementById('providerFilter');
         sel.innerHTML = '<option value="" data-lang="allProviders">Todos los proveedores</option>';
-        provs.forEach(p => { 
-          const o = document.createElement('option'); 
-          o.value = p; 
-          o.textContent = `${p} (${provCounts[p]})`; 
-          sel.appendChild(o); 
+        provs.forEach(p => {
+          const o = document.createElement('option');
+          o.value = p;
+          o.textContent = `${p} (${provCounts[p]})`;
+          sel.appendChild(o);
         });
 
         loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
         updateQuickProviders();
-        
+
       } catch(e) {
         loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
         modelText.textContent = 'Error';
@@ -1344,10 +1355,10 @@
       results = filtrar().map(m => ({ ...m, total: (inT * m.input + out * m.output) / 1e6 }));
       if (!results.length) { toast('Sin resultados', 'error'); return; }
       results.sort((a, b) => { const av = a[sortF], bv = b[sortF]; return typeof av === 'string' ? (sortA ? av.localeCompare(bv) : bv.localeCompare(av)) : (sortA ? av - bv : bv - av); });
-      
+
       const hasFilters = document.getElementById('search').value || document.getElementById('providerFilter').value;
       document.getElementById('clearBtn').classList.toggle('hidden', !hasFilters);
-      
+
       renderResults();
       updateStatsBar(prompt);
     }
@@ -1357,7 +1368,7 @@
       const unit = pricePer1K ? 1000 : 1000000;
       const rate = currencyRates[currentCurrency];
       const symbol = currencySymbols[currentCurrency];
-      
+
       let html = '';
       limitedResults.forEach((m, i) => {
         const top = i < 3;
@@ -1365,7 +1376,7 @@
         const logoClass = getProviderLogo(m.provider);
         const isFav = favorites.includes(`${m.provider}/${m.fullName}`);
         const isSelected = selectedModels.includes(i);
-        
+
         html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
           <td class="px-1 py-1.5">
             <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star"></i>' : '☆'}</span>
@@ -1411,18 +1422,18 @@
       let filtered = allModels;
       const s = document.getElementById('search').value.toLowerCase().trim();
       const p = document.getElementById('providerFilter').value;
-      
+
       // Type filters
       if (currentTypeFilter === 'vision') {
-        filtered = filtered.filter(m => 
-          m.fullName.toLowerCase().includes('vision') || 
+        filtered = filtered.filter(m =>
+          m.fullName.toLowerCase().includes('vision') ||
           m.fullName.toLowerCase().includes('visual') ||
           m.fullName.toLowerCase().includes('gpt-4v') ||
           m.fullName.toLowerCase().includes('gpt-4o') ||
           m.fullName.toLowerCase().includes('claude-3-opus')
         );
       } else if (currentTypeFilter === 'reasoning') {
-        filtered = filtered.filter(m => 
+        filtered = filtered.filter(m =>
           m.fullName.toLowerCase().includes('reasoning') ||
           m.fullName.toLowerCase().includes('o1') ||
           m.fullName.toLowerCase().includes('o3') ||
@@ -1439,7 +1450,7 @@
         });
         filtered = Object.values(cheapest);
       }
-      
+
       return filtered.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
     }
 
@@ -1455,19 +1466,19 @@
     // Event listeners
     document.getElementById('search').addEventListener('input', () => { if (autoCalc) calcularCostos(); else renderResults(); });
     document.getElementById('providerFilter').addEventListener('change', () => { if (autoCalc) calcularCostos(); else renderResults(); });
-    document.getElementById('prompt').addEventListener('input', () => { 
-      updateCount(); 
+    document.getElementById('prompt').addEventListener('input', () => {
+      updateCount();
       if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
     });
-    document.getElementById('outputTokens').addEventListener('input', () => { 
+    document.getElementById('outputTokens').addEventListener('input', () => {
       if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
     });
-    
+
     // Keyboard shortcuts
-    document.addEventListener('keydown', e => { 
-      if (e.ctrlKey && e.key === 'Enter') { 
-        e.preventDefault(); 
-        calcularCostos(); 
+    document.addEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        e.preventDefault();
+        calcularCostos();
       }
       if (e.key === 'Escape') {
         clearPrompt();
@@ -1505,7 +1516,7 @@
         resetAllSettings();
       }
     });
-    
+
     window.onload = () => { loadModels(); updateCount(); updateSortIcons(); };
   </script>
 </body>
