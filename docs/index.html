@@ -248,6 +248,15 @@
         <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span><i class="fas fa-search"></i></span><span>SEO</span></button>
       </div>
 
+      <!-- Quick Providers -->
+      <div class="panel p-2">
+        <div class="flex justify-between items-center mb-1">
+          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-filter"></i> Providers</span>
+          <button onclick="showHelp()" class="text-[9px] text-tertiary"><i class="fas fa-question-circle"></i></button>
+        </div>
+        <div id="quickProviders" class="flex flex-wrap gap-1"></div>
+      </div>
+
       <!-- Settings -->
       <div class="panel p-2">
         <div class="settings-row">
@@ -423,7 +432,7 @@
   <!-- Footer -->
   <footer class="flex-shrink-0 border-t p-2" style="border-color: var(--border)">
     <div class="text-center text-[9px] text-tertiary">
-      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">Esc</span> <span data-lang="clearPrompt">limpiar</span> • <span class="kbd"><i class="fas fa-arrow-up"></i><i class="fas fa-arrow-down"></i></span> navegar
+      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">?</span> ayuda • <span class="kbd">Esc</span> clear • <span class="kbd">F11</span> fullscreen
     </div>
   </footer>
 
@@ -530,7 +539,15 @@
       loadBatch();
       
       // Load settings
-      if (localStorage.getItem('theme') === 'light') {
+      // Auto-detect system theme preference
+      if (!localStorage.getItem('theme')) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          document.body.classList.remove('theme-dark');
+          document.body.classList.add('theme-light');
+          document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
+          isDark = false;
+        }
+      } else if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
         document.getElementById('themeBtn').textContent = '<i class="fas fa-sun"></i>';
@@ -573,6 +590,37 @@
         const key = el.dataset.lang;
         if (t[key]) el.textContent = t[key];
       });
+    }
+
+    function updateQuickProviders() {
+      const container = document.getElementById('quickProviders');
+      if (!allModels.length) return;
+      
+      const provs = [...new Set(allModels.map(m => m.provider))].slice(0, 8);
+      container.innerHTML = provs.map(p => 
+        `<button onclick="filterProvider('${p}')" class="badge cursor-pointer" style="background:var(--surface-2);color:var(--text-2)">${p.substring(0,4)}</button>`
+      ).join('');
+    }
+
+    function filterProvider(p) {
+      document.getElementById('providerFilter').value = p;
+      calcularCostos();
+    }
+
+    function showHelp() {
+      document.getElementById('detailsTitle').innerHTML = '<i class="fas fa-keyboard"></i> Keyboard Shortcuts';
+      document.getElementById('detailsContent').innerHTML = `
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between"><span>Calculate</span><kbd class="kbd">Ctrl + Enter</kbd></div>
+          <div class="flex justify-between"><span>Clear Prompt</span><kbd class="kbd">Escape</kbd></div>
+          <div class="flex justify-between"><span>Navigate Up</span><kbd class="kbd">Arrow Up</kbd></div>
+          <div class="flex justify-between"><span>Navigate Down</span><kbd class="kbd">Arrow Down</kbd></div>
+          <div class="flex justify-between"><span>Select Multiple</span><kbd class="kbd">Ctrl + Click</kbd></div>
+          <div class="flex justify-between"><span>View Details</span><kbd class="kbd">Double Click</kbd></div>
+          <div class="flex justify-between"><span>Fullscreen</span><kbd class="kbd">F11</kbd></div>
+        </div>
+      `;
+      document.getElementById('detailsModal').classList.add('active');
     }
 
     function changeCurrency(curr) {
@@ -1033,6 +1081,15 @@
       updateCount(); 
     }
     
+    function clearAll() {
+      clearPrompt();
+      clearFilters();
+      results = [];
+      document.getElementById('tableBody').classList.add('hidden');
+      document.getElementById('emptyState').classList.remove('hidden');
+      document.getElementById('statsBar').classList.add('hidden');
+    }
+    
     function clearFilters() {
       document.getElementById('search').value = '';
       document.getElementById('providerFilter').value = '';
@@ -1212,6 +1269,7 @@
         loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
+        updateQuickProviders();
         
       } catch(e) {
         loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
@@ -1380,6 +1438,15 @@
         renderResults();
         const row = document.querySelectorAll('.table-row')[selectedIndex];
         if (row) row.scrollIntoView({ block: 'nearest' });
+      }
+      // F11 for fullscreen
+      if (e.key === 'F11') {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+      // ? for help
+      if (e.key === '?' && !e.ctrlKey && !e.altKey && !e.metaKey) {
+        showHelp();
       }
     });
     
