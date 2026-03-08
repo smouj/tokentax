@@ -40,7 +40,8 @@
       --green-dim: rgba(34, 197, 94, 0.1);
       --red: #ef4444;
       --blue: #3b82f6;
-      --blue-dim: rgba(59, 130, 246, 0.1);
+      --blue-dim: rgba(59, 130, 246, 0.15);
+      --orange: #f97316;
     }
     
     .theme-light {
@@ -61,6 +62,7 @@
       --red: #dc2626;
       --blue: #2563eb;
       --blue-dim: #dbeafe;
+      --orange: #ea580c;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,74 +80,30 @@
     }
     
     /* Layout */
-    .app-container {
-      display: flex;
-      flex-direction: row;
-      flex: 1;
-      min-height: 0;
-      overflow: hidden;
-    }
-    
-    .left-panel {
-      width: 280px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 8px;
-      height: 100%;
-      overflow-y: auto;
-      border-right: 1px solid var(--border);
-    }
-    
-    .right-panel {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      margin: 8px 8px 8px 0;
-      overflow: hidden;
-    }
+    .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
+    .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 8px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
+    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px 8px 8px 0; overflow: hidden; }
     
     /* Components */
     .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; }
     .panel-hover:hover { background: var(--surface-3); border-color: var(--border-2); }
     
-    .input-field {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      color: var(--text);
-    }
+    .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text); }
     .input-field:focus { outline: none; border-color: var(--accent); }
     .input-field::placeholder { color: var(--placeholder); }
     select.input-field { color: var(--text); cursor: pointer; }
     select.input-field option { background: var(--surface); color: var(--text); }
     
-    .btn-primary {
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      border-radius: 2px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    .btn-primary { background: var(--accent); color: var(--bg); border: none; border-radius: 2px; font-weight: 600; cursor: pointer; }
     .btn-primary:hover { opacity: 0.9; }
-    
-    .btn-secondary {
-      background: var(--surface-2);
-      color: var(--text-2);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      cursor: pointer;
-    }
+    .btn-secondary { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); border-radius: 2px; cursor: pointer; }
     .btn-secondary:hover { background: var(--surface-3); }
+    .btn-ghost { background: transparent; color: var(--text-3); border: none; cursor: pointer; }
+    .btn-ghost:hover { color: var(--text); }
     
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
     .anim { animation: fadeIn 0.3s ease forwards; opacity: 0; }
-    
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
@@ -153,12 +111,10 @@
     .table-row { transition: background 0.1s; cursor: pointer; }
     .table-row:hover { background: var(--surface-3) !important; }
     .table-row.highlight { background: var(--blue-dim) !important; }
+    .table-row.top-3 { background: rgba(34, 197, 94, 0.08); }
+    .theme-light .table-row.top-3 { background: var(--green-dim); }
     
-    .logo-text {
-      background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    .logo-text { background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     
     @keyframes toastIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
     .toast-in { animation: toastIn 0.2s ease forwards; }
@@ -169,43 +125,27 @@
     .text-green { color: var(--green); }
     .text-red { color: var(--red); }
     .text-blue { color: var(--blue); }
+    .text-orange { color: var(--orange); }
     .stats-bar { background: var(--green-dim); }
     
-    /* Dropdown menu */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: 100%;
-      min-width: 140px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      z-index: 100;
-      margin-top: 4px;
-    }
+    /* Dropdown */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; right: 0; top: 100%; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; z-index: 100; margin-top: 4px; max-height: 300px; overflow-y: auto; }
     .dropdown:hover .dropdown-content { display: block; }
-    .dropdown-item {
-      padding: 8px 12px;
-      font-size: 12px;
-      cursor: pointer;
-    }
+    .dropdown-item { padding: 8px 12px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
     .dropdown-item:hover { background: var(--surface-3); }
     
-    /* Keyboard hints */
-    .kbd {
-      display: inline-block;
-      padding: 1px 4px;
-      font-size: 9px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      color: var(--text-3);
-    }
+    /* Kbd */
+    .kbd { display: inline-block; padding: 1px 4px; font-size: 9px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 2px; color: var(--text-3); }
+    
+    /* Quick actions */
+    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .quick-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; gap: 2px; }
+    
+    /* Badge */
+    .badge { display: inline-flex; align-items: center; padding: 2px 6px; font-size: 8px; font-weight: 600; border-radius: 2px; text-transform: uppercase; }
+    .badge-green { background: var(--green-dim); color: var(--green); }
+    .badge-blue { background: var(--blue-dim); color: var(--blue); }
   </style>
 </head>
 <body class="theme-dark">
@@ -228,11 +168,14 @@
         <div class="dropdown">
           <button class="btn-secondary px-2 py-1 text-[10px]">📝 Ejemplos ▾</button>
           <div class="dropdown-content">
-            <div class="dropdown-item" onclick="useExample('code')">💻 Código</div>
-            <div class="dropdown-item" onclick="useExample('summary')">📄 Resumen</div>
-            <div class="dropdown-item" onclick="useExample('email')">📧 Email</div>
-            <div class="dropdown-item" onclick="useExample('translate')">🌍 Traducir</div>
-            <div class="dropdown-item" onclick="useExample('blog')">📝 Blog</div>
+            <div class="dropdown-item" onclick="useExample('code')"><span>💻</span> Código</div>
+            <div class="dropdown-item" onclick="useExample('summary')"><span>📄</span> Resumen</div>
+            <div class="dropdown-item" onclick="useExample('email')"><span>📧</span> Email</div>
+            <div class="dropdown-item" onclick="useExample('translate')"><span>🌍</span> Traducir</div>
+            <div class="dropdown-item" onclick="useExample('blog')"><span>📝</span> Blog</div>
+            <div class="dropdown-item" onclick="useExample('seo')"><span>🔍</span> SEO</div>
+            <div class="dropdown-item" onclick="useExample('sql')"><span>🗄️</span> SQL</div>
+            <div class="dropdown-item" onclick="useExample('test')"><span>🧪</span> Tests</div>
           </div>
         </div>
         
@@ -241,7 +184,7 @@
           <span id="modelText">Cargando...</span>
         </div>
         
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs">🌙</button>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Cambiar tema">🌙</button>
         <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 panel panel-hover flex items-center justify-center">
           <svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
@@ -256,10 +199,10 @@
     <aside class="left-panel">
       
       <!-- Prompt -->
-      <div class="panel p-2 flex flex-col" style="flex:1;min-height:160px;">
+      <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
         <div class="flex justify-between items-center mb-1.5">
           <span class="text-[10px] text-secondary font-medium">PROMPT</span>
-          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary">✕</button>
+          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost">✕</button>
         </div>
         <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
         <div class="flex justify-between mt-1.5 text-[9px] text-tertiary">
@@ -277,11 +220,14 @@
       <!-- Calculate -->
       <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm">⚡ CALCULAR <span class="kbd">Ctrl+↵</span></button>
 
-      <!-- Quick -->
-      <div class="flex gap-1">
-        <button onclick="useExample('code')" class="flex-1 py-1.5 panel panel-hover text-[9px]">💻</button>
-        <button onclick="useExample('summary')" class="flex-1 py-1.5 panel panel-hover text-[9px]">📄</button>
-        <button onclick="useExample('translate')" class="flex-1 py-1.5 panel panel-hover text-[9px]">🌍</button>
+      <!-- Quick Grid -->
+      <div class="quick-grid">
+        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span>💻</span><span>Código</span></button>
+        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span>📄</span><span>Resumen</span></button>
+        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span>🌍</span><span>Traducir</span></button>
+        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span>🗄️</span><span>SQL</span></button>
+        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span>🧪</span><span>Tests</span></button>
+        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span>🔍</span><span>SEO</span></button>
       </div>
 
       <!-- Stats -->
@@ -309,8 +255,9 @@
         <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
           <option value="">Todos los proveedores</option>
         </select>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📥 CSV</button>
-        <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📋 Copy</button>
+        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]" title="Limpiar filtros">✕</button>
+        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📥</button>
+        <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📋</button>
       </div>
 
       <!-- Stats Bar -->
@@ -318,7 +265,7 @@
         <div><span class="text-secondary">Min:</span> <span id="minCost" class="text-green font-medium">-</span></div>
         <div><span class="text-secondary">Max:</span> <span id="maxCost" class="text-red font-medium">-</span></div>
         <div><span class="text-secondary">Media:</span> <span id="avgCost" class="text-primary font-medium">-</span></div>
-        <div class="ml-auto"><span class="text-secondary">Top:</span> <span id="topProvider" class="text-green font-medium">-</span></div>
+        <div class="ml-auto"><span class="text-secondary">🏆 Top:</span> <span id="topProvider" class="text-green font-medium">-</span></div>
       </div>
 
       <!-- Table Header -->
@@ -334,7 +281,7 @@
       <div class="flex-1 overflow-y-auto">
         <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
           <p class="text-sm">Introduce prompt + calcula</p>
-          <p class="text-xs mt-1" style="color: var(--text-4)"><span class="kbd">Ctrl</span>+<span class="kbd">↵</span></p>
+          <p class="text-xs mt-1"><span class="kbd">Ctrl</span>+<span class="kbd">↵</span></p>
         </div>
         <div id="errorState" class="hidden h-full flex flex-col items-center justify-center text-red">
           <p class="text-sm" id="errorMsg">Error</p>
@@ -346,7 +293,7 @@
       </div>
 
       <!-- Footer -->
-      <div class="px-3 py-1.5 border-t flex justify-between text-[9px] text-tertiary" style="border-color: var(--border)">
+      <div class="px-3 py-1.5 border-t flex justify-between items-center text-[9px] text-tertiary" style="border-color: var(--border)">
         <span id="count"></span>
         <span>LiteLLM • <span id="lastUpdate"></span></span>
       </div>
@@ -371,7 +318,6 @@
         stats = s;
         updateStats();
       } catch(e) {}
-      
       if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
@@ -420,15 +366,28 @@
       isDark = !isDark;
     }
 
-    function clearPrompt() { document.getElementById('prompt').value = ''; updateCount(); }
+    function clearPrompt() { 
+      document.getElementById('prompt').value = ''; 
+      updateCount(); 
+    }
+    
+    function clearFilters() {
+      document.getElementById('search').value = '';
+      document.getElementById('providerFilter').value = '';
+      document.getElementById('clearBtn').classList.add('hidden');
+      calcularCostos();
+    }
     
     function useExample(type) {
       const ex = {
         code: '// React login form with validation\nfunction LoginForm() {\n  const [email, setEmail] = useState("");\n  const [password, setPassword] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    if (!email.includes("@")) return;\n    console.log("Login:", { email, password });\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input type="email" value={email} onChange={e => setEmail(e.target.value)} />\n      <input type="password" value={password} onChange={e => setPassword(e.target.value)} />\n      <button type="submit">Login</button>\n    </form>\n  );\n}',
         summary: 'Write a comprehensive summary about how artificial intelligence is transforming software development. Include examples of code generation, automated testing, bug detection, refactoring, and the future of programming with AI assistants.',
         email: 'Write a professional email to a client about project timeline update. Include: greeting, main message about 2-week delay, reasons, new timeline, and closing.',
-        translate: 'Translate the following to Spanish, French, and German: "Our AI-powered platform helps businesses automate customer support while reducing costs by 60%."',
-        blog: 'Write a blog post about "The Future of AI in Software Development" - include sections: introduction, AI code generation, testing automation, challenges, and conclusion. SEO optimized, 1500 words.'
+        translate: 'Translate to Spanish, French, and German: "Our AI-powered platform helps businesses automate customer support while reducing costs by 60%."',
+        blog: 'Write a blog post about "The Future of AI in Software Development" - include sections: introduction, AI code generation, testing automation, challenges, and conclusion. SEO optimized, 1500 words.',
+        seo: 'Write SEO-optimized meta title and description for a page about "Best AI Coding Assistants in 2026". Include keywords: AI coding, code generation, developer tools.',
+        sql: 'Write a SQL query to find the top 10 customers by total order amount in the last 30 days, including their name, email, and total spent. Tables: customers, orders, order_items.',
+        test: 'Write Jest unit tests for a function that validates email addresses. Include tests for valid emails, invalid formats, null values, and edge cases.'
       };
       document.getElementById('prompt').value = ex[type];
       updateCount();
@@ -464,10 +423,7 @@
 
         loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
-        
-        // Update last update date
-        const now = new Date();
-        document.getElementById('lastUpdate').textContent = now.toLocaleDateString('es');
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('es');
         
       } catch(e) {
         loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
@@ -491,6 +447,11 @@
       results = filtrar().map(m => ({ ...m, total: (inT * m.input + out * m.output) / 1e6 }));
       if (!results.length) { toast('Sin resultados', 'error'); return; }
       results.sort((a, b) => { const av = a[sortF], bv = b[sortF]; return typeof av === 'string' ? (sortA ? av.localeCompare(bv) : bv.localeCompare(av)) : (sortA ? av - bv : bv - av); });
+      
+      // Show clear button if filters active
+      const hasFilters = document.getElementById('search').value || document.getElementById('providerFilter').value;
+      document.getElementById('clearBtn').classList.toggle('hidden', !hasFilters);
+      
       renderResults(searchTerm);
       updateStatsBar(prompt);
     }
@@ -500,8 +461,8 @@
       results.forEach((m, i) => {
         const top = i < 3;
         const isHighlight = searchTerm && (m.name.toLowerCase().includes(searchTerm) || m.provider.toLowerCase().includes(searchTerm));
-        html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} border-b" style="border-color: var(--border)">
-          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">${m.provider}</td>
+        html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} border-b" style="border-color: var(--border)">
+          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</td>
           <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
           <td class="px-2 py-1.5 text-right text-tertiary">$${m.input.toFixed(2)}</td>
           <td class="px-2 py-1.5 text-right text-tertiary">$${m.output.toFixed(2)}</td>

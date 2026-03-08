@@ -2,21 +2,25 @@
 
 ---
 
-## [v2.1.0] - 2026-03-08
+## [v2.2.0] - 2026-03-08
 
 ### Added
-- 📝 **Dropdown ejemplos** - 5 ejemplos: código, resumen, email, traducir, blog
-- ⌨️ **Keyboard hints** - Muestra atajos en botones
-- 🔍 **Highlight búsqueda** - Resalta filas que coinciden con búsqueda
-- 💾 **Last update** - Muestra fecha de última actualización
-- 🎨 **Mejoras UI** - Botones secondary, más iconos
+- 🔢 **Quick Grid** - 6 botones rápidos para ejemplos (código, resumen, traducir, SQL, tests, SEO)
+- 🏆 **TOP badges** - Las 3 mejores opciones marcadas con badge
+- ✕ **Clear filters** - Botón para limpiar filtros
+- 🎨 **Improved colors** - Mejores colores y contraste
+- 📊 **Better stats** - Stats bar mejorada
+- 📝 **More examples** - 8 ejemplos en dropdown
 
 ---
 
-## [v2.0.1] - 2026-03-08
+## [v2.1.0] - 2026-03-08
 
-### Fixed
-- Layout panels - Left panel fixed, right panel scrollable
+### Added
+- Dropdown ejemplos (5)
+- Keyboard hints
+- Highlight búsqueda
+- Last update
 
 ---
 
@@ -24,12 +28,10 @@
 
 ### Added
 - Professional square design
-- 8-language README (EN, ES, FR, DE, IT, PT, JA, ZH)
-- Sortable columns with arrows
-- Provider filter dropdown
-- Error handling with retry
-- Stats bar (Min/Max/Avg/Top)
-- Theme system with CSS variables
+- 8-language README
+- Sortable columns
+- Provider filter
+- Error handling
 
 ---
 
