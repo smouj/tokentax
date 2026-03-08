@@ -4,9 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v2.8.0] - 2026-03-08
+
+### Added
+- **Share Results** - Share top models via system share
+- **AI Recommendation** - Get recommended model based on use case
+- **API Info** - Info about upcoming API
+
+---
+
 ## [v2.7.0] - 2026-03-08
 
-### Added (Difficult List Start)
+### Added
 - **Auto-refresh** - Auto-refresh data every 5 minutes
 - **PDF Export** - Export results to PDF
 - **Better stats** - More detailed statistics
