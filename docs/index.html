@@ -500,6 +500,19 @@
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
+      
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden p-8 text-center text-tertiary">
+        <i class="fas fa-table text-4xl mb-2"></i>
+        <p class="text-sm">Introduce prompt + calcula</p>
+      </div>
+      
+      <!-- Error State -->
+      <div id="errorState" class="hidden p-8 text-center text-red-400">
+        <i class="fas fa-exclamation-triangle text-4xl mb-2"></i>
+        <p id="errorMsg" class="text-sm"></p>
+        <button onclick="loadModels()" class="mt-2 px-3 py-1 bg-red-500 text-white rounded text-xs">Reintentar</button>
+      </div>
 
       <!-- Footer -->
       <div class="px-3 py-1.5 border-t flex justify-between items-center text-[9px] text-tertiary" style="border-color: var(--border)">
