@@ -2,82 +2,52 @@
 
 <div align="center">
 
-[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
-
-[![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
-[![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
 
 </div>
 
-> **比较400+ AI模型。找到最便宜的！**
+> **比较来自所有提供商的 400+ AI 型号。即刻找到最便宜的选项。**
 
 ---
 
 ## ✨ 功能
 
-- 📊 400+ 模型
-- 💰 价格比较
-- 🔍 搜索和筛选
-- 🔢 1K/1M切换
-- ⚡ 自动计算
-- 📥 导出CSV
-- 🏆 TOP 3徽章
-- 🏢 提供商Logo
-- 📝 8个示例
-- ⭐ 收藏夹
-- 📝 自定义模板
-- 🕐 最近使用的模型
-- 👁️ Vision过滤器
-- 🧠 Reasoning过滤器
-- 💰 每个提供商最便宜
-- ⚖️ 比较模型
-- 💱 多货币
-- ⌨️ 快捷键
-- 🌓 深色/浅色
-- 📱 PWA
-- 📈 统计
+- 📊 **400+ 型号** - OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek...
+- 💰 **价格比较** - 从最便宜到最昂贵自动排序
+- 🔍 **搜索和筛选** - 按名称搜索或按提供商筛选
+- ⚡ **自动计算** - 输入时计算
+- 📥 **导出 CSV/PDF** - 下载结果
+- ⭐ **收藏** - 保存喜欢的型号
+- 💱 **多币种** - 支持 USD / EUR / GBP
+- ⌨️ **键盘快捷键** - `Ctrl+Enter` 计算，`Esc` 清除
+- 🌓 **深色/浅色模式** - 切换主题
+- ⬛ **OLED 模式** - OLED 显示屏纯黑
+- 👁️ **高对比度** - 无障碍模式
+- 📱 **PWA** - 可安装，离线使用
+- 🐷 **节省计算器** - 显示潜在节省
+- 🔗 **分享链接** - 分享带当前设置的 URL
+- ⛶ **全屏** - 全屏模式 (F11)
+- ❓ **帮助** - 按 ? 查看快捷键
 
 ---
 
-## 🚀 演示
-
-**https://smouj.github.io/tokentax/**
-
----
-
-## ⌨️ 快捷键
-
-| 快捷键 | 操作 |
-|--------|------|
-| `Ctrl + Enter` | 计算 |
-| `Esc` | 清除 |
-| `↑ / ↓` | 导航 |
-
----
-
-## 📋 提供商
-
-OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, AWS, Azure...
-
----
-
-## 🌍 语言
+## 🌐 语言 (8)
 
 | 语言 | 文件 |
 |------|------|
-| EN | [`README.md`](README.md) |
-| ES | [`README.es.md`](README.es.md) |
-| FR | [`README.fr.md`](README.fr.md) |
-| DE | [`README.de.md`](README.de.md) |
-| IT | [`README.it.md`](README.it.md) |
-| PT | [`README.pt.md`](README.pt.md) |
-| JA | [`README.ja.md`](README.ja.md) |
-| ZH | [`README.zh.md`](README.zh.md) |
+| 🇺🇸 English | [`README.md`](README.md) |
+| 🇪🇸 Español | [`README.es.md`](README.es.md) |
+| 🇫🇷 Français | [`README.fr.md`](README.fr.md) |
+| 🇩🇪 Deutsch | [`README.de.md`](README.de.md) |
+| 🇮🇹 Italiano | [`README.it.md`](README.it.md) |
+| 🇧🇷 Português | [`README.pt.md`](README.pt.md) |
+| 🇯🇵 日本語 | [`README.ja.md`](README.ja.md) |
+| 🇨🇳 中文 | [`README.zh.md`](README.zh.md) |
 
 ---
 
-## 📄 许可证
+<div align="center">
 
-MIT © 2026 [smouj](https://github.com/smouj)
+⭐ [smouj](https://github.com/smouj)
 
+</div>

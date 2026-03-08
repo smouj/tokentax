@@ -2,82 +2,52 @@
 
 <div align="center">
 
-[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
-
-[![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
-[![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
 
 </div>
 
-> **400+ AIモデルを比較。最安値を見つけよう！**
+> **400以上のAIモデルをすべてのプロバイダーとを比較。即座に最も安いオプションを見つける。**
 
 ---
 
 ## ✨ 機能
 
-- 📊 400+ モデル
-- 💰 価格比較
-- 🔍 検索とフィルター
-- 🔢 1K/1M切替
-- ⚡ 自動計算
-- 📥 CSVエクスポート
-- 🏆 TOP 3バッジ
-- 🏢 プロバイダーロゴ
-- 📝 8つの例
-- ⭐ お気に入り
-- 📝 カスタムテンプレート
-- 🕐 最近使われたモデル
-- 👁️ Visionフィルター
-- 🧠 Reasoningフィルター
-- 💰 プロバイダー別最安値
-- ⚖️ モデル比較
-- 💱 マルチ通貨
-- ⌨️ ショートカット
-- 🌓 ダーク/ライト
-- 📱 PWA
-- 📈 統計
+- 📊 **400+ モデル** - OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek...
+- 💰 **価格比較** - 安い順に自動ソート
+- 🔍 **検索とフィルター** - 名前で検索、プロバイダーでフィルター
+- ⚡ **自動計算** - 入力中に計算
+- 📥 **CSV/PDFエクスポート** - 結果をダウンロード
+- ⭐ **お気に入り** - お気に入りモデルを保存
+- 💱 **多通貨** - USD / EUR / GBP サポート
+- ⌨️ **キーボードショートカット** - `Ctrl+Enter` 計算、`Esc` クリア
+- 🌓 **ダーク/ライトモード** - テーマ切り替え
+- ⬛ **OLEDモード** - OLEDディスプレイ用の純黒
+- 👁️ **ハイコントラスト** - アクセシビリティモード
+- 📱 **PWA** - インストール可能、オフライン対応
+- 🐷 **節約計算機** - 節約額を表示
+- 🔗 **リンク共有** - 現在の設定でURLを共有
+- ⛶ **フルスクリーン** - フルスクリーンモード (F11)
+- ❓ **ヘルプ** - ?キーでショートカットを表示
 
 ---
 
-## 🚀 デモ
-
-**https://smouj.github.io/tokentax/**
-
----
-
-## ⌨️ ショートカット
-
-| ショートカット | アクション |
-|--------------|----------|
-| `Ctrl + Enter` | 計算 |
-| `Esc` | クリア |
-| `↑ / ↓` | ナビゲート |
-
----
-
-## 📋 プロバイダー
-
-OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, AWS, Azure...
-
----
-
-## 🌍 言語
+## 🌐 言語 (8)
 
 | 言語 | ファイル |
 |------|---------|
-| EN | [`README.md`](README.md) |
-| ES | [`README.es.md`](README.es.md) |
-| FR | [`README.fr.md`](README.fr.md) |
-| DE | [`README.de.md`](README.de.md) |
-| IT | [`README.it.md`](README.it.md) |
-| PT | [`README.pt.md`](README.pt.md) |
-| JA | [`README.ja.md`](README.ja.md) |
-| ZH | [`README.zh.md`](README.zh.md) |
+| 🇺🇸 English | [`README.md`](README.md) |
+| 🇪🇸 Español | [`README.es.md`](README.es.md) |
+| 🇫🇷 Français | [`README.fr.md`](README.fr.md) |
+| 🇩🇪 Deutsch | [`README.de.md`](README.de.md) |
+| 🇮🇹 Italiano | [`README.it.md`](README.it.md) |
+| 🇧🇷 Português | [`README.pt.md`](README.pt.md) |
+| 🇯🇵 日本語 | [`README.ja.md`](README.ja.md) |
+| 🇨🇳 中文 | [`README.zh.md`](README.zh.md) |
 
 ---
 
-## 📄 ライセンス
+<div align="center">
 
-MIT © 2026 [smouj](https://github.com/smouj)
+⭐ [smouj](https://github.com/smouj)
 
+</div>

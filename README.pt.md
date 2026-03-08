@@ -2,82 +2,52 @@
 
 <div align="center">
 
-[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
-
-[![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
-[![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
 
 </div>
 
-> **Compare 400+ modelos de IA. Encontre o mais barato!**
+> **Compare mais de 400 modelos de IA de todos os fornecedores. Encontre a opção mais barato instantaneamente.**
 
 ---
 
 ## ✨ Funcionalidades
 
-- 📊 400+ Modelos
-- 💰 Comparação de preços
-- 🔍 Pesquisa & Filtro
-- 🔢 Toggle 1K/1M
-- ⚡ Auto-calcular
-- 📥 Exporta CSV
-- 🏆 TOP 3 Badge
-- 🏢 Logos provedores
-- 📝 8 exemplos
-- ⭐ Favoritos
-- 📝 Modelos personalizados
-- 🕐 Modelos recentes
-- 👁️ Filtro Vision
-- 🧠 Filtro Reasoning
-- 💰 Mais barato por provedor
-- ⚖️ Comparar modelos
-- 💱 Multi-moeda
-- ⌨️ Atalhos
-- 🌓 Modo escuro/claro
-- 📱 PWA
-- 📈 Estatísticas
+- 📊 **400+ Modelos** - OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek...
+- 💰 **Comparação de preços** - Ordenado do mais barato ao mais caro
+- 🔍 **Pesquisar e filtrar** - Pesquisar por nome ou filtrar por fornecedor
+- ⚡ **Auto-calcular** - Calcular enquanto digita
+- 📥 **Exportar CSV/PDF** - Baixar resultados
+- ⭐ **Favoritos** - Salvar modelos favoritos
+- 💱 **Multi-moeda** - Suporte USD / EUR / GBP
+- ⌨️ **Atalhos** - `Ctrl+Enter` calcular, `Esc` limpar
+- 🌓 **Modo escuro/claro** - Alternar entre temas
+- ⬛ **Modo OLED** - Preto puro para telas OLED
+- 👁️ **Alto contraste** - Modo acessibilidade
+- 📱 **PWA** - Instalável, funciona offline
+- 🐷 **Calculadora de economia** - Mostra economia potencial
+- 🔗 **Compartilhar link** - Compartilhar URL com configurações atuais
+- ⛶ **Tela cheia** - Modo tela cheia (F11)
+- ❓ **Ajuda** - Pressione ? para ver atalhos
 
 ---
 
-## 🚀 Demo
-
-**https://smouj.github.io/tokentax/**
-
----
-
-## ⌨️ Atalhos
-
-| Atalho | Ação |
-|--------|------|
-| `Ctrl + Enter` | Calcular |
-| `Esc` | Limpar |
-| `↑ / ↓` | Navegar |
-
----
-
-## 📋 Provedores
-
-OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, AWS, Azure...
-
----
-
-## 🌍 Idiomas
+## 🌐 Idiomas (8)
 
 | Idioma | Arquivo |
 |--------|---------|
-| EN | [`README.md`](README.md) |
-| ES | [`README.es.md`](README.es.md) |
-| FR | [`README.fr.md`](README.fr.md) |
-| DE | [`README.de.md`](README.de.md) |
-| IT | [`README.it.md`](README.it.md) |
-| PT | [`README.pt.md`](README.pt.md) |
-| JA | [`README.ja.md`](README.ja.md) |
-| ZH | [`README.zh.md`](README.zh.md) |
+| 🇺🇸 English | [`README.md`](README.md) |
+| 🇪🇸 Español | [`README.es.md`](README.es.md) |
+| 🇫🇷 Français | [`README.fr.md`](README.fr.md) |
+| 🇩🇪 Deutsch | [`README.de.md`](README.de.md) |
+| 🇮🇹 Italiano | [`README.it.md`](README.it.md) |
+| 🇧🇷 Português | [`README.pt.md`](README.pt.md) |
+| 🇯🇵 日本語 | [`README.ja.md`](README.ja.md) |
+| 🇨🇳 中文 | [`README.zh.md`](README.zh.md) |
 
 ---
 
-## 📄 Licença
+<div align="center">
 
-MIT © 2026 [smouj](https://github.com/smouj)
+⭐ [smouj](https://github.com/smouj)
 
+</div>

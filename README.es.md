@@ -23,7 +23,7 @@
 | 🔍 **Buscar y filtrar** | Busca por nombre o filtra por proveedor |
 | 🔢 **Toggle 1K/1M** | Cambiar entre precios por 1K o 1M tokens |
 | ⚡ **Auto-calcular** | Calcular automáticamente al escribir |
-| 📥 **Exportar CSV** | Descarga los resultados de la comparación |
+| 📥 **Exportar CSV/PDF** | Descarga los resultados en múlti forms |
 | 🏆 **Badges TOP** | Resalta los 3 modelos más baratos |
 | 🏢 **Logos de proveedores** | Logotipos visuales para cada proveedor |
 | 📝 **Ejemplos rápidos** | 8 ejemplos de prompts incluidos |
@@ -37,8 +37,16 @@
 | 💱 **Multi-moneda** | Soporte USD / EUR / GBP |
 | ⌨️ **Atajos de teclado** | `Ctrl+Enter` calcular, `Esc` limpiar, `↑↓` navegar |
 | 🌓 **Modo oscuro/claro** | Cambia entre temas |
+| ⬛ **Modo OLED** | Negro puro para pantallas OLED |
+| 👁️ **High Contrast** | Modo de alto contraste para accesibilidad |
 | 📱 **PWA** | Instalable, funciona sin conexión |
 | 📈 **Estadísticas** | Seguimiento de cálculos y ahorros |
+| 🐷 **Calculadora de ahorro** | Muestra ahorro potencial entre modelos |
+| 🔗 **Compartir enlace** | Comparte URL con configuración actual |
+| 🌐 **URL params** | Carga estado desde parámetros URL |
+| ⛶ **Fullscreen** | Modo pantalla completa (F11) |
+| ❓ **Ayuda** | Press ? para ver todos los atajos |
+| 💾 **Presets** | Guarda y carga configuraciones |
 
 ---
 
@@ -56,6 +64,9 @@
 | `Escape` | Limpiar prompt |
 | `↑ / ↓` | Navegar modelos |
 | `Ctrl + Click` | Seleccionar múltiples para comparar |
+| `F11` | Pantalla completa |
+| `?` | Ver ayuda de atajos |
+| `Alt + 1-9` | Acciones rápidas |
 
 ---
 

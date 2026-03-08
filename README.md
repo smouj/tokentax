@@ -23,7 +23,7 @@
 | 🔍 **Search & Filter** | Search by name or filter by provider |
 | 🔢 **1K/1M Toggle** | Switch between per-1K or per-1M token prices |
 | ⚡ **Auto-Calculate** | Calculate as you type |
-| 📥 **CSV Export** | Download comparison results |
+| 📥 **Export CSV/PDF** | Download comparison results in multiple formats |
 | 🏆 **TOP Badges** | Highlight top 3 cheapest models |
 | 🏢 **Provider Logos** | Visual logos for each provider |
 | 📝 **Quick Examples** | 8 built-in prompt examples |
@@ -37,8 +37,16 @@
 | 💱 **Multi-Currency** | USD / EUR / GBP support |
 | ⌨️ **Keyboard Shortcuts** | `Ctrl+Enter` calculate, `Esc` clear, `↑↓` navigate |
 | 🌓 **Dark/Light Mode** | Toggle between themes |
+| ⬛ **OLED Mode** | Pure black for OLED displays |
+| 👁️ **High Contrast** | Accessibility mode for better visibility |
 | 📱 **PWA** | Installable, works offline |
 | 📈 **Statistics** | Track calculations & savings |
+| 🐷 **Savings Calculator** | Shows potential savings between models |
+| 🔗 **Share Link** | Share URL with current settings |
+| 🌐 **URL Params** | Load state from URL parameters |
+| ⛶ **Fullscreen** | Fullscreen mode (F11) |
+| ❓ **Help** | Press ? to view all shortcuts |
+| 💾 **Presets** | Save and load configurations |
 
 ---
 
@@ -56,6 +64,9 @@
 | `Escape` | Clear prompt |
 | `↑ / ↓` | Navigate models |
 | `Ctrl + Click` | Select multiple to compare |
+| `F11` | Fullscreen |
+| `?` | View help |
+| `Alt + 1-9` | Quick actions |
 
 ---
 
