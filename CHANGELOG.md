@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v4.0.1] - 2026-03-08
+
+### Fixed
+- **Mobile Layout** - Better responsive design
+- **Table Cells** - Improved table column styling
+- **Font Fallback** - Added system font fallbacks
+- **Media Queries** - Fixed and improved breakpoints
+
+---
+
 ## [v4.0.0] - 2026-03-08
 
 ### Added
