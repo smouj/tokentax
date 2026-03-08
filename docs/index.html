@@ -268,6 +268,13 @@
             <span class="toggle-slider"></span>
           </label>
         </div>
+        <div class="settings-row">
+          <span class="settings-label" data-lang="autoRefresh">Auto-refresh</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="autoRefresh" onchange="toggleAutoRefresh()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
       </div>
 
       <!-- Stats -->
@@ -357,7 +364,8 @@
         
         <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]">✕</button>
         <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo">📋</button>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">📥</button>
+        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
+        <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
         <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar">⚖️</button>
       </div>
 
@@ -439,7 +447,7 @@
   <script>
     // Translations
     const translations = {
-      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles', templates: 'Plantillas', recent: 'Recientes' },
+      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles', templates: 'Plantillas', recent: 'Recientes', alerts: 'Alertas', batch: 'Lote', autoRefresh: 'Auto-refresh' },
       en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry', per1k: 'Prices per 1K', autoCalc: 'Auto-calculate', clearPrompt: 'clear', favorites: 'Favorites', compare: 'Compare', showContext: 'Show Context', context: 'Context', details: 'Details', templates: 'Templates', recent: 'Recent' }
     };
 
@@ -476,6 +484,8 @@
     let currentTypeFilter = '';
     let priceAlerts = [];
     let batchPrompts = [];
+    let autoRefresh = false;
+    let refreshInterval = null;
 
     // Init
     (function() {
@@ -536,6 +546,13 @@
         document.getElementById('showContext').checked = true;
         showContext = true;
       }
+      if (localStorage.getItem('autoRefresh') === 'true') {
+        document.getElementById('autoRefresh').checked = true;
+        autoRefresh = true;
+        refreshInterval = setInterval(() => {
+          loadModels();
+        }, 300000);
+      }
     })();
 
     function changeLanguage(lang) {
@@ -569,6 +586,55 @@
       showContext = document.getElementById('showContext').checked;
       localStorage.setItem('showContext', showContext);
       renderResults();
+    }
+
+    function toggleAutoRefresh() {
+      autoRefresh = document.getElementById('autoRefresh').checked;
+      localStorage.setItem('autoRefresh', autoRefresh);
+      if (autoRefresh) {
+        refreshInterval = setInterval(() => {
+          loadModels();
+          toast('Datos actualizados', 'info');
+        }, 300000); // 5 minutes
+        toast('Auto-refresh activado (5min)');
+      } else {
+        if (refreshInterval) clearInterval(refreshInterval);
+        toast('Auto-refresh desactivado');
+      }
+    }
+
+    function exportPDF() {
+      if (!results.length) return;
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
+      
+      let html = `<html><head><title>TokenTax Results</title>
+        <style>body{font-family:system-ui;padding:20px}
+        table{width:100%;border-collapse:collapse}
+        th,td{border:1px solid #ddd;padding:8px;text-align:left}
+        th{background:#f5f5f5}
+        .green{color:green}</style></head><body>
+        <h1>TokenTax AI PRO - Results</h1>
+        <p>Generated: ${new Date().toLocaleString()}</p>
+        <table><tr><th>Provider</th><th>Model</th><th>Input</th><th>Output</th><th>Total</th></tr>`;
+      
+      results.slice(0, currentLimit).forEach(m => {
+        html += `<tr>
+          <td>${m.provider}</td>
+          <td>${m.fullName}</td>
+          <td>${symbol}${(m.input * rate).toFixed(4)}</td>
+          <td>${symbol}${(m.output * rate).toFixed(4)}</td>
+          <td class="green">${symbol}${(m.total * rate).toFixed(4)}</td>
+        </tr>`;
+      });
+      
+      html += '</table></body></html>';
+      
+      const win = window.open('', '_blank');
+      win.document.write(html);
+      win.document.close();
+      win.print();
+      toast('PDF generado');
     }
 
     function updateStats() {
@@ -1060,6 +1126,7 @@
       document.getElementById('tableBody').classList.remove('hidden');
       document.getElementById('count').textContent = `${limitedResults.length} / ${results.length} modelos`;
       document.getElementById('exportBtn').classList.remove('hidden');
+      document.getElementById('pdfBtn').classList.remove('hidden');
       document.getElementById('copyAllBtn').classList.remove('hidden');
       updateCompareBtn();
     }
