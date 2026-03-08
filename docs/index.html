@@ -97,61 +97,32 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    /* TABLE - SIMPLE & CLEAN */
+    /* TABLE - ONE LINE, NO WRAP */
     .table-wrap { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
-    .table-header { 
-      display: table; 
-      width: 100%; 
-      table-layout: fixed; 
-      background: var(--surface-2); 
-      position: sticky; 
-      top: 0; 
-      z-index: 10;
-    }
-    .table-header > div { 
-      display: table-cell; 
-      padding: 8px 12px; 
-      font-size: 10px; 
-      font-weight: 700; 
-      text-transform: uppercase; 
-      color: var(--text-3); 
-      border-bottom: 1px solid var(--border);
-    }
+    .table-header { display: table; width: 100%; min-width: 550px; table-layout: fixed; background: var(--surface-2); position: sticky; top: 0; z-index: 10; }
+    .table-header > div { display: table-cell; padding: 8px 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--border); }
     .th-1 { width: 30px; text-align: center; }
-    .th-2 { width: 90px; }
-    .th-3 { width: 110px; }
-    .th-4 { width: 70px; text-align: right; }
-    .th-5 { width: 70px; text-align: right; }
-    .th-6 { width: 80px; text-align: right; }
+    .th-2 { width: 80px; }
+    .th-3 { width: 100px; }
+    .th-4 { width: 65px; text-align: right; }
+    .th-5 { width: 65px; text-align: right; }
+    .th-6 { width: 70px; text-align: right; }
     .th-col { cursor: pointer; }
     .th-col:hover { color: var(--text); }
     .sort-icon { margin-left: 4px; font-size: 8px; opacity: 0.4; }
     .sort-icon.active { opacity: 1; color: var(--green); }
     
-    .table-body { 
-      display: table; 
-      width: 100%; 
-      table-layout: fixed; 
-      overflow-y: auto;
-    }
-    .table-row { 
-      display: table-row; 
-    }
-    .table-row > div { 
-      display: table-cell; 
-      padding: 8px 12px; 
-      border-bottom: 1px solid var(--border); 
-      vertical-align: middle;
-      font-size: 12px;
-    }
+    .table-body { display: block; overflow-y: auto; overflow-x: hidden; flex: 1; min-width: 550px; }
+    .table-row { display: table; width: 100%; table-layout: fixed; height: 32px; }
+    .table-row > div { display: table-cell; padding: 0 10px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; height: 32px; line-height: 18px; }
     .table-row:hover > div { background: var(--surface-2); }
     .table-row.top-3 > div { background: rgba(34, 197, 94, 0.06); }
     .td-1 { width: 30px; text-align: center; }
-    .td-2 { width: 90px; font-weight: 600; font-size: 11px; }
-    .td-3 { width: 110px; font-size: 10px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .td-4 { width: 70px; text-align: right; font-size: 11px; color: var(--text-3); }
-    .td-5 { width: 70px; text-align: right; font-size: 11px; color: var(--text-3); }
-    .td-6 { width: 80px; text-align: right; font-weight: 700; font-size: 11px; }
+    .td-2 { width: 80px; font-weight: 600; }
+    .td-3 { width: 100px; color: var(--text-2); }
+    .td-4 { width: 65px; text-align: right; color: var(--text-3); }
+    .td-5 { width: 65px; text-align: right; color: var(--text-3); }
+    .td-6 { width: 70px; text-align: right; font-weight: 700; }
 
     /* Button hover effects */
     .panel-hover { transition: all 0.15s ease; }
@@ -453,7 +424,7 @@
     </aside>
 
     <!-- Right Panel -->
-    <div class="right-panel panel">
+    <div class="right-panel panel" style="min-width:600px">
 
       <!-- Filters -->
       <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
