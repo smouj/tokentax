@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tokentax-v3.9';
+const CACHE_NAME = 'tokentax-v4.3';
 const ASSETS = [
   '/',
   '/index.html',

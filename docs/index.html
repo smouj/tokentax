@@ -554,11 +554,6 @@
   </div>
 
   <script>
-    // Run immediately - no waiting
-    (function() {
-      alert('TokenTax JavaScript works!');
-      console.log('JS loaded');
-    })();
     // Translations
     const translations = {
       es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles', templates: 'Plantillas', recent: 'Recientes', alerts: 'Alertas', batch: 'Lote', autoRefresh: 'Auto-refresh' },
@@ -1842,16 +1837,19 @@
 
     // Initialize
     window.onload = () => { 
-      alert('TokenTax loading...');
-      console.log('TokenTax starting...');
       loadModels(); 
       updateCount(); 
       updateSortIcons(); 
       loadFromURL();
       updateVisitorCount();
       initMatrixBg();
-      console.log('TokenTax initialized');
     };
   </script>
 </body>
+<script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(e => console.log('SW registration failed:', e));
+    }
+  </script>
 </html>
