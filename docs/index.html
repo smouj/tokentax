@@ -1580,6 +1580,7 @@
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
         updateQuickProviders();
         renderProviderPanel();
+        renderResults();
         toast('Cargados: ' + allModels.length + ' modelos', 'success');
 
       } catch(e) {
