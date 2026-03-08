@@ -4,12 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [v4.0.3] - 2026-03-08
+## [v4.0.4] - 2026-03-08
 
 ### Fixed
-- **Table Design** - Professional compact table layout
-- **Column Widths** - Optimized for better visibility
-- **Mobile Table** - Better responsive table
+- **Table Rewrite** - Complete table redesign using table layout
+- **Perfect Alignment** - Columns perfectly aligned with fixed widths
+- **Clean Structure** - Professional, simple table structure
+
+---
+
+## [v4.0.3] - 2026-03-08
 
 ---
 

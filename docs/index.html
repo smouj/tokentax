@@ -53,13 +53,15 @@
       .right-panel { margin: 4px !important; width: calc(100% - 8px) !important; }
       .header { padding: 8px !important; }
       .quick-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 4px !important; }
-      .table-header { padding: 6px 8px !important; font-size: 9px !important; }
-      .table-row { padding: 4px 8px !important; font-size: 10px !important; }
-      .th-col:nth-child(2), .th-col:nth-child(3), .td-col:nth-child(2), .td-col:nth-child(3) { max-width: 60px !important; }
+      .table-header > div, .table-row > div { padding: 6px 8px !important; font-size: 9px !important; }
+      .th-1, .td-1 { width: 24px !important; }
+      .th-2, .td-2 { width: 70px !important; }
+      .th-3, .td-3 { width: 80px !important; }
+      .th-4, .td-4, .th-5, .td-5, .th-6, .td-6 { width: 55px !important; }
       .panel { border-radius: 6px !important; }
       .btn-primary { padding: 10px 16px !important; }
       .header h1 { font-size: 14px !important; }
-      .badge { font-size: 7px !important; padding: 2px 4px !important; }
+      .badge { font-size: 6px !important; padding: 1px 3px !important; }
     }
     
     @media (max-width: 480px) {
@@ -95,51 +97,61 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
+    /* TABLE - SIMPLE & CLEAN */
+    .table-wrap { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
     .table-header { 
+      display: table; 
+      width: 100%; 
+      table-layout: fixed; 
+      background: var(--surface-2); 
       position: sticky; 
       top: 0; 
-      background: var(--surface-2); 
-      z-index: 10; 
-      display: flex; 
-      align-items: center; 
-      padding: 8px 16px; 
+      z-index: 10;
+    }
+    .table-header > div { 
+      display: table-cell; 
+      padding: 8px 12px; 
       font-size: 10px; 
       font-weight: 700; 
       text-transform: uppercase; 
-      letter-spacing: 0.5px;
       color: var(--text-3); 
       border-bottom: 1px solid var(--border);
     }
-    .th-col { flex: 1; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .th-1 { width: 30px; text-align: center; }
+    .th-2 { width: 90px; }
+    .th-3 { width: 110px; }
+    .th-4 { width: 70px; text-align: right; }
+    .th-5 { width: 70px; text-align: right; }
+    .th-6 { width: 80px; text-align: right; }
+    .th-col { cursor: pointer; }
     .th-col:hover { color: var(--text); }
-    .th-col:first-child { flex: 0 0 28px; justify-content: center; }
-    .th-col:nth-child(2) { flex: 0 0 85px; }
-    .th-col:nth-child(3) { flex: 0 0 95px; }
-    .th-col:nth-child(4) { flex: 0 0 65px; justify-content: flex-end; }
-    .th-col:nth-child(5) { flex: 0 0 65px; justify-content: flex-end; }
-    .th-col:nth-child(6) { flex: 0 0 75px; justify-content: flex-end; }
-    .sort-icon { font-size: 9px; opacity: 0.4; }
+    .sort-icon { margin-left: 4px; font-size: 8px; opacity: 0.4; }
     .sort-icon.active { opacity: 1; color: var(--green); }
     
-    .table-row { 
-      display: flex; 
-      align-items: center; 
-      padding: 6px 16px; 
-      border-bottom: 1px solid var(--border); 
-      font-size: 12px; 
+    .table-body { 
+      display: table; 
+      width: 100%; 
+      table-layout: fixed; 
+      overflow-y: auto;
     }
-    .table-row:hover { background: var(--surface-2); }
-    .table-row.highlight { background: var(--blue-dim); }
-    .table-row.top-3 { background: rgba(34, 197, 94, 0.06); }
-    .table-row.selected { background: var(--blue-dim); }
-    .theme-light .table-row.top-3 { background: var(--green-dim); }
-    .td-col { flex: 1; padding: 2px 4px; display: flex; align-items: center; }
-    .td-col:first-child { flex: 0 0 28px; justify-content: center; }
-    .td-col:nth-child(2) { flex: 0 0 85px; font-weight: 600; font-size: 11px; }
-    .td-col:nth-child(3) { flex: 0 0 95px; font-size: 10px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .td-col:nth-child(4) { flex: 0 0 65px; justify-content: flex-end; font-size: 11px; color: var(--text-3); }
-    .td-col:nth-child(5) { flex: 0 0 65px; justify-content: flex-end; font-size: 11px; color: var(--text-3); }
-    .td-col:nth-child(6) { flex: 0 0 75px; justify-content: flex-end; font-weight: 700; font-size: 11px; }
+    .table-row { 
+      display: table-row; 
+    }
+    .table-row > div { 
+      display: table-cell; 
+      padding: 8px 12px; 
+      border-bottom: 1px solid var(--border); 
+      vertical-align: middle;
+      font-size: 12px;
+    }
+    .table-row:hover > div { background: var(--surface-2); }
+    .table-row.top-3 > div { background: rgba(34, 197, 94, 0.06); }
+    .td-1 { width: 30px; text-align: center; }
+    .td-2 { width: 90px; font-weight: 600; font-size: 11px; }
+    .td-3 { width: 110px; font-size: 10px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .td-4 { width: 70px; text-align: right; font-size: 11px; color: var(--text-3); }
+    .td-5 { width: 70px; text-align: right; font-size: 11px; color: var(--text-3); }
+    .td-6 { width: 80px; text-align: right; font-weight: 700; font-size: 11px; }
 
     /* Button hover effects */
     .panel-hover { transition: all 0.15s ease; }
@@ -235,7 +247,7 @@
       <div class="flex items-center gap-4">
         <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.0.3</span></h1>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.0.4</span></h1>
           <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
         </div>
       </div>
@@ -486,18 +498,26 @@
         <div class="ml-auto"><span class="text-secondary"><i class="fas fa-trophy"></i> <span data-lang="top">Top:</span></span> <span id="topProvider" class="text-green font-medium">-</span></div>
       </div>
 
-      <!-- Table Header -->
+      <div class="table-wrap">
       <div class="table-header">
-        <div class="th-col"></div>
-        <div class="th-col" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
+        <div class="th-1"></div>
+        <div class="th-col th-2" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span><span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-3" onclick="sortBy('name')"><span data-lang="model">Modelo</span><span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-4" onclick="sortBy('input')"><span data-lang="input">Input</span><span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-5" onclick="sortBy('output')"><span data-lang="output">Output</span><span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-6" onclick="sortBy('total')"><span data-lang="cost">Coste</span><span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
       </div>
-
-      <!-- Results -->
-      <div class="flex-1 overflow-y-auto p-2" id="resultsContainer" style="padding: 8px;">
+      <div id="emptyState" class="flex-1 flex flex-col items-center justify-center text-tertiary" style="padding: 60px;">
+        <i class="fas fa-calculator text-5xl mb-4" style="opacity:0.2"></i>
+        <p class="text-sm" data-lang="emptyState1">Enter a prompt and calculate</p>
+        <p class="text-xs mt-2" style="opacity:0.6">Press <span class="kbd">Ctrl+Enter</span></p>
+      </div>
+      <div id="errorState" class="hidden flex-1 flex flex-col items-center justify-center text-red" style="padding: 60px;">
+        <p class="text-sm" id="errorMsg">Error</p>
+        <button onclick="loadModels()" class="btn-secondary mt-2" data-lang="retry">Reintentar</button>
+      </div>
+      <div class="table-body" id="tableBody"></div>
+      </div>
         <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
           <i class="fas fa-calculator text-4xl mb-3" style="opacity:0.3"></i>
           <p class="text-sm" data-lang="emptyState1">Enter a prompt and calculate</p>
@@ -507,9 +527,6 @@
           <p class="text-sm" id="errorMsg">Error</p>
           <button onclick="loadModels()" class="text-xs mt-2 underline" data-lang="retry">Reintentar</button>
         </div>
-        <table class="w-full text-xs">
-          <tbody id="tableBody" class="hidden"></tbody>
-        </table>
       </div>
 
       <!-- Footer -->
@@ -1544,12 +1561,12 @@
         const isSelected = selectedModels.includes(i);
 
         html += `<div class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''}" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
-          <div class="td-col"><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></div>
-          <div class="td-col ${top ? 'text-green' : ''}"><span class="provider-logo ${logoClass}" style="margin-right:4px">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</div>
-          <div class="td-col text-[10px]" title="${m.fullName}">${m.name}</div>
-          <div class="td-col text-right">${symbol}${(m.input / unit * rate).toFixed(4)}</div>
-          <div class="td-col text-right">${symbol}${(m.output / unit * rate).toFixed(4)}</div>
-          <div class="td-col text-right font-semibold ${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</div>
+          <div class="td-1"><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></div>
+          <div class="td-2 ${top ? 'text-green' : ''}"><span class="provider-logo ${logoClass}" style="margin-right:4px">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</div>
+          <div class="td-3" title="${m.fullName}">${m.name}</div>
+          <div class="td-4">${symbol}${(m.input / unit * rate).toFixed(4)}</div>
+          <div class="td-5">${symbol}${(m.output / unit * rate).toFixed(4)}</div>
+          <div class="td-6 ${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</div>
         </div>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
