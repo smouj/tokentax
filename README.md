@@ -1,7 +1,5 @@
 # 🔥 TokenTax AI PRO
 
-<img width="1211" height="697" alt="Captura de pantalla (944)" src="https://github.com/user-attachments/assets/3b12e5ca-3593-43c6-a5af-9b188887e94c" />
-
 <div align="center">
 
 [![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
