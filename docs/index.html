@@ -179,6 +179,8 @@
         
         <!-- Theme Toggle -->
         <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme">🌙</button>
+        <button onclick="quickEstimate()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Quick Estimate">$</button>
+        <button onclick="loadPresets()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Load Preset">P</button>
         
         <!-- Examples -->
         <div class="dropdown">
@@ -275,6 +277,10 @@
             <span class="toggle-slider"></span>
           </label>
         </div>
+        <div class="flex gap-1 mt-2">
+          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1">Save Preset</button>
+          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1">Stats</button>
+        </div>
       </div>
 
       <!-- Stats -->
@@ -368,6 +374,7 @@
         <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
         <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir">Share</button>
         <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado">AI</button>
+        <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen">[]</button>
         <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar">⚖️</button>
       </div>
 
@@ -661,6 +668,102 @@
     // API endpoint info
     function showAPIInfo() {
       alert('TokenTax API\n\nComing soon!\n\nCurrently data from LiteLLM.');
+    }
+
+    // Fullscreen
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Provider stats
+    function showProviderStats() {
+      if (!results.length) return;
+      const stats = {};
+      results.forEach(m => {
+        if (!stats[m.provider]) stats[m.provider] = { count: 0, avgCost: 0 };
+        stats[m.provider].count++;
+        stats[m.provider].avgCost += m.total;
+      });
+      
+      let html = '<div class="space-y-2">';
+      Object.entries(stats).sort((a,b) => b[1].count - a[1].count).forEach(([p, s]) => {
+        html += `<div class="flex justify-between text-xs">
+          <span>${p}</span>
+          <span class="text-tertiary">${s.count} models | avg $${(s.avgCost/s.count).toFixed(4)}</span>
+        </div>`;
+      });
+      html += '</div>';
+      
+      document.getElementById('detailsTitle').textContent = 'Provider Stats';
+      document.getElementById('detailsContent').innerHTML = html;
+      document.getElementById('detailsModal').classList.add('active');
+    }
+
+    // Quick cost estimate
+    function quickEstimate() {
+      const prompt = document.getElementById('prompt').value;
+      const out = parseFloat(document.getElementById('outputTokens').value) || 500;
+      const inT = estTokens(prompt);
+      
+      if (!allModels.length || !prompt) return;
+      
+      const cheapest = allModels[0];
+      const cost = (inT * cheapest.input + out * cheapest.output) / 1e6;
+      
+      toast(`Estimacion rapida: $${cost.toFixed(4)} con ${cheapest.provider}`, 'info');
+    }
+
+    // Save/load presets
+    function savePreset() {
+      const name = prompt('Nombre del preset:');
+      if (!name) return;
+      
+      const preset = {
+        name,
+        outputTokens: document.getElementById('outputTokens').value,
+        limit: currentLimit,
+        currency: currentCurrency,
+        pricePer1K,
+        autoCalc
+      };
+      
+      const presets = JSON.parse(localStorage.getItem('tt_presets') || '[]');
+      presets.push(preset);
+      localStorage.setItem('tt_presets', JSON.stringify(presets));
+      toast('Preset guardado');
+    }
+
+    function loadPresets() {
+      const presets = JSON.parse(localStorage.getItem('tt_presets') || '[]');
+      if (!presets.length) {
+        toast('No hay presets', 'error');
+        return;
+      }
+      
+      let msg = 'Presets disponibles:\n';
+      presets.forEach((p, i) => {
+        msg += `${i+1}. ${p.name}\n`;
+      });
+      msg += '\nNumero:';
+      
+      const idx = prompt(msg);
+      if (!idx || idx < 1 || idx > presets.length) return;
+      
+      const p = presets[idx-1];
+      document.getElementById('outputTokens').value = p.outputTokens;
+      document.getElementById('limitInput').value = p.limit;
+      document.getElementById('currencySelect').value = p.currency;
+      changeCurrency(p.currency);
+      document.getElementById('pricePer1K').checked = p.pricePer1K;
+      pricePer1K = p.pricePer1K;
+      document.getElementById('autoCalc').checked = p.autoCalc;
+      autoCalc = p.autoCalc;
+      
+      toast('Preset cargado');
     }
 
     // Recommended model (simple AI)
