@@ -1469,17 +1469,50 @@
       loader.className = 'w-2 h-2 rounded-full bg-yellow-500';
       modelText.textContent = 'Cargando...';
 
+      // Fallback data - hardcoded minimal set
+      const fallbackData = {
+        "openai/gpt-4o": { litellm_provider: "openai", input_cost_per_token: 0.0000025, output_cost_per_token: 0.00001, max_input_tokens: 128000 },
+        "openai/gpt-4o-mini": { litellm_provider: "openai", input_cost_per_token: 0.00000015, output_cost_per_token: 0.0000006, max_input_tokens: 128000 },
+        "openai/gpt-4-turbo": { litellm_provider: "openai", input_cost_per_token: 0.00001, output_cost_per_token: 0.00003, max_input_tokens: 128000 },
+        "openai/gpt-3.5-turbo": { litellm_provider: "openai", input_cost_per_token: 0.0000005, output_cost_per_token: 0.0000015, max_input_tokens: 16385 },
+        "anthropic/claude-3.5-sonnet": { litellm_provider: "anthropic", input_cost_per_token: 0.000003, output_cost_per_token: 0.000015, max_input_tokens: 200000 },
+        "anthropic/claude-3-opus": { litellm_provider: "anthropic", input_cost_per_token: 0.000015, output_cost_per_token: 0.000075, max_input_tokens: 200000 },
+        "anthropic/claude-3-haiku": { litellm_provider: "anthropic", input_cost_per_token: 0.00000025, output_cost_per_token: 0.00000125, max_input_tokens: 200000 },
+        "google/gemini-1.5-pro": { litellm_provider: "google", input_cost_per_token: 0.00000125, output_cost_per_token: 0.000005, max_input_tokens: 128000 },
+        "google/gemini-1.5-flash": { litellm_provider: "google", input_cost_per_token: 0.00000007, output_cost_per_token: 0.00000035, max_input_tokens: 128000 },
+        "mistral/mistral-large": { litellm_provider: "mistral", input_cost_per_token: 0.000002, output_cost_per_token: 0.000006, max_input_tokens: 128000 },
+        "mistral/mistral-small": { litellm_provider: "mistral", input_cost_per_token: 0.0000002, output_cost_per_token: 0.0000006, max_input_tokens: 128000 },
+        "deepseek/deepseek-chat": { litellm_provider: "deepseek", input_cost_per_token: 0.00000014, output_cost_per_token: 0.00000028, max_input_tokens: 64000 },
+        "meta-llama/llama-3.1-70b": { litellm_provider: "meta", input_cost_per_token: 0.0000009, output_cost_per_token: 0.0000009, max_input_tokens: 128000 },
+        "meta-llama/llama-3.1-8b": { litellm_provider: "meta", input_cost_per_token: 0.0000002, output_cost_per_token: 0.0000002, max_input_tokens: 128000 },
+        "cohere/command-r-plus": { litellm_provider: "cohere", input_cost_per_token: 0.000003, output_cost_per_token: 0.000015, max_input_tokens: 128000 },
+        "cohere/command-r": { litellm_provider: "cohere", input_cost_per_token: 0.0000005, output_cost_per_token: 0.0000015, max_input_tokens: 128000 },
+        "xai/grok-beta": { litellm_provider: "xai", input_cost_per_token: 0.000005, output_cost_per_token: 0.000015, max_input_tokens: 131072 },
+        "perplexity/perplexity-llama-3.1-sonar-large": { litellm_provider: "perplexity", input_cost_per_token: 0.000003, output_cost_per_token: 0.000015, max_input_tokens: 127072 },
+        "nvidia/nemotron-70b": { litellm_provider: "nvidia", input_cost_per_token: 0.0000004, output_cost_per_token: 0.0000008, max_input_tokens: 128000 },
+        "aws/amazon.nova-pro-v1:0": { litellm_provider: "aws", input_cost_per_token: 0.0000008, output_cost_per_token: 0.0000032, max_input_tokens: 300000 }
+      };
+
       try {
-        // Fetch data
-        const url = 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json';
-        const res = await fetch(url);
-        if (!res.ok) throw new Error('Error: ' + res.status);
+        // Try to fetch from GitHub first
+        let data = null;
+        try {
+          const url = 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json';
+          const res = await fetch(url);
+          if (res.ok) {
+            data = await res.json();
+          }
+        } catch(e) {
+          console.log('Using fallback data');
+        }
         
-        const data = await res.json();
+        // Use fallback if fetch failed
+        if (!data) {
+          data = fallbackData;
+        }
         
         // Parse models
         allModels = [];
-        let parsed = 0;
         
         for (const [key, m] of Object.entries(data)) {
           if (!m || typeof m !== 'object') continue;
@@ -1488,7 +1521,6 @@
           const out = m.output_cost_per_token;
           
           if (inp && out && inp > 0 && out > 0) {
-            parsed++;
             const provider = m.litellm_provider || 'other';
             allModels.push({
               provider: provider.charAt(0).toUpperCase() + (provider.slice(1) || ''),
@@ -1501,7 +1533,21 @@
           }
         }
         
-        if (allModels.length === 0) throw new Error('No models found');
+        if (allModels.length === 0) {
+          // Emergency fallback - add at least some models
+          allModels = [
+            {provider: 'OpenAI', name: 'GPT-4o', fullName: 'gpt-4o', input: 2.5, output: 10, context: 128000},
+            {provider: 'OpenAI', name: 'GPT-4o Mini', fullName: 'gpt-4o-mini', input: 0.15, output: 0.6, context: 128000},
+            {provider: 'Anthropic', name: 'Claude 3.5 Sonnet', fullName: 'claude-3.5-sonnet', input: 3, output: 15, context: 200000},
+            {provider: 'Google', name: 'Gemini 1.5 Pro', fullName: 'gemini-1.5-pro', input: 1.25, output: 5, context: 128000},
+            {provider: 'Mistral', name: 'Mistral Large', fullName: 'mistral-large', input: 2, output: 6, context: 128000},
+            {provider: 'DeepSeek', name: 'DeepSeek Chat', fullName: 'deepseek-chat', input: 0.14, output: 0.28, context: 64000},
+            {provider: 'Meta', name: 'Llama 3.1 70B', fullName: 'llama-3.1-70b', input: 0.9, output: 0.9, context: 128000},
+            {provider: 'Cohere', name: 'Command R+', fullName: 'command-r-plus', input: 3, output: 15, context: 128000},
+            {provider: 'XAI', name: 'Grok Beta', fullName: 'grok-beta', input: 5, output: 15, context: 131072},
+            {provider: 'Perplexity', name: 'Llama 3.1 Sonar', fullName: 'perplexity-llama-3.1-sonar-large', input: 3, output: 15, context: 127072}
+          ];
+        }
         
         // Sort by input price
         allModels.sort((a, b) => a.input - b.input);
