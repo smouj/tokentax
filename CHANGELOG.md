@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.0.0] - 2026-03-08
+
+### Added
+- **Material Symbols** - Professional Google Material icons throughout UI
+- **Fixed Layout** - Right panel properly aligned
+- **Provider Logos** - Real logos for major providers
+
+---
+
 ## [v2.9.0] - 2026-03-08
 
 ### Added
