@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v1.8.0] - 2026-03-08
+
+### Added
+- 📱 **PWA** - Manifest + Service Worker, installable
+- 📊 **Estadísticas** - Contador de cálculos y ahorro acumulado
+- 📜 **Historial** - últimos 10 cálculos en localStorage
+- ⚖️ **Modo comparación** - Selecciona modelos para comparar
+- 📈 **Stats bar** - Más barato, caro y media en tiempo real
+- 💾 **Persistencia** - Stats e historial guardados localmente
+- 🔄 **Offline ready** - Service worker cachea recursos
+
+---
+
 ## [v1.7.0] - 2026-03-08
 
 ### Added
