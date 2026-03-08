@@ -22,9 +22,13 @@
 | 💰 **Comparación de precios** | Ordenado del más barato al caro automáticamente |
 | 🔍 **Buscar y filtrar** | Busca por nombre o filtra por proveedor |
 | ⚡ **Cálculo instantáneo** | Calcula el coste exacto para tu prompt |
+| 🔢 **Toggle 1K/1M** | Cambiar entre precios por 1K o 1M tokens |
+| ⚡ **Auto-calcular** | Calcular automáticamente al escribir |
 | 📥 **Exportar CSV** | Descarga los resultados de la comparación |
 | 🏆 **Badges TOP** | Resalta los 3 modelos más baratos |
+| 🏢 **Logos de proveedores** | Logotipos visuales para cada proveedor |
 | 📝 **Ejemplos rápidos** | 8 ejemplos de prompts incluidos |
+| ⌨️ **Atajos de teclado** | `Ctrl+Enter` calcular, `Esc` limpiar |
 | 🌓 **Modo oscuro/claro** | Cambia entre temas |
 | 📱 **PWA** | Instalable, funciona sin conexión |
 | 📈 **Estadísticas** | Seguimiento de cálculos y ahorros |
@@ -37,23 +41,22 @@
 
 ---
 
-## 🛠️ Uso
+## ⌨️ Atajos de Teclado
 
-1. Abre la [demo](https://smouj.github.io/tokentax/)
-2. Escribe tu prompt o usa un ejemplo rápido
-3. Establece los tokens de salida esperados
-4. Haz clic en **Calcular** o presiona `Ctrl+Enter`
-5. ¡Verás todos los modelos ordenados por precio — encuentra el más barato! 🔥
-
----
-
-## 📋 Proveedores soportados
-
-OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS Bedrock, Azure, y 300+ más...
+| Atajo | Acción |
+|-------|--------|
+| `Ctrl + Enter` | Calcular |
+| `Escape` | Limpiar prompt |
 
 ---
 
-## 🌍 Idiomas
+## 📋 Proveedores Soportados
+
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS Bedrock, Azure, Nvidia, Perplexity, y 300+ más...
+
+---
+
+## 🌍 Idiomas (8)
 
 | Idioma | Archivo |
 |--------|---------|
@@ -68,7 +71,7 @@ OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Toge
 
 ---
 
-## 📝 Historial de cambios
+## 📝 Historial de Cambios
 
 Consulta [`CHANGELOG.md`](CHANGELOG.md)
 

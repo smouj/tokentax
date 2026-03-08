@@ -22,9 +22,13 @@
 | 💰 **Price Comparison** | Sorted cheapest to expensive automatically |
 | 🔍 **Search & Filter** | Search by name or filter by provider |
 | ⚡ **Instant Calculation** | Calculate exact cost for your prompt |
+| 🔢 **1K/1M Toggle** | Switch between per-1K or per-1M token prices |
+| ⚡ **Auto-Calculate** | Auto-calculate as you type |
 | 📥 **CSV Export** | Download comparison results |
 | 🏆 **TOP Badges** | Highlight top 3 cheapest models |
+| 🏢 **Provider Logos** | Visual logos for each provider |
 | 📝 **Quick Examples** | 8 built-in prompt examples |
+| ⌨️ **Keyboard Shortcuts** | `Ctrl+Enter` calculate, `Esc` clear |
 | 🌓 **Dark/Light Mode** | Toggle between themes |
 | 📱 **PWA** | Installable, works offline |
 | 📈 **Statistics** | Track calculations & savings |
@@ -37,23 +41,22 @@
 
 ---
 
-## 🛠️ Usage
+## ⌨️ Keyboard Shortcuts
 
-1. Open the [demo](https://smouj.github.io/tokentax/)
-2. Enter your prompt or use a quick example
-3. Set expected output tokens
-4. Click **Calculate** or press `Ctrl+Enter`
-5. See all models sorted by price — find the cheapest! 🔥
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl + Enter` | Calculate |
+| `Escape` | Clear prompt |
 
 ---
 
 ## 📋 Supported Providers
 
-OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS Bedrock, Azure, and 300+ more...
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS Bedrock, Azure, Nvidia, Perplexity, and 300+ more...
 
 ---
 
-## 🌍 Languages
+## 🌍 Languages (8)
 
 | Language | File |
 |----------|------|
