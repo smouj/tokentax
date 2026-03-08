@@ -4,6 +4,18 @@ All notable changes are documented below.
 
 ---
 
+## [v1.9.2] - 2026-03-08
+
+### Fixed
+- 🔧 **Panel izquierdo** - Ahora se adapta igual que el derecho (mismo height)
+- 🔃 **Ordenar columnas** - Iconos ↑↓ visibles, click para ordenar
+- 📋 **Seleccionar proveedores** - Dropdown con todos los proveedores
+- 🐛 **Errores** - Estado de error visible con botón reintentar
+- 📊 **Stats bar** - Añadido "Top proveedor"
+- 🎨 **CSS** - Variables de tema mejoradas
+
+---
+
 ## [v1.9.1] - 2026-03-08
 
 ### Fixed

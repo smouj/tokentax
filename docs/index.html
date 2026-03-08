@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- SEO -->
   <title>TokenTax AI PRO | +400 Modelos de IA</title>
   <meta name="title" content="TokenTax AI PRO | Compara +400 Modelos de IA">
   <meta name="description" content="Compara +400 modelos de IA. Encuentra el más barato.">
@@ -12,15 +11,12 @@
   <meta name="author" content="smouj">
   <meta name="theme-color" content="#000000">
   
-  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://smouj.github.io/tokentax/">
   <meta property="og:title" content="TokenTax AI PRO | +400 Modelos de IA">
   
-  <!-- Tailwind + Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   
@@ -30,17 +26,19 @@
       --bg: #000000;
       --surface: #0a0a0a;
       --surface-2: #111111;
+      --surface-3: #141414;
       --border: #1f1f1f;
       --border-2: #2a2a2a;
       --text: #fafafa;
       --text-2: #a3a3a3;
       --text-3: #525252;
-      --text-4: #333333;
-      --placeholder: #404040;
+      --text-4: #404040;
+      --placeholder: #525252;
       --accent: #ffffff;
       --green: #22c55e;
+      --green-dim: #166534;
       --red: #ef4444;
-      --hover: #141414;
+      --red-dim: #991b1b;
     }
     
     /* Light theme */
@@ -48,17 +46,19 @@
       --bg: #ffffff;
       --surface: #f5f5f5;
       --surface-2: #e5e5e5;
+      --surface-3: #d4d4d4;
       --border: #d4d4d4;
       --border-2: #a3a3a3;
       --text: #171717;
       --text-2: #525252;
       --text-3: #737373;
-      --text-4: #d4d4d4;
-      --placeholder: #a3a3a3;
+      --text-4: #a3a3a3;
+      --placeholder: #737373;
       --accent: #000000;
       --green: #16a34a;
+      --green-dim: #dcfce7;
       --red: #dc2626;
-      --hover: #e5e5e5;
+      --red-dim: #fee2e2;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,7 +78,7 @@
       transition: background 0.2s, color 0.2s;
     }
     
-    /* Square panels */
+    /* Panels */
     .panel {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -86,7 +86,7 @@
     }
     
     .panel-hover:hover {
-      background: var(--hover);
+      background: var(--surface-3);
       border-color: var(--border-2);
     }
     
@@ -108,9 +108,9 @@
       color: var(--placeholder);
     }
     
-    /* Select */
     select.input-field {
       color: var(--text);
+      cursor: pointer;
     }
     
     select.input-field option {
@@ -126,6 +126,7 @@
       border-radius: 2px;
       font-weight: 600;
       transition: all 0.15s;
+      cursor: pointer;
     }
     
     .btn-primary:hover {
@@ -133,7 +134,11 @@
       transform: translateY(-1px);
     }
     
-    /* Animations */
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+    
+    /* Animation */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -153,13 +158,14 @@
     /* Table */
     .table-row {
       transition: background 0.1s;
+      cursor: pointer;
     }
     
     .table-row:hover {
-      background: var(--hover);
+      background: var(--surface-3) !important;
     }
     
-    /* Logo gradient */
+    /* Logo */
     .logo-text {
       background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%);
       -webkit-background-clip: text;
@@ -175,15 +181,39 @@
     
     .toast-in { animation: toastIn 0.2s ease forwards; }
     
-    /* Colors utility */
+    /* Colors */
     .text-primary { color: var(--text); }
     .text-secondary { color: var(--text-2); }
     .text-tertiary { color: var(--text-3); }
     .text-green { color: var(--green); }
     .text-red { color: var(--red); }
-    .bg-surface { background: var(--surface); }
-    .bg-hover { background: var(--hover); }
-    .border-color { border-color: var(--border); }
+    
+    /* Stats bar */
+    .stats-bar {
+      background: var(--green-dim);
+    }
+    .theme-dark .stats-bar {
+      background: rgba(34, 197, 94, 0.1);
+    }
+    .theme-light .stats-bar {
+      background: var(--green-dim);
+    }
+    
+    /* Left panel flex */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .left-panel > * {
+      flex-shrink: 0;
+    }
+    
+    .left-panel > .flex-1 {
+      flex: 1;
+      min-height: 0;
+    }
   </style>
 </head>
 <body class="theme-dark">
@@ -193,7 +223,7 @@
 
   <!-- Header -->
   <header class="panel border-t-0 border-l-0 border-r-0 flex-shrink-0">
-    <div class="flex items-center justify-between px-4 py-2.5">
+    <div class="flex items-center justify-between px-4 py-2">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 panel flex items-center justify-center font-bold text-lg logo-text">
           T
@@ -217,44 +247,44 @@
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="flex-1 flex gap-3 p-3 min-h-0">
+  <!-- Main - Full height -->
+  <main class="flex-1 flex gap-2 p-2 min-h-0">
     
-    <!-- Left Panel -->
-    <div class="w-[320px] flex-shrink-0 flex flex-col gap-2">
+    <!-- Left Panel - Fixed height matching right -->
+    <div class="w-[300px] flex-shrink-0 panel p-2 flex flex-col gap-2">
       
       <!-- Prompt -->
-      <div class="panel p-sm flex flex-col flex-1 min-h-0">
-        <div class="flex justify-between items-center mb-2">
+      <div class="panel p-2 flex flex-col flex-1 min-h-0">
+        <div class="flex justify-between items-center mb-1.5">
           <span class="text-[10px] text-secondary font-medium">PROMPT</span>
           <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary">✕</button>
         </div>
         <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
-        <div class="flex justify-between mt-2 text-[9px] text-tertiary">
+        <div class="flex justify-between mt-1.5 text-[9px] text-tertiary">
           <span id="charCount">0 ch</span>
           <span id="tokenCount">~0 tk</span>
         </div>
       </div>
 
       <!-- Output -->
-      <div class="panel p-sm">
-        <label class="block text-[10px] text-secondary font-medium mb-1.5">OUTPUT TOKENS</label>
-        <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-xl font-semibold text-center focus:outline-none">
+      <div class="panel p-2">
+        <label class="block text-[10px] text-secondary font-medium mb-1">OUTPUT TOKENS</label>
+        <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-lg font-semibold text-center focus:outline-none">
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="btn-primary py-2.5 text-sm">
+      <button onclick="calcularCostos()" class="btn-primary py-2 text-sm">
         ⚡ CALCULAR
       </button>
 
       <!-- Quick -->
-      <div class="flex gap-1.5">
+      <div class="flex gap-1">
         <button onclick="useExample('code')" class="flex-1 py-1.5 panel panel-hover text-[9px]">📝 Código</button>
         <button onclick="useExample('summary')" class="flex-1 py-1.5 panel panel-hover text-[9px]">📝 Resumen</button>
       </div>
 
       <!-- Stats -->
-      <div class="panel p-sm">
+      <div class="panel p-2">
         <div class="flex justify-between text-[9px] mb-1">
           <span class="text-secondary">Cálculos</span>
           <span id="totalCalcs" class="text-primary">0</span>
@@ -270,32 +300,43 @@
     <div class="flex-1 panel flex flex-col min-w-0">
       
       <!-- Filters -->
-      <div class="p-sm border-color flex gap-2" style="border-bottom: 1px solid var(--border)">
+      <div class="p-2 border-b flex gap-2" style="border-color: var(--border)">
         <div class="flex-1 relative">
           <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs">🔍</span>
-          <input id="search" type="text" placeholder="Buscar..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
+          <input id="search" type="text" placeholder="Buscar modelo..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
         </div>
-        <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[100px]">
-          <option value="">Todos</option>
+        <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[110px]">
+          <option value="">Todos los proveedores</option>
         </select>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel text-[9px]">CSV</button>
-        <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 panel text-[9px]">Copy</button>
+        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">CSV</button>
+        <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">Copy</button>
       </div>
 
       <!-- Stats Bar -->
-      <div id="statsBar" class="hidden px-3 py-1.5 panel border-color flex gap-4 text-[9px]" style="background: var(--surface-2); border-bottom: 1px solid var(--border)">
-        <div><span class="text-secondary">Min:</span> <span id="minCost" class="text-green">-</span></div>
-        <div><span class="text-secondary">Max:</span> <span id="maxCost" class="text-red">-</span></div>
-        <div><span class="text-secondary">Media:</span> <span id="avgCost" class="text-primary">-</span></div>
+      <div id="statsBar" class="hidden px-3 py-1.5 flex gap-4 text-[9px] stats-bar">
+        <div><span class="text-secondary">Min:</span> <span id="minCost" class="text-green font-medium">-</span></div>
+        <div><span class="text-secondary">Max:</span> <span id="maxCost" class="text-red font-medium">-</span></div>
+        <div><span class="text-secondary">Media:</span> <span id="avgCost" class="text-primary font-medium">-</span></div>
+        <div class="ml-auto"><span class="text-secondary">Top:</span> <span id="topProvider" class="text-green font-medium">-</span></div>
       </div>
 
-      <!-- Table Header -->
-      <div class="grid grid-cols-6 px-3 py-2 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
-        <div class="cursor-pointer hover:text-primary" onclick="sortBy('provider')">Proveedor</div>
-        <div class="col-span-2 cursor-pointer hover:text-primary" onclick="sortBy('name')">Modelo</div>
-        <div class="text-right cursor-pointer hover:text-primary" onclick="sortBy('input')">Input</div>
-        <div class="text-right cursor-pointer hover:text-primary" onclick="sortBy('output')">Output</div>
-        <div class="text-right cursor-pointer hover:text-primary" onclick="sortBy('total')">Coste</div>
+      <!-- Table Header - Sortable -->
+      <div class="grid grid-cols-6 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
+        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')">
+          Proveedor <span class="sort-icon" data-sort="provider">↕</span>
+        </div>
+        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')">
+          Modelo <span class="sort-icon" data-sort="name">↕</span>
+        </div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')">
+          Input <span class="sort-icon" data-sort="input">↕</span>
+        </div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')">
+          Output <span class="sort-icon" data-sort="output">↕</span>
+        </div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')">
+          Coste <span class="sort-icon" data-sort="total">↕</span>
+        </div>
       </div>
 
       <!-- Results -->
@@ -304,13 +345,17 @@
           <p class="text-sm">Introduce prompt + calcula</p>
           <p class="text-xs mt-1" style="color: var(--text-4)">Ctrl+Enter</p>
         </div>
+        <div id="errorState" class="hidden h-full flex flex-col items-center justify-center text-red">
+          <p class="text-sm" id="errorMsg">Error</p>
+          <button onclick="loadModels()" class="text-xs mt-2 underline">Reintentar</button>
+        </div>
         <table class="w-full text-xs">
           <tbody id="tableBody" class="hidden"></tbody>
         </table>
       </div>
 
       <!-- Footer -->
-      <div class="px-3 py-1.5 border-t border-color flex justify-between text-[9px] text-tertiary">
+      <div class="px-3 py-1.5 border-t flex justify-between text-[9px] text-tertiary" style="border-color: var(--border)">
         <span id="count"></span>
         <span>LiteLLM</span>
       </div>
@@ -318,9 +363,9 @@
   </main>
 
   <!-- Footer -->
-  <footer class="flex-shrink-0 border-t border-color py-1.5">
-    <div class="text-center text-[9px]" style="color: var(--text-4)">
-      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="text-tertiary hover:text-primary">GitHub</a>
+  <footer class="flex-shrink-0 border-t p-2" style="border-color: var(--border)">
+    <div class="text-center text-[9px] text-tertiary">
+      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a>
     </div>
   </footer>
 
@@ -337,7 +382,6 @@
         updateStats();
       } catch(e) {}
       
-      // Load theme
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'light') {
         document.body.classList.remove('theme-dark');
@@ -356,12 +400,31 @@
       localStorage.setItem('tt_stats', JSON.stringify(stats));
     }
 
-    function toast(msg) {
+    function toast(msg, type = 'info') {
+      const colors = {
+        info: 'var(--surface)',
+        success: 'var(--green-dim)',
+        error: 'var(--red-dim)'
+      };
       const t = document.createElement('div');
       t.className = 'toast-in mb-2 px-3 py-1.5 panel text-xs';
+      t.style.background = colors[type] || colors.info;
       t.textContent = msg;
       document.getElementById('toast').appendChild(t);
-      setTimeout(() => t.remove(), 2000);
+      setTimeout(() => t.remove(), 2500);
+    }
+
+    function updateSortIcons() {
+      document.querySelectorAll('.sort-icon').forEach(el => {
+        const field = el.dataset.sort;
+        if (field === sortF) {
+          el.textContent = sortA ? '↑' : '↓';
+          el.classList.add('text-green');
+        } else {
+          el.textContent = '↕';
+          el.classList.remove('text-green');
+        }
+      });
     }
 
     function toggleTheme() {
@@ -387,18 +450,19 @@
 
     function useExample(type) {
       const ex = {
-        code: '// React login form\nfunction Login() {\n  const [e, s] = useState("");\n  return <input value={e}/>;\n}',
+        code: '// React login\nfunction Login() {\n  const [e, s] = useState("");\n  return <input value={e}/>;\n}',
         summary: 'Write a summary about AI impact on software development.'
       };
       document.getElementById('prompt').value = ex[type];
       updateCount();
-      toast('Ejemplo');
+      toast('Ejemplo cargado');
     }
 
     function sortBy(f) {
       if (sortF === f) sortA = !sortA;
       else { sortF = f; sortA = true; }
-      calcularCostos();
+      updateSortIcons();
+      renderResults();
     }
 
     function copyTop() {
@@ -410,14 +474,31 @@
 
     // Load data
     async function loadModels() {
+      const loader = document.getElementById('loader');
+      const modelText = document.getElementById('modelText');
+      const emptyState = document.getElementById('emptyState');
+      const errorState = document.getElementById('errorState');
+      
+      loader.classList.remove('bg-green-500');
+      loader.classList.add('bg-tertiary');
+      modelText.textContent = 'Cargando...';
+      emptyState.classList.add('hidden');
+      errorState.classList.add('hidden');
+      
       try {
         const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
+        
+        if (!res.ok) throw new Error('Error de red');
+        
         const data = await res.json();
         
         allModels = Object.keys(data)
           .filter(k => {
             const m = data[k];
-            return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0;
+            return m.mode === "chat" && 
+              typeof m.input_cost_per_token === "number" && 
+              typeof m.output_cost_per_token === "number" && 
+              m.input_cost_per_token > 0;
           })
           .map(k => {
             const m = data[k];
@@ -432,13 +513,27 @@
 
         const provs = [...new Set(allModels.map(m => m.provider))].sort();
         const sel = document.getElementById('providerFilter');
-        provs.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; sel.appendChild(o); });
+        sel.innerHTML = '<option value="">Todos los proveedores</option>';
+        provs.forEach(p => { 
+          const o = document.createElement('option'); 
+          o.value = p; 
+          o.textContent = p; 
+          sel.appendChild(o); 
+        });
 
-        document.getElementById('loader').classList.add('bg-green-500');
-        document.getElementById('modelText').textContent = allModels.length + ' model';
+        loader.classList.remove('bg-tertiary');
+        loader.classList.add('bg-green-500');
+        modelText.textContent = allModels.length + ' modelos';
+        
       } catch(e) {
-        document.getElementById('modelText').textContent = 'Error';
-        toast('Error');
+        console.error(e);
+        loader.classList.remove('bg-tertiary');
+        loader.classList.add('bg-red-500');
+        modelText.textContent = 'Error';
+        emptyState.classList.add('hidden');
+        errorState.classList.remove('hidden');
+        document.getElementById('errorMsg').textContent = 'Error al cargar datos: ' + e.message;
+        toast('Error al cargar', 'error');
       }
     }
 
@@ -455,22 +550,72 @@
       const out = parseFloat(document.getElementById('outputTokens').value) || 0;
       const inT = estTokens(prompt);
 
-      if (!allModels.length) { toast('Cargando...'); return; }
+      if (!allModels.length) { 
+        toast('Cargando modelos...', 'info'); 
+        return; 
+      }
 
-      results = filtrar().map(m => ({ ...m, total: (inT * m.input + out * m.output) / 1e6 }));
+      // Filter first
+      results = filtrar();
       
-      if (!results.length) { toast('Sin resultados'); return; }
+      // Calculate costs
+      results = results.map(m => ({ 
+        ...m, 
+        total: (inT * m.input + out * m.output) / 1e6 
+      }));
+      
+      if (!results.length) { 
+        toast('Sin resultados', 'error'); 
+        return; 
+      }
 
+      // Sort
       results.sort((a, b) => {
         const av = a[sortF], bv = b[sortF];
-        return typeof av === 'string' ? (sortA ? av.localeCompare(bv) : bv.localeCompare(av)) : (sortA ? av - bv : bv - av);
+        if (typeof av === 'string') {
+          return sortA ? av.localeCompare(bv) : bv.localeCompare(av);
+        }
+        return sortA ? av - bv : bv - av;
       });
 
-      // Stats
-      const min = results[0].total, max = results[results.length-1].total, avg = results.reduce((a,b) => a + b.total, 0) / results.length;
+      renderResults();
+      updateStatsBar(prompt);
+    }
+
+    function renderResults() {
+      let html = '';
+      results.forEach((m, i) => {
+        const top = i < 3;
+        html += `<tr class="table-row border-b" style="border-color: var(--border)">
+          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">${m.provider}</td>
+          <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">$${m.input.toFixed(2)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">$${m.output.toFixed(2)}</td>
+          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">$${m.total.toFixed(4)}</td>
+        </tr>`;
+      });
+
+      document.getElementById('emptyState').classList.add('hidden');
+      document.getElementById('errorState').classList.add('hidden');
+      document.getElementById('tableBody').innerHTML = html;
+      document.getElementById('tableBody').classList.remove('hidden');
+      document.getElementById('count').textContent = results.length + ' modelos';
+      document.getElementById('exportBtn').classList.remove('hidden');
+      document.getElementById('copyBtn').classList.remove('hidden');
+    }
+
+    function updateStatsBar(prompt) {
+      if (!results.length) return;
+      
+      const min = results[0].total;
+      const max = results[results.length-1].total;
+      const avg = results.reduce((a,b) => a + b.total, 0) / results.length;
+      const topProvider = results[0].provider;
+      
       document.getElementById('minCost').textContent = '$' + min.toFixed(4);
       document.getElementById('maxCost').textContent = '$' + max.toFixed(4);
       document.getElementById('avgCost').textContent = '$' + avg.toFixed(4);
+      document.getElementById('topProvider').textContent = topProvider;
       document.getElementById('statsBar').classList.remove('hidden');
 
       // Save stats
@@ -480,47 +625,60 @@
         updateStats();
         saveStats();
       }
-
-      // Render
-      let html = '';
-      results.forEach((m, i) => {
-        const top = i < 3;
-        html += `<tr class="table-row border-b" style="border-color: var(--border)">
-          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">${m.provider}</td>
-          <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary">${m.name}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">$${m.input.toFixed(2)}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">$${m.output.toFixed(2)}</td>
-          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">$${m.total.toFixed(4)}</td>
-        </tr>`;
-      });
-
-      document.getElementById('emptyState').classList.add('hidden');
-      document.getElementById('tableBody').innerHTML = html;
-      document.getElementById('tableBody').classList.remove('hidden');
-      document.getElementById('count').textContent = results.length + ' model';
-      document.getElementById('exportBtn').classList.remove('hidden');
-      document.getElementById('copyBtn').classList.remove('hidden');
     }
 
     function filtrar() {
-      const s = document.getElementById('search').value.toLowerCase();
+      const s = document.getElementById('search').value.toLowerCase().trim();
       const p = document.getElementById('providerFilter').value;
-      return allModels.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
+      return allModels.filter(m => 
+        (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && 
+        (!p || m.provider === p)
+      );
     }
 
     function exportCSV() {
       if (!results.length) return;
-      const csv = [['Proveedor','Modelo','Input','Output','Coste'], ...results.map(m => [m.provider,m.fullName,m.input,m.output,m.total.toFixed(4)])].map(r => r.join(',')).join('\n');
-      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv])); a.download = 'tokentax.csv'; a.click();
-      toast('CSV');
+      const csv = [
+        ['Proveedor', 'Modelo', 'Input ($/M)', 'Output ($/M)', 'Coste ($)'],
+        ...results.map(m => [m.provider, m.fullName, m.input, m.output, m.total.toFixed(4)])
+      ].map(r => r.join(',')).join('\n');
+      
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = 'tokentax.csv';
+      a.click();
+      toast('CSV exportado');
     }
 
     // Events
-    ['search','providerFilter'].forEach(id => document.getElementById(id).addEventListener('input', calcularCostos));
-    document.getElementById('prompt').addEventListener('input', () => { updateCount(); if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
-    document.getElementById('outputTokens').addEventListener('input', () => { if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
-    document.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); calcularCostos(); } });
-    window.onload = () => { loadModels(); updateCount(); };
+    document.getElementById('search').addEventListener('input', calcularCostos);
+    document.getElementById('providerFilter').addEventListener('change', calcularCostos);
+    
+    document.getElementById('prompt').addEventListener('input', () => { 
+      updateCount(); 
+      if (!document.getElementById('tableBody').classList.contains('hidden')) {
+        calcularCostos();
+      }
+    });
+    
+    document.getElementById('outputTokens').addEventListener('input', () => { 
+      if (!document.getElementById('tableBody').classList.contains('hidden')) {
+        calcularCostos();
+      }
+    });
+    
+    document.addEventListener('keydown', e => { 
+      if (e.ctrlKey && e.key === 'Enter') { 
+        e.preventDefault(); 
+        calcularCostos(); 
+      } 
+    });
+    
+    window.onload = () => { 
+      loadModels(); 
+      updateCount();
+      updateSortIcons();
+    };
   </script>
 </body>
 </html>
