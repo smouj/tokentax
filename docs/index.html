@@ -1285,7 +1285,7 @@
       const t = document.createElement('div');
       t.className = 'toast-in mb-2 px-3 py-2 panel text-sm flex items-center gap-2';
       t.style.background = colors[type] || colors.info;
-      t.innerHTML = `<span>${icons[type] || icons.info} ${msg}</span>`;
+      t.innerHTML = '<span>' + (icons[type] || icons.info) + ' ' + msg + '</span>';
       document.getElementById('toast').appendChild(t);
       setTimeout(() => { t.classList.add('toast-out'); setTimeout(()=>t.remove(),250); }, 2500);
     }
