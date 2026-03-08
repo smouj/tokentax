@@ -2,119 +2,92 @@
 
 <div align="center">
 
-[![ライセンス: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Stars](https://img.shields.io/github/stars/smouj/tokentax?style=social)](https://github.com/smouj/tokentax/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/smouj/tokentax?style=social)](https://github.com/smouj/tokentax/network)
-[![ライブデモ](https://img.shields.io/badge/ライブデモ-brightgreen)](https://smouj.github.io/tokentax/)
-[![コントリビューション歓迎](https://img.shields.io/badge/コントリビューション-歓迎-brightgreen)](https://github.com/smouj/tokentax/pulls)
-[![LiteLLM搭載](https://img.shields.io/badge/Powered%20by-LiteLLM-7B68EE)](https://github.com/BerriAI/litellm)
+[![License: MIT](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
+[![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
 
 </div>
 
-> **400以上のAIモデルをリアルタイムで比較。即座に最安値のオプションを見つけよう！**
+<br>
 
-TokenTaxは、**400以上のAIモデル**の 가격をを比較できる無料のオープンソースツールです —
- **OpenAI、Anthropic、Google Gemini、xAI Grok、Mistral、DeepSeek、Groq、Together.ai、Fireworks、DeepInfra、AWS Bedrock、Azure、Llama、Qwen**など、すべての主要なプロバイダに対応。
+> **400以上のAIモデルをすべてのプロバイダーと比較。プロンプトの最安値を見つけよう！**
 
-**データはLiteLLMからリアルタイムで取得** — 世界で最も完整で最新のAI価格データベースです。価格は毎週コミュニティによって更新されます。
+TokenTaxは、**400以上のAIモデル**のpricedをリアルタイムで比較できる無料のオープンソースWebツールです。
 
 ---
 
 ## ✨ 機能
 
 | 機能 | 説明 |
-|------|-------------|
-| 📊 **400+ モデル** | すべてのAIプロバイダのモデルを比較 |
-| 🔍 **リアルタイム検索** | 名前でフィルタ: "grok", "claude", "llama", "gemini"... |
-| 🏷️ **プロバイダフィルタ** | 1つまたは複数のプロバイダを選択 |
-| 💰 **価格順ソート** | 自動で最も安い順にソート |
-| ⚡ **瞬時計算** | 特定のプロンプトの正確なコストを計算 |
-| 🌐 **多言語** | 7つの言語で利用可能 |
-| 📱 **レスポンシブデザイン** | モバイルとデスクトップで完璧に動作 |
-| 🔄 **ライvedデータ** | LiteLLMから価格が自動的に更新 |
+|------|------|
+| 📊 **400+ モデル** | OpenAI、Anthropic、Google、xAI、Mistral、DeepSeekなどを比較 |
+| 💰 **価格比較** | 安い順にソート |
+| 🔍 **検索とフィルター** | 名前で検索、プロバイダーでフィルター |
+| ⚡ **即時計算** | プロンプトの正確なコストを計算 |
+| 📥 **CSVエクスポート** | 結果をダウンロード |
+| 🌓 **ダーク/ライトモード** | テーマを切り替え |
+| 📱 **PWA** | インストール可能、オフライン対応 |
+| 📈 **統計** | 計算と節約を追跡 |
 
 ---
 
 ## 🚀 ライブデモ
 
-👉 **[https://smouj.github.io/tokentax/](https://smouj.github.io/tokentax/)**
-
----
-
-## 🌍 対応言語
-
-| 言語 | README |
-|------|--------|
-| 🇺🇸 英語 | [`README.md`](README.md) |
-| 🇪🇸 スペイン語 | [`README.es.md`](README.es.md) |
-| 🇫🇷 フランス語 | [`README.fr.md`](README.fr.md) |
-| 🇩🇪 ドイツ語 | [`README.de.md`](README.de.md) |
-| 🇮🇹 イタリア語 | [`README.it.md`](README.it.md) |
-| 🇧🇷 ポルトガル語 | [`README.pt.md`](README.pt.md) |
-| 🇯🇵 日本語 | [`README.ja.md`](README.ja.md) |
-| 🇨🇳 中国語 | [`README.zh.md`](README.zh.md) |
+**[https://smouj.github.io/tokentax/](https://smouj.github.io/tokentax/)**
 
 ---
 
 ## 🛠️ 使い方
 
-1. **[https://smouj.github.io/tokentax/](https://smouj.github.io/tokentax/)** を開く
-2. テキストエリアにプロンプトを入力
-3. 期待される出力トークンを設定
-4. **「+400モデルでコストを計算」** をクリック
-5. 価格がソートされた全モデルを表示 — 最安値のオプションを見つけよう！ 🔥
+1. [デモ](https://smouj.github.io/tokentax/)を開く
+2. プロンプトを入力
+3. 出力トークンを設定
+4. **計算**をクリックまたは`Ctrl+Enter`
+5. 最安値のモデルを見つけよう！🔥
 
 ---
 
-## 📈 対応プロバイダ
+## 📋 プロバイダー
 
-- OpenAI (GPT-4, GPT-4o, GPT-4o-mini, o1...)
-- Anthropic (Claude 3.5, Claude 3 Opus...)
-- Google Gemini
-- xAI Grok
-- Mistral AI
-- DeepSeek
-- Groq
-- Together.ai
-- Fireworks AI
-- DeepInfra
-- AWS Bedrock
-- Azure OpenAI
-- Llama (任意の.provider経由)
-- Qwen
-- その他300+...
+OpenAI、Anthropic、Google、xAI、Mistral、DeepSeek、Meta、Cohere、Fireworks、Together、他300+...
+
+---
+
+## 🌍 言語
+
+| 言語 | ファイル |
+|------|---------|
+| 🇺🇸 English | [`README.md`](README.md) |
+| 🇪🇸 Español | [`README.es.md`](README.es.md) |
+| 🇫🇷 Français | [`README.fr.md`](README.fr.md) |
+| 🇩🇪 Deutsch | [`README.de.md`](README.de.md) |
+| 🇮🇹 Italiano | [`README.it.md`](README.it.md) |
+| 🇧🇷 Português | [`README.pt.md`](README.pt.md) |
+| 🇯🇵 日本語 | [`README.ja.md`](README.ja.md) |
+| 🇨🇳 中文 | [`README.zh.md`](README.zh.md) |
+
+---
+
+## 📝 変更履歴
+
+[`CHANGELOG.md`](CHANGELOG.md)を参照
 
 ---
 
 ## 🤝 コントリビューション
 
-コントリビューション大歓迎！お気軽にご連絡ください：
-
-- 🐛 バグ報告
-- 💡 機能提案
-- 🔧 プルリクエスト送信
-- 🌐 READMEをあなたの言語に翻訳
+コントリビューションは大歓迎！
 
 ---
 
 ## 📄 ライセンス
 
-このプロジェクトは **MITライセンス** の下でライセンスされています — 詳細は [LICENSE](LICENSE) ファイルを参照してください。
-
----
-
-## 🙏 謝辞
-
-- [LiteLLM](https://github.com/BerriAI/litellm) — 素晴らしい価格データ
-- [Tailwind CSS](https://tailwindcss.com) — 美しいUI
-- オープンソースAIコミュニティ
+MIT © 2026 [smouj](https://github.com/smouj)
 
 ---
 
 <div align="center>
 
-**⭐ AIでお金を節約れたらスターを付けてください！⭐**
-
-❤️ 作製: [@smouj](https://github.com/smouj)
+**⭐ AIでお金を節約できたらスターを付けてください！⭐**
 
 </div>
