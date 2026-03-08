@@ -63,6 +63,7 @@
     .table-row:hover { background: var(--surface-3) !important; }
     .table-row.highlight { background: var(--blue-dim) !important; }
     .table-row.top-3 { background: rgba(34, 197, 94, 0.08); }
+    .table-row.selected { background: var(--blue-dim) !important; outline: 2px solid var(--blue); }
     .theme-light .table-row.top-3 { background: var(--green-dim); }
     
     .logo-text { background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -89,6 +90,8 @@
     
     .badge { display: inline-flex; align-items: center; padding: 2px 6px; font-size: 8px; font-weight: 600; border-radius: 2px; text-transform: uppercase; }
     .badge-green { background: var(--green-dim); color: var(--green); }
+    .badge-blue { background: var(--blue-dim); color: var(--blue); }
+    .badge-yellow { background: #fef3c7; color: #d97706; }
     
     /* Provider logos */
     .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
@@ -110,9 +113,6 @@
     .logo-default { background: var(--surface-2); color: var(--text-2); }
     
     .limit-control { display: flex; align-items: center; gap: 8px; }
-    .limit-control input { width: 60px; text-align: center; }
-    
-    /* Toggle switch */
     .toggle-switch { position: relative; width: 36px; height: 20px; }
     .toggle-switch input { opacity: 0; width: 0; height: 0; }
     .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--surface-2); transition: 0.2s; border-radius: 20px; }
@@ -122,6 +122,24 @@
     
     .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
     .settings-label { font-size: 10px; color: var(--text-2); }
+    
+    /* Modal */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: none; align-items: center; justify-content: center; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
+    .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .modal-body { padding: 16px; }
+    .modal-footer { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; }
+    
+    /* Compare view */
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .compare-item { padding: 12px; background: var(--surface-2); border-radius: 4px; }
+    .compare-label { font-size: 9px; color: var(--text-3); text-transform: uppercase; }
+    .compare-value { font-size: 14px; font-weight: 600; margin-top: 2px; }
+    
+    /* Favorites */
+    .fav-btn { color: var(--text-3); cursor: pointer; }
+    .fav-btn.active { color: #fbbf24; }
   </style>
 </head>
 <body class="theme-dark">
@@ -152,6 +170,16 @@
           <option value="zh">🇨🇳 ZH</option>
         </select>
         
+        <!-- Currency -->
+        <select id="currencySelect" onchange="changeCurrency(this.value)" class="px-2 py-1 input-field text-[10px]">
+          <option value="USD">$ USD</option>
+          <option value="EUR">€ EUR</option>
+          <option value="GBP">£ GBP</option>
+        </select>
+        
+        <!-- Theme Toggle -->
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme">🌙</button>
+        
         <!-- Examples -->
         <div class="dropdown">
           <button class="btn-secondary px-2 py-1 text-[10px]">📝 <span id="examplesBtn">Ejemplos</span> ▾</button>
@@ -172,7 +200,6 @@
           <span id="modelText">Cargando...</span>
         </div>
         
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs">🌙</button>
         <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 panel panel-hover flex items-center justify-center">
           <svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
@@ -234,6 +261,13 @@
             <span class="toggle-slider"></span>
           </label>
         </div>
+        <div class="settings-row">
+          <span class="settings-label" data-lang="showContext">Mostrar Context</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="showContext" onchange="toggleContext()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
       </div>
 
       <!-- Stats -->
@@ -246,6 +280,15 @@
           <span class="text-secondary" data-lang="saved">Ahorrado</span>
           <span id="totalSaved" class="text-green">$0</span>
         </div>
+      </div>
+      
+      <!-- Favorites -->
+      <div class="panel p-2">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-[10px] text-secondary font-medium">⭐ <span data-lang="favorites">Favoritos</span></span>
+          <span id="favCount" class="text-[9px] text-tertiary">0</span>
+        </div>
+        <div id="favoritesList" class="flex flex-wrap gap-1"></div>
       </div>
     </aside>
 
@@ -269,8 +312,9 @@
         </div>
         
         <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]">✕</button>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📥</button>
-        <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📋</button>
+        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo">📋</button>
+        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">📥</button>
+        <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar">⚖️</button>
       </div>
 
       <!-- Stats Bar -->
@@ -282,8 +326,9 @@
       </div>
 
       <!-- Table Header -->
-      <div class="grid grid-cols-6 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
-        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span</span> <span data-lang="provider">Proveedor class="sort-icon" data-sort="provider">↕</span></div>
+      <div class="grid grid-cols-7 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
+        <div></div>
+        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider">↕</span></div>
         <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name">↕</span></div>
         <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input">↕</span></div>
         <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output">↕</span></div>
@@ -291,7 +336,7 @@
       </div>
 
       <!-- Results -->
-      <div class="flex-1 overflow-y-auto">
+      <div class="flex-1 overflow-y-auto" id="resultsContainer">
         <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
           <p class="text-sm" data-lang="emptyState1">Introduce prompt + calcula</p>
           <p class="text-xs mt-1"><span class="kbd">Ctrl</span>+<span class="kbd">↵</span></p>
@@ -316,24 +361,49 @@
   <!-- Footer -->
   <footer class="flex-shrink-0 border-t p-2" style="border-color: var(--border)">
     <div class="text-center text-[9px] text-tertiary">
-      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">Esc</span> <span data-lang="clearPrompt">limpiar</span>
+      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">Esc</span> <span data-lang="clearPrompt">limpiar</span> • <span class="kbd">↑↓</span> navegar
     </div>
   </footer>
+
+  <!-- Compare Modal -->
+  <div id="compareModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="font-semibold">⚖️ <span data-lang="compare">Comparar Modelos</span></span>
+        <button onclick="closeCompare()" class="btn-ghost">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="compare-grid" id="compareContent"></div>
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeCompare()" class="btn-secondary px-3 py-1 text-xs">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Details Modal -->
+  <div id="detailsModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="font-semibold" id="detailsTitle">Detalles</span>
+        <button onclick="closeDetails()" class="btn-ghost">✕</button>
+      </div>
+      <div class="modal-body" id="detailsContent"></div>
+    </div>
+  </div>
 
   <script>
     // Translations
     const translations = {
-      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar' },
-      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry', per1k: 'Prices per 1K', autoCalc: 'Auto-calculate', clearPrompt: 'clear' },
-      fr: { prompt: 'PROMPT', calculate: 'CALCULER', calculations: 'Calculs', saved: 'Économisé', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Moy:', top: 'Top:', provider: 'Fournisseur', modelo: 'Modèle', input: 'Input', output: 'Output', cost: 'Coût', allProviders: 'Tous les fournisseurs', examplesBtn: 'Exemples', code: 'Code', summary: 'Résumé', email: 'Email', translate: 'Traduire', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Résumé', translateBtn: 'Trad', emptyState1: 'Entrez prompt + calculez', retry: 'Réessayer', per1k: 'Prix par 1K', autoCalc: 'Auto-calcul', clearPrompt: 'effacer' },
-      de: { prompt: 'PROMPT', calculate: 'BERECHNEN', calculations: 'Berechnungen', saved: 'Gespart', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Durchschn:', top: 'Top:', provider: 'Anbieter', modelo: 'Modell', input: 'Eingabe', output: 'Ausgabe', cost: 'Kosten', allProviders: 'Alle Anbieter', examplesBtn: 'Beispiele', code: 'Code', summary: 'Zusammenfassung', email: 'E-Mail', translate: 'Übersetzen', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Zusammenf', translateBtn: 'Übers', emptyState1: 'Prompt eingeben + berechnen', retry: 'Wiederholen', per1k: 'Preise pro 1K', autoCalc: 'Auto-berechnen', clearPrompt: 'löschen' },
-      it: { prompt: 'PROMPT', calculate: 'CALCOLA', calculations: 'Calcoli', saved: 'Risparmiato', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Fornitore', modelo: 'Modello', input: 'Input', output: 'Output', cost: 'Costo', allProviders: 'Tutti i fornitori', examplesBtn: 'Esempi', code: 'Codice', summary: 'Sommario', email: 'Email', translate: 'Traduci', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Test', codeBtn: 'Codice', summaryBtn: 'Somma', translateBtn: 'Trad', emptyState1: 'Inserisci prompt + calcola', retry: 'Riprova', per1k: 'Prezzi per 1K', autoCalc: 'Auto-calcola', clearPrompt: 'cancella' },
-      pt: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Economizado', limit: 'Limite:', min: 'Mín:', max: 'Máx:', avg: 'Média:', top: 'Top:', provider: 'Provedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Custo', allProviders: 'Todos os provedores', examplesBtn: 'Exemplos', code: 'Código', summary: 'Resumo', email: 'Email', translate: 'Traduzir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Testes', codeBtn: 'Código', summaryBtn: 'Resumo', translateBtn: 'Trad', emptyState1: 'Digite prompt + calcule', retry: 'Tentar', per1k: 'Preços por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpar' },
-      ja: { prompt: 'プロンプト', calculate: '計算', calculations: '計算', saved: '節約', limit: '制限:', min: '最小:', max: '最大:', avg: '平均:', top: 'トップ:', provider: 'プロバイダー', modelo: 'モデル', input: '入力', output: '出力', cost: 'コスト', allProviders: 'すべて', examplesBtn: '例', code: 'コード', summary: '要約', email: 'メール', translate: '翻訳', blog: 'ブログ', seo: 'SEO', sql: 'SQL', test: 'テスト', codeBtn: 'コード', summaryBtn: '要約', translateBtn: '翻訳', emptyState1: 'プロンプト入力+計算', retry: '再試行', per1k: '1K単価', autoCalc: '自動計算', clearPrompt: 'クリア' },
-      zh: { prompt: '提示词', calculate: '计算', calculations: '计算', saved: '节省', limit: '限制:', min: '最低:', max: '最高:', avg: '平均:', top: '最佳:', provider: '提供商', modelo: '模型', input: '输入', output: '输出', cost: '成本', allProviders: '全部', examplesBtn: '示例', code: '代码', summary: '摘要', email: '邮件', translate: '翻译', blog: '博客', seo: 'SEO', sql: 'SQL', test: '测试', codeBtn: '代码', summaryBtn: '摘要', translateBtn: '翻译', emptyState1: '输入提示词+计算', retry: '重试', per1k: '1K价格', autoCalc: '自动计算', clearPrompt: '清除' }
+      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles' },
+      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry', per1k: 'Prices per 1K', autoCalc: 'Auto-calculate', clearPrompt: 'clear', favorites: 'Favorites', compare: 'Compare', showContext: 'Show Context', context: 'Context', details: 'Details' }
     };
 
-    // Provider logos - expanded
+    // Currency rates (approximate)
+    const currencyRates = { USD: 1, EUR: 0.92, GBP: 0.79 };
+    const currencySymbols = { USD: '$', EUR: '€', GBP: '£' };
+
+    // Provider logos
     const providerLogos = {
       openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
       deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
@@ -350,8 +420,13 @@
     let stats = { calcs: 0, saved: 0 };
     let currentLimit = 50;
     let currentLang = 'es';
+    let currentCurrency = 'USD';
     let pricePer1K = false;
     let autoCalc = false;
+    let showContext = false;
+    let favorites = [];
+    let selectedModels = [];
+    let selectedIndex = -1;
 
     // Init
     (function() {
@@ -359,6 +434,12 @@
         const s = JSON.parse(localStorage.getItem('tt_stats') || '{"calcs":0,"saved":0}');
         stats = s;
         updateStats();
+      } catch(e) {}
+      
+      // Load favorites
+      try {
+        favorites = JSON.parse(localStorage.getItem('tt_favorites') || '[]');
+        updateFavoritesUI();
       } catch(e) {}
       
       // Load settings
@@ -372,6 +453,10 @@
         document.getElementById('langSelect').value = localStorage.getItem('lang');
         changeLanguage(localStorage.getItem('lang'));
       }
+      if (localStorage.getItem('currency')) {
+        document.getElementById('currencySelect').value = localStorage.getItem('currency');
+        currentCurrency = localStorage.getItem('currency');
+      }
       if (localStorage.getItem('pricePer1K') === 'true') {
         document.getElementById('pricePer1K').checked = true;
         pricePer1K = true;
@@ -380,17 +465,26 @@
         document.getElementById('autoCalc').checked = true;
         autoCalc = true;
       }
+      if (localStorage.getItem('showContext') === 'true') {
+        document.getElementById('showContext').checked = true;
+        showContext = true;
+      }
     })();
 
     function changeLanguage(lang) {
       currentLang = lang;
       localStorage.setItem('lang', lang);
-      const t = translations[lang];
-      if (!t) return;
+      const t = translations[lang] || translations.es;
       document.querySelectorAll('[data-lang]').forEach(el => {
         const key = el.dataset.lang;
         if (t[key]) el.textContent = t[key];
       });
+    }
+
+    function changeCurrency(curr) {
+      currentCurrency = curr;
+      localStorage.setItem('currency', curr);
+      renderResults();
     }
 
     function togglePriceUnit() {
@@ -404,11 +498,49 @@
       localStorage.setItem('autoCalc', autoCalc);
     }
 
+    function toggleContext() {
+      showContext = document.getElementById('showContext').checked;
+      localStorage.setItem('showContext', showContext);
+      renderResults();
+    }
+
     function updateStats() {
       document.getElementById('totalCalcs').textContent = stats.calcs;
-      document.getElementById('totalSaved').textContent = '$' + stats.saved.toFixed(2);
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
+      document.getElementById('totalSaved').textContent = symbol + (stats.saved * rate).toFixed(2);
     }
     function saveStats() { localStorage.setItem('tt_stats', JSON.stringify(stats)); }
+
+    function toggleFavorite(provider, modelName, e) {
+      e.stopPropagation();
+      const id = `${provider}/${modelName}`;
+      const idx = favorites.indexOf(id);
+      if (idx > -1) {
+        favorites.splice(idx, 1);
+      } else {
+        favorites.push(id);
+      }
+      localStorage.setItem('tt_favorites', JSON.stringify(favorites));
+      updateFavoritesUI();
+      renderResults();
+    }
+
+    function updateFavoritesUI() {
+      document.getElementById('favCount').textContent = favorites.length;
+      const list = document.getElementById('favoritesList');
+      list.innerHTML = favorites.map(f => {
+        const [p, m] = f.split('/');
+        return `<span class="badge badge-yellow cursor-pointer" onclick="removeFavorite('${f}')">${p.substring(0,3)}</span>`;
+      }).join('');
+    }
+
+    function removeFavorite(id) {
+      favorites = favorites.filter(f => f !== id);
+      localStorage.setItem('tt_favorites', JSON.stringify(favorites));
+      updateFavoritesUI();
+      renderResults();
+    }
 
     function toast(msg, type = 'info') {
       const colors = { info: 'var(--surface)', success: 'var(--green-dim)', error: 'var(--red-dim)' };
@@ -454,6 +586,8 @@
       document.getElementById('providerFilter').value = '';
       document.getElementById('limitInput').value = '50';
       currentLimit = 50;
+      selectedModels = [];
+      selectedIndex = -1;
       document.getElementById('clearBtn').classList.add('hidden');
       calcularCostos();
     }
@@ -486,8 +620,102 @@
       updateSortIcons(); 
       renderResults(); 
     }
-    
-    function copyTop() { if (!results.length) return; navigator.clipboard.writeText(`${results[0].provider} - ${results[0].fullName}: $${results[0].total.toFixed(4)}`); toast('Copiado'); }
+
+    function selectModel(index, e) {
+      if (e && (e.ctrlKey || e.metaKey)) {
+        // Multi-select
+        const idx = selectedModels.indexOf(index);
+        if (idx > -1) {
+          selectedModels.splice(idx, 1);
+        } else if (selectedModels.length < 2) {
+          selectedModels.push(index);
+        }
+      } else {
+        selectedModels = [index];
+      }
+      selectedIndex = index;
+      renderResults();
+      updateCompareBtn();
+    }
+
+    function updateCompareBtn() {
+      document.getElementById('compareBtn').classList.toggle('hidden', selectedModels.length < 2);
+    }
+
+    function openCompare() {
+      if (selectedModels.length < 2) return;
+      const m1 = results[selectedModels[0]];
+      const m2 = results[selectedModels[1]];
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
+      
+      document.getElementById('compareContent').innerHTML = `
+        <div class="compare-item">
+          <div class="text-xs text-tertiary mb-2">${m1.provider} - ${m1.fullName}</div>
+          <div class="compare-label">Input</div>
+          <div class="compare-value">${symbol}${(m1.input * rate).toFixed(4)}</div>
+          <div class="compare-label mt-2">Output</div>
+          <div class="compare-value">${symbol}${(m1.output * rate).toFixed(4)}</div>
+          <div class="compare-label mt-2">Total</div>
+          <div class="compare-value text-green">${symbol}${(m1.total * rate).toFixed(4)}</div>
+          ${m1.context ? `<div class="compare-label mt-2">Context</div><div class="compare-value">${(m1.context / 1024).toFixed(0)}K</div>` : ''}
+        </div>
+        <div class="compare-item">
+          <div class="text-xs text-tertiary mb-2">${m2.provider} - ${m2.fullName}</div>
+          <div class="compare-label">Input</div>
+          <div class="compare-value">${symbol}${(m2.input * rate).toFixed(4)}</div>
+          <div class="compare-label mt-2">Output</div>
+          <div class="compare-value">${symbol}${(m2.output * rate).toFixed(4)}</div>
+          <div class="compare-label mt-2">Total</div>
+          <div class="compare-value text-green">${symbol}${(m2.total * rate).toFixed(4)}</div>
+          ${m2.context ? `<div class="compare-label mt-2">Context</div><div class="compare-value">${(m2.context / 1024).toFixed(0)}K</div>` : ''}
+        </div>
+      `;
+      document.getElementById('compareModal').classList.add('active');
+    }
+
+    function closeCompare() {
+      document.getElementById('compareModal').classList.remove('active');
+    }
+
+    function showDetails(index) {
+      const m = results[index];
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
+      
+      document.getElementById('detailsTitle').textContent = m.fullName;
+      document.getElementById('detailsContent').innerHTML = `
+        <div class="space-y-3">
+          <div><span class="text-tertiary">Proveedor:</span> <span class="font-medium">${m.provider}</span></div>
+          <div><span class="text-tertiary">Modelo:</span> <span class="font-medium">${m.fullName}</span></div>
+          <div><span class="text-tertiary">Input:</span> <span class="font-medium">${symbol}${(m.input * rate).toFixed(4)}</span></div>
+          <div><span class="text-tertiary">Output:</span> <span class="font-medium">${symbol}${(m.output * rate).toFixed(4)}</span></div>
+          <div><span class="text-tertiary">Coste Total:</span> <span class="font-medium text-green">${symbol}${(m.total * rate).toFixed(4)}</span></div>
+          ${m.context ? `<div><span class="text-tertiary">Context Window:</span> <span class="font-medium">${(m.context / 1024).toFixed(0)}K tokens</span></div>` : ''}
+          <div class="pt-2">
+            <button onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)" class="btn-secondary px-3 py-1 text-xs">
+              ${favorites.includes(`${m.provider}/${m.fullName}`) ? '⭐ Quitar Favorito' : '☆ Añadir Favorito'}
+            </button>
+          </div>
+        </div>
+      `;
+      document.getElementById('detailsModal').classList.add('active');
+    }
+
+    function closeDetails() {
+      document.getElementById('detailsModal').classList.remove('active');
+    }
+
+    function copyAll() {
+      if (!results.length) return;
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
+      const text = results.slice(0, currentLimit).map(m => 
+        `${m.provider} - ${m.fullName}: ${symbol}${(m.total * rate).toFixed(4)}`
+      ).join('\n');
+      navigator.clipboard.writeText(text);
+      toast('Lista copiada');
+    }
 
     async function loadModels() {
       const loader = document.getElementById('loader'), modelText = document.getElementById('modelText');
@@ -505,13 +733,29 @@
           .filter(k => { const m = data[k]; return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0; })
           .map(k => {
             const m = data[k];
-            return { provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1), name: k.length > 40 ? k.substring(0,37) + '...' : k, fullName: k, input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)), output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)) };
+            return { 
+              provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1), 
+              name: k.length > 40 ? k.substring(0,37) + '...' : k, 
+              fullName: k, 
+              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)), 
+              output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
+              context: m.max_model_len || m.context_window || 0
+            };
           });
 
-        const provs = [...new Set(allModels.map(m => m.provider))].sort();
+        // Provider count
+        const provCounts = {};
+        allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
+        
+        const provs = Object.keys(provCounts).sort();
         const sel = document.getElementById('providerFilter');
         sel.innerHTML = '<option value="" data-lang="allProviders">Todos los proveedores</option>';
-        provs.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; sel.appendChild(o); });
+        provs.forEach(p => { 
+          const o = document.createElement('option'); 
+          o.value = p; 
+          o.textContent = `${p} (${provCounts[p]})`; 
+          sel.appendChild(o); 
+        });
 
         loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
@@ -550,22 +794,29 @@
     function renderResults(searchTerm = '') {
       const limitedResults = results.slice(0, currentLimit);
       const unit = pricePer1K ? 1000 : 1000000;
-      const unitLabel = pricePer1K ? '$/1K' : '$/M';
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
       
       let html = '';
       limitedResults.forEach((m, i) => {
         const top = i < 3;
         const isHighlight = searchTerm && (m.name.toLowerCase().includes(searchTerm) || m.provider.toLowerCase().includes(searchTerm));
         const logoClass = getProviderLogo(m.provider);
-        html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} border-b" style="border-color: var(--border)">
+        const isFav = favorites.includes(`${m.provider}/${m.fullName}`);
+        const isSelected = selectedModels.includes(i);
+        
+        html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
+          <td class="px-1 py-1.5">
+            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '⭐' : '☆'}</span>
+          </td>
           <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
             <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
             ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
           </td>
           <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">$${(m.input / unit).toFixed(4)}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">$${(m.output / unit).toFixed(4)}</td>
-          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">$${m.total.toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.input / unit * rate).toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.output / unit * rate).toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">${symbol}${(m.total * rate).toFixed(4)}</td>
         </tr>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
@@ -574,16 +825,19 @@
       document.getElementById('tableBody').classList.remove('hidden');
       document.getElementById('count').textContent = `${limitedResults.length} / ${results.length} modelos`;
       document.getElementById('exportBtn').classList.remove('hidden');
-      document.getElementById('copyBtn').classList.remove('hidden');
+      document.getElementById('copyAllBtn').classList.remove('hidden');
+      updateCompareBtn();
     }
 
     function updateStatsBar(prompt) {
       if (!results.length) return;
       const limited = results.slice(0, currentLimit);
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
       const min = limited[0].total, max = limited[limited.length-1].total, avg = limited.reduce((a,b) => a + b.total, 0) / limited.length;
-      document.getElementById('minCost').textContent = '$' + min.toFixed(4);
-      document.getElementById('maxCost').textContent = '$' + max.toFixed(4);
-      document.getElementById('avgCost').textContent = '$' + avg.toFixed(4);
+      document.getElementById('minCost').textContent = symbol + (min * rate).toFixed(4);
+      document.getElementById('maxCost').textContent = symbol + (max * rate).toFixed(4);
+      document.getElementById('avgCost').textContent = symbol + (avg * rate).toFixed(4);
       document.getElementById('topProvider').textContent = limited[0].provider;
       document.getElementById('statsBar').classList.remove('hidden');
       if (prompt.length > 0) { stats.calcs++; stats.saved += (max - min); updateStats(); saveStats(); }
@@ -597,7 +851,9 @@
 
     function exportCSV() {
       if (!results.length) return;
-      const csv = [['Proveedor', 'Modelo', 'Input ($/M)', 'Output ($/M)', 'Coste ($)'], ...results.map(m => [m.provider, m.fullName, m.input, m.output, m.total.toFixed(4)])].map(r => r.join(',')).join('\n');
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
+      const csv = [['Proveedor', 'Modelo', 'Input', 'Output', 'Coste'], ...results.map(m => [m.provider, m.fullName, (m.input * rate).toFixed(4), (m.output * rate).toFixed(4), (m.total * rate).toFixed(4)])].map(r => r.join(',')).join('\n');
       const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv])); a.download = 'tokentax.csv'; a.click();
       toast('CSV exportado');
     }
@@ -622,6 +878,23 @@
       if (e.key === 'Escape') {
         clearPrompt();
         document.getElementById('search').focus();
+      }
+      // Arrow navigation
+      if (e.key === 'ArrowDown' && results.length > 0) {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, results.length - 1);
+        selectedModels = [selectedIndex];
+        renderResults();
+        const row = document.querySelectorAll('.table-row')[selectedIndex];
+        if (row) row.scrollIntoView({ block: 'nearest' });
+      }
+      if (e.key === 'ArrowUp' && results.length > 0) {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, 0);
+        selectedModels = [selectedIndex];
+        renderResults();
+        const row = document.querySelectorAll('.table-row')[selectedIndex];
+        if (row) row.scrollIntoView({ block: 'nearest' });
       }
     });
     

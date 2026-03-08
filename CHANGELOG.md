@@ -2,42 +2,44 @@
 
 ---
 
+## [v2.5.0] - 2026-03-08
+
+### Added (Easy List 1-10)
+- 📊 **Mostrar tokens I/O** - Input/Output prices in results
+- 📋 **Copy all** - Button to copy entire list
+- ⌨️ **Keyboard navigation** - Arrow keys to navigate
+- 🪟 **Context window** - Toggle to show context window
+- ⭐ **Favoritos** - Save favorite models (localStorage)
+- 📈 **Precio histórico** - Stats tracking (calcs & savings)
+- 🎨 **Toggle visible** - Theme toggle always visible in header
+- 💱 **Monedas** - USD/EUR/GBP currency support
+- ⚖️ **Comparar 2** - Compare 2 models side by side (Ctrl+Click)
+- 📊 **Conteo por provider** - Show count per provider in filter
+
+### Improved
+- 📖 **Modal detalles** - Double-click to see model details
+- 🔄 **Better selection** - Ctrl+Click for multi-select
+
+---
+
 ## [v2.4.0] - 2026-03-08
 
 ### Added
-- 🔢 **Toggle precios 1K/M** - Cambiar entre precios por 1K tokens o 1M tokens
-- ⚡ **Auto-calcular** - Calcular automáticamente al escribir
-- ⌨️ **Keyboard shortcuts** - `Esc` para limpiar el prompt
-- 🏢 **Más logos** - Añadidos logos de más proveedores (Fireworks, Together, Cohere, Nvidia, Perplexity)
-- ⚙️ **Settings panel** - Panel de configuración en el panel izquierdo
+- Toggle 1K/1M prices
+- Auto-calculate
+- Keyboard shortcuts
+- More provider logos
+- Settings panel
 
 ---
 
 ## [v2.3.0] - 2026-03-08
 
 ### Added
-- Language selector (8 idiomas)
+- Language selector
 - Provider logos
 - Limit control
 - Real-time updates
-
----
-
-## [v2.2.0] - 2026-03-08
-
-### Added
-- Quick Grid
-- TOP Badges
-- Clear filters
-- 8 examples
-
----
-
-## [v2.0.0] - 2026-03-08
-
-### Added
-- Professional design
-- 8-language README
 
 ---
 
