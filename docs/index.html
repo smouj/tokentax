@@ -1466,56 +1466,64 @@
 
     async function loadModels() {
       const loader = document.getElementById('loader'), modelText = document.getElementById('modelText');
-      loader.className = 'w-1.5 h-1.5 rounded-full bg-tertiary';
+      loader.className = 'w-2 h-2 rounded-full bg-yellow-500';
       modelText.textContent = 'Cargando...';
-      document.getElementById('emptyState').classList.add('hidden');
-      document.getElementById('errorState').classList.add('hidden');
 
       try {
         const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
-        if (!res.ok) throw new Error('Error de red');
+        if (!res.ok) throw new Error('Error de red: ' + res.status);
+        
         const data = await res.json();
-
-        allModels = Object.keys(data)
-          .filter(k => { const m = data[k]; return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0; })
-          .map(k => {
-            const m = data[k];
-            return {
-              provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1),
-              name: k.length > 40 ? k.substring(0,37) + '...' : k,
-              fullName: k,
-              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
-              output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
-              context: m.max_model_len || m.context_window || 0
-            };
+        
+        allModels = [];
+        
+        for (const [key, m] of Object.entries(data)) {
+          if (typeof m !== 'object' || m === null) continue;
+          if (!m.input_cost_per_token || !m.output_cost_per_token) continue;
+          if (typeof m.input_cost_per_token !== 'number' || typeof m.output_cost_per_token !== 'number') continue;
+          
+          allModels.push({
+            provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + ((m.litellm_provider || 'other').slice(1) || 'Other',
+            name: key.length > 40 ? key.substring(0,37) + '...' : key,
+            fullName: key,
+            input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
+            output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
+            context: m.max_input_tokens || m.max_model_len || m.context_window || 0
           });
+        }
+        
+        if (allModels.length === 0) throw new Error('No se encontraron modelos');
 
-        // Provider count
+        // Sort by input price
+        allModels.sort((a, b) => a.input - b.input);
+
+        // Update provider filter
         const provCounts = {};
         allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
-
         const provs = Object.keys(provCounts).sort();
         const sel = document.getElementById('providerFilter');
-        sel.innerHTML = '<option value="" data-lang="allProviders">Todos los proveedores</option>';
+        sel.innerHTML = '<option value="">Todos los proveedores</option>';
         provs.forEach(p => {
           const o = document.createElement('option');
           o.value = p;
-          o.textContent = `${p} (${provCounts[p]})`;
+          o.textContent = p + ' (' + provCounts[p] + ')';
           sel.appendChild(o);
         });
 
-        loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
+        loader.className = 'w-2 h-2 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
         updateQuickProviders();
         renderProviderPanel();
+        toast('Modelos cargados: ' + allModels.length, 'success');
 
       } catch(e) {
-        loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
+        console.error('Error loading models:', e);
+        loader.className = 'w-2 h-2 rounded-full bg-red-500';
         modelText.textContent = 'Error';
         document.getElementById('errorState').classList.remove('hidden');
-        document.getElementById('errorMsg').textContent = 'Error: ' + e.message;
-        toast('Error al cargar', 'error');
+        document.getElementById('errorMsg').textContent = e.message;
+        toast('Error al cargar modelos', 'error');
       }
     }
 
