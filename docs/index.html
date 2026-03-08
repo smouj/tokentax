@@ -13,6 +13,7 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   
   <style>
     :root, .theme-dark {
@@ -37,7 +38,7 @@
     
     .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
     .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 8px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
-    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px 8px 8px 0; overflow: hidden; }
+    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px; margin-left: 0; overflow: hidden; }
     
     .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; }
     .panel-hover:hover { background: var(--surface-3); }
@@ -94,23 +95,30 @@
     .badge-yellow { background: #fef3c7; color: #d97706; }
     
     /* Provider logos */
-    .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
-    .logo-openai { background: #10a37f; color: white; }
-    .logo-anthropic { background: #d97757; color: white; }
-    .logo-google { background: #4285f4; color: white; }
-    .logo-mistral { background: #eb4f38; color: white; }
-    .logo-deepseek { background: #2a2a2a; color: white; }
-    .logo-meta { background: #0668e1; color: white; }
-    .logo-aws { background: #ff9900; color: black; }
-    .logo-azure { background: #0078d4; color: white; }
-    .logo-xai { background: #000; color: white; }
-    .logo-groq { background: #8b5cf6; color: white; }
-    .logo-fireworks { background: #000; color: white; }
-    .logo-together { background: #8b5cf6; color: white; }
-    .logo-cohere { background: #39594d; color: white; }
-    .logo-nvidia { background: #76b900; color: black; }
-    .logo-perplexity { background: #000; color: white; }
-    .logo-default { background: var(--surface-2); color: var(--text-2); }
+    .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .provider-logo img { width: 14px; height: 14px; object-fit: contain; }
+    .provider-logo.text-only { font-size: 10px; font-weight: 700; }
+    .logo-openai { background: #10a37f; }
+    .logo-anthropic { background: #d97757; }
+    .logo-google { background: #4285f4; }
+    .logo-mistral { background: #eb4f38; }
+    .logo-deepseek { background: #2a2a2a; }
+    .logo-meta { background: #0668e1; }
+    .logo-aws { background: #ff9900; }
+    .logo-azure { background: #0078d4; }
+    .logo-xai { background: #000; }
+    .logo-groq { background: #8b5cf6; }
+    .logo-fireworks { background: #000; }
+    .logo-together { background: #8b5cf6; }
+    .logo-cohere { background: #39594d; }
+    .logo-nvidia { background: #76b900; }
+    .logo-perplexity { background: #000; }
+    .logo-default { background: var(--surface-2); }
+
+    /* Material Symbols */
+    .material-symbol { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-size: 16px; line-height: 1; }
+    .material-symbol.sm { font-size: 14px; }
+    .material-symbol.xs { font-size: 12px; }
     
     .limit-control { display: flex; align-items: center; gap: 8px; }
     .toggle-switch { position: relative; width: 36px; height: 20px; }
@@ -178,22 +186,22 @@
         </select>
         
         <!-- Theme Toggle -->
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme">🌙</button>
-        <button onclick="quickEstimate()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Quick Estimate">$</button>
-        <button onclick="loadPresets()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Load Preset">P</button>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme"><span class="material-symbol">dark_mode</span></button>
+        <button onclick="quickEstimate()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Quick Estimate"><span class="material-symbol">attach_money</span></button>
+        <button onclick="loadPresets()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Load Preset"><span class="material-symbol">folder_open</span></button>
         
         <!-- Examples -->
         <div class="dropdown">
-          <button class="btn-secondary px-2 py-1 text-[10px]">📝 <span id="examplesBtn">Ejemplos</span> ▾</button>
+          <button class="btn-secondary px-2 py-1 text-[10px]"><span class="material-symbol sm">edit</span> <span id="examplesBtn">Ejemplos</span> <span class="material-symbol xs">arrow_drop_down</span></button>
           <div class="dropdown-content">
-            <div class="dropdown-item" onclick="useExample('code')">💻 <span data-lang="code">Código</span></div>
-            <div class="dropdown-item" onclick="useExample('summary')">📄 <span data-lang="summary">Resumen</span></div>
-            <div class="dropdown-item" onclick="useExample('email')">📧 <span data-lang="email">Email</span></div>
-            <div class="dropdown-item" onclick="useExample('translate')">🌍 <span data-lang="translate">Traducir</span></div>
-            <div class="dropdown-item" onclick="useExample('blog')">📝 <span data-lang="blog">Blog</span></div>
-            <div class="dropdown-item" onclick="useExample('seo')">🔍 <span data-lang="seo">SEO</span></div>
-            <div class="dropdown-item" onclick="useExample('sql')">🗄️ <span data-lang="sql">SQL</span></div>
-            <div class="dropdown-item" onclick="useExample('test')">🧪 <span data-lang="test">Tests</span></div>
+            <div class="dropdown-item" onclick="useExample('code')"><span class="material-symbol sm">code</span> <span data-lang="code">Código</span></div>
+            <div class="dropdown-item" onclick="useExample('summary')"><span class="material-symbol sm">description</span> <span data-lang="summary">Resumen</span></div>
+            <div class="dropdown-item" onclick="useExample('email')"><span class="material-symbol sm">email</span> <span data-lang="email">Email</span></div>
+            <div class="dropdown-item" onclick="useExample('translate')"><span class="material-symbol sm">translate</span> <span data-lang="translate">Traducir</span></div>
+            <div class="dropdown-item" onclick="useExample('blog')"><span class="material-symbol sm">article</span> <span data-lang="blog">Blog</span></div>
+            <div class="dropdown-item" onclick="useExample('seo')"><span class="material-symbol sm">search</span> <span data-lang="seo">SEO</span></div>
+            <div class="dropdown-item" onclick="useExample('sql')"><span class="material-symbol sm">storage</span> <span data-lang="sql">SQL</span></div>
+            <div class="dropdown-item" onclick="useExample('test')"><span class="material-symbol sm">science</span> <span data-lang="test">Tests</span></div>
           </div>
         </div>
         
@@ -219,7 +227,7 @@
       <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
         <div class="flex justify-between items-center mb-1.5">
           <span class="text-[10px] text-secondary font-medium" data-lang="prompt">PROMPT</span>
-          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)">✕</button>
+          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)"><span class="material-symbol sm">close</span></button>
         </div>
         <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
         <div class="flex justify-between mt-1.5 text-[9px] text-tertiary">
@@ -235,16 +243,16 @@
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm">⚡ <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+↵</span></button>
+      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm"><span class="material-symbol">bolt</span> <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+Enter</span></button>
 
       <!-- Quick Grid -->
       <div class="quick-grid">
-        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span>💻</span><span data-lang="codeBtn">Código</span></button>
-        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span>📄</span><span data-lang="summaryBtn">Resumen</span></button>
-        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span>🌍</span><span data-lang="translateBtn">Trad</span></button>
-        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span>🗄️</span><span>SQL</span></button>
-        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span>🧪</span><span>Tests</span></button>
-        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span>🔍</span><span>SEO</span></button>
+        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span class="material-symbol">code</span><span data-lang="codeBtn">Código</span></button>
+        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span class="material-symbol">description</span><span data-lang="summaryBtn">Resumen</span></button>
+        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span class="material-symbol">translate</span><span data-lang="translateBtn">Trad</span></button>
+        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span class="material-symbol">storage</span><span>SQL</span></button>
+        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span class="material-symbol">science</span><span>Tests</span></button>
+        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span class="material-symbol">search</span><span>SEO</span></button>
       </div>
 
       <!-- Settings -->
@@ -278,8 +286,8 @@
           </label>
         </div>
         <div class="flex gap-1 mt-2">
-          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1">Save Preset</button>
-          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1">Stats</button>
+          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><span class="material-symbol xs">save</span></button>
+          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><span class="material-symbol xs">analytics</span></button>
         </div>
       </div>
 
@@ -298,7 +306,7 @@
       <!-- Favorites -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">⭐ <span data-lang="favorites">Favoritos</span></span>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">star</span> <span data-lang="favorites">Favoritos</span></span>
           <span id="favCount" class="text-[9px] text-tertiary">0</span>
         </div>
         <div id="favoritesList" class="flex flex-wrap gap-1"></div>
@@ -307,7 +315,7 @@
       <!-- Custom Templates -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">📝 <span data-lang="templates">Plantillas</span></span>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">edit_note</span> <span data-lang="templates">Plantillas</span></span>
           <button onclick="saveTemplate()" class="text-[9px] text-tertiary hover:text-primary">+</button>
         </div>
         <div id="templatesList" class="flex flex-wrap gap-1"></div>
@@ -316,7 +324,7 @@
       <!-- Recent -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">🕐 <span data-lang="recent">Recientes</span></span>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">history</span> <span data-lang="recent">Recientes</span></span>
           <span id="recentCount" class="text-[9px] text-tertiary">0</span>
         </div>
         <div id="recentList" class="flex flex-wrap gap-1"></div>
@@ -325,8 +333,8 @@
       <!-- Price Alerts -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">🔔 <span data-lang="alerts">Alertas</span></span>
-          <button onclick="addPriceAlert()" class="text-[9px] text-tertiary hover:text-primary">+</button>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">notifications</span> <span data-lang="alerts">Alertas</span></span>
+          <button onclick="addPriceAlert()" class="text-[9px] text-tertiary hover:text-primary"><span class="material-symbol xs">add</span></button>
         </div>
         <div id="alertsList" class="flex flex-col gap-1"></div>
       </div>
@@ -334,8 +342,8 @@
       <!-- Batch Calculate -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">📦 <span data-lang="batch">Lote</span></span>
-          <button onclick="addBatchPrompt()" class="text-[9px] text-tertiary hover:text-primary">+</button>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">inventory_2</span> <span data-lang="batch">Lote</span></span>
+          <button onclick="addBatchPrompt()" class="text-[9px] text-tertiary hover:text-primary"><span class="material-symbol xs">add</span></button>
         </div>
         <div id="batchList" class="flex flex-col gap-1"></div>
       </div>
@@ -347,7 +355,7 @@
       <!-- Filters -->
       <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
         <div class="flex-1 min-w-[150px] relative">
-          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs">🔍</span>
+          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs"><span class="material-symbol">search</span></span>
           <input id="search" type="text" placeholder="Buscar modelo..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
         </div>
         <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
@@ -357,9 +365,9 @@
         <!-- Extra Filters -->
         <select id="typeFilter" class="px-2 py-1.5 input-field text-xs" onchange="applyTypeFilter()">
           <option value="">Todos los tipos</option>
-          <option value="vision">👁️ Vision</option>
-          <option value="reasoning">🧠 Reasoning</option>
-          <option value="cheapest_provider">💰 Más barato x provider</option>
+          <option value="vision">visibility Vision</option>
+          <option value="reasoning">psychology Reasoning</option>
+          <option value="cheapest_provider">trending_down Más barato x provider</option>
         </select>
         
         <!-- Limit -->
@@ -368,13 +376,13 @@
           <input type="number" id="limitInput" value="50" min="5" max="500" class="px-2 py-1 input-field text-xs" style="width:50px" onchange="applyLimit()">
         </div>
         
-        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]">✕</button>
-        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo">📋</button>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
-        <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
-        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir">Share</button>
-        <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado">AI</button>
-        <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen">[]</button>
+        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]"><span class="material-symbol xs">close</span></button>
+        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><span class="material-symbol xs">content_copy</span></button>
+        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV"><span class="material-symbol xs">download</span></button>
+        <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF"><span class="material-symbol xs">picture_as_pdf</span></button>
+        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir"><span class="material-symbol xs">share</span></button>
+        <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado"><span class="material-symbol xs">auto_awesome</span></button>
+        <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen"><span class="material-symbol xs">fullscreen</span></button>
         <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar">⚖️</button>
       </div>
 
@@ -464,17 +472,28 @@
     const currencyRates = { USD: 1, EUR: 0.92, GBP: 0.79 };
     const currencySymbols = { USD: '$', EUR: '€', GBP: '£' };
 
-    // Provider logos
+    // Provider logos with real URLs
     const providerLogos = {
-      openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
-      deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
-      xai: 'logo-xai', groq: 'logo-groq', fireworks: 'logo-fireworks', together: 'logo-together',
-      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity'
+      openai: { url: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetlify.png', bg: '#10a37f' },
+      anthropic: { url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Anthropic.png', bg: '#d97757' },
+      google: { url: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', bg: '#4285f4' },
+      mistral: { url: 'https://mistral.ai/images/logo.svg', bg: '#eb4f38' },
+      deepseek: { url: 'https://upload.wikimedia.org/wikipedia/commons/d/d2/DeepSeek_Logo.svg', bg: '#2a2a2a' },
+      meta: { url: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg', bg: '#0668e1' },
+      aws: { url: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg', bg: '#ff9900' },
+      azure: { url: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg', bg: '#0078d4' },
+      xai: { url: 'https://x.ai/logo.png', bg: '#000' },
+      groq: { url: '', bg: '#8b5cf6', text: 'G' },
+      fireworks: { url: '', bg: '#000', text: 'F' },
+      together: { url: '', bg: '#8b5cf6', text: 'T' },
+      cohere: { url: '', bg: '#39594d', text: 'C' },
+      nvidia: { url: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/NVIDIA_CUDA_Logo.svg', bg: '#76b900' },
+      perplexity: { url: '', bg: '#000', text: 'P' }
     };
 
     function getProviderLogo(provider) {
       const key = provider.toLowerCase();
-      return providerLogos[key] || 'logo-default';
+      return providerLogos[key] || null;
     }
 
     let allModels = [], results = [], isDark = true, sortF = 'input', sortA = true;
@@ -909,7 +928,7 @@
       list.innerHTML = priceAlerts.map((a, i) => 
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary">< $${a.maxPrice}</span>
-          <button onclick="removeAlert(${i})" class="text-red">✕</button>
+          <button onclick="removeAlert(${i})" class="text-red"><span class="material-symbol xs">close</span></button>
         </div>`
       ).join('');
     }
@@ -984,9 +1003,9 @@
       list.innerHTML = batchPrompts.map((bp, i) => 
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary truncate" style="max-width:80px">${bp.name}</span>
-          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red">✕</button>
+          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red"><span class="material-symbol xs">close</span></button>
         </div>`
-      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]">▶ Ejecutar</button>`;
+      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]"><span class="material-symbol xs">play_arrow</span> Ejecutar</button>`;
     }
 
     function saveBatch() {
@@ -1252,16 +1271,25 @@
       limitedResults.forEach((m, i) => {
         const top = i < 3;
         const isHighlight = searchTerm && (m.name.toLowerCase().includes(searchTerm) || m.provider.toLowerCase().includes(searchTerm));
-        const logoClass = getProviderLogo(m.provider);
+        const logo = getProviderLogo(m.provider);
         const isFav = favorites.includes(`${m.provider}/${m.fullName}`);
         const isSelected = selectedModels.includes(i);
         
+        let logoHtml = '';
+        if (logo && logo.url) {
+          logoHtml = `<span class="provider-logo ${logo.bg ? '' : 'text-only'}" style="background:${logo.bg};margin-right:6px"><img src="${logo.url}" alt="${m.provider}"></span>`;
+        } else if (logo && logo.text) {
+          logoHtml = `<span class="provider-logo text-only" style="background:${logo.bg};margin-right:6px">${logo.text}</span>`;
+        } else {
+          logoHtml = `<span class="provider-logo text-only" style="background:var(--surface-2);margin-right:6px">${m.provider.charAt(0)}</span>`;
+        }
+        
         html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
           <td class="px-1 py-1.5">
-            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '⭐' : '☆'}</span>
+            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<span class="material-symbol xs">star</span>' : '<span class="material-symbol xs">star_border</span>'}</span>
           </td>
           <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
-            <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
+            ${logoHtml}
             ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
           </td>
           <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
