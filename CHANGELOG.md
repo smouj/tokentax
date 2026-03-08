@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.9.0] - 2026-03-08
+
+### Added
+- **Visitor Counter** - Shows total visits in footer (localStorage based)
+- **Empty State** - Improved empty state with icon and instructions
+- **2026 Badge** - Current year badge in header
+- **Cleaner Footer** - Simplified footer with copyright
+
+---
+
 ## [v3.8.0] - 2026-03-08
 
 ### Added
