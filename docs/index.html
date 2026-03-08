@@ -628,7 +628,7 @@
       } else if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        document.getElementById('themeBtn').textContent = '<i class="fas fa-sun"></i>';
+        document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
         isDark = false;
       }
       if (localStorage.getItem('lang')) {
