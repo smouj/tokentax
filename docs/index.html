@@ -48,26 +48,16 @@
     
     /* Mobile optimizations */
     @media (max-width: 640px) {
-      .app-container { flex-direction: column !important; }
-      .left-panel { width: 100% !important; height: auto !important; max-height: 40vh !important; border-right: none !important; border-bottom: 1px solid var(--border); }
-      .right-panel { margin: 4px !important; width: calc(100% - 8px) !important; }
-      .header { padding: 8px !important; }
-      .quick-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 4px !important; }
-      .table-header > div, .table-row > div { padding: 6px 8px !important; font-size: 9px !important; }
-      .th-1, .td-1 { width: 24px !important; }
-      .th-2, .td-2 { width: 70px !important; }
-      .th-3, .td-3 { width: 80px !important; }
-      .th-4, .td-4, .th-5, .td-5, .th-6, .td-6 { width: 55px !important; }
-      .panel { border-radius: 6px !important; }
-      .btn-primary { padding: 10px 16px !important; }
-      .header h1 { font-size: 14px !important; }
-      .badge { font-size: 6px !important; padding: 1px 3px !important; }
+      .app-container { flex-direction: column; }
+      .left-panel { width: 100%; height: auto; max-height: 40vh; border-right: none; border-bottom: 1px solid var(--border); }
+      .right-panel { margin: 4px; width: calc(100% - 8px); }
+      .header { padding: 8px; }
+      .quick-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
     }
     
     @media (max-width: 480px) {
       html { font-size: 13px; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 4px !important; }
-      .header { flex-wrap: wrap !important; gap: 4px !important; }
+      .quick-grid { grid-template-columns: repeat(2, 1fr); }
     }
     body { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
 
