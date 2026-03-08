@@ -47,6 +47,9 @@
 | ⛶ **Fullscreen** | Fullscreen mode (F11) |
 | ❓ **Help** | Press ? to view all shortcuts |
 | 💾 **Presets** | Save and load configurations |
+| 📱 **Mobile Optimized** | Fully responsive design |
+| 🔍 **SEO Ready** | Meta tags, Open Graph, Twitter Cards |
+| ⚡ **Performance** | Preconnect, deferred loading, better caching |
 
 ---
 

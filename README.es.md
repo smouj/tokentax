@@ -47,6 +47,9 @@
 | ⛶ **Fullscreen** | Modo pantalla completa (F11) |
 | ❓ **Ayuda** | Press ? para ver todos los atajos |
 | 💾 **Presets** | Guarda y carga configuraciones |
+| 📱 **Mobile Optimized** | Diseño completamente adaptativo |
+| 🔍 **SEO Ready** | Meta tags, Open Graph, Twitter Cards |
+| ⚡ **Performance** | Preconnect, carga diferida, cache mejorado |
 
 ---
 
