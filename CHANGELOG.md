@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v1.6.0] - 2026-03-08
+
+### Added
+- 🎨 **Premium minimal** - Perfect spacing, typography, padding
+- ✨ **Refined glassmorphism** - Subtle blur, optimal transparency
+- 📐 **Optimal grid** - Clean 12-column layout
+- 🔤 **Typography** - Inter font, proper line-height, hierarchy
+- 🎯 **Minimal scrollbar** - Ultra-thin, subtle
+- 💫 **Refined animations** - Smoother, more performant
+- 📱 **Perfect responsiveness** - Mobile-first
+
+---
+
 ## [v1.5.0] - 2026-03-08
 
 ### Added
