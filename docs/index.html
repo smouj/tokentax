@@ -1,20 +1,81 @@
 <!DOCTYPE html>
-<html lang="es" class="bg-black text-white">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TokenTax AI PRO • +400 Modelos</title>
-  <meta name="description" content="Compara +400 modelos de IA. Encuentra el más barato.">
+  
+  <!-- SEO -->
+  <title>TokenTax AI PRO | Compara +400 Modelos de IA - Precios 2026</title>
+  <meta name="title" content="TokenTax AI PRO | Compara +400 Modelos de IA - Precios 2026">
+  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato. OpenAI, Anthropic, Gemini, Grok, Mistral, DeepSeek. Precios en tiempo real desde LiteLLM.">
+  <meta name="keywords" content="AI, artificial intelligence, LLM, language model, pricing, cost comparison, OpenAI, Anthropic, Claude, Gemini, GPT-4, GPT-4o, Claude 3.5, Mistral, DeepSeek, Grok, token pricing, API costs, cheap AI, tokens">
+  <meta name="author" content="smouj">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Spanish, English">
+  <meta name="revisit-after" content="7 days">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smouj.github.io/tokentax/">
+  <meta property="og:title" content="TokenTax AI PRO | +400 Modelos de IA">
+  <meta property="og:description" content="Compara precios de +400 modelos de IA. Encuentra el más barato para tu prompt.">
+  <meta property="og:image" content="https://smouj.github.io/tokentax/og-image.png">
+  <meta property="og:site_name" content="TokenTax">
+  <meta property="og:locale" content="es_ES">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://smouj.github.io/tokentax/">
+  <meta name="twitter:title" content="TokenTax AI PRO | +400 Modelos de IA">
+  <meta name="twitter:description" content="Compara precios de +400 modelos de IA. Encuentra el más barato para tu prompt.">
+  <meta name="twitter:image" content="https://smouj.github.io/tokentax/og-image.png">
+  
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TokenTax AI PRO",
+    "description": "Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato.",
+    "url": "https://smouj.github.io/tokentax/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web Browser",
+    "author": {
+      "@type": "Person",
+      "name": "smouj",
+      "url": "https://github.com/smouj"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "400+ AI models comparison",
+      "Real-time pricing from LiteLLM",
+      "Cost calculation per prompt",
+      "Provider filtering",
+      "CSV export"
+    ]
+  }
+  </script>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+  
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --white: 255 255 255;
-      --white-dim: 180 180 180;
-      --white-subtle: 120 120 120;
-      --accent: 255 255 255;
+      --dim: 150 150 150;
+      --subtle: 100 100 100;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,20 +86,16 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #000;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
     
-    /* Premium subtle gradient */
     .bg-premium {
       background: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(30, 30, 30, 0.4) 0%, transparent 100%),
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(35, 35, 35, 0.5) 0%, transparent 100%),
         #000;
     }
     
-    /* Performance */
     .will-animate { will-change: transform, opacity; transform: translateZ(0); }
     
-    /* Entry animations */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -53,9 +110,7 @@
     .delay-2 { animation-delay: 0.1s; }
     .delay-3 { animation-delay: 0.15s; }
     .delay-4 { animation-delay: 0.2s; }
-    .delay-5 { animation-delay: 0.25s; }
     
-    /* Glass panel */
     .glass-panel {
       background: rgba(18, 18, 18, 0.8);
       backdrop-filter: blur(24px);
@@ -63,7 +118,6 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
     
-    /* Inputs premium */
     .input-premium {
       background: rgba(15, 15, 15, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -77,7 +131,6 @@
     
     .input-premium::placeholder { color: rgba(255, 255, 255, 0.25); }
     
-    /* Button premium */
     .btn-premium {
       background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -92,21 +145,13 @@
     
     .btn-premium:active { transform: scale(0.99); }
     
-    /* Table */
-    .table-row {
-      transition: all 0.2s ease;
-    }
+    .table-row { transition: all 0.2s ease; }
+    .table-row:hover { background: rgba(255, 255, 255, 0.03); }
     
-    .table-row:hover {
-      background: rgba(255, 255, 255, 0.03);
-    }
-    
-    /* Scrollbar minimal */
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 2px; }
     
-    /* Toast */
     @keyframes toastIn {
       from { opacity: 0; transform: translateX(16px); }
       to { opacity: 1; transform: translateX(0); }
@@ -114,7 +159,6 @@
     
     .toast-in { animation: toastIn 0.3s ease forwards; }
     
-    /* Logo glow */
     @keyframes logoGlow {
       0%, 100% { box-shadow: 0 0 24px rgba(255,255,255,0.15); }
       50% { box-shadow: 0 0 36px rgba(255,255,255,0.25); }
@@ -122,7 +166,6 @@
     
     .logo-glow { animation: logoGlow 4s ease-in-out infinite; }
     
-    /* Particles */
     .particle {
       position: absolute;
       width: 1px;
@@ -136,7 +179,6 @@
       50% { transform: translateY(-30px) translateX(10px); opacity: 0.4; }
     }
     
-    /* Result highlight */
     @keyframes rowReveal {
       from { opacity: 0; transform: translateX(-8px); }
       to { opacity: 1; transform: translateX(0); }
@@ -146,10 +188,10 @@
   </style>
 </head>
 <body class="bg-premium min-h-screen">
-  <!-- Background -->
+  <!-- Background particles -->
   <div id="particles" class="fixed inset-0 pointer-events-none"></div>
 
-  <!-- Toast -->
+  <!-- Toast container -->
   <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-2"></div>
 
   <!-- Header -->
@@ -167,18 +209,18 @@
         </div>
       </div>
 
-      <!-- Right -->
+      <!-- Right side -->
       <div class="flex items-center gap-2.5 animate-enter delay-1">
         <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs text-white/40">
           <span id="loader" class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
           <span id="modelText">Cargando...</span>
         </div>
         
-        <button onclick="toggleTheme()" id="themeBtn" class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition text-sm" title="Tema">
+        <button onclick="toggleTheme()" id="themeBtn" class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition text-sm" title="Cambiar tema">
           🌙
         </button>
         
-        <a href="https://github.com/smouj/tokentax" target="_blank" class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition flex items-center justify-center">
+        <a href="https://github.com/smouj/tokentax" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition flex items-center justify-center" aria-label="GitHub">
           <svg class="w-4 h-4 text-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
       </div>
@@ -189,80 +231,80 @@
   <main class="max-w-6xl mx-auto px-5 py-8">
     <div class="grid grid-cols-12 gap-5">
       
-      <!-- Left Panel -->
+      <!-- Left Panel - Input -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-4 animate-enter delay-2">
         
-        <!-- Prompt -->
+        <!-- Prompt textarea -->
         <div class="glass-panel rounded-2xl p-5 flex flex-col min-h-[280px]">
           <div class="flex justify-between items-center mb-3">
             <span class="text-xs text-white/40 font-medium">Tu prompt</span>
-            <button onclick="clearPrompt()" class="text-xs text-white/25 hover:text-white/50 transition">✕</button>
+            <button onclick="clearPrompt()" class="text-xs text-white/25 hover:text-white/50 transition" aria-label="Limpiar">✕</button>
           </div>
-          <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm leading-relaxed resize-none focus:outline-none placeholder:text-white/20" placeholder="Pega tu prompt..."></textarea>
+          <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm leading-relaxed resize-none focus:outline-none placeholder:text-white/20" placeholder="Pega tu prompt..." aria-label="Prompt"></textarea>
           <div class="mt-3 flex justify-between text-[11px] text-white/30">
             <span id="charCount">0 chars</span>
             <span id="tokenCount">~0 tokens</span>
           </div>
         </div>
 
-        <!-- Output -->
+        <!-- Output tokens -->
         <div class="glass-panel rounded-xl p-4">
-          <label class="block text-xs text-white/40 font-medium mb-2">Output tokens</label>
-          <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-2xl font-semibold text-center focus:outline-none">
+          <label for="outputTokens" class="block text-xs text-white/40 font-medium mb-2">Output tokens</label>
+          <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-2xl font-semibold text-center focus:outline-none" aria-label="Tokens de salida">
         </div>
 
-        <!-- Calculate -->
-        <button onclick="calcularCostos()" class="btn-premium py-3.5 rounded-xl text-sm font-medium">
+        <!-- Calculate button -->
+        <button onclick="calcularCostos()" class="btn-premium py-3.5 rounded-xl text-sm font-medium" aria-label="Calcular costos">
           ⚡ Calcular
         </button>
 
-        <!-- Quick -->
+        <!-- Quick actions -->
         <div class="flex gap-2">
-          <button onclick="useExample('code')" class="flex-1 btn-premium py-2.5 rounded-lg text-xs">📝 Código</button>
-          <button onclick="useExample('summary')" class="flex-1 btn-premium py-2.5 rounded-lg text-xs">📝 Resumen</button>
+          <button onclick="useExample('code')" class="flex-1 btn-premium py-2.5 rounded-lg text-xs" aria-label="Ejemplo código">📝 Código</button>
+          <button onclick="useExample('summary')" class="flex-1 btn-premium py-2.5 rounded-lg text-xs" aria-label="Ejemplo resumen">📝 Resumen</button>
         </div>
       </div>
 
-      <!-- Right Panel -->
+      <!-- Right Panel - Results -->
       <div class="col-span-12 lg:col-span-8 animate-enter delay-3">
         <div class="glass-panel rounded-2xl overflow-hidden" style="height: 520px;">
           
           <!-- Filters -->
           <div class="p-4 border-b border-white/5 flex gap-2.5">
             <div class="flex-1 relative">
-              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/25 text-sm">🔍</span>
-              <input id="search" type="text" placeholder="Buscar..." class="w-full pl-9 pr-3 py-2.5 rounded-lg text-sm input-premium">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/25 text-sm" aria-hidden="true">🔍</span>
+              <input id="search" type="text" placeholder="Buscar..." class="w-full pl-9 pr-3 py-2.5 rounded-lg text-sm input-premium" aria-label="Buscar modelo">
             </div>
-            <select id="providerFilter" class="px-3 py-2.5 rounded-lg text-sm input-premium min-w-[120px]">
+            <select id="providerFilter" class="px-3 py-2.5 rounded-lg text-sm input-premium min-w-[120px]" aria-label="Filtrar proveedor">
               <option value="">Todos</option>
             </select>
-            <button onclick="exportCSV()" id="exportBtn" class="hidden px-3 py-2.5 rounded-lg bg-white/10 text-xs">📥 CSV</button>
-            <button onclick="copyTopResult()" id="copyBtn" class="hidden px-3 py-2.5 rounded-lg bg-white/10 text-xs">📋 Copy</button>
+            <button onclick="exportCSV()" id="exportBtn" class="hidden px-3 py-2.5 rounded-lg bg-white/10 text-xs" aria-label="Exportar CSV">📥 CSV</button>
+            <button onclick="copyTopResult()" id="copyBtn" class="hidden px-3 py-2.5 rounded-lg bg-white/10 text-xs" aria-label="Copiar resultado">📋 Copy</button>
           </div>
 
           <!-- Table Header -->
           <div class="grid grid-cols-6 gap-2 px-4 py-2.5 bg-white/[0.02] text-[10px] font-medium text-white/35 uppercase tracking-wider">
-            <div class="cursor-pointer hover:text-white/60" onclick="sortBy('provider')">Proveedor</div>
-            <div class="col-span-2 cursor-pointer hover:text-white/60" onclick="sortBy('name')">Modelo</div>
-            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('input')">Input</div>
-            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('output')">Output</div>
-            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('total')">Coste</div>
+            <div class="cursor-pointer hover:text-white/60" onclick="sortBy('provider')" role="button" tabindex="0">Proveedor</div>
+            <div class="col-span-2 cursor-pointer hover:text-white/60" onclick="sortBy('name')" role="button" tabindex="0">Modelo</div>
+            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('input')" role="button" tabindex="0">Input</div>
+            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('output')" role="button" tabindex="0">Output</div>
+            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('total')" role="button" tabindex="0">Coste</div>
           </div>
 
           <!-- Results -->
-          <div class="h-[calc(100%-120px)] overflow-y-auto">
+          <div class="h-[calc(100%-120px)] overflow-y-auto" role="region" aria-label="Resultados">
             <div id="emptyState" class="h-full flex flex-col items-center justify-center text-white/25">
               <p class="text-sm">Introduce un prompt y calcula</p>
               <p class="text-xs mt-1">Ctrl+Enter</p>
             </div>
-            <table class="w-full text-sm">
-              <tbody id="tableBody" class="hidden"></tbody>
+            <table class="w-full text-sm" role="table" aria-label="Modelos">
+              <tbody id="tableBody" class="hidden" role="rowgroup"></tbody>
             </table>
           </div>
 
           <!-- Footer -->
           <div class="px-4 py-2.5 border-t border-white/5 flex justify-between items-center text-[10px] text-white/25">
-            <span id="count"></span>
+            <span id="count" aria-live="polite"></span>
             <span>LiteLLM</span>
           </div>
         </div>
@@ -273,7 +315,8 @@
   <!-- Footer -->
   <footer class="border-t border-white/5 py-6 animate-enter delay-4">
     <div class="max-w-6xl mx-auto px-5 text-center">
-      <p class="text-xs text-white/25">TokenTax • +400 Modelos • Precios en vivo</p>
+      <p class="text-xs text-white/25">TokenTax • +400 Modelos • Precios en vivo desde LiteLLM</p>
+      <p class="text-[10px] text-white/15 mt-1">© 2026 smouj • <a href="https://github.com/smouj/tokentax" class="text-white/30 hover:text-white/50 transition">GitHub</a></p>
     </div>
   </footer>
 
@@ -292,10 +335,16 @@
       }
     })();
 
+    // State
     let allModels = [], currentResults = [], isDark = true, sortField = 'input', sortAsc = true;
 
+    // Toast
     function showToast(msg, type = 'success') {
-      const colors = { success: 'bg-white/10 border-white/15', error: 'bg-red-500/20 border-red-500/30', info: 'bg-blue-500/20 border-blue-500/30' };
+      const colors = { 
+        success: 'bg-white/10 border-white/15', 
+        error: 'bg-red-500/20 border-red-500/30', 
+        info: 'bg-blue-500/20 border-blue-500/30' 
+      };
       const t = document.createElement('div');
       t.className = `toast-in px-4 py-2.5 rounded-lg border ${colors[type]} text-xs backdrop-blur-xl`;
       t.textContent = msg;
@@ -303,6 +352,7 @@
       setTimeout(() => t.remove(), 2800);
     }
 
+    // Theme toggle
     function toggleTheme() {
       const btn = document.getElementById('themeBtn');
       if (isDark) {
@@ -317,33 +367,60 @@
       isDark = !isDark;
     }
 
+    // Clear prompt
     function clearPrompt() {
       document.getElementById('prompt').value = '';
       updateCount();
       showToast('Limpiado');
     }
 
+    // Load example
     function useExample(type) {
       const ex = {
-        code: '// Create a React login form component\nfunction Login() {\n  const [email, setEmail] = useState("");\n  return <input value={email} />;\n}',
-        summary: 'Write a summary about AI impact on software development.'
+        code: `// Create a React login form component
+function LoginForm() {
+  const [email, setEmail] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email);
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <input 
+        type="email" 
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email"
+      />
+      <button type="submit">Login</button>
+    </form>
+  );
+}`,
+        summary: `Write a comprehensive summary about how artificial intelligence is transforming software development. Include examples of code generation, automated testing, bug detection, and the future of programming with AI assistants.`
       };
       document.getElementById('prompt').value = ex[type];
       updateCount();
       showToast('Ejemplo cargado');
     }
 
-    function sortBy(f) {
-      if (sortField === f) sortAsc = !sortAsc;
-      else { sortField = f; sortAsc = true; }
+    // Sort
+    function sortBy(field) {
+      if (sortField === field) {
+        sortAsc = !sortAsc;
+      } else {
+        sortField = field;
+        sortAsc = true;
+      }
       calcularCostos();
     }
 
+    // Copy top result
     function copyTopResult() {
       if (!currentResults.length) return;
       const top = currentResults[0];
-      navigator.clipboard.writeText(`${top.provider} - ${top.fullName}: $${top.total.toFixed(4)}`);
-      showToast('Copiado');
+      const text = `${top.provider} - ${top.fullName}\nCoste: $${top.total.toFixed(4)}\nInput: $${top.input}/M | Output: $${top.output}/M`;
+      navigator.clipboard.writeText(text);
+      showToast('Copiado al portapapeles');
     }
 
     // Init theme
@@ -355,69 +432,104 @@
       }
     })();
 
+    // Load models from LiteLLM (real data)
     async function cargarModelos() {
       try {
         const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
         const data = await res.json();
         
+        // Filter only chat models with valid pricing
         allModels = Object.keys(data)
-          .filter(k => {
-            const m = data[k];
-            return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0;
+          .filter(key => {
+            const m = data[key];
+            return m.mode === "chat" && 
+              typeof m.input_cost_per_token === "number" && 
+              typeof m.output_cost_per_token === "number" &&
+              m.input_cost_per_token > 0;
           })
-          .map(k => {
-            const m = data[k];
+          .map(key => {
+            const m = data[key];
+            const provider = m.litellm_provider || "other";
             return {
-              provider: (m.litellm_provider || "otro").charAt(0).toUpperCase() + (m.litellm_provider || "otro").slice(1),
-              name: k.length > 45 ? k.substring(0,42) + "..." : k,
-              fullName: k,
+              provider: provider.charAt(0).toUpperCase() + provider.slice(1),
+              name: key.length > 45 ? key.substring(0,42) + "..." : key,
+              fullName: key,
               input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
               output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4))
             };
           });
 
+        // Populate provider filter
         const providers = [...new Set(allModels.map(m => m.provider))].sort();
         const sel = document.getElementById('providerFilter');
-        providers.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; sel.appendChild(o); });
+        providers.forEach(p => {
+          const opt = document.createElement('option');
+          opt.value = p;
+          opt.textContent = p;
+          sel.appendChild(opt);
+        });
 
         document.getElementById('loader').classList.add('bg-green-500');
         document.getElementById('modelText').textContent = `${allModels.length} modelos`;
+        
+        console.log(`✅ TokenTax: ${allModels.length} modelos cargados desde LiteLLM`);
       } catch(e) {
+        console.error('Error cargando modelos:', e);
         document.getElementById('modelText').textContent = "Error";
-        showToast('Error', 'error');
+        showToast('Error al cargar datos', 'error');
       }
     }
 
-    function estimateTokens(t) { return t ? Math.ceil(t.length / 4) : 0; }
+    // Token estimation
+    function estimateTokens(text) {
+      return text ? Math.ceil(text.length / 4) : 0;
+    }
     
+    // Update char/token count
     function updateCount() {
       const v = document.getElementById('prompt').value;
       document.getElementById('charCount').textContent = v.length + ' chars';
       document.getElementById('tokenCount').textContent = '~' + estimateTokens(v) + ' tokens';
     }
 
+    // Calculate costs
     function calcularCostos() {
       const prompt = document.getElementById('prompt').value;
       const outTokens = parseFloat(document.getElementById('outputTokens').value) || 0;
       const inTokens = estimateTokens(prompt);
 
-      if (!allModels.length) { showToast('Cargando...', 'info'); return; }
+      if (!allModels.length) {
+        showToast('Cargando modelos...', 'info');
+        return;
+      }
 
-      currentResults = filtrar().map(m => ({ ...m, total: (inTokens * m.input + outTokens * m.output) / 1e6 }));
+      // Calculate costs for each model
+      currentResults = filtrar().map(m => ({
+        ...m,
+        total: (inTokens * m.input + outTokens * m.output) / 1e6
+      }));
       
-      if (!currentResults.length) { showToast('Sin resultados', 'error'); return; }
+      if (!currentResults.length) {
+        showToast('Sin resultados', 'error');
+        return;
+      }
 
+      // Sort
       currentResults.sort((a, b) => {
         const av = a[sortField], bv = b[sortField];
-        return typeof av === 'string' ? (sortAsc ? av.localeCompare(bv) : bv.localeCompare(av)) : (sortAsc ? av - bv : bv - av);
+        if (typeof av === 'string') {
+          return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+        }
+        return sortAsc ? av - bv : bv - av;
       });
 
+      // Build table
       let html = '';
       currentResults.forEach((m, i) => {
         const top3 = i < 3;
         html += `<tr class="table-row border-b border-white/[0.03]">
           <td class="px-3 py-2.5 font-medium ${top3 ? 'text-green-400' : 'text-white/70'}">${m.provider}</td>
-          <td class="col-span-2 px-3 py-2.5 font-mono text-[11px] text-white/40">${m.name}</td>
+          <td class="col-span-2 px-3 py-2.5 font-mono text-[11px] text-white/40" title="${m.fullName}">${m.name}</td>
           <td class="px-3 py-2.5 text-right font-mono text-white/35">$${m.input.toFixed(4)}</td>
           <td class="px-3 py-2.5 text-right font-mono text-white/35">$${m.output.toFixed(4)}</td>
           <td class="px-3 py-2.5 text-right font-semibold ${top3 ? 'text-green-400' : 'text-white'}">$${m.total.toFixed(4)}</td>
@@ -431,28 +543,81 @@
       document.getElementById('exportBtn').classList.remove('hidden');
       document.getElementById('copyBtn').classList.remove('hidden');
 
-      document.querySelectorAll('#tableBody tr').forEach((r, i) => r.style.animationDelay = (i * 0.015) + 's');
+      // Row animations
+      document.querySelectorAll('#tableBody tr').forEach((r, i) => {
+        r.style.animationDelay = (i * 0.015) + 's';
+      });
     }
 
+    // Filter
     function filtrar() {
-      const s = document.getElementById('search').value.toLowerCase().trim();
-      const p = document.getElementById('providerFilter').value;
-      return allModels.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
+      const search = document.getElementById('search').value.toLowerCase().trim();
+      const provider = document.getElementById('providerFilter').value;
+      return allModels.filter(m => 
+        (!search || m.name.toLowerCase().includes(search) || m.provider.toLowerCase().includes(search)) && 
+        (!provider || m.provider === provider)
+      );
     }
 
+    // Export CSV (real data)
     function exportCSV() {
-      if (!currentResults.length) { showToast('Nada que exportar', 'error'); return; }
-      const csv = [['Proveedor','Modelo','Input','Output','Coste'], ...currentResults.map(m => [m.provider,m.fullName,m.input,m.output,m.total.toFixed(4)])].map(r => r.join(',')).join('\n');
-      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download = 'tokentax.csv'; a.click();
+      if (!currentResults.length) {
+        showToast('Nada que exportar', 'error');
+        return;
+      }
+      
+      const headers = ['Proveedor', 'Modelo', 'Input $/M', 'Output $/M', 'Coste $'];
+      const rows = currentResults.map(m => [
+        m.provider,
+        m.fullName,
+        m.input.toFixed(4),
+        m.output.toFixed(4),
+        m.total.toFixed(4)
+      ]);
+      
+      const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `tokentax-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+      
       showToast('CSV descargado');
     }
 
-    // Events
-    ['search','providerFilter'].forEach(id => document.getElementById(id).addEventListener('input', calcularCostos));
-    document.getElementById('prompt').addEventListener('input', () => { updateCount(); if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
-    document.getElementById('outputTokens').addEventListener('input', () => { if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
-    document.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') calcularCostos(); });
-    window.onload = () => { cargarModelos(); updateCount(); };
+    // Event listeners
+    document.getElementById('search').addEventListener('input', calcularCostos);
+    document.getElementById('providerFilter').addEventListener('change', calcularCostos);
+    
+    document.getElementById('prompt').addEventListener('input', () => {
+      updateCount();
+      if (!document.getElementById('tableBody').classList.contains('hidden')) {
+        calcularCostos();
+      }
+    });
+    
+    document.getElementById('outputTokens').addEventListener('input', () => {
+      if (!document.getElementById('tableBody').classList.contains('hidden')) {
+        calcularCostos();
+      }
+    });
+    
+    // Keyboard shortcut
+    document.addEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        e.preventDefault();
+        calcularCostos();
+      }
+    });
+
+    // Init
+    window.onload = () => {
+      cargarModelos();
+      updateCount();
+    };
   </script>
 </body>
 </html>

@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v1.7.0] - 2026-03-08
+
+### Added
+- 🔍 **SEO completo** - Meta tags, Open Graph, Twitter Cards, JSON-LD
+- ♿ **Accesibilidad** - ARIA labels, roles, focus states
+- ✅ **Datos 100% reales** - LiteLLM API real, sin hardcoded
+- 📊 **JSON-LD Schema** - Rich snippets para Google
+- 🏷️ **Meta tags** - Description, keywords, author, language
+- 🌐 **Open Graph** - og:type, og:url, og:image, og:locale
+- 🐦 **Twitter Cards** - summary_large_image
+- 🔗 **Semantic HTML** - header, main, footer, section, table
+- ♿ **ARIA** - aria-label, aria-live, role, tabindex
+- 📱 **Mobile SEO** - Viewport, responsive
+- 🔄 **Sitemap** - Listo para crawlers
+
+---
+
 ## [v1.6.0] - 2026-03-08
 
 ### Added
