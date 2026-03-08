@@ -308,6 +308,24 @@
         </div>
         <div id="recentList" class="flex flex-wrap gap-1"></div>
       </div>
+      
+      <!-- Price Alerts -->
+      <div class="panel p-2">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-[10px] text-secondary font-medium">🔔 <span data-lang="alerts">Alertas</span></span>
+          <button onclick="addPriceAlert()" class="text-[9px] text-tertiary hover:text-primary">+</button>
+        </div>
+        <div id="alertsList" class="flex flex-col gap-1"></div>
+      </div>
+      
+      <!-- Batch Calculate -->
+      <div class="panel p-2">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-[10px] text-secondary font-medium">📦 <span data-lang="batch">Lote</span></span>
+          <button onclick="addBatchPrompt()" class="text-[9px] text-tertiary hover:text-primary">+</button>
+        </div>
+        <div id="batchList" class="flex flex-col gap-1"></div>
+      </div>
     </aside>
 
     <!-- Right Panel -->
@@ -456,6 +474,8 @@
     let templates = [];
     let recentModels = [];
     let currentTypeFilter = '';
+    let priceAlerts = [];
+    let batchPrompts = [];
 
     // Init
     (function() {
@@ -482,6 +502,12 @@
         recentModels = JSON.parse(localStorage.getItem('tt_recent') || '[]');
         updateRecentUI();
       } catch(e) {}
+      
+      // Load alerts
+      loadAlerts();
+      
+      // Load batch
+      loadBatch();
       
       // Load settings
       if (localStorage.getItem('theme') === 'light') {
@@ -633,6 +659,122 @@
     function applyTypeFilter() {
       currentTypeFilter = document.getElementById('typeFilter').value;
       calcularCostos();
+    }
+
+    // Price Alerts
+    function loadAlerts() {
+      try {
+        priceAlerts = JSON.parse(localStorage.getItem('tt_alerts') || '[]');
+      } catch(e) {}
+      updateAlertsUI();
+    }
+
+    function addPriceAlert() {
+      const maxPrice = prompt('¿Precio máximo ($USD)?');
+      if (!maxPrice || isNaN(maxPrice)) return;
+      priceAlerts.push({ maxPrice: parseFloat(maxPrice), active: true });
+      localStorage.setItem('tt_alerts', JSON.stringify(priceAlerts));
+      updateAlertsUI();
+      toast('Alerta creada');
+    }
+
+    function removeAlert(i) {
+      priceAlerts.splice(i, 1);
+      localStorage.setItem('tt_alerts', JSON.stringify(priceAlerts));
+      updateAlertsUI();
+    }
+
+    function updateAlertsUI() {
+      const list = document.getElementById('alertsList');
+      if (!priceAlerts.length) {
+        list.innerHTML = '<span class="text-[9px] text-tertiary">Sin alertas</span>';
+        return;
+      }
+      list.innerHTML = priceAlerts.map((a, i) => 
+        `<div class="flex justify-between items-center text-[9px]">
+          <span class="text-tertiary">< $${a.maxPrice}</span>
+          <button onclick="removeAlert(${i})" class="text-red">✕</button>
+        </div>`
+      ).join('');
+    }
+
+    function checkAlerts() {
+      if (!results.length || !priceAlerts.length) return;
+      priceAlerts.forEach((alert, i) => {
+        if (!alert.active) return;
+        const cheapest = results[0].total;
+        if (cheapest <= alert.maxPrice) {
+          toast(`🔔 ¡Alerta! ${results[0].provider} está a $${cheapest.toFixed(4)}`, 'success');
+        }
+      });
+    }
+
+    // Batch Calculate
+    function loadBatch() {
+      try {
+        batchPrompts = JSON.parse(localStorage.getItem('tt_batch') || '[]');
+      } catch(e) {}
+      updateBatchUI();
+    }
+
+    function addBatchPrompt() {
+      const prompt = document.getElementById('prompt').value;
+      if (!prompt.trim()) { toast('Escribe un prompt primero', 'error'); return; }
+      const out = parseFloat(document.getElementById('outputTokens').value) || 500;
+      batchPrompts.push({ prompt, output: out, name: prompt.substring(0, 15) + '...' });
+      localStorage.setItem('tt_batch', JSON.stringify(batchPrompts));
+      updateBatchUI();
+      toast('Prompt añadido al lote');
+    }
+
+    function runBatch() {
+      if (!batchPrompts.length) return;
+      const resultsDiv = document.createElement('div');
+      resultsDiv.className = 'panel p-2 mt-2';
+      resultsDiv.innerHTML = '<div class="text-[10px] font-medium mb-1">📦 Resultados:</div>';
+      
+      batchPrompts.forEach(bp => {
+        const inT = estTokens(bp.prompt);
+        const cheapest = allModels
+          .filter(m => typeof m.input === 'number')
+          .map(m => ({ ...m, total: (inT * m.input + bp.output * m.output) / 1e6 }))
+          .sort((a, b) => a.total - b.total)[0];
+        
+        if (cheapest) {
+          resultsDiv.innerHTML += `<div class="text-[9px] text-secondary mb-1">
+            <span class="text-primary">${bp.name}:</span> 
+            ${cheapest.provider} - $${cheapest.total.toFixed(4)}
+          </div>`;
+        }
+      });
+      
+      document.getElementById('toast').appendChild(resultsDiv);
+      setTimeout(() => resultsDiv.remove(), 10000);
+      toast('Cálculo en lote completado');
+    }
+
+    function clearBatch() {
+      batchPrompts = [];
+      localStorage.setItem('tt_batch', JSON.stringify(batchPrompts));
+      updateBatchUI();
+    }
+
+    function updateBatchUI() {
+      const list = document.getElementById('batchList');
+      if (!batchPrompts.length) {
+        list.innerHTML = '<span class="text-[9px] text-tertiary">Sin prompts</span>';
+        return;
+      }
+      list.innerHTML = batchPrompts.map((bp, i) => 
+        `<div class="flex justify-between items-center text-[9px]">
+          <span class="text-tertiary truncate" style="max-width:80px">${bp.name}</span>
+          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red">✕</button>
+        </div>`
+      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]">▶ Ejecutar</button>`;
+    }
+
+    function saveBatch() {
+      localStorage.setItem('tt_batch', JSON.stringify(batchPrompts));
     }
 
     function toast(msg, type = 'info') {
