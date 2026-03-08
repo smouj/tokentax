@@ -1,6 +1,22 @@
 # TokenTax AI PRO - Changelog
 
-All notable changes to this project will be documented in this file.
+---
+
+## [v4.1.0] - 2026-03-08
+
+### Added
+- **Matrix Background** - Subtle white/gray matrix animation in background
+
+### Fixed
+- **Theme Toggle Icons** - Fixed textContent to innerHTML for sun/moon icons
+- **Container Spacing** - Optimized gaps to 2-3px for cleaner look
+
+---
+
+## [v4.0.6] - 2026-03-08
+
+### Fixed
+- **Table Rows** - One line fixed height, no wrap
 
 ---
 

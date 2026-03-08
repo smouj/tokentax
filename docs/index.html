@@ -72,10 +72,13 @@
     body { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
 
     .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; gap: 0; }
-    .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 4px; padding: 4px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
-    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 4px; margin-left: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2px; }
+    .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 3px; padding: 3px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
+    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 3px; margin-left: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2px; }
 
-    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; }
+    .panel:not(:last-child) { margin-bottom: 2px; }
+    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .quick-btn { padding: 6px 4px; font-size: 9px; }
     .panel-hover:hover { background: var(--surface-3); }
     .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text); padding: 6px 10px; }
     .input-field:focus { outline: none; border-color: var(--accent); }
@@ -210,6 +213,7 @@
 </head>
 <body class="theme-dark">
 
+  <canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.03;pointer-events:none"></canvas>
   <div id="toast" class="fixed top-3 right-3 z-50"></div>
 
   <!-- Header -->
@@ -218,7 +222,7 @@
       <div class="flex items-center gap-4">
         <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.0.6</span></h1>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.1.0</span></h1>
           <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
         </div>
       </div>
@@ -1269,12 +1273,12 @@
       if (isDark) {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        btn.textContent = '<i class="fas fa-sun"></i>';
+        btn.innerHTML = '<i class="fas fa-sun"></i>';
         localStorage.setItem('theme', 'light');
       } else {
         document.body.classList.remove('theme-light');
         document.body.classList.add('theme-dark');
-        btn.textContent = '<i class="fas fa-moon"></i>';
+        btn.innerHTML = '<i class="fas fa-moon"></i>';
         localStorage.setItem('theme', 'dark');
       }
       isDark = !isDark;
@@ -1689,6 +1693,32 @@
       document.getElementById('visitorCount').innerHTML = `<i class="fas fa-users"></i> ${formatted}`;
     }
 
+    // Matrix-style background (white/gray)
+    function initMatrixBg() {
+      const canvas = document.getElementById('bgCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
+      const fontSize = 14;
+      const columns = Math.floor(canvas.width / fontSize);
+      const drops = Array(columns).fill(1);
+      function draw() {
+        ctx.fillStyle = 'rgba(0,0,0,0.03)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#666666';
+        ctx.font = fontSize + 'px monospace';
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 50);
+    }
+
     // Initialize
     window.onload = () => { 
       loadModels(); 
@@ -1696,6 +1726,7 @@
       updateSortIcons(); 
       loadFromURL();
       updateVisitorCount();
+      initMatrixBg();
     };
   </script>
 </body>
