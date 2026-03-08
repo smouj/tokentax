@@ -868,8 +868,8 @@
       if (!results.length) return { savings: 0, percentage: 0 };
       const cheapest = results[0];
       const expensive = results[results.length - 1];
-      const savings = expensive.totalCost - cheapest.totalCost;
-      const percentage = ((savings / expensive.totalCost) * 100).toFixed(1);
+      const savings = expensive.total - cheapest.total;
+      const percentage = ((savings / expensive.total) * 100).toFixed(1);
       return { savings, percentage, cheapest, expensive };
     }
 
@@ -885,8 +885,8 @@
             <div class="text-xs text-green">${percentage}% cheaper</div>
           </div>
           <div class="grid grid-cols-2 gap-2">
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.totalCost.toFixed(4)}</div></div>
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.totalCost.toFixed(4)}</div></div>
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.total.toFixed(4)}</div></div>
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.total.toFixed(4)}</div></div>
           </div>
         </div>`;
       document.getElementById('detailsModal').classList.add('active');
@@ -1662,8 +1662,8 @@
       document.getElementById('statsBar').classList.remove('hidden');
       
       // Update stats bar with savings
-      const minCost = limited[0].totalCost.toFixed(4);
-      const maxCost = limited[limited.length-1].totalCost.toFixed(4);
+      const minCost = limited[0].total;
+      const maxCost = limited[limited.length-1].total;
       const savings = ((parseFloat(maxCost) - parseFloat(minCost)) / parseFloat(maxCost) * 100).toFixed(1);
       document.getElementById('statsBar').innerHTML = `
         <div class="flex justify-between items-center text-xs">
