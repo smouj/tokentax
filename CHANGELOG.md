@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.6.0] - 2026-03-08
+
+### Added
+- **Better Animations** - Smooth transitions and hover effects
+- **Toast Icons** - Visual feedback with icons
+- **Improved UI** - Better button states and feedback
+
+---
+
 ## [v3.5.0] - 2026-03-08
 
 ### Added
