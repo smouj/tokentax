@@ -5,95 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>TokenTax AI PRO | Compara +400 Modelos de IA</title>
-  <meta name="title" content="TokenTax AI PRO | Compara +400 Modelos de IA">
-  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato.">
+  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores.">
   <meta name="author" content="smouj">
   <meta name="theme-color" content="#000000">
-  <meta name="robots" content="index, follow">
   
   <link rel="manifest" href="manifest.json">
-  
-  <meta property="og:title" content="TokenTax AI PRO">
-  <meta property="og:description" content="Compara +400 modelos de IA">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"TokenTax AI PRO","url":"https://smouj.github.io/tokentax/"}
-  </script>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root, .theme-dark {
-      --bg: #000000;
-      --surface: #0a0a0a;
-      --surface-2: #111111;
-      --surface-3: #141414;
-      --border: #1f1f1f;
-      --border-2: #2a2a2a;
-      --text: #fafafa;
-      --text-2: #a3a3a3;
-      --text-3: #525252;
-      --text-4: #404040;
-      --placeholder: #525252;
+      --bg: #000000; --surface: #0a0a0a; --surface-2: #111111; --surface-3: #141414;
+      --border: #1f1f1f; --border-2: #2a2a2a;
+      --text: #fafafa; --text-2: #a3a3a3; --text-3: #525252; --text-4: #404040;
       --accent: #ffffff;
-      --green: #22c55e;
-      --green-dim: rgba(34, 197, 94, 0.1);
-      --red: #ef4444;
-      --blue: #3b82f6;
-      --blue-dim: rgba(59, 130, 246, 0.15);
-      --orange: #f97316;
+      --green: #22c55e; --green-dim: rgba(34, 197, 94, 0.1);
+      --red: #ef4444; --blue: #3b82f6; --blue-dim: rgba(59, 130, 246, 0.15);
     }
-    
     .theme-light {
-      --bg: #ffffff;
-      --surface: #f5f5f5;
-      --surface-2: #e5e5e5;
-      --surface-3: #d4d4d4;
-      --border: #d4d4d4;
-      --border-2: #a3a3a3;
-      --text: #171717;
-      --text-2: #525252;
-      --text-3: #737373;
-      --text-4: #a3a3a3;
-      --placeholder: #737373;
+      --bg: #ffffff; --surface: #f5f5f5; --surface-2: #e5e5e5; --surface-3: #d4d4d4;
+      --border: #d4d4d4; --border-2: #a3a3a3;
+      --text: #171717; --text-2: #525252; --text-3: #737373; --text-4: #a3a3a3;
       --accent: #000000;
-      --green: #16a34a;
-      --green-dim: #dcfce7;
-      --red: #dc2626;
-      --blue: #2563eb;
-      --blue-dim: #dbeafe;
-      --orange: #ea580c;
+      --green: #16a34a; --green-dim: #dcfce7;
+      --red: #dc2626; --blue: #2563eb; --blue-dim: #dbeafe;
     }
-    
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
     
-    body {
-      font-family: 'Space Grotesk', -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    /* Layout */
     .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
     .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 8px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
     .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px 8px 8px 0; overflow: hidden; }
     
-    /* Components */
     .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; }
-    .panel-hover:hover { background: var(--surface-3); border-color: var(--border-2); }
-    
+    .panel-hover:hover { background: var(--surface-3); }
     .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text); }
     .input-field:focus { outline: none; border-color: var(--accent); }
     .input-field::placeholder { color: var(--placeholder); }
     select.input-field { color: var(--text); cursor: pointer; }
     select.input-field option { background: var(--surface); color: var(--text); }
-    
     .btn-primary { background: var(--accent); color: var(--bg); border: none; border-radius: 2px; font-weight: 600; cursor: pointer; }
     .btn-primary:hover { opacity: 0.9; }
     .btn-secondary { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); border-radius: 2px; cursor: pointer; }
@@ -101,7 +53,6 @@
     .btn-ghost { background: transparent; color: var(--text-3); border: none; cursor: pointer; }
     .btn-ghost:hover { color: var(--text); }
     
-    /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .anim { animation: fadeIn 0.3s ease forwards; opacity: 0; }
     ::-webkit-scrollbar { width: 4px; }
@@ -115,7 +66,6 @@
     .theme-light .table-row.top-3 { background: var(--green-dim); }
     
     .logo-text { background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    
     @keyframes toastIn { from { opacity: 0; transform: translateX(12px); } to { opacity: 1; transform: translateX(0); } }
     .toast-in { animation: toastIn 0.2s ease forwards; }
     
@@ -124,28 +74,39 @@
     .text-tertiary { color: var(--text-3); }
     .text-green { color: var(--green); }
     .text-red { color: var(--red); }
-    .text-blue { color: var(--blue); }
-    .text-orange { color: var(--orange); }
     .stats-bar { background: var(--green-dim); }
     
-    /* Dropdown */
     .dropdown { position: relative; display: inline-block; }
     .dropdown-content { display: none; position: absolute; right: 0; top: 100%; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; z-index: 100; margin-top: 4px; max-height: 300px; overflow-y: auto; }
     .dropdown:hover .dropdown-content { display: block; }
     .dropdown-item { padding: 8px 12px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
     .dropdown-item:hover { background: var(--surface-3); }
     
-    /* Kbd */
     .kbd { display: inline-block; padding: 1px 4px; font-size: 9px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 2px; color: var(--text-3); }
     
-    /* Quick actions */
     .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
     .quick-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; gap: 2px; }
     
-    /* Badge */
     .badge { display: inline-flex; align-items: center; padding: 2px 6px; font-size: 8px; font-weight: 600; border-radius: 2px; text-transform: uppercase; }
     .badge-green { background: var(--green-dim); color: var(--green); }
-    .badge-blue { background: var(--blue-dim); color: var(--blue); }
+    
+    /* Provider logos */
+    .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+    .logo-openai { background: #10a37f; color: white; }
+    .logo-anthropic { background: #d97757; color: white; }
+    .logo-google { background: #4285f4; color: white; }
+    .logo-mistral { background: #eb4f38; color: white; }
+    .logo-deepseek { background: #2a2a2a; color: white; }
+    .logo-meta { background: #0668e1; color: white; }
+    .logo-aws { background: #ff9900; color: black; }
+    .logo-azure { background: #0078d4; color: white; }
+    .logo-xai { background: #000; color: white; }
+    .logo-groq { background: #8b5cf6; color: white; }
+    .logo-default { background: var(--surface-2); color: var(--text-2); }
+    
+    /* Limit controls */
+    .limit-control { display: flex; align-items: center; gap: 8px; }
+    .limit-control input { width: 60px; text-align: center; }
   </style>
 </head>
 <body class="theme-dark">
@@ -164,18 +125,30 @@
       </div>
       
       <div class="flex items-center gap-2">
-        <!-- Examples dropdown -->
+        <!-- Language selector -->
+        <select id="langSelect" onchange="changeLanguage(this.value)" class="px-2 py-1 input-field text-[10px]">
+          <option value="es">🇪🇸 ES</option>
+          <option value="en">🇺🇸 EN</option>
+          <option value="fr">🇫🇷 FR</option>
+          <option value="de">🇩🇪 DE</option>
+          <option value="it">🇮🇹 IT</option>
+          <option value="pt">🇧🇷 PT</option>
+          <option value="ja">🇯🇵 JA</option>
+          <option value="zh">🇨🇳 ZH</option>
+        </select>
+        
+        <!-- Examples -->
         <div class="dropdown">
-          <button class="btn-secondary px-2 py-1 text-[10px]">📝 Ejemplos ▾</button>
+          <button class="btn-secondary px-2 py-1 text-[10px]">📝 <span id="examplesBtn">Ejemplos</span> ▾</button>
           <div class="dropdown-content">
-            <div class="dropdown-item" onclick="useExample('code')"><span>💻</span> Código</div>
-            <div class="dropdown-item" onclick="useExample('summary')"><span>📄</span> Resumen</div>
-            <div class="dropdown-item" onclick="useExample('email')"><span>📧</span> Email</div>
-            <div class="dropdown-item" onclick="useExample('translate')"><span>🌍</span> Traducir</div>
-            <div class="dropdown-item" onclick="useExample('blog')"><span>📝</span> Blog</div>
-            <div class="dropdown-item" onclick="useExample('seo')"><span>🔍</span> SEO</div>
-            <div class="dropdown-item" onclick="useExample('sql')"><span>🗄️</span> SQL</div>
-            <div class="dropdown-item" onclick="useExample('test')"><span>🧪</span> Tests</div>
+            <div class="dropdown-item" onclick="useExample('code')">💻 <span data-lang="code">Código</span></div>
+            <div class="dropdown-item" onclick="useExample('summary')">📄 <span data-lang="summary">Resumen</span></div>
+            <div class="dropdown-item" onclick="useExample('email')">📧 <span data-lang="email">Email</span></div>
+            <div class="dropdown-item" onclick="useExample('translate')">🌍 <span data-lang="translate">Traducir</span></div>
+            <div class="dropdown-item" onclick="useExample('blog')">📝 <span data-lang="blog">Blog</span></div>
+            <div class="dropdown-item" onclick="useExample('seo')">🔍 <span data-lang="seo">SEO</span></div>
+            <div class="dropdown-item" onclick="useExample('sql')">🗄️ <span data-lang="sql">SQL</span></div>
+            <div class="dropdown-item" onclick="useExample('test')">🧪 <span data-lang="test">Tests</span></div>
           </div>
         </div>
         
@@ -184,7 +157,7 @@
           <span id="modelText">Cargando...</span>
         </div>
         
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Cambiar tema">🌙</button>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs">🌙</button>
         <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 panel panel-hover flex items-center justify-center">
           <svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
@@ -201,7 +174,7 @@
       <!-- Prompt -->
       <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
         <div class="flex justify-between items-center mb-1.5">
-          <span class="text-[10px] text-secondary font-medium">PROMPT</span>
+          <span class="text-[10px] text-secondary font-medium" data-lang="prompt">PROMPT</span>
           <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost">✕</button>
         </div>
         <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
@@ -218,13 +191,13 @@
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm">⚡ CALCULAR <span class="kbd">Ctrl+↵</span></button>
+      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm">⚡ <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+↵</span></button>
 
       <!-- Quick Grid -->
       <div class="quick-grid">
-        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span>💻</span><span>Código</span></button>
-        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span>📄</span><span>Resumen</span></button>
-        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span>🌍</span><span>Traducir</span></button>
+        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span>💻</span><span data-lang="codeBtn">Código</span></button>
+        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span>📄</span><span data-lang="summaryBtn">Resumen</span></button>
+        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span>🌍</span><span data-lang="translateBtn">Trad</span></button>
         <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span>🗄️</span><span>SQL</span></button>
         <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span>🧪</span><span>Tests</span></button>
         <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span>🔍</span><span>SEO</span></button>
@@ -233,11 +206,11 @@
       <!-- Stats -->
       <div class="panel p-2">
         <div class="flex justify-between text-[9px] mb-1">
-          <span class="text-secondary">Cálculos</span>
+          <span class="text-secondary" data-lang="calculations">Cálculos</span>
           <span id="totalCalcs" class="text-primary">0</span>
         </div>
         <div class="flex justify-between text-[9px]">
-          <span class="text-secondary">Ahorrado</span>
+          <span class="text-secondary" data-lang="saved">Ahorrado</span>
           <span id="totalSaved" class="text-green">$0</span>
         </div>
       </div>
@@ -253,39 +226,46 @@
           <input id="search" type="text" placeholder="Buscar modelo..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
         </div>
         <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
-          <option value="">Todos los proveedores</option>
+          <option value="" data-lang="allProviders">Todos los proveedores</option>
         </select>
-        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]" title="Limpiar filtros">✕</button>
+        
+        <!-- Limit -->
+        <div class="limit-control">
+          <span class="text-[9px] text-tertiary" data-lang="limit">Límite:</span>
+          <input type="number" id="limitInput" value="50" min="5" max="500" class="px-2 py-1 input-field text-xs" style="width:50px" onchange="applyLimit()">
+        </div>
+        
+        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]">✕</button>
         <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📥</button>
         <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]">📋</button>
       </div>
 
       <!-- Stats Bar -->
       <div id="statsBar" class="hidden px-3 py-1.5 flex gap-3 text-[9px] stats-bar">
-        <div><span class="text-secondary">Min:</span> <span id="minCost" class="text-green font-medium">-</span></div>
-        <div><span class="text-secondary">Max:</span> <span id="maxCost" class="text-red font-medium">-</span></div>
-        <div><span class="text-secondary">Media:</span> <span id="avgCost" class="text-primary font-medium">-</span></div>
-        <div class="ml-auto"><span class="text-secondary">🏆 Top:</span> <span id="topProvider" class="text-green font-medium">-</span></div>
+        <div><span class="text-secondary" data-lang="min">Min:</span> <span id="minCost" class="text-green font-medium">-</span></div>
+        <div><span class="text-secondary" data-lang="max">Max:</span> <span id="maxCost" class="text-red font-medium">-</span></div>
+        <div><span class="text-secondary" data-lang="avg">Media:</span> <span id="avgCost" class="text-primary font-medium">-</span></div>
+        <div class="ml-auto"><span class="text-secondary">🏆 <span data-lang="top">Top:</span></span> <span id="topProvider" class="text-green font-medium">-</span></div>
       </div>
 
       <!-- Table Header -->
       <div class="grid grid-cols-6 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
-        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')">Proveedor <span class="sort-icon" data-sort="provider">↕</span></div>
-        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')">Modelo <span class="sort-icon" data-sort="name">↕</span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')">Input <span class="sort-icon" data-sort="input">↕</span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')">Output <span class="sort-icon" data-sort="output">↕</span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')">Coste <span class="sort-icon" data-sort="total">↕</span></div>
+        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider">↕</span></div>
+        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name">↕</span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input">↕</span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output">↕</span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total">↕</span></div>
       </div>
 
       <!-- Results -->
       <div class="flex-1 overflow-y-auto">
         <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
-          <p class="text-sm">Introduce prompt + calcula</p>
+          <p class="text-sm" data-lang="emptyState1">Introduce prompt + calcula</p>
           <p class="text-xs mt-1"><span class="kbd">Ctrl</span>+<span class="kbd">↵</span></p>
         </div>
         <div id="errorState" class="hidden h-full flex flex-col items-center justify-center text-red">
           <p class="text-sm" id="errorMsg">Error</p>
-          <button onclick="loadModels()" class="text-xs mt-2 underline">Reintentar</button>
+          <button onclick="loadModels()" class="text-xs mt-2 underline" data-lang="retry">Reintentar</button>
         </div>
         <table class="w-full text-xs">
           <tbody id="tableBody" class="hidden"></tbody>
@@ -308,8 +288,34 @@
   </footer>
 
   <script>
+    // Translations
+    const translations = {
+      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar' },
+      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry' },
+      fr: { prompt: 'PROMPT', calculate: 'CALCULER', calculations: 'Calculs', saved: 'Économisé', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Moy:', top: 'Top:', provider: 'Fournisseur', modelo: 'Modèle', input: 'Input', output: 'Output', cost: 'Coût', allProviders: 'Tous les fournisseurs', examplesBtn: 'Exemples', code: 'Code', summary: 'Résumé', email: 'Email', translate: 'Traduire', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Résumé', translateBtn: 'Trad', emptyState1: 'Entrez prompt + calculez', retry: 'Réessayer' },
+      de: { prompt: 'PROMPT', calculate: 'BERECHNEN', calculations: 'Berechnungen', saved: 'Gespart', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Durchschn:', top: 'Top:', provider: 'Anbieter', modelo: 'Modell', input: 'Eingabe', output: 'Ausgabe', cost: 'Kosten', allProviders: 'Alle Anbieter', examplesBtn: 'Beispiele', code: 'Code', summary: 'Zusammenfassung', email: 'E-Mail', translate: 'Übersetzen', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Zusammenf', translateBtn: 'Übers', emptyState1: 'Prompt eingeben + berechnen', retry: 'Wiederholen' },
+      it: { prompt: 'PROMPT', calculate: 'CALCOLA', calculations: 'Calcoli', saved: 'Risparmiato', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Fornitore', modelo: 'Modello', input: 'Input', output: 'Output', cost: 'Costo', allProviders: 'Tutti i fornitori', examplesBtn: 'Esempi', code: 'Codice', summary: 'Sommario', email: 'Email', translate: 'Traduci', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Test', codeBtn: 'Codice', summaryBtn: 'Somma', translateBtn: 'Trad', emptyState1: 'Inserisci prompt + calcola', retry: 'Riprova' },
+      pt: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Economizado', limit: 'Limite:', min: 'Mín:', max: 'Máx:', avg: 'Média:', top: 'Top:', provider: 'Provedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Custo', allProviders: 'Todos os provedores', examplesBtn: 'Exemplos', code: 'Código', summary: 'Resumo', email: 'Email', translate: 'Traduzir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Testes', codeBtn: 'Código', summaryBtn: 'Resumo', translateBtn: 'Trad', emptyState1: 'Digite prompt + calcule', retry: 'Tentar' },
+      ja: { prompt: 'プロンプト', calculate: '計算', calculations: '計算', saved: '節約', limit: '制限:', min: '最小:', max: '最大:', avg: '平均:', top: 'トップ:', provider: 'プロバイダー', modelo: 'モデル', input: '入力', output: '出力', cost: 'コスト', allProviders: 'すべて', examplesBtn: '例', code: 'コード', summary: '要約', email: 'メール', translate: '翻訳', blog: 'ブログ', seo: 'SEO', sql: 'SQL', test: 'テスト', codeBtn: 'コード', summaryBtn: '要約', translateBtn: '翻訳', emptyState1: 'プロンプト入力+計算', retry: '再試行' },
+      zh: { prompt: '提示词', calculate: '计算', calculations: '计算', saved: '节省', limit: '限制:', min: '最低:', max: '最高:', avg: '平均:', top: '最佳:', provider: '提供商', modelo: '模型', input: '输入', output: '输出', cost: '成本', allProviders: '全部', examplesBtn: '示例', code: '代码', summary: '摘要', email: '邮件', translate: '翻译', blog: '博客', seo: 'SEO', sql: 'SQL', test: '测试', codeBtn: '代码', summaryBtn: '摘要', translateBtn: '翻译', emptyState1: '输入提示词+计算', retry: '重试' }
+    };
+
+    // Provider logos
+    const providerLogos = {
+      openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
+      deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
+      xai: 'logo-xai', groq: 'logo-groq'
+    };
+
+    function getProviderLogo(provider) {
+      const key = provider.toLowerCase();
+      return providerLogos[key] || 'logo-default';
+    }
+
     let allModels = [], results = [], isDark = true, sortF = 'input', sortA = true;
     let stats = { calcs: 0, saved: 0 };
+    let currentLimit = 50;
+    let currentLang = 'es';
 
     // Init
     (function() {
@@ -324,7 +330,22 @@
         document.getElementById('themeBtn').textContent = '☀️';
         isDark = false;
       }
+      if (localStorage.getItem('lang')) {
+        document.getElementById('langSelect').value = localStorage.getItem('lang');
+        changeLanguage(localStorage.getItem('lang'));
+      }
     })();
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      const t = translations[lang];
+      if (!t) return;
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        const key = el.dataset.lang;
+        if (t[key]) el.textContent = t[key];
+      });
+    }
 
     function updateStats() {
       document.getElementById('totalCalcs').textContent = stats.calcs;
@@ -366,35 +387,45 @@
       isDark = !isDark;
     }
 
-    function clearPrompt() { 
-      document.getElementById('prompt').value = ''; 
-      updateCount(); 
-    }
+    function clearPrompt() { document.getElementById('prompt').value = ''; updateCount(); }
     
     function clearFilters() {
       document.getElementById('search').value = '';
       document.getElementById('providerFilter').value = '';
+      document.getElementById('limitInput').value = '50';
+      currentLimit = 50;
       document.getElementById('clearBtn').classList.add('hidden');
       calcularCostos();
     }
     
+    function applyLimit() {
+      currentLimit = parseInt(document.getElementById('limitInput').value) || 50;
+      renderResults();
+    }
+    
     function useExample(type) {
       const ex = {
-        code: '// React login form with validation\nfunction LoginForm() {\n  const [email, setEmail] = useState("");\n  const [password, setPassword] = useState("");\n  \n  const handleSubmit = (e) => {\n    e.preventDefault();\n    if (!email.includes("@")) return;\n    console.log("Login:", { email, password });\n  };\n  \n  return (\n    <form onSubmit={handleSubmit}>\n      <input type="email" value={email} onChange={e => setEmail(e.target.value)} />\n      <input type="password" value={password} onChange={e => setPassword(e.target.value)} />\n      <button type="submit">Login</button>\n    </form>\n  );\n}',
-        summary: 'Write a comprehensive summary about how artificial intelligence is transforming software development. Include examples of code generation, automated testing, bug detection, refactoring, and the future of programming with AI assistants.',
-        email: 'Write a professional email to a client about project timeline update. Include: greeting, main message about 2-week delay, reasons, new timeline, and closing.',
-        translate: 'Translate to Spanish, French, and German: "Our AI-powered platform helps businesses automate customer support while reducing costs by 60%."',
-        blog: 'Write a blog post about "The Future of AI in Software Development" - include sections: introduction, AI code generation, testing automation, challenges, and conclusion. SEO optimized, 1500 words.',
-        seo: 'Write SEO-optimized meta title and description for a page about "Best AI Coding Assistants in 2026". Include keywords: AI coding, code generation, developer tools.',
-        sql: 'Write a SQL query to find the top 10 customers by total order amount in the last 30 days, including their name, email, and total spent. Tables: customers, orders, order_items.',
-        test: 'Write Jest unit tests for a function that validates email addresses. Include tests for valid emails, invalid formats, null values, and edge cases.'
+        code: '// React login form\nfunction LoginForm() {\n  const [email, setEmail] = useState("");\n  return <input value={email} onChange={e => setEmail(e.target.value)} />;\n}',
+        summary: 'Write a comprehensive summary about how AI is transforming software development.',
+        email: 'Write a professional email to a client about project timeline update.',
+        translate: 'Translate to Spanish, French, and German: "Our AI platform helps businesses automate."',
+        blog: 'Write a blog post about AI in software development, SEO optimized, 1500 words.',
+        seo: 'Write SEO meta title and description for "Best AI Coding Assistants 2026".',
+        sql: 'Write SQL to find top 10 customers by total orders in 30 days.',
+        test: 'Write Jest unit tests for email validation function.'
       };
       document.getElementById('prompt').value = ex[type];
       updateCount();
       toast('Ejemplo cargado');
     }
 
-    function sortBy(f) { sortF = f; sortA = (f !== sortF) || !sortA; updateSortIcons(); renderResults(); }
+    function sortBy(f) { 
+      if (sortF === f) sortA = !sortA; 
+      else { sortF = f; sortA = true; }
+      updateSortIcons(); 
+      renderResults(); 
+    }
+    
     function copyTop() { if (!results.length) return; navigator.clipboard.writeText(`${results[0].provider} - ${results[0].fullName}: $${results[0].total.toFixed(4)}`); toast('Copiado'); }
 
     async function loadModels() {
@@ -418,12 +449,12 @@
 
         const provs = [...new Set(allModels.map(m => m.provider))].sort();
         const sel = document.getElementById('providerFilter');
-        sel.innerHTML = '<option value="">Todos los proveedores</option>';
+        sel.innerHTML = '<option value="" data-lang="allProviders">Todos los proveedores</option>';
         provs.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; sel.appendChild(o); });
 
         loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
-        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString('es');
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
         
       } catch(e) {
         loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
@@ -448,21 +479,25 @@
       if (!results.length) { toast('Sin resultados', 'error'); return; }
       results.sort((a, b) => { const av = a[sortF], bv = b[sortF]; return typeof av === 'string' ? (sortA ? av.localeCompare(bv) : bv.localeCompare(av)) : (sortA ? av - bv : bv - av); });
       
-      // Show clear button if filters active
       const hasFilters = document.getElementById('search').value || document.getElementById('providerFilter').value;
       document.getElementById('clearBtn').classList.toggle('hidden', !hasFilters);
       
-      renderResults(searchTerm);
+      renderResults();
       updateStatsBar(prompt);
     }
 
     function renderResults(searchTerm = '') {
+      const limitedResults = results.slice(0, currentLimit);
       let html = '';
-      results.forEach((m, i) => {
+      limitedResults.forEach((m, i) => {
         const top = i < 3;
         const isHighlight = searchTerm && (m.name.toLowerCase().includes(searchTerm) || m.provider.toLowerCase().includes(searchTerm));
+        const logoClass = getProviderLogo(m.provider);
         html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} border-b" style="border-color: var(--border)">
-          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</td>
+          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
+            <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
+            ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
+          </td>
           <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
           <td class="px-2 py-1.5 text-right text-tertiary">$${m.input.toFixed(2)}</td>
           <td class="px-2 py-1.5 text-right text-tertiary">$${m.output.toFixed(2)}</td>
@@ -473,18 +508,19 @@
       document.getElementById('errorState').classList.add('hidden');
       document.getElementById('tableBody').innerHTML = html;
       document.getElementById('tableBody').classList.remove('hidden');
-      document.getElementById('count').textContent = results.length + ' modelos';
+      document.getElementById('count').textContent = `${limitedResults.length} / ${results.length} modelos`;
       document.getElementById('exportBtn').classList.remove('hidden');
       document.getElementById('copyBtn').classList.remove('hidden');
     }
 
     function updateStatsBar(prompt) {
       if (!results.length) return;
-      const min = results[0].total, max = results[results.length-1].total, avg = results.reduce((a,b) => a + b.total, 0) / results.length;
+      const limited = results.slice(0, currentLimit);
+      const min = limited[0].total, max = limited[limited.length-1].total, avg = limited.reduce((a,b) => a + b.total, 0) / limited.length;
       document.getElementById('minCost').textContent = '$' + min.toFixed(4);
       document.getElementById('maxCost').textContent = '$' + max.toFixed(4);
       document.getElementById('avgCost').textContent = '$' + avg.toFixed(4);
-      document.getElementById('topProvider').textContent = results[0].provider;
+      document.getElementById('topProvider').textContent = limited[0].provider;
       document.getElementById('statsBar').classList.remove('hidden');
       if (prompt.length > 0) { stats.calcs++; stats.saved += (max - min); updateStats(); saveStats(); }
     }
@@ -502,7 +538,6 @@
       toast('CSV exportado');
     }
 
-    // Events
     document.getElementById('search').addEventListener('input', calcularCostos);
     document.getElementById('providerFilter').addEventListener('change', calcularCostos);
     document.getElementById('prompt').addEventListener('input', () => { updateCount(); if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
