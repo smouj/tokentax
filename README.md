@@ -14,11 +14,8 @@
 <a href="https://github.com/smouj/tokentax/releases">
 <img src="https://img.shields.io/github/v/release/smouj/tokentax" alt="Version">
 </a>
-<a href="https://github.com/smouj/tokentax/releases">
-<img src="https://img.shields.io/github/release-date/smouj/tokentax" alt="Release Date">
-</a>
 <br>
-<a href="https://twitter.com/intent/tweet?text=Check+out+TokenTax!+AI+model+pricing+comparison+tool&url=https://github.com/smouj/tokentax">
+<a href="https://twitter.com/intent/tweet?text=Check+TokenTax!&url=https://github.com/smouj/tokentax">
 <img src="https://img.shields.io/twitter/url?url=https://github.com/smouj/tokentax" alt="Tweet">
 </a>
 
@@ -35,9 +32,7 @@
 
 <br>
 
-> **Compare 400+ AI models from all providers. Find the cheapest option for your prompts instantly.**
-
-TokenTax is a free, open-source web tool that lets you compare pricing across **400+ AI models** from every major provider in real-time.
+> **Compare 400+ AI models from all providers. Find the cheapest option instantly.**
 
 ---
 
@@ -45,15 +40,16 @@ TokenTax is a free, open-source web tool that lets you compare pricing across **
 
 | Feature | Description |
 |---------|-------------|
-| 📊 **400+ Models** | Compare models from OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, and more |
-| 💰 **Price Comparison** | Sorted from cheapest to most expensive automatically |
-| 🔍 **Search & Filter** | Search by model name or filter by provider |
-| ⚡ **Instant Calculation** | Calculate exact cost for your specific prompt |
-| 📥 **CSV Export** | Download comparison results |
-| 🌓 **Dark/Light Mode** | Toggle between themes |
-| 📱 **PWA** | Installable, works offline |
-| 📈 **Statistics** | Track calculations and savings |
-| 🔄 **Real-time Data** | Prices from LiteLLM (updated weekly) |
+| 📊 **400+ Models** | OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek... |
+| 💰 **Price Comparison** | Sorted cheapest to expensive |
+| 🔍 **Search & Filter** | By name or provider |
+| ⚡ **Instant Calculation** | Calculate exact cost |
+| 📥 **CSV Export** | Download results |
+| 🌓 **Dark/Light Mode** | Toggle themes |
+| 📱 **PWA** | Installable, offline |
+| 📈 **Statistics** | Track calculations & savings |
+| 📝 **Examples** | Pre-built prompt examples |
+| 🔍 **Highlight** | Search term highlighting |
 
 ---
 
@@ -65,28 +61,20 @@ TokenTax is a free, open-source web tool that lets you compare pricing across **
 
 ## 🛠️ Usage
 
-1. Open the [demo](https://smouj.github.io/tokentax/)
-2. Enter your prompt in the text area
-3. Set expected output tokens
-4. Click **Calculate** or press `Ctrl+Enter`
-5. See all models sorted by price — find the cheapest! 🔥
+1. Enter your prompt
+2. Set output tokens
+3. Click **Calculate** or `Ctrl+Enter`
+4. Find the cheapest model! 🔥
 
 ---
 
-## 📋 Supported Providers
+## 📋 Providers
 
-- **OpenAI** — GPT-4, GPT-4o, o1, etc.
-- **Anthropic** — Claude 3.5, Claude 3 Opus
-- **Google** — Gemini 1.5, Gemini Pro
-- **xAI** — Grok, Grok-2
-- **Mistral** — Mistral Large, Mixtral
-- **DeepSeek** — DeepSeek V2, Coder
-- **Meta** — Llama 3.1, Llama 3
-- **And 300+ more** — Cohere, Fireworks, Together, etc.
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, 300+ more...
 
 ---
 
-## 🌍 Available Languages
+## 🌍 Languages
 
 | Language | File |
 |----------|------|
@@ -103,39 +91,24 @@ TokenTax is a free, open-source web tool that lets you compare pricing across **
 
 ## 📝 Changelog
 
-See [`CHANGELOG.md`](CHANGELOG.md) for a detailed list of changes.
+See [`CHANGELOG.md`](CHANGELOG.md)
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to:
-
-- 🐛 Report bugs
-- 💡 Suggest features
-- 🔧 Submit pull requests
-- 🌐 Translate the README
+Contributions welcome!
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
-
----
-
-## 🙏 Acknowledgments
-
-- [LiteLLM](https://github.com/BerriAI/litellm) — Real-time pricing data
-- [Tailwind CSS](https://tailwindcss.com) — UI framework
-- [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) — Typography
+MIT © 2026 [smouj](https://github.com/smouj)
 
 ---
 
 <div align="center">
 
-**⭐ Star this repo if it helped you save money on AI! ⭐**
-
-Made with ❤️ by [smouj](https://github.com/smouj)
+**⭐ Star if it helped you save money on AI! ⭐**
 
 </div>

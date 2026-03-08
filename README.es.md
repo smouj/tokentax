@@ -14,11 +14,8 @@
 <a href="https://github.com/smouj/tokentax/releases">
 <img src="https://img.shields.io/github/v/release/smouj/tokentax" alt="Versión">
 </a>
-<a href="https://github.com/smouj/tokentax/releases">
-<img src="https://img.shields.io/github/release-date/smouj/tokentax" alt="Fecha de lanzamiento">
-</a>
 <br>
-<a href="https://twitter.com/intent/tweet?text=Mira+TokenTax!+Herramienta+de+comparación+de+precios+de+IA&url=https://github.com/smouj/tokentax">
+<a href="https://twitter.com/intent/tweet?text=Mira+TokenTax!&url=https://github.com/smouj/tokentax">
 <img src="https://img.shields.io/twitter/url?url=https://github.com/smouj/tokentax" alt="Tweet">
 </a>
 
@@ -35,9 +32,7 @@
 
 <br>
 
-> **Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato para tus prompts al instante.**
-
-TokenTax es una herramienta web gratuita y de código abierto que te permite comparar precios de **más de 400 modelos de IA** de todos los proveedores principales en tiempo real.
+> **Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato al instante.**
 
 ---
 
@@ -45,15 +40,16 @@ TokenTax es una herramienta web gratuita y de código abierto que te permite com
 
 | Característica | Descripción |
 |----------------|-------------|
-| 📊 **400+ Modelos** | Compara modelos de OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek y más |
-| 💰 **Comparación de precios** | Ordenado del más barato al más caro automáticamente |
-| 🔍 **Buscar y filtrar** | Busca por nombre de modelo o filtra por proveedor |
-| ⚡ **Cálculo instantáneo** | Calcula el coste exacto para tu prompt específico |
-| 📥 **Exportar CSV** | Descarga los resultados de la comparación |
+| 📊 **400+ Modelos** | OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek... |
+| 💰 **Comparación de precios** | Ordenado del más barato al caro |
+| 🔍 **Buscar y filtrar** | Por nombre o proveedor |
+| ⚡ **Cálculo instantáneo** | Calcula el coste exacto |
+| 📥 **Exportar CSV** | Descarga resultados |
 | 🌓 **Modo oscuro/claro** | Cambia entre temas |
-| 📱 **PWA** | Instalable, funciona sin conexión |
+| 📱 **PWA** | Instalable, sin conexión |
 | 📈 **Estadísticas** | Seguimiento de cálculos y ahorros |
-| 🔄 **Datos en tiempo real** | Precios desde LiteLLM (actualizados semanalmente) |
+| 📝 **Ejemplos** | Prompts de ejemplo incluidos |
+| 🔍 **Highlight** | Resalta términos de búsqueda |
 
 ---
 
@@ -65,28 +61,20 @@ TokenTax es una herramienta web gratuita y de código abierto que te permite com
 
 ## 🛠️ Uso
 
-1. Abre la [demo](https://smouj.github.io/tokentax/)
-2. Escribe tu prompt en el área de texto
-3. Establece los tokens de salida esperados
-4. Haz clic en **Calcular** o presiona `Ctrl+Enter`
-5. ¡Verás todos los modelos ordenados por precio — encuentra el más barato! 🔥
+1. Escribe tu prompt
+2. Establece los tokens de salida
+3. Haz clic en **Calcular** o `Ctrl+Enter`
+4. ¡Encuentra el modelo más barato! 🔥
 
 ---
 
-## 📋 Proveedores soportados
+## 📋 Proveedores
 
-- **OpenAI** — GPT-4, GPT-4o, o1, etc.
-- **Anthropic** — Claude 3.5, Claude 3 Opus
-- **Google** — Gemini 1.5, Gemini Pro
-- **xAI** — Grok, Grok-2
-- **Mistral** — Mistral Large, Mixtral
-- **DeepSeek** — DeepSeek V2, Coder
-- **Meta** — Llama 3.1, Llama 3
-- **Y 300+ más** — Cohere, Fireworks, Together, etc.
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, 300+ más...
 
 ---
 
-## 🌍 Idiomas disponibles
+## 🌍 Idiomas
 
 | Idioma | Archivo |
 |--------|---------|
@@ -103,39 +91,24 @@ TokenTax es una herramienta web gratuita y de código abierto que te permite com
 
 ## 📝 Historial de cambios
 
-Consulta [`CHANGELOG.md`](CHANGELOG.md) para ver la lista completa de cambios.
+Consulta [`CHANGELOG.md`](CHANGELOG.md)
 
 ---
 
 ## 🤝 Contribuir
 
-¡Las contribuciones son bienvenidas! No dudes en:
-
-- 🐛 Reportar errores
-- 💡 Sugerir funcionalidades
-- 🔧 Enviar pull requests
-- 🌐 Traducir el README
+¡Las contribuciones son bienvenidas!
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto está bajo la **Licencia MIT**.
-
----
-
-## 🙏 Agradecimientos
-
-- [LiteLLM](https://github.com/BerriAI/litellm) — Datos de precios en tiempo real
-- [Tailwind CSS](https://tailwindcss.com) — Framework de interfaz
-- [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) — Tipografía
+MIT © 2026 [smouj](https://github.com/smouj)
 
 ---
 
 <div align="center">
 
 **⭐ Dale una estrella si te ayudó a ahorrar dinero en IA ⭐**
-
-Hecho con ❤️ por [smouj](https://github.com/smouj)
 
 </div>
