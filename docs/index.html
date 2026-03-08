@@ -394,7 +394,8 @@
         <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><i class="fas fa-copy"></i></button>
         <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
         <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
-        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir">Share</button>
+        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Share"><i class="fas fa-share-alt"></i></button>
+        <button onclick="copyShareLink()" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Copy Link"><i class="fas fa-link"></i></button>
         <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado">AI</button>
         <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen">[]</button>
         <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar"><i class="fas fa-balance-scale"></i></button>
@@ -968,6 +969,36 @@
       updateRecentUI();
     }
 
+    // Search history
+    function addToSearchHistory(query) {
+      if (!query || query.length < 2) return;
+      let history = JSON.parse(localStorage.getItem('tt_search_history') || '[]');
+      history = history.filter(h => h !== query);
+      history.unshift(query);
+      history = history.slice(0, 10);
+      localStorage.setItem('tt_search_history', JSON.stringify(history));
+    }
+
+    // Copy shareable link
+    function copyShareLink() {
+      const url = new URL(window.location.href);
+      const prompt = document.getElementById('prompt').value;
+      if (prompt) url.searchParams.set('q', prompt);
+      const output = document.getElementById('outputTokens').value;
+      if (output) url.searchParams.set('out', output);
+      
+      navigator.clipboard.writeText(url.toString()).then(() => {
+        toast('Link copied!', 'success');
+      }).catch(() => toast('Failed to copy', 'error');
+    }
+
+    // Load from URL params
+    function loadFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('q')) document.getElementById('prompt').value = params.get('q');
+      if (params.has('out')) document.getElementById('outputTokens').value = params.get('out');
+    }
+
     function updateRecentUI() {
       document.getElementById('recentCount').textContent = recentModels.length;
       const list = document.getElementById('recentList');
@@ -1517,7 +1548,7 @@
       }
     });
 
-    window.onload = () => { loadModels(); updateCount(); updateSortIcons(); };
+    window.onload = () => { loadModels(); updateCount(); updateSortIcons(); loadFromURL(); };
   </script>
 </body>
 </html>
