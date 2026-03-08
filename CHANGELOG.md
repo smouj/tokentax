@@ -4,10 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.1.0] - 2026-03-08
+
+### Added
+- **Font Awesome Icons** - Professional icons throughout the UI
+- Fixed layout alignment
+
+---
+
 ## [v3.0.0] - 2026-03-08
 
 ### Added
-- **Material Symbols** - Professional Google Material icons throughout UI
 - **Fixed Layout** - Right panel properly aligned
 - **Provider Logos** - Real logos for major providers
 
