@@ -114,7 +114,7 @@
     .sort-icon { margin-left: 4px; font-size: 8px; opacity: 0.4; }
     .sort-icon.active { opacity: 1; color: var(--green); }
     
-    .table-body { display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; flex: 1; }
+    .table-body { display: flex; flex-direction: column; overflow-y: auto; overflow-x: hidden; flex: 1; width: 100%; }
     .table-row { display: flex; width: 100%; height: 32px; border-bottom: 1px solid var(--border); }
     .table-row:hover { background: var(--surface-2); }
     .table-row.top-3 { background: rgba(34, 197, 94, 0.06); }
@@ -220,7 +220,7 @@
       <div class="flex items-center gap-4">
         <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.1.2</span></h1>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.2.0</span></h1>
           <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
         </div>
       </div>
@@ -473,12 +473,12 @@
 
       <div class="table-wrap">
       <div class="table-header">
-        <div class="th-1"></div>
-        <div class="th-col th-2" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span><span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col th-3" onclick="sortBy('name')"><span data-lang="model">Modelo</span><span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col th-4" onclick="sortBy('input')"><span data-lang="input">Input</span><span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col th-5" onclick="sortBy('output')"><span data-lang="output">Output</span><span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col th-6" onclick="sortBy('total')"><span data-lang="cost">Coste</span><span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
+        <div class="th-1" style="width:30px;min-width:30px;text-align:center;padding:8px;">&nbsp;</div>
+        <div class="th-col th-2" onclick="sortBy('provider')" style="width:80px;min-width:80px;padding:8px;"><span data-lang="provider">Proveedor</span><span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-3" onclick="sortBy('name')" style="flex:1;min-width:100px;padding:8px;"><span data-lang="model">Modelo</span><span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-4" onclick="sortBy('input')" style="width:70px;min-width:70px;text-align:right;padding:8px;"><span data-lang="input">Input</span><span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-5" onclick="sortBy('output')" style="width:70px;min-width:70px;text-align:right;padding:8px;"><span data-lang="output">Output</span><span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col th-6" onclick="sortBy('total')" style="width:80px;min-width:80px;text-align:right;padding:8px;"><span data-lang="cost">Coste</span><span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
       </div>
       <div id="emptyState" class="flex-1 flex flex-col items-center justify-center text-tertiary" style="padding: 60px;">
         <i class="fas fa-calculator text-5xl mb-4" style="opacity:0.2"></i>
@@ -1522,12 +1522,12 @@
         const isSelected = selectedModels.includes(i);
 
         html += `<div class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''}" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
-          <div class="td-1"><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></div>
-          <div class="td-2 ${top ? 'text-green' : ''}"><span class="provider-logo ${logoClass}" style="margin-right:4px">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</div>
-          <div class="td-3" title="${m.fullName}">${m.name}</div>
-          <div class="td-4">${symbol}${(m.input / unit * rate).toFixed(4)}</div>
-          <div class="td-5">${symbol}${(m.output / unit * rate).toFixed(4)}</div>
-          <div class="td-6 ${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</div>
+          <div class="td-1" style="width:30px;min-width:30px;text-align:center;padding:0 8px;display:flex;align-items:center;justify-content:center;"><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></div>
+          <div class="td-2 ${top ? 'text-green' : ''}" style="width:80px;min-width:80px;padding:0 8px;display:flex;align-items:center;font-weight:600;font-size:11px;"><span class="provider-logo ${logoClass}" style="margin-right:4px">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</div>
+          <div class="td-3" title="${m.fullName}" style="flex:1;min-width:100px;padding:0 8px;display:flex;align-items:center;font-size:11px;color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${m.name}</div>
+          <div class="td-4" style="width:70px;min-width:70px;padding:0 8px;display:flex;align-items:center;justify-content:flex-end;font-size:11px;color:var(--text-3);">${symbol}${(m.input / unit * rate).toFixed(4)}</div>
+          <div class="td-5" style="width:70px;min-width:70px;padding:0 8px;display:flex;align-items:center;justify-content:flex-end;font-size:11px;color:var(--text-3);">${symbol}${(m.output / unit * rate).toFixed(4)}</div>
+          <div class="td-6 ${top ? 'text-green' : ''}" style="width:80px;min-width:80px;padding:0 8px;display:flex;align-items:center;justify-content:flex-end;font-weight:700;font-size:11px;">${symbol}${(m.total * rate).toFixed(4)}</div>
         </div>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
