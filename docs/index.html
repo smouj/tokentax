@@ -36,22 +36,22 @@
     html { font-size: 14px; -webkit-font-smoothing: antialiased; }
     body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
     
-    .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; }
+    .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; gap: 0; }
     .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 8px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
-    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px 8px 8px 0; overflow: hidden; }
+    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px; margin-left: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2px; }
     
-    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; }
     .panel-hover:hover { background: var(--surface-3); }
-    .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 2px; color: var(--text); }
+    .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text); padding: 6px 10px; }
     .input-field:focus { outline: none; border-color: var(--accent); }
     .input-field::placeholder { color: var(--placeholder); }
-    select.input-field { color: var(--text); cursor: pointer; }
+    select.input-field { color: var(--text); cursor: pointer; padding: 6px 10px; }
     select.input-field option { background: var(--surface); color: var(--text); }
-    .btn-primary { background: var(--accent); color: var(--bg); border: none; border-radius: 2px; font-weight: 600; cursor: pointer; }
+    .btn-primary { background: var(--accent); color: var(--bg); border: none; border-radius: 4px; font-weight: 600; cursor: pointer; padding: 8px 16px; }
     .btn-primary:hover { opacity: 0.9; }
-    .btn-secondary { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); border-radius: 2px; cursor: pointer; }
+    .btn-secondary { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; padding: 6px 12px; }
     .btn-secondary:hover { background: var(--surface-3); }
-    .btn-ghost { background: transparent; color: var(--text-3); border: none; cursor: pointer; }
+    .btn-ghost { background: transparent; color: var(--text-3); border: none; cursor: pointer; padding: 4px 8px; }
     .btn-ghost:hover { color: var(--text); }
     
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -84,12 +84,12 @@
     .dropdown-item { padding: 8px 12px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
     .dropdown-item:hover { background: var(--surface-3); }
     
-    .kbd { display: inline-block; padding: 1px 4px; font-size: 9px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 2px; color: var(--text-3); }
+    .kbd { display: inline-block; padding: 2px 6px; font-size: 10px; font-family: monospace; background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; color: var(--text-2); }
     
     .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
     .quick-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; gap: 2px; }
     
-    .badge { display: inline-flex; align-items: center; padding: 2px 6px; font-size: 8px; font-weight: 600; border-radius: 2px; text-transform: uppercase; }
+    .badge { display: inline-flex; align-items: center; padding: 3px 8px; font-size: 9px; font-weight: 600; border-radius: 4px; text-transform: uppercase; }
     .badge-green { background: var(--green-dim); color: var(--green); }
     .badge-blue { background: var(--blue-dim); color: var(--blue); }
     .badge-yellow { background: #fef3c7; color: #d97706; }
@@ -148,13 +148,13 @@
   <div id="toast" class="fixed top-3 right-3 z-50"></div>
 
   <!-- Header -->
-  <header class="panel flex-shrink-0" style="border-left:0;border-right:0;border-top:0;">
-    <div class="flex items-center justify-between px-4 py-2">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 panel flex items-center justify-center font-bold text-lg logo-text">T</div>
+  <header class="panel flex-shrink-0" style="border:none; border-bottom:1px solid var(--border); border-radius:0;">
+    <div class="flex items-center justify-between px-4 py-3">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-sm">TokenTax <span class="text-secondary">AI</span></h1>
-          <p class="text-[10px] text-tertiary uppercase tracking-wider">+400 Modelos</p>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span></h1>
+          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos</p>
         </div>
       </div>
       
@@ -407,7 +407,7 @@
       </div>
 
       <!-- Results -->
-      <div class="flex-1 overflow-y-auto" id="resultsContainer">
+      <div class="flex-1 overflow-y-auto p-2" id="resultsContainer" style="padding: 8px;">
         <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
           <p class="text-sm" data-lang="emptyState1">Introduce prompt + calcula</p>
           <p class="text-xs mt-1"><span class="kbd">Ctrl</span>+<span class="kbd">↵</span></p>
@@ -430,9 +430,9 @@
   </main>
 
   <!-- Footer -->
-  <footer class="flex-shrink-0 border-t p-2" style="border-color: var(--border)">
-    <div class="text-center text-[9px] text-tertiary">
-      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">?</span> ayuda • <span class="kbd">Esc</span> clear • <span class="kbd">F11</span> fullscreen
+  <footer class="flex-shrink-0 border-t p-3" style="border-color: var(--border); background: var(--surface);">
+    <div class="text-center text-[10px] text-tertiary">
+      <span class="font-medium">TokenTax AI PRO</span> • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help • <span class="kbd">Esc</span> clear • <span class="kbd">F11</span> fullscreen
     </div>
   </footer>
 
