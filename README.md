@@ -10,7 +10,7 @@
 
 </div>
 
-> **Compare 400+ AI models. Find the cheapest option instantly.**
+> **Compare 400+ AI models from all providers. Find the cheapest option instantly.**
 
 ---
 
@@ -18,15 +18,16 @@
 
 | Feature | Description |
 |---------|-------------|
-| 📊 **400+ Models** | OpenAI, Anthropic, Google, xAI, Mistral... |
-| 💰 **Price Comparison** | Sorted cheapest to expensive |
-| 🔍 **Search & Filter** | By name or provider |
-| ⚡ **Instant Calculation** | Calculate exact cost |
-| 📥 **CSV Export** | Download results |
-| 🏆 **TOP Badges** | Highlight top 3 cheapest |
-| 📝 **Quick Examples** | 8 built-in examples |
-| 🌓 **Dark/Light Mode** | Toggle themes |
-| 📱 **PWA** | Installable |
+| 📊 **400+ Models** | OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek... |
+| 💰 **Price Comparison** | Sorted cheapest to expensive automatically |
+| 🔍 **Search & Filter** | Search by name or filter by provider |
+| ⚡ **Instant Calculation** | Calculate exact cost for your prompt |
+| 📥 **CSV Export** | Download comparison results |
+| 🏆 **TOP Badges** | Highlight top 3 cheapest models |
+| 📝 **Quick Examples** | 8 built-in prompt examples |
+| 🌓 **Dark/Light Mode** | Toggle between themes |
+| 📱 **PWA** | Installable, works offline |
+| 📈 **Statistics** | Track calculations & savings |
 
 ---
 
@@ -38,10 +39,17 @@
 
 ## 🛠️ Usage
 
-1. Enter your prompt
-2. Set output tokens
-3. Click **Calculate** or `Ctrl+Enter`
-4. Find the cheapest model!
+1. Open the [demo](https://smouj.github.io/tokentax/)
+2. Enter your prompt or use a quick example
+3. Set expected output tokens
+4. Click **Calculate** or press `Ctrl+Enter`
+5. See all models sorted by price — find the cheapest! 🔥
+
+---
+
+## 📋 Supported Providers
+
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS Bedrock, Azure, and 300+ more...
 
 ---
 
@@ -66,14 +74,32 @@ See [`CHANGELOG.md`](CHANGELOG.md)
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+- 🐛 Report bugs
+- 💡 Suggest features
+- 🔧 Submit pull requests
+- 🌐 Translate the README
+
+---
+
 ## 📄 License
 
-MIT © 2026 [smouj](https://github.com/smouj)
+MIT License - See [`LICENSE`](LICENSE)
+
+---
+
+## 🙏 Acknowledgments
+
+- [LiteLLM](https://github.com/BerriAI/litellm) - Real-time pricing data
 
 ---
 
 <div align="center">
 
-**⭐ Star if it helped you save money on AI! ⭐**
+**⭐ Star this repo if it helped you save money on AI! ⭐**
+
+Made with ❤️ by [smouj](https://github.com/smouj)
 
 </div>

@@ -10,7 +10,7 @@
 
 </div>
 
-> **Compara +400 modelos de IA. Encuentra el más barato al instante.**
+> **Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato al instante.**
 
 ---
 
@@ -18,15 +18,16 @@
 
 | Característica | Descripción |
 |----------------|-------------|
-| 📊 **400+ Modelos** | OpenAI, Anthropic, Google, xAI, Mistral... |
-| 💰 **Comparación de precios** | Ordenado del más barato al caro |
-| 🔍 **Buscar y filtrar** | Por nombre o proveedor |
-| ⚡ **Cálculo instantáneo** | Calcula el coste exacto |
-| 📥 **Exportar CSV** | Descarga resultados |
-| 🏆 **Badges TOP** | Resalta los 3 más baratos |
-| 📝 **Ejemplos rápidos** | 8 ejemplos incluidos |
+| 📊 **400+ Modelos** | OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek... |
+| 💰 **Comparación de precios** | Ordenado del más barato al caro automáticamente |
+| 🔍 **Buscar y filtrar** | Busca por nombre o filtra por proveedor |
+| ⚡ **Cálculo instantáneo** | Calcula el coste exacto para tu prompt |
+| 📥 **Exportar CSV** | Descarga los resultados de la comparación |
+| 🏆 **Badges TOP** | Resalta los 3 modelos más baratos |
+| 📝 **Ejemplos rápidos** | 8 ejemplos de prompts incluidos |
 | 🌓 **Modo oscuro/claro** | Cambia entre temas |
-| 📱 **PWA** | Instalable |
+| 📱 **PWA** | Instalable, funciona sin conexión |
+| 📈 **Estadísticas** | Seguimiento de cálculos y ahorros |
 
 ---
 
@@ -38,10 +39,17 @@
 
 ## 🛠️ Uso
 
-1. Escribe tu prompt
-2. Establece los tokens de salida
-3. Haz clic en **Calcular** o `Ctrl+Enter`
-4. ¡Encuentra el modelo más barato!
+1. Abre la [demo](https://smouj.github.io/tokentax/)
+2. Escribe tu prompt o usa un ejemplo rápido
+3. Establece los tokens de salida esperados
+4. Haz clic en **Calcular** o presiona `Ctrl+Enter`
+5. ¡Verás todos los modelos ordenados por precio — encuentra el más barato! 🔥
+
+---
+
+## 📋 Proveedores soportados
+
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS Bedrock, Azure, y 300+ más...
 
 ---
 
@@ -66,14 +74,32 @@ Consulta [`CHANGELOG.md`](CHANGELOG.md)
 
 ---
 
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! No dudes en:
+- 🐛 Reportar errores
+- 💡 Sugerir funcionalidades
+- 🔧 Enviar pull requests
+- 🌐 Traducir el README
+
+---
+
 ## 📄 Licencia
 
-MIT © 2026 [smouj](https://github.com/smouj)
+Licencia MIT - Consulta [`LICENSE`](LICENSE)
+
+---
+
+## 🙏 Agradecimientos
+
+- [LiteLLM](https://github.com/BerriAI/litellm) - Datos de precios en tiempo real
 
 ---
 
 <div align="center">
 
 **⭐ Dale una estrella si te ayudó a ahorrar dinero en IA ⭐**
+
+Hecho con ❤️ por [smouj](https://github.com/smouj)
 
 </div>
