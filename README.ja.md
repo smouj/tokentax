@@ -2,9 +2,11 @@
 
 <div align="center">
 
+[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
+
 [![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
 [![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
-[![Version](https://img.shields.io/github/v/release/sokentax)](RELEASES)
+[![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
 
 </div>
 
@@ -14,20 +16,30 @@
 
 ## ✨ 機能
 
-- 📊 400+ モデル (OpenAI, Anthropic, Google, Mistral...)
-- 💰 価格順ソート
+- 📊 400+ モデル
+- 💰 価格比較
 - 🔍 検索とフィルター
-- ⚡ 即時計算
+- 🔢 1K/1M切替
+- ⚡ 自動計算
 - 📥 CSVエクスポート
-- 🏆 TOP 3ハイライト
+- 🏆 TOP 3バッジ
+- 🏢 プロバイダーロゴ
 - 📝 8つの例
-- 🌓 ダーク/ライトモード
+- ⌨️ ショートカット
+- 🌓 ダーク/ライト
+- 📱 PWA
 
 ---
 
 ## 🚀 デモ
 
 **https://smouj.github.io/tokentax/**
+
+---
+
+## 📋 プロバイダー
+
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, AWS, Azure...
 
 ---
 

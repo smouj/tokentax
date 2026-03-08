@@ -2,6 +2,8 @@
 
 <div align="center">
 
+[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
+
 [![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
 [![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
@@ -14,20 +16,30 @@
 
 ## ✨ Funzionalità
 
-- 📊 400+ Modelli (OpenAI, Anthropic, Google, Mistral...)
-- 💰 Prezzi ordinati
-- 🔍 Ricerca e filtro
-- ⚡ Calcolo istantaneo
+- 📊 400+ Modelli
+- 💰 Confronto prezzi
+- 🔍 Ricerca & Filtro
+- 🔢 Toggle 1K/1M
+- ⚡ Auto-calcola
 - 📥 Esporta CSV
-- 🏆 TOP 3 evidenziati
+- 🏆 TOP 3 Badge
+- 🏢 Loghi provider
 - 📝 8 esempi
-- 🌓 Modalità scuro/chiaro
+- ⌨️ Scorciatoie
+- 🌓 Modo scuro/claro
+- 📱 PWA
 
 ---
 
 ## 🚀 Demo
 
 **https://smouj.github.io/tokentax/**
+
+---
+
+## 📋 Fornitori
+
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, AWS, Azure...
 
 ---
 

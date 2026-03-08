@@ -2,39 +2,63 @@
 
 <div align="center">
 
+[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
+
 [![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
 [![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
 
 </div>
 
-> **Comparez +400 modèles IA. Trouvez le moins cher !**
+> **Compare 400+ AI models. Find the cheapest option instantly.**
 
 ---
 
-## ✨ Fonctionnalités
+## ✨ Features
 
-- 📊 400+ Modèles (OpenAI, Anthropic, Google, Mistral...)
-- 💰 Prix triés du moins cher
-- 🔍 Recherche et filtre
-- ⚡ Calcul instantané
-- 📥 Export CSV
-- 🏆 TOP 3 marqués
-- 📝 8 exemples rapides
-- 🌓 Mode sombre/clair
+| Feature | Description |
+|---------|-------------|
+| 📊 **400+ Models** | OpenAI, Anthropic, Google, xAI, Mistral... |
+| 💰 **Price Comparison** | Sorted cheapest to expensive |
+| 🔍 **Search & Filter** | By name or provider |
+| 🔢 **1K/1M Toggle** | Switch price units |
+| ⚡ **Auto-Calculate** | Calculate as you type |
+| 📥 **CSV Export** | Download results |
+| 🏆 **TOP Badges** | Highlight top 3 |
+| 🏢 **Provider Logos** | Visual logos |
+| 📝 **Quick Examples** | 8 built-in examples |
+| ⌨️ **Keyboard Shortcuts** | `Ctrl+Enter`, `Esc` |
+| 🌓 **Dark/Light Mode** | Toggle themes |
+| 📱 **PWA** | Installable |
+| 📈 **Statistics** | Track savings |
 
 ---
 
-## 🚀 Démo
+## 🚀 Live Demo
 
 **https://smouj.github.io/tokentax/**
 
 ---
 
-## 🌍 Langues
+## ⌨️ Keyboard Shortcuts
 
-| Langue | Fichier |
-|--------|---------|
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl + Enter` | Calculate |
+| `Escape` | Clear prompt |
+
+---
+
+## 📋 Supported Providers
+
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS, Azure, Nvidia, Perplexity...
+
+---
+
+## 🌍 Languages
+
+| Language | File |
+|----------|------|
 | EN | [`README.md`](README.md) |
 | ES | [`README.es.md`](README.es.md) |
 | FR | [`README.fr.md`](README.fr.md) |
@@ -46,7 +70,13 @@
 
 ---
 
-## 📄 Licence
+## 📝 Changelog
+
+See [`CHANGELOG.md`](CHANGELOG.md)
+
+---
+
+## 📄 License
 
 MIT © 2026 [smouj](https://github.com/smouj)
 

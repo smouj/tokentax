@@ -2,6 +2,8 @@
 
 <div align="center">
 
+[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
+
 [![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
 [![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
@@ -14,20 +16,30 @@
 
 ## ✨ 功能
 
-- 📊 400+ 模型 (OpenAI, Anthropic, Google, Mistral...)
-- 💰 价格排序
+- 📊 400+ 模型
+- 💰 价格比较
 - 🔍 搜索和筛选
-- ⚡ 即时计算
+- 🔢 1K/1M切换
+- ⚡ 自动计算
 - 📥 导出CSV
-- 🏆 TOP 3高亮
+- 🏆 TOP 3徽章
+- 🏢 提供商Logo
 - 📝 8个示例
-- 🌓 深色/浅色模式
+- ⌨️ 快捷键
+- 🌓 深色/浅色
+- 📱 PWA
 
 ---
 
 ## 🚀 演示
 
 **https://smouj.github.io/tokentax/**
+
+---
+
+## 📋 提供商
+
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, AWS, Azure...
 
 ---
 

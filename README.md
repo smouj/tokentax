@@ -4,11 +4,11 @@
 
 <div align="center">
 
+[![TokenTax Demo](https://smouj.github.io/tokentax/preview.png)](https://smouj.github.io/tokentax/)
+
 [![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
 [![License](https://img.shields.io/github/license/smouj/tokentax)](LICENSE)
 [![Version](https://img.shields.io/github/v/release/smouj/tokentax)](RELEASES)
-
-[**Live Demo**](https://smouj.github.io/tokentax/)
 
 </div>
 
@@ -23,9 +23,8 @@
 | 📊 **400+ Models** | OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek... |
 | 💰 **Price Comparison** | Sorted cheapest to expensive automatically |
 | 🔍 **Search & Filter** | Search by name or filter by provider |
-| ⚡ **Instant Calculation** | Calculate exact cost for your prompt |
 | 🔢 **1K/1M Toggle** | Switch between per-1K or per-1M token prices |
-| ⚡ **Auto-Calculate** | Auto-calculate as you type |
+| ⚡ **Auto-Calculate** | Calculate as you type |
 | 📥 **CSV Export** | Download comparison results |
 | 🏆 **TOP Badges** | Highlight top 3 cheapest models |
 | 🏢 **Provider Logos** | Visual logos for each provider |
