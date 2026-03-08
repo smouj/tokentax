@@ -366,6 +366,8 @@
         <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo">📋</button>
         <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
         <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
+        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir">Share</button>
+        <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado">AI</button>
         <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar">⚖️</button>
       </div>
 
@@ -635,6 +637,51 @@
       win.document.close();
       win.print();
       toast('PDF generado');
+    }
+
+    // Share functionality
+    function shareResults() {
+      if (!results.length) return;
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
+      const top3 = results.slice(0, 3).map((m, i) => 
+        `${i+1}. ${m.provider} - ${m.fullName}: ${symbol}$${m.total.toFixed(4)}`
+      ).join('\n');
+      
+      const text = `TokenTax AI PRO\nTop 3 cheapest:\n${top3}\n\nGenerated: ${new Date().toLocaleDateString()}`;
+      
+      if (navigator.share) {
+        navigator.share({ title: 'TokenTax Results', text: text });
+      } else {
+        navigator.clipboard.writeText(text);
+        toast('Copiado al portapapeles');
+      }
+    }
+
+    // API endpoint info
+    function showAPIInfo() {
+      alert('TokenTax API\n\nComing soon!\n\nCurrently data from LiteLLM.');
+    }
+
+    // Recommended model (simple AI)
+    function getRecommended() {
+      if (!results.length) return;
+      const prompt = document.getElementById('prompt').value;
+      const out = parseFloat(document.getElementById('outputTokens').value) || 500;
+      const inT = estTokens(prompt);
+      
+      // Simple recommendation based on use case
+      let recommended = results[0];
+      
+      if (prompt.toLowerCase().includes('code') || prompt.toLowerCase().includes('programming')) {
+        recommended = results.find(m => m.provider.toLowerCase().includes('anthropic') || m.provider.toLowerCase().includes('openai')) || results[0];
+      } else if (prompt.length > 1000) {
+        recommended = results.sort((a, b) => a.input - b.input)[0];
+      } else if (out > 2000) {
+        recommended = results.sort((a, b) => a.output - b.output)[0];
+      }
+      
+      toast(`Recommended: ${recommended.provider} - ${recommended.fullName}`, 'success');
     }
 
     function updateStats() {
@@ -1127,6 +1174,8 @@
       document.getElementById('count').textContent = `${limitedResults.length} / ${results.length} modelos`;
       document.getElementById('exportBtn').classList.remove('hidden');
       document.getElementById('pdfBtn').classList.remove('hidden');
+      document.getElementById('shareBtn').classList.remove('hidden');
+      document.getElementById('recBtn').classList.remove('hidden');
       document.getElementById('copyAllBtn').classList.remove('hidden');
       updateCompareBtn();
     }
