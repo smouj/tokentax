@@ -2,1854 +2,683 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-
-  <title>TokenTax AI PRO | Compara +400 Modelos de IA</title>
-  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
+  <title>TokenTax AI PRO | Compara +400 Modelos de IA - Precios 2026</title>
+  <meta name="title" content="TokenTax AI PRO | Compara +400 Modelos de IA - Precios 2026">
+  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato. OpenAI, Anthropic, Gemini, Grok, Mistral, DeepSeek. Precios en tiempo real desde LiteLLM.">
+  <meta name="keywords" content="AI, artificial intelligence, LLM, language model, pricing, cost comparison, OpenAI, Anthropic, Claude, Gemini, GPT-4, GPT-4o, Claude 3.5, Mistral, DeepSeek, Grok, token pricing, API costs, cheap AI, tokens">
   <meta name="author" content="smouj">
-  <meta name="theme-color" content="#000000">
-  <meta name="keywords" content="AI,LLM,pricing,cost,comparison,models,OpenAI,Anthropic,Google">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="TokenTax AI PRO">
-  <meta property="og:description" content="Compara +400 modelos de IA y encuentra el más barato">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-
+  <meta name="language" content="Spanish, English">
+  <meta name="revisit-after" content="7 days">
+  
+  <!-- PWA -->
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="apple-touch-icon" href="logo.svg">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100' rx='20'/><text y='.9em' x='50%' text-anchor='middle' font-size='60'>T</text></svg>">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://smouj.github.io/tokentax/">
+  <meta property="og:title" content="TokenTax AI PRO | +400 Modelos de IA">
+  <meta property="og:description" content="Compara precios de +400 modelos de IA. Encuentra el más barato para tu prompt.">
+  <meta property="og:site_name" content="TokenTax">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://smouj.github.io/tokentax/">
+  <meta name="twitter:title" content="TokenTax AI PRO | +400 Modelos de IA">
+  <meta name="twitter:description" content="Compara precios de +400 modelos de IA. Encuentra el más barato.">
+  
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TokenTax AI PRO",
+    "description": "Compara +400 modelos de IA de todos los proveedores.",
+    "url": "https://smouj.github.io/tokentax/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web Browser",
+    "author": { "@type": "Person", "name": "smouj", "url": "https://github.com/smouj" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+  
+  <!-- Tailwind + Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://raw.githubusercontent.com">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
   <style>
-    :root, .theme-dark {
-      --bg: #000000; --surface: #0a0a0a; --surface-2: #111111; --surface-3: #141414;
-      --border: #1f1f1f; --border-2: #2a2a2a;
-      --text: #fafafa; --text-2: #a3a3a3; --text-3: #525252; --text-4: #404040;
-      --accent: #ffffff;
-      --green: #22c55e; --green-dim: rgba(34, 197, 94, 0.1);
-      --red: #ef4444; --blue: #3b82f6; --blue-dim: rgba(59, 130, 246, 0.15);
+    :root {
+      --white: 255 255 255;
+      --dim: 150 150 150;
+      --subtle: 100 100 100;
     }
-    .theme-light {
-      --bg: #ffffff; --surface: #f5f5f5; --surface-2: #e5e5e5; --surface-3: #d4d4d4;
-      --border: #d4d4d4; --border-2: #a3a3a3;
-      --text: #171717; --text-2: #525252; --text-3: #737373; --text-4: #a3a3a3;
-      --accent: #000000;
-      --green: #16a34a; --green-dim: #dcfce7;
-      --red: #dc2626; --blue: #2563eb; --blue-dim: #dbeafe;
-    }
+    
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; touch-action: manipulation; }
-    
-    /* Mobile optimizations */
-    @media (max-width: 640px) {
-      .app-container { flex-direction: column; }
-      .left-panel { width: 100%; height: auto; max-height: 40vh; border-right: none; border-bottom: 1px solid var(--border); }
-      .right-panel { margin: 4px; width: calc(100% - 8px); }
-      .header { padding: 8px; }
-      .quick-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #000;
+      -webkit-font-smoothing: antialiased;
     }
     
-    @media (max-width: 480px) {
-      html { font-size: 13px; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr); }
+    .bg-premium {
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(35, 35, 35, 0.5) 0%, transparent 100%),
+        #000;
     }
-    body { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
-
-    .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; gap: 0; }
-    .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 3px; padding: 3px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
-    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 3px; margin-left: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2px; }
-
-    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; }
-    .panel:not(:last-child) { margin-bottom: 2px; }
-    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .quick-btn { padding: 6px 4px; font-size: 9px; }
-    .panel-hover:hover { background: var(--surface-3); }
-    .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text); padding: 6px 10px; }
-    .input-field:focus { outline: none; border-color: var(--accent); }
-    .input-field::placeholder { color: var(--placeholder); }
-    select.input-field { color: var(--text); cursor: pointer; padding: 6px 10px; }
-    select.input-field option { background: var(--surface); color: var(--text); }
-    .btn-primary { background: var(--accent); color: var(--bg); border: none; border-radius: 4px; font-weight: 600; cursor: pointer; padding: 8px 16px; }
-    .btn-primary:hover { opacity: 0.9; }
-    .btn-secondary { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; padding: 6px 12px; }
-    .btn-secondary:hover { background: var(--surface-3); }
-    .btn-ghost { background: transparent; color: var(--text-3); border: none; cursor: pointer; padding: 4px 8px; }
-    .btn-ghost:hover { color: var(--text); }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .anim { animation: fadeIn 0.3s ease forwards; opacity: 0; }
-    .loading-pulse { animation: pulse 1.5s ease-in-out infinite; }
-    ::-webkit-scrollbar { width: 4px; }
+    
+    .will-animate { will-change: transform, opacity; transform: translateZ(0); }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-enter {
+      animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+    }
+    
+    .delay-1 { animation-delay: 0.05s; }
+    .delay-2 { animation-delay: 0.1s; }
+    .delay-3 { animation-delay: 0.15s; }
+    .delay-4 { animation-delay: 0.2s; }
+    
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .input-premium {
+      background: rgba(15, 15, 15, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s ease;
+    }
+    
+    .input-premium:focus {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(20, 20, 20, 0.8);
+    }
+    
+    .input-premium::placeholder { color: rgba(255, 255, 255, 0.25); }
+    
+    .btn-premium {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    
+    .btn-premium:hover {
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+    
+    .btn-premium:active { transform: scale(0.99); }
+    
+    .table-row { transition: all 0.2s ease; }
+    .table-row:hover { background: rgba(255, 255, 255, 0.03); }
+    
+    ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-    /* SIMPLE HTML TABLE - NO FLEXBOX */
-    .tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
-    .tbl th { background: var(--surface-2); position: sticky; top: 0; z-index: 10; padding: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--border); text-align: left; }
-    .tbl th:nth-child(1) { width: 30px; text-align: center; }
-    .tbl th:nth-child(2) { width: 90px; }
-    .tbl th:nth-child(3) { width: auto; }
-    .tbl th:nth-child(4) { width: 80px; text-align: right; }
-    .tbl th:nth-child(5) { width: 80px; text-align: right; }
-    .tbl th:nth-child(6) { width: 90px; text-align: right; }
-    .tbl th.sortable { cursor: pointer; }
-    .tbl th.sortable:hover { color: var(--text); }
-    .tbl td { padding: 6px 8px; border-bottom: 1px solid var(--border); font-size: 11px; vertical-align: middle; }
-    .tbl td:nth-child(1) { width: 30px; text-align: center; }
-    .tbl td:nth-child(2) { width: 90px; font-weight: 600; }
-    .tbl td:nth-child(3) { width: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-2); }
-    .tbl td:nth-child(4) { width: 80px; text-align: right; color: var(--text-3); }
-    .tbl td:nth-child(5) { width: 80px; text-align: right; color: var(--text-3); }
-    .tbl td:nth-child(6) { width: 90px; text-align: right; font-weight: 700; }
-    .tbl tr:hover td { background: var(--surface-2); }
-    .tbl tr.top3 td { background: rgba(34, 197, 94, 0.06); }
-    .tbl-wrap { overflow: auto; flex: 1; }
-    .tbl th, .tbl td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .tbl thead { position: sticky; top: 0; z-index: 10; }
-    .tbl tr.selected td { background: var(--blue-dim) !important; }
-    .tbl tr.fav-row td:nth-child(1) { color: #fbbf24; }
-
-    /* Button hover effects */
-    .panel-hover { transition: all 0.15s ease; }
-    .panel-hover:hover { transform: scale(1.02); }
-    .btn-primary { transition: all 0.15s ease; }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(255,255,255,0.1); }
-
-    .logo-text { background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(20px); } }
-    .toast-in { animation: toastIn 0.25s ease forwards; }
-    .toast-out { animation: toastOut 0.25s ease forwards; }
-
-    .text-primary { color: var(--text); }
-    .text-secondary { color: var(--text-2); }
-    .text-tertiary { color: var(--text-3); }
-    .text-green { color: var(--green); }
-    .text-red { color: var(--red); }
-    .stats-bar { background: var(--green-dim); padding: 5px 12px !important; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; font-size: 10px; }
-
-    .dropdown { position: relative; display: inline-block; }
-    .dropdown-content { display: none; position: absolute; right: 0; top: 100%; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; z-index: 100; margin-top: 4px; max-height: 300px; overflow-y: auto; }
-    .dropdown:hover .dropdown-content { display: block; }
-    .dropdown-item { padding: 8px 12px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-    .dropdown-item:hover { background: var(--surface-3); }
-
-    .kbd { display: inline-block; padding: 2px 6px; font-size: 10px; font-family: monospace; background: var(--surface-2); border: 1px solid var(--border); border-radius: 4px; color: var(--text-2); }
-
-    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-    .quick-btn { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; gap: 2px; }
-
-    .badge { display: inline-flex; align-items: center; padding: 3px 8px; font-size: 9px; font-weight: 600; border-radius: 4px; text-transform: uppercase; }
-    .badge-green { background: var(--green-dim); color: var(--green); }
-    .badge-blue { background: var(--blue-dim); color: var(--blue); }
-    .badge-yellow { background: #fef3c7; color: #d97706; }
-
-    /* Provider logos */
-    .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
-    .logo-openai { background: #10a37f; color: white; }
-    .logo-anthropic { background: #d97757; color: white; }
-    .logo-google { background: #4285f4; color: white; }
-    .logo-mistral { background: #eb4f38; color: white; }
-    .logo-deepseek { background: #2a2a2a; color: white; }
-    .logo-meta { background: #0668e1; color: white; }
-    .logo-aws { background: #ff9900; color: black; }
-    .logo-azure { background: #0078d4; color: white; }
-    .logo-xai { background: #000; color: white; }
-    .logo-groq { background: #8b5cf6; color: white; }
-    .logo-fireworks { background: #000; color: white; }
-    .logo-together { background: #8b5cf6; color: white; }
-    .logo-cohere { background: #39594d; color: white; }
-    .logo-nvidia { background: #76b900; color: black; }
-    .logo-perplexity { background: #000; color: white; }
-    .logo-replicate { background: #6366f1; color: white; }
-    .logo-openrouter { background: #6d28d9; color: white; }
-    .logo-cerebras { background: #1e40af; color: white; }
-    .logo-sambanova { background: #0f172a; color: white; }
-    .logo-default { background: var(--surface-2); color: var(--text-2); }
-
-    /* Provider panel */
-    .provider-row { display: flex; align-items: center; gap: 6px; padding: 3px 4px; border-radius: 3px; cursor: pointer; transition: background 0.1s; }
-    .provider-row:hover { background: var(--surface-2); }
-    .provider-row-name { font-size: 10px; flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-    .provider-row-count { font-size: 9px; color: var(--text-3); flex-shrink: 0; min-width: 22px; text-align: right; }
-    .provider-bar-wrap { width: 28px; height: 3px; background: var(--border); border-radius: 2px; flex-shrink: 0; overflow: hidden; }
-    .provider-bar-fill { height: 100%; background: var(--green); border-radius: 2px; }
-
-    .limit-control { display: flex; align-items: center; gap: 8px; }
-    .toggle-switch { position: relative; width: 36px; height: 20px; }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--surface-2); transition: 0.2s; border-radius: 20px; }
-    .toggle-slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: var(--text); transition: 0.2s; border-radius: 50%; }
-    input:checked + .toggle-slider { background: var(--green); }
-    input:checked + .toggle-slider:before { transform: translateX(16px); }
-
-    .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
-    .settings-label { font-size: 10px; color: var(--text-2); }
-
-    /* Modal */
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: none; align-items: center; justify-content: center; }
-    .modal-overlay.active { display: flex; }
-    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; }
-    .modal-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-    .modal-body { padding: 16px; }
-    .modal-footer { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; }
-
-    /* Compare view */
-    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .compare-item { padding: 12px; background: var(--surface-2); border-radius: 4px; }
-    .compare-label { font-size: 9px; color: var(--text-3); text-transform: uppercase; }
-    .compare-value { font-size: 14px; font-weight: 600; margin-top: 2px; }
-
-    /* Favorites */
-    .fav-btn { color: var(--text-3); cursor: pointer; }
-    .fav-btn.active { color: #fbbf24; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 2px; }
+    
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(16px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .toast-in { animation: toastIn 0.3s ease forwards; }
+    
+    @keyframes logoGlow {
+      0%, 100% { box-shadow: 0 0 24px rgba(255,255,255,0.15); }
+      50% { box-shadow: 0 0 36px rgba(255,255,255,0.25); }
+    }
+    
+    .logo-glow { animation: logoGlow 4s ease-in-out infinite; }
+    
+    .particle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+    }
+    
+    @keyframes particleFloat {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+      50% { transform: translateY(-30px) translateX(10px); opacity: 0.4; }
+    }
+    
+    @keyframes rowReveal {
+      from { opacity: 0; transform: translateX(-8px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .row-reveal { animation: rowReveal 0.25s ease forwards; opacity: 0; }
+    
+    /* Stats cards */
+    .stat-card {
+      background: rgba(15, 15, 15, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      background: rgba(20, 20, 20, 0.6);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Comparison mode */
+    .compare-highlight {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 2px solid rgba(59, 130, 246, 0.5);
+    }
   </style>
 </head>
-<body class="theme-dark">
+<body class="bg-premium min-h-screen">
+  <!-- Background -->
+  <div id="particles" class="fixed inset-0 pointer-events-none"></div>
 
-  <canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.03;pointer-events:none"></canvas>
-  <div id="toast" class="fixed top-3 right-3 z-50"></div>
+  <!-- Toast -->
+  <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-2"></div>
 
   <!-- Header -->
-  <header class="panel flex-shrink-0" style="border:none; border-bottom:1px solid var(--border); border-radius:0;">
-    <div class="flex items-center justify-between px-4 py-3">
-      <div class="flex items-center gap-4">
-        <div class="w-10 h-10 panel flex items-center justify-center"><img src="icon-white-bg-black.png" alt="T" style="width:28px;height:28px;border-radius:4px;"></div>
+  <header class="glass-panel sticky top-0 z-40 border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <div class="flex items-center gap-3 animate-enter">
+        <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/8 flex items-center justify-center text-base font-semibold logo-glow">
+          T
+        </div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.3.0</span></h1>
-          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
+          <h1 class="text-base font-medium tracking-tight">TokenTax <span class="text-white/50">AI</span></h1>
+          <p class="text-[10px] text-white/35 uppercase tracking-wider">+400 Modelos</p>
         </div>
       </div>
 
-      <div class="flex items-center gap-2">
-        <!-- Language -->
-        <select id="langSelect" onchange="changeLanguage(this.value)" class="px-2 py-1 input-field text-[10px]">
-          <option value="es">ES</option>
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
-          <option value="de">DE</option>
-          <option value="it">IT</option>
-          <option value="pt">PT</option>
-          <option value="ja">JA</option>
-          <option value="zh">ZH</option>
-        </select>
-
-        <!-- Currency -->
-        <select id="currencySelect" onchange="changeCurrency(this.value)" class="px-2 py-1 input-field text-[10px]">
-          <option value="USD">$ USD</option>
-          <option value="EUR">€ EUR</option>
-          <option value="GBP">£ GBP</option>
-        </select>
-
-        <!-- Theme Toggle -->
-        <button onclick="toggleTheme()" id="themeBtn" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Toggle Theme"><i class="fas fa-moon"></i></button>
-        <button onclick="setOLEDMode(true)" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="OLED Mode"><i class="fas fa-square-full"></i></button>
-        <button onclick="toggleHighContrast()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="High Contrast"><i class="fas fa-eye"></i></button>
-        <button onclick="quickEstimate()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Quick Estimate"><i class="fas fa-calculator"></i></button>
-        <button onclick="loadPresets()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Load Preset"><i class="fas fa-folder"></i></button>
-
-        <!-- Examples -->
-        <div class="dropdown">
-          <button class="btn-secondary px-2 py-1 text-[10px]"><i class="fas fa-edit"></i> <span id="examplesBtn">Ejemplos</span> ▾</button>
-          <div class="dropdown-content">
-            <div class="dropdown-item" onclick="useExample('code')"><i class="fas fa-laptop-code"></i> <span data-lang="code">Código</span></div>
-            <div class="dropdown-item" onclick="useExample('summary')"><i class="fas fa-file-alt"></i> <span data-lang="summary">Resumen</span></div>
-            <div class="dropdown-item" onclick="useExample('email')"><i class="fas fa-envelope"></i> <span data-lang="email">Email</span></div>
-            <div class="dropdown-item" onclick="useExample('translate')"><i class="fas fa-globe"></i> <span data-lang="translate">Traducir</span></div>
-            <div class="dropdown-item" onclick="useExample('blog')"><i class="fas fa-edit"></i> <span data-lang="blog">Blog</span></div>
-            <div class="dropdown-item" onclick="useExample('seo')"><i class="fas fa-search"></i> <span data-lang="seo">SEO</span></div>
-            <div class="dropdown-item" onclick="useExample('sql')"><i class="fas fa-database"></i> <span data-lang="sql">SQL</span></div>
-            <div class="dropdown-item" onclick="useExample('test')"><i class="fas fa-flask"></i> <span data-lang="test">Tests</span></div>
-          </div>
+      <!-- Stats -->
+      <div class="hidden md:flex items-center gap-3 animate-enter delay-1">
+        <div class="stat-card px-3 py-1.5 rounded-lg text-[10px]">
+          <span class="text-white/40">Calculados:</span>
+          <span id="totalCalcs" class="text-white/70 font-medium ml-1">0</span>
         </div>
+        <div class="stat-card px-3 py-1.5 rounded-lg text-[10px]">
+          <span class="text-white/40">Ahorrado:</span>
+          <span id="totalSaved" class="text-green-400 font-medium ml-1">$0</span>
+        </div>
+      </div>
 
-        <div class="flex items-center gap-1.5 px-2 py-1 panel text-[10px] text-tertiary">
-          <span id="loader" class="w-2 h-2 rounded-full bg-tertiary loading-pulse"></span>
+      <!-- Right -->
+      <div class="flex items-center gap-2 animate-enter delay-1">
+        <button onclick="toggleCompare()" id="compareBtn" class="hidden px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 text-xs" title="Comparar">
+          ⚖️
+        </button>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-xs text-white/40">
+          <span id="loader" class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
           <span id="modelText">Cargando...</span>
         </div>
-
-        <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 panel panel-hover flex items-center justify-center">
-          <svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        
+        <button onclick="toggleTheme()" id="themeBtn" class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition text-sm" title="Tema">
+          🌙
+        </button>
+        
+        <a href="https://github.com/smouj/tokentax" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition flex items-center justify-center" aria-label="GitHub">
+          <svg class="w-4 h-4 text-white/50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
       </div>
     </div>
   </header>
 
   <!-- Main -->
-  <main class="app-container">
-
-    <!-- Left Panel -->
-    <aside class="left-panel">
-
-      <!-- Prompt -->
-      <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
-        <div class="flex justify-between items-center mb-1.5">
-          <span class="text-[10px] text-secondary font-medium" data-lang="prompt">PROMPT</span>
-          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)"><i class="fas fa-times"></i></button>
-        </div>
-        <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
-        <div class="flex justify-between mt-1.5 text-[9px] text-tertiary">
-          <span id="charCount">0 ch</span>
-          <span id="tokenCount">~0 tk</span>
-        </div>
-      </div>
-
-      <!-- Output -->
-      <div class="panel p-2">
-        <label class="block text-[10px] text-secondary font-medium mb-1">OUTPUT TOKENS</label>
-        <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-lg font-semibold text-center focus:outline-none">
-      </div>
-
-      <!-- Calculate -->
-      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm"><i class="fas fa-calculator"></i> <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+Enter</span></button>
-
-      <!-- Quick Grid -->
-      <div class="quick-grid">
-        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span><i class="fas fa-laptop-code"></i></span><span data-lang="codeBtn">Código</span></button>
-        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span><i class="fas fa-file-alt"></i></span><span data-lang="summaryBtn">Resumen</span></button>
-        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span><i class="fas fa-globe"></i></span><span data-lang="translateBtn">Trad</span></button>
-        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span><i class="fas fa-database"></i></span><span>SQL</span></button>
-        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span><i class="fas fa-flask"></i></span><span>Tests</span></button>
-        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span><i class="fas fa-search"></i></span><span>SEO</span></button>
-      </div>
-
-      <!-- Quick Providers -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-1">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-filter"></i> Providers</span>
-          <button onclick="showHelp()" class="text-[9px] text-tertiary"><i class="fas fa-question-circle"></i></button>
-        </div>
-        <div id="quickProviders" class="flex flex-wrap gap-1"></div>
-        <div class="flex gap-1 mt-2">
-          <button onclick="showTop10()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-trophy"></i> Top 10</button>
-          <button onclick="showAll()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-list"></i> All</button>
-          <button onclick="clearProviderFilter()" class="btn-secondary px-2 py-1 text-[9px]" title="Reset"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-
-      <!-- Settings -->
-      <div class="panel p-2">
-        <div class="settings-row">
-          <span class="settings-label" data-lang="per1k">Precios por 1K</span>
-          <label class="toggle-switch">
-            <input type="checkbox" id="pricePer1K" onchange="togglePriceUnit()">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        <div class="settings-row">
-          <span class="settings-label" data-lang="autoCalc">Auto-calcular</span>
-          <label class="toggle-switch">
-            <input type="checkbox" id="autoCalc" onchange="toggleAutoCalc()">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        <div class="settings-row">
-          <span class="settings-label" data-lang="showContext">Mostrar Context</span>
-          <label class="toggle-switch">
-            <input type="checkbox" id="showContext" onchange="toggleContext()">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        <div class="settings-row">
-          <span class="settings-label" data-lang="autoRefresh">Auto-refresh</span>
-          <label class="toggle-switch">
-            <input type="checkbox" id="autoRefresh" onchange="toggleAutoRefresh()">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        <div class="flex gap-1 mt-2">
-          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-save"></i> Save</button>
-          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-chart-pie"></i> Stats</button>
-          <button onclick="resetAllSettings()" class="btn-secondary px-2 py-1 text-[9px]" title="Reset All"><i class="fas fa-redo"></i></button>
-        </div>
-      </div>
-
-      <!-- Stats -->
-      <div class="panel p-2">
-        <div class="flex justify-between text-[9px] mb-1">
-          <span class="text-secondary" data-lang="calculations">Cálculos</span>
-          <span id="totalCalcs" class="text-primary">0</span>
-        </div>
-        <div class="flex justify-between text-[9px]">
-          <span class="text-secondary" data-lang="saved">Ahorrado</span>
-          <span id="totalSaved" class="text-green">$0</span>
-        </div>
-      </div>
-
-
-      <!-- Proveedores Panel -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-1.5">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-building"></i> Proveedores</span>
-          <span id="providerTotal" class="text-[9px] text-tertiary">-</span>
-        </div>
-        <div id="providerStatsList" class="flex flex-col gap-0.5"></div>
-      </div>
-      <!-- Favorites -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-star"></i> <span data-lang="favorites">Favoritos</span></span>
-          <span id="favCount" class="text-[9px] text-tertiary">0</span>
-        </div>
-        <div id="favoritesList" class="flex flex-wrap gap-1"></div>
-      </div>
-
-      <!-- Custom Templates -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-edit"></i> <span data-lang="templates">Plantillas</span></span>
-          <button onclick="saveTemplate()" class="text-[9px] text-tertiary hover:text-primary">+</button>
-        </div>
-        <div id="templatesList" class="flex flex-wrap gap-1"></div>
-      </div>
-
-      <!-- Recent -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-clock"></i> <span data-lang="recent">Recientes</span></span>
-          <span id="recentCount" class="text-[9px] text-tertiary">0</span>
-        </div>
-        <div id="recentList" class="flex flex-wrap gap-1"></div>
-      </div>
-
-      <!-- Price Alerts -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-bell"></i> <span data-lang="alerts">Alertas</span></span>
-          <button onclick="addPriceAlert()" class="text-[9px] text-tertiary hover:text-primary">+</button>
-        </div>
-        <div id="alertsList" class="flex flex-col gap-1"></div>
-      </div>
-
-      <!-- Batch Calculate -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-box"></i> <span data-lang="batch">Lote</span></span>
-          <button onclick="addBatchPrompt()" class="text-[9px] text-tertiary hover:text-primary">+</button>
-        </div>
-        <div id="batchList" class="flex flex-col gap-1"></div>
-      </div>
-    </aside>
-
-    <!-- Right Panel -->
-    <div class="right-panel panel" style="width:100%">
-
-      <!-- Filters -->
-      <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
-        <div class="flex-1 min-w-[150px] relative">
-          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs"><i class="fas fa-search"></i></span>
-          <input id="search" type="text" placeholder="Buscar modelo..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
-        </div>
-        <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
-          <option value="" data-lang="allProviders">Todos los proveedores</option>
-        </select>
-
-        <!-- Extra Filters -->
-        <select id="typeFilter" class="px-2 py-1.5 input-field text-xs" onchange="applyTypeFilter()">
-          <option value="">Todos los tipos</option>
-          <option value="vision"><i class="fas fa-eye"></i> Vision</option>
-          <option value="reasoning"><i class="fas fa-brain"></i> Reasoning</option>
-          <option value="cheapest_provider"><i class="fas fa-dollar-sign"></i> Más barato x provider</option>
-        </select>
-
-        <!-- Limit -->
-        <div class="limit-control">
-          <span class="text-[9px] text-tertiary" data-lang="limit">Límite:</span>
-          <input type="number" id="limitInput" value="50" min="5" max="500" class="px-2 py-1 input-field text-xs" style="width:50px" onchange="applyLimit()">
-        </div>
-
-        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]"><i class="fas fa-times"></i></button>
-        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><i class="fas fa-copy"></i></button>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
-        <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
-        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Share"><i class="fas fa-share-alt"></i></button>
-        <button onclick="copyShareLink()" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Copy Link"><i class="fas fa-link"></i></button>
-        <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado">AI</button>
-        <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen">[]</button>
-        <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar"><i class="fas fa-balance-scale"></i></button>
-      </div>
-
-      <!-- Stats Bar -->
-      <div id="statsBar" class="hidden px-3 py-1.5 flex gap-3 text-[9px] stats-bar">
-        <div><span class="text-secondary" data-lang="min">Min:</span> <span id="minCost" class="text-green font-medium">-</span></div>
-        <div><span class="text-secondary" data-lang="max">Max:</span> <span id="maxCost" class="text-red font-medium">-</span></div>
-        <div><span class="text-secondary" data-lang="avg">Media:</span> <span id="avgCost" class="text-primary font-medium">-</span></div>
-        <div class="ml-auto"><span class="text-secondary"><i class="fas fa-trophy"></i> <span data-lang="top">Top:</span></span> <span id="topProvider" class="text-green font-medium">-</span></div>
-      </div>
-
-      <div class="table-wrap">
-      <table class="tbl">
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th class="sortable" onclick="sortBy('provider')">Proveedor</th>
-            <th class="sortable" onclick="sortBy('name')">Modelo</th>
-            <th class="sortable" onclick="sortBy('input')">Input</th>
-            <th class="sortable" onclick="sortBy('output')">Output</th>
-            <th class="sortable" onclick="sortBy('total')">Coste</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+  <main class="max-w-6xl mx-auto px-5 py-6">
+    <div class="grid grid-cols-12 gap-5">
       
-      <!-- Empty State -->
-      <div id="emptyState" class="hidden p-8 text-center text-tertiary">
-        <i class="fas fa-table text-4xl mb-2"></i>
-        <p class="text-sm">Introduce prompt + calcula</p>
-      </div>
-      
-      <!-- Error State -->
-      <div id="errorState" class="hidden p-8 text-center text-red-400">
-        <i class="fas fa-exclamation-triangle text-4xl mb-2"></i>
-        <p id="errorMsg" class="text-sm"></p>
-        <button onclick="loadModels()" class="mt-2 px-3 py-1 bg-red-500 text-white rounded text-xs">Reintentar</button>
+      <!-- Left Panel -->
+      <div class="col-span-12 lg:col-span-4 flex flex-col gap-4 animate-enter delay-2">
+        
+        <!-- Prompt -->
+        <div class="glass-panel rounded-2xl p-5 flex flex-col min-h-[260px]">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs text-white/40 font-medium">Tu prompt</span>
+            <button onclick="clearPrompt()" class="text-xs text-white/25 hover:text-white/50 transition">✕</button>
+          </div>
+          <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm leading-relaxed resize-none focus:outline-none placeholder:text-white/20" placeholder="Pega tu prompt..."></textarea>
+          <div class="mt-3 flex justify-between text-[11px] text-white/30">
+            <span id="charCount">0 chars</span>
+            <span id="tokenCount">~0 tokens</span>
+          </div>
+        </div>
+
+        <!-- Output -->
+        <div class="glass-panel rounded-xl p-4">
+          <label for="outputTokens" class="block text-xs text-white/40 font-medium mb-2">Output tokens</label>
+          <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-2xl font-semibold text-center focus:outline-none">
+        </div>
+
+        <!-- Calculate -->
+        <button onclick="calcularCostos()" class="btn-premium py-3.5 rounded-xl text-sm font-medium">
+          ⚡ Calcular
+        </button>
+
+        <!-- Quick -->
+        <div class="flex gap-2">
+          <button onclick="useExample('code')" class="flex-1 btn-premium py-2.5 rounded-lg text-xs">📝 Código</button>
+          <button onclick="useExample('summary')" class="flex-1 btn-premium py-2.5 rounded-lg text-xs">📝 Resumen</button>
+        </div>
+
+        <!-- History -->
+        <div class="glass-panel rounded-xl p-4">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs text-white/40 font-medium">Recientes</span>
+            <button onclick="clearHistory()" class="text-[10px] text-white/25 hover:text-white/50">Limpiar</button>
+          </div>
+          <div id="historyList" class="space-y-2 max-h-[120px] overflow-y-auto">
+            <p class="text-[10px] text-white/20">Sin historial</p>
+          </div>
+        </div>
       </div>
 
-      <!-- Footer -->
-      <div class="px-3 py-1.5 border-t flex justify-between items-center text-[9px] text-tertiary" style="border-color: var(--border)">
-        <span id="count"></span>
-        <span>LiteLLM • <span id="lastUpdate"></span></span>
+      <!-- Right Panel -->
+      <div class="col-span-12 lg:col-span-8 animate-enter delay-3">
+        <div class="glass-panel rounded-2xl overflow-hidden" style="height: 540px;">
+          
+          <!-- Filters -->
+          <div class="p-4 border-b border-white/5 flex gap-2.5">
+            <div class="flex-1 relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/25 text-sm">🔍</span>
+              <input id="search" type="text" placeholder="Buscar..." class="w-full pl-9 pr-3 py-2.5 rounded-lg text-sm input-premium">
+            </div>
+            <select id="providerFilter" class="px-3 py-2.5 rounded-lg text-sm input-premium min-w-[120px]">
+              <option value="">Todos</option>
+            </select>
+            <button onclick="exportCSV()" id="exportBtn" class="hidden px-3 py-2.5 rounded-lg bg-white/10 text-xs">📥 CSV</button>
+            <button onclick="copyTopResult()" id="copyBtn" class="hidden px-3 py-2.5 rounded-lg bg-white/10 text-xs">📋 Copy</button>
+          </div>
+
+          <!-- Stats Bar -->
+          <div id="statsBar" class="hidden px-4 py-2 bg-green-900/20 border-b border-green-500/20 flex gap-6 text-[10px]">
+            <div><span class="text-white/40">Más barato:</span> <span id="cheapest" class="text-green-400 font-medium">-</span></div>
+            <div><span class="text-white/40">Más caro:</span> <span id="expensive" class="text-red-400 font-medium">-</span></div>
+            <div><span class="text-white/40">Media:</span> <span id="average" class="text-white/70">-</span></div>
+          </div>
+
+          <!-- Table Header -->
+          <div class="grid grid-cols-6 gap-2 px-4 py-2.5 bg-white/[0.02] text-[10px] font-medium text-white/35 uppercase tracking-wider">
+            <div class="cursor-pointer hover:text-white/60" onclick="sortBy('provider')">Proveedor</div>
+            <div class="col-span-2 cursor-pointer hover:text-white/60" onclick="sortBy('name')">Modelo</div>
+            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('input')">Input</div>
+            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('output')">Output</div>
+            <div class="text-right cursor-pointer hover:text-white/60" onclick="sortBy('total')">Coste</div>
+          </div>
+
+          <!-- Results -->
+          <div class="h-[calc(100%-160px)] overflow-y-auto">
+            <div id="emptyState" class="h-full flex flex-col items-center justify-center text-white/25">
+              <p class="text-sm">Introduce un prompt y calcula</p>
+              <p class="text-xs mt-1">Ctrl+Enter</p>
+            </div>
+            <table class="w-full text-sm">
+              <tbody id="tableBody" class="hidden"></tbody>
+            </table>
+          </div>
+
+          <!-- Footer -->
+          <div class="px-4 py-2.5 border-t border-white/5 flex justify-between items-center text-[10px] text-white/25">
+            <span id="count"></span>
+            <span>LiteLLM • <span id="lastUpdate">-</span></span>
+          </div>
+        </div>
       </div>
     </div>
   </main>
-  <footer class="flex-shrink-0 border-t p-3" style="border-color: var(--border); background: var(--surface);">
-    <div class="text-center text-[10px] text-tertiary">
-      <img src="logo.svg" alt="" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:3px"><span class="font-medium">TokenTax AI PRO</span> &copy; 2026 • <span id="visitorCount"><i class="fas fa-spinner fa-spin"></i></span> visits • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-6 animate-enter delay-4">
+    <div class="max-w-6xl mx-auto px-5 text-center">
+      <p class="text-xs text-white/25">TokenTax • +400 Modelos • Precios en vivo desde LiteLLM</p>
+      <p class="text-[10px] text-white/15 mt-1">© 2026 smouj • <a href="https://github.com/smouj/tokentax" class="text-white/30 hover:text-white/50">GitHub</a></p>
     </div>
   </footer>
 
-  <!-- Compare Modal -->
-  <div id="compareModal" class="modal-overlay">
-    <div class="modal">
-      <div class="modal-header">
-        <span class="font-semibold"><i class="fas fa-balance-scale"></i> <span data-lang="compare">Comparar Modelos</span></span>
-        <button onclick="closeCompare()" class="btn-ghost"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="compare-grid" id="compareContent"></div>
-      </div>
-      <div class="modal-footer">
-        <button onclick="closeCompare()" class="btn-secondary px-3 py-1 text-xs">Cerrar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Details Modal -->
-  <div id="detailsModal" class="modal-overlay">
-    <div class="modal">
-      <div class="modal-header">
-        <span class="font-semibold" id="detailsTitle">Detalles</span>
-        <button onclick="closeDetails()" class="btn-ghost"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-body" id="detailsContent"></div>
-    </div>
-  </div>
-
   <script>
-    // Translations
-    const translations = {
-      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles', templates: 'Plantillas', recent: 'Recientes', alerts: 'Alertas', batch: 'Lote', autoRefresh: 'Auto-refresh' },
-      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry', per1k: 'Prices per 1K', autoCalc: 'Auto-calculate', clearPrompt: 'clear', favorites: 'Favorites', compare: 'Compare', showContext: 'Show Context', context: 'Context', details: 'Details', templates: 'Templates', recent: 'Recent' }
-    };
-
-    // Currency rates (approximate)
-    const currencyRates = { USD: 1, EUR: 0.92, GBP: 0.79 };
-    const currencySymbols = { USD: '$', EUR: '€', GBP: '£' };
-
-    // Provider logos
-    const providerIcons = {
-      openai: '<svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.896zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>',
-      anthropic: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#d97757"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
-      google: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#4285f4"><path d="M12 11h8.533c.044.385.067.778.067 1.178 0 2.328-.777 4.49-2.133 6.222-1.356 1.733-3.333 2.933-5.733 3.333V15H8v-4H12V8.533c0-2.223 1.333-4.223 3.333-5.333.889-.494 1.944-.778 3.111-.889L20 2.4c-.133.044-.267.089-.4.133A8.533 8.533 0 0 0 12 2.667a8.527 8.527 0 0 0-6.978 3.7c-.222.489-.356 1.011-.4 1.556l1.378.422z"/></svg>',
-      mistral: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#eb4f38"><path d="M12 2L2 22h20L12 2zm0 4l6.5 14h-13L12 6z"/></svg>',
-      deepseek: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#2a2a2a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
-      meta: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#0668e1"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.64 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>',
-      xai: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#000"><circle cx="12" cy="12" r="10"/></svg>',
-      nvidia: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#76b900"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18l6.9 3.45L12 11.09 5.1 7.64 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>',
-      aws: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#ff9900"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.296.072-.583.16-.863.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.44.43.663 1.085.663 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.056-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.152.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.152.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.264-.168.312a.549.549 0 0 1-.32.08h-.687c-.151 0-.255-.025-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.231.12-.344.36-.344a.83.83 0 0 1 .2.024c.071.016.16.04.263.08.279.12.558.215.838.279.28.064.543.088.806.088.494 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167zM21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.27-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.385.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.685-2.994z"/></svg>',
-      azure: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#0078d4"><path d="M13.05 4.24L6.56 18.05a.5.5 0 0 0 .45.7h13.2a.5.5 0 0 0 .45-.7l-6.51-13.81h-.65z"/></svg>',
-      cohere: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#39594d"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>',
-      perplexity: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#000"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/></svg>',
-      vertex: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#4285f4"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18l6.9 3.45L12 11.09 5.1 7.64 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>',
-      default: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>'
-    };
-
-    function getProviderIcon(provider) {
-      const key = provider.toLowerCase();
-      return providerIcons[key] || providerIcons.default;
+    // Service Worker Registration (PWA)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
     }
 
-    let allModels = [], results = [], isDark = true, sortF = 'input', sortA = true;
-    let stats = { calcs: 0, saved: 0 };
-    let currentLimit = 50;
-    let currentLang = 'es';
-    let currentCurrency = 'USD';
-    let pricePer1K = false;
-    let autoCalc = false;
-    let showContext = false;
-    let favorites = [];
-    let selectedModels = [];
-    let selectedIndex = -1;
-    let templates = [];
-    let recentModels = [];
-    let currentTypeFilter = '';
-    let priceAlerts = [];
-    let batchPrompts = [];
-    let autoRefresh = false;
-    let refreshInterval = null;
+    // State
+    let allModels = [], currentResults = [], isDark = true, sortField = 'input', sortAsc = true;
+    let compareMode = false, selectedForCompare = [];
+    let stats = { calculations: 0, saved: 0 };
 
-    // Init
-    (function() {
+    // Load stats from localStorage
+    (function loadStats() {
       try {
-        const s = JSON.parse(localStorage.getItem('tt_stats') || '{"calcs":0,"saved":0}');
-        stats = s;
-        updateStats();
+        const saved = JSON.parse(localStorage.getItem('tokentax_stats') || '{"calculations":0,"saved":0}');
+        stats = saved;
+        updateStatsDisplay();
+        loadHistory();
       } catch(e) {}
+    })();
 
-      // Load favorites
+    function updateStatsDisplay() {
+      document.getElementById('totalCalcs').textContent = stats.calculations;
+      document.getElementById('totalSaved').textContent = '$' + stats.saved.toFixed(2);
+    }
+
+    function saveStats() {
+      localStorage.setItem('tokentax_stats', JSON.stringify(stats));
+    }
+
+    // History
+    function loadHistory() {
       try {
-        favorites = JSON.parse(localStorage.getItem('tt_favorites') || '[]');
-        updateFavoritesUI();
-      } catch(e) {}
-
-      // Load templates
-      try {
-        templates = JSON.parse(localStorage.getItem('tt_templates') || '[]');
-        updateTemplatesUI();
-      } catch(e) {}
-
-      // Load recent
-      try {
-        recentModels = JSON.parse(localStorage.getItem('tt_recent') || '[]');
-        updateRecentUI();
-      } catch(e) {}
-
-      // Load alerts
-      loadAlerts();
-
-      // Load batch
-      loadBatch();
-
-      // Load settings
-      // Auto-detect system theme preference
-      if (!localStorage.getItem('theme')) {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-          document.body.classList.remove('theme-dark');
-          document.body.classList.add('theme-light');
-          document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
-          isDark = false;
+        const history = JSON.parse(localStorage.getItem('tokentax_history') || '[]');
+        const container = document.getElementById('historyList');
+        if (history.length === 0) {
+          container.innerHTML = '<p class="text-[10px] text-white/20">Sin historial</p>';
+          return;
         }
-      } else if (localStorage.getItem('theme') === 'light') {
-        document.body.classList.remove('theme-dark');
-        document.body.classList.add('theme-light');
-        document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
-        isDark = false;
-      }
-      if (localStorage.getItem('lang')) {
-        document.getElementById('langSelect').value = localStorage.getItem('lang');
-        changeLanguage(localStorage.getItem('lang'));
-      }
-      if (localStorage.getItem('currency')) {
-        document.getElementById('currencySelect').value = localStorage.getItem('currency');
-        currentCurrency = localStorage.getItem('currency');
-      }
-      if (localStorage.getItem('pricePer1K') === 'true') {
-        document.getElementById('pricePer1K').checked = true;
-        pricePer1K = true;
-      }
-      if (localStorage.getItem('autoCalc') === 'true') {
-        document.getElementById('autoCalc').checked = true;
-        autoCalc = true;
-      }
-      if (localStorage.getItem('showContext') === 'true') {
-        document.getElementById('showContext').checked = true;
-        showContext = true;
-      }
-      if (localStorage.getItem('autoRefresh') === 'true') {
-        document.getElementById('autoRefresh').checked = true;
-        autoRefresh = true;
-        refreshInterval = setInterval(() => {
-          loadModels();
-        }, 300000);
+        container.innerHTML = history.slice(0, 5).map((h, i) => `
+          <div class="flex justify-between items-center text-[10px] p-1.5 rounded bg-white/5 cursor-pointer hover:bg-white/10" onclick="loadFromHistory(${i})">
+            <span class="text-white/50 truncate max-w-[120px]">${h.prompt.substring(0, 20)}...</span>
+            <span class="text-green-400 font-medium">$${h.cost.toFixed(4)}</span>
+          </div>
+        `).join('');
+      } catch(e) {}
+    }
+
+    function addToHistory(prompt, cost) {
+      try {
+        let history = JSON.parse(localStorage.getItem('tokentax_history') || '[]');
+        history.unshift({ prompt: prompt.substring(0, 100), cost, time: Date.now() });
+        history = history.slice(0, 10);
+        localStorage.setItem('tokentax_history', JSON.stringify(history));
+        loadHistory();
+      } catch(e) {}
+    }
+
+    function loadFromHistory(index) {
+      try {
+        const history = JSON.parse(localStorage.getItem('tokentax_history') || '[]');
+        if (history[index]) {
+          document.getElementById('prompt').value = history[index].prompt;
+          updateCount();
+          showToast('Prompt cargado');
+        }
+      } catch(e) {}
+    }
+
+    function clearHistory() {
+      localStorage.removeItem('tokentax_history');
+      loadHistory();
+      showToast('Historial limpiado');
+    }
+
+    // Particles
+    (function() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.animation = `particleFloat ${4 + Math.random() * 4}s ease-in-out infinite`;
+        p.style.animationDelay = Math.random() * 4 + 's';
+        container.appendChild(p);
       }
     })();
 
-    function changeLanguage(lang) {
-      currentLang = lang;
-      localStorage.setItem('lang', lang);
-      const t = translations[lang] || translations.es;
-      document.querySelectorAll('[data-lang]').forEach(el => {
-        const key = el.dataset.lang;
-        if (t[key]) el.textContent = t[key];
-      });
-    }
-
-    function updateQuickProviders() {
-      const container = document.getElementById('quickProviders');
-      if (!allModels.length) return;
-
-      const provs = [...new Set(allModels.map(m => m.provider))].slice(0, 8);
-      container.innerHTML = provs.map(p =>
-        `<button onclick="filterProvider('${p}')" class="badge cursor-pointer" style="background:var(--surface-2);color:var(--text-2)">${p.substring(0,4)}</button>`
-      ).join('');
-    }
-
-
-    function renderProviderPanel() {
-      if (!allModels.length) return;
-      const counts = {};
-      allModels.forEach(m => { counts[m.provider] = (counts[m.provider] || 0) + 1; });
-      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
-      const total = allModels.length;
-      const el = document.getElementById('providerTotal');
-      const list = document.getElementById('providerStatsList');
-      if (!el || !list) return;
-      el.textContent = Object.keys(counts).length + ' proveedores';
-      list.innerHTML = sorted.map(([p, c]) => {
-        const icon = getProviderIcon(p);
-        const pct = Math.round(c / total * 100);
-        return '<div class="provider-row" onclick="filterProvider(\'' + p + '\')" title="' + p + ' (' + c + ')">
-          <span style="width:14px;height:14px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;">' + icon + '</span>
-          <span class="provider-row-name">' + p + '</span>
-          <span class="provider-row-count">${c}</span>
-          <div class="provider-bar-wrap"><div class="provider-bar-fill" style="width:${pct}%"></div></div>
-        </div>`;
-      }).join('');
-    }
-
-    function filterProvider(p) {
-      document.getElementById('providerFilter').value = p;
-      calcularCostos();
-    }
-
-    function showTop10() {
-      document.getElementById('limitSelect').value = '10';
-      calcularCostos();
-      toast('Showing top 10 cheapest models', 'info');
-    }
-
-    function showAll() {
-      document.getElementById('limitSelect').value = '100';
-      calcularCostos();
-      toast('Showing all models', 'info');
-    }
-
-    function showHelp() {
-      document.getElementById('detailsTitle').innerHTML = '<i class="fas fa-keyboard"></i> Keyboard Shortcuts';
-      document.getElementById('detailsContent').innerHTML = `
-        <div class="space-y-2 text-sm">
-          <div class="flex justify-between"><span>Calculate</span><kbd class="kbd">Ctrl + Enter</kbd></div>
-          <div class="flex justify-between"><span>Clear Prompt</span><kbd class="kbd">Escape</kbd></div>
-          <div class="flex justify-between"><span>Navigate Up</span><kbd class="kbd">Arrow Up</kbd></div>
-          <div class="flex justify-between"><span>Navigate Down</span><kbd class="kbd">Arrow Down</kbd></div>
-          <div class="flex justify-between"><span>Select Multiple</span><kbd class="kbd">Ctrl + Click</kbd></div>
-          <div class="flex justify-between"><span>View Details</span><kbd class="kbd">Double Click</kbd></div>
-          <div class="flex justify-between"><span>Fullscreen</span><kbd class="kbd">F11</kbd></div>
-        </div>
-      `;
-      document.getElementById('detailsModal').classList.add('active');
-    }
-
-    function changeCurrency(curr) {
-      currentCurrency = curr;
-      localStorage.setItem('currency', curr);
-      renderResults();
-    }
-
-    function togglePriceUnit() {
-      pricePer1K = document.getElementById('pricePer1K').checked;
-      localStorage.setItem('pricePer1K', pricePer1K);
-      renderResults();
-    }
-
-    function toggleAutoCalc() {
-      autoCalc = document.getElementById('autoCalc').checked;
-      localStorage.setItem('autoCalc', autoCalc);
-    }
-
-    function toggleContext() {
-      showContext = document.getElementById('showContext').checked;
-      localStorage.setItem('showContext', showContext);
-      renderResults();
-    }
-
-    function toggleAutoRefresh() {
-      autoRefresh = document.getElementById('autoRefresh').checked;
-      localStorage.setItem('autoRefresh', autoRefresh);
-      if (autoRefresh) {
-        refreshInterval = setInterval(() => {
-          loadModels();
-          toast('Datos actualizados', 'info');
-        }, 300000); // 5 minutes
-        toast('Auto-refresh activado (5min)');
-      } else {
-        if (refreshInterval) clearInterval(refreshInterval);
-        toast('Auto-refresh desactivado');
-      }
-    }
-
-    function exportPDF() {
-      if (!results.length) return;
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-
-      let html = `<html><head><title>TokenTax Results</title>
-        <style>body{font-family:system-ui;padding:20px}
-        table{width:100%;border-collapse:collapse}
-        th,td{border:1px solid #ddd;padding:8px;text-align:left}
-        th{background:#f5f5f5}
-        .green{color:green}</style></head><body>
-        <h1>TokenTax AI PRO - Results</h1>
-        <p>Generated: ${new Date().toLocaleString()}</p>
-        <table><tr><th>Provider</th><th>Model</th><th>Input</th><th>Output</th><th>Total</th></tr>`;
-
-      results.slice(0, currentLimit).forEach(m => {
-        html += `<tr>
-          <td>${m.provider}</td>
-          <td>${m.fullName}</td>
-          <td>${symbol}${(m.input * rate).toFixed(4)}</td>
-          <td>${symbol}${(m.output * rate).toFixed(4)}</td>
-          <td class="green">${symbol}${(m.total * rate).toFixed(4)}</td>
-        </tr>`;
-      });
-
-      html += '</table></body></html>';
-
-      const win = window.open('', '_blank');
-      win.document.write(html);
-      win.document.close();
-      win.print();
-      toast('PDF generado');
-    }
-
-    // Share functionality
-    function shareResults() {
-      if (!results.length) return;
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-      const top3 = results.slice(0, 3).map((m, i) =>
-        `${i+1}. ${m.provider} - ${m.fullName}: ${symbol}$${m.total.toFixed(4)}`
-      ).join('\n');
-
-      const text = `TokenTax AI PRO\nTop 3 cheapest:\n${top3}\n\nGenerated: ${new Date().toLocaleDateString()}`;
-
-      if (navigator.share) {
-        navigator.share({ title: 'TokenTax Results', text: text });
-      } else {
-        navigator.clipboard.writeText(text);
-        toast('Copiado al portapapeles');
-      }
-    }
-
-    // API endpoint info
-    function showAPIInfo() {
-      alert('TokenTax API\n\nComing soon!\n\nCurrently data from LiteLLM.');
-    }
-
-    // Fullscreen
-    function toggleFullscreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-      } else {
-        document.exitFullscreen();
-      }
-    }
-
-    // Savings calculator
-    function calculateSavings() {
-      if (!results.length) return { savings: 0, percentage: 0 };
-      const cheapest = results[0];
-      const expensive = results[results.length - 1];
-      const savings = expensive.total - cheapest.total;
-      const percentage = ((savings / expensive.total) * 100).toFixed(1);
-      return { savings, percentage, cheapest, expensive };
-    }
-
-    function showSavingsInfo() {
-      const { savings, percentage, cheapest, expensive } = calculateSavings();
-      if (!results.length) return;
-      document.getElementById('detailsTitle').innerHTML = '<i class="fas fa-piggy-bank"></i> Savings Calculator';
-      document.getElementById('detailsContent').innerHTML = `
-        <div class="space-y-3">
-          <div class="panel p-3 bg-green-dim">
-            <div class="text-xs text-green">Potential Savings</div>
-            <div class="text-2xl font-bold text-green">$${savings.toFixed(4)}</div>
-            <div class="text-xs text-green">${percentage}% cheaper</div>
-          </div>
-          <div class="grid grid-cols-2 gap-2">
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.total.toFixed(4)}</div></div>
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.total.toFixed(4)}</div></div>
-          </div>
-        </div>`;
-      document.getElementById('detailsModal').classList.add('active');
-    }
-
-    // Provider stats
-    function showProviderStats() {
-      if (!results.length) return;
-      const stats = {};
-      results.forEach(m => {
-        if (!stats[m.provider]) stats[m.provider] = { count: 0, avgCost: 0 };
-        stats[m.provider].count++;
-        stats[m.provider].avgCost += m.total;
-      });
-
-      let html = '<div class="space-y-2">';
-      Object.entries(stats).sort((a,b) => b[1].count - a[1].count).forEach(([p, s]) => {
-        html += `<div class="flex justify-between text-xs">
-          <span>${p}</span>
-          <span class="text-tertiary">${s.count} models | avg $${(s.avgCost/s.count).toFixed(4)}</span>
-        </div>`;
-      });
-      html += '</div>';
-
-      document.getElementById('detailsTitle').textContent = 'Provider Stats';
-      document.getElementById('detailsContent').innerHTML = html;
-      document.getElementById('detailsModal').classList.add('active');
-    }
-
-    // Quick cost estimate
-    function quickEstimate() {
-      const prompt = document.getElementById('prompt').value;
-      const out = parseFloat(document.getElementById('outputTokens').value) || 500;
-      const inT = estTokens(prompt);
-
-      if (!allModels.length || !prompt) return;
-
-      const cheapest = allModels[0];
-      const cost = (inT * cheapest.input + out * cheapest.output) / 1e6;
-
-      toast(`Estimacion rapida: $${cost.toFixed(4)} con ${cheapest.provider}`, 'info');
-    }
-
-    // Dark mode optimized for OLED
-    function setOLEDMode(enable) {
-      if (enable) {
-        document.documentElement.style.setProperty('--bg', '#000000');
-        document.documentElement.style.setProperty('--surface', '#000000');
-        document.documentElement.style.setProperty('--surface-2', '#0a0a0a');
-        toast('OLED Mode enabled');
-      } else {
-        document.documentElement.style.setProperty('--bg', '');
-        document.documentElement.style.setProperty('--surface', '');
-        document.documentElement.style.setProperty('--surface-2', '');
-        toast('OLED Mode disabled');
-      }
-    }
-
-    // Reset all settings
-    function resetAllSettings() {
-      if (!confirm('Reset all settings to default?')) return;
-      localStorage.clear();
-      location.reload();
-    }
-
-    // High contrast mode
-    function toggleHighContrast() {
-      const isHigh = document.body.classList.toggle('high-contrast');
-      if (isHigh) {
-        document.documentElement.style.setProperty('--text', '#ffffff');
-        document.documentElement.style.setProperty('--bg', '#000000');
-        document.documentElement.style.setProperty('--border', '#ffffff');
-        toast('High Contrast enabled');
-      } else {
-        document.documentElement.style.setProperty('--text', '');
-        document.documentElement.style.setProperty('--bg', '');
-        document.documentElement.style.setProperty('--border', '');
-        toast('High Contrast disabled');
-      }
-    }
-
-    // Keyboard accessible dropdowns
-    document.addEventListener('keydown', e => {
-      // Number keys 1-9 for quick actions
-      if (e.altKey && e.key >= '1' && e.key <= '9') {
-        e.preventDefault();
-        const idx = parseInt(e.key) - 1;
-        const btns = document.querySelectorAll('.quick-btn');
-        if (btns[idx]) btns[idx].click();
-      }
-    });
-
-    // Toast notification helper
-    function showToast(message, type = 'info', duration = 3000) {
-      const colors = {
-        info: 'var(--surface)',
-        success: 'var(--green-dim)',
-        error: 'var(--red-dim)',
-        warning: '#fef3c7'
-      };
+    // Toast
+    function showToast(msg, type = 'success') {
+      const colors = { success: 'bg-white/10 border-white/15', error: 'bg-red-500/20 border-red-500/30', info: 'bg-blue-500/20 border-blue-500/30' };
       const t = document.createElement('div');
-      t.className = 'toast-in mb-2 px-4 py-2 panel text-sm';
-      t.style.background = colors[type] || colors.info;
-      t.innerHTML = `<span class="font-medium">${message}</span>`;
-      document.getElementById('toast').appendChild(t);
-      setTimeout(() => t.remove(), duration);
+      t.className = `toast-in px-4 py-2.5 rounded-lg border ${colors[type]} text-xs backdrop-blur-xl`;
+      t.textContent = msg;
+      document.getElementById('toastContainer').appendChild(t);
+      setTimeout(() => t.remove(), 2800);
     }
 
-    // Save/load presets
-    function savePreset() {
-      const name = prompt('Nombre del preset:');
-      if (!name) return;
-
-      const preset = {
-        name,
-        outputTokens: document.getElementById('outputTokens').value,
-        limit: currentLimit,
-        currency: currentCurrency,
-        pricePer1K,
-        autoCalc
-      };
-
-      const presets = JSON.parse(localStorage.getItem('tt_presets') || '[]');
-      presets.push(preset);
-      localStorage.setItem('tt_presets', JSON.stringify(presets));
-      toast('Preset guardado');
-    }
-
-    function loadPresets() {
-      const presets = JSON.parse(localStorage.getItem('tt_presets') || '[]');
-      if (!presets.length) {
-        toast('No hay presets', 'error');
-        return;
-      }
-
-      let msg = 'Presets disponibles:\n';
-      presets.forEach((p, i) => {
-        msg += `${i+1}. ${p.name}\n`;
-      });
-      msg += '\nNumero:';
-
-      const idx = prompt(msg);
-      if (!idx || idx < 1 || idx > presets.length) return;
-
-      const p = presets[idx-1];
-      document.getElementById('outputTokens').value = p.outputTokens;
-      document.getElementById('limitInput').value = p.limit;
-      document.getElementById('currencySelect').value = p.currency;
-      changeCurrency(p.currency);
-      document.getElementById('pricePer1K').checked = p.pricePer1K;
-      pricePer1K = p.pricePer1K;
-      document.getElementById('autoCalc').checked = p.autoCalc;
-      autoCalc = p.autoCalc;
-
-      toast('Preset cargado');
-    }
-
-    // Recommended model (simple AI)
-    function getRecommended() {
-      if (!results.length) return;
-      const prompt = document.getElementById('prompt').value;
-      const out = parseFloat(document.getElementById('outputTokens').value) || 500;
-      const inT = estTokens(prompt);
-
-      // Simple recommendation based on use case
-      let recommended = results[0];
-
-      if (prompt.toLowerCase().includes('code') || prompt.toLowerCase().includes('programming')) {
-        recommended = results.find(m => m.provider.toLowerCase().includes('anthropic') || m.provider.toLowerCase().includes('openai')) || results[0];
-      } else if (prompt.length > 1000) {
-        recommended = results.sort((a, b) => a.input - b.input)[0];
-      } else if (out > 2000) {
-        recommended = results.sort((a, b) => a.output - b.output)[0];
-      }
-
-      toast(`Recommended: ${recommended.provider} - ${recommended.fullName}`, 'success');
-    }
-
-    function updateStats() {
-      document.getElementById('totalCalcs').textContent = stats.calcs;
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-      document.getElementById('totalSaved').textContent = symbol + (stats.saved * rate).toFixed(2);
-    }
-    function saveStats() { localStorage.setItem('tt_stats', JSON.stringify(stats)); }
-
-    function toggleFavorite(provider, modelName, e) {
-      e.stopPropagation();
-      const id = `${provider}/${modelName}`;
-      const idx = favorites.indexOf(id);
-      if (idx > -1) {
-        favorites.splice(idx, 1);
-      } else {
-        favorites.push(id);
-      }
-      localStorage.setItem('tt_favorites', JSON.stringify(favorites));
-      updateFavoritesUI();
-      renderResults();
-    }
-
-    function updateFavoritesUI() {
-      document.getElementById('favCount').textContent = favorites.length;
-      const list = document.getElementById('favoritesList');
-      list.innerHTML = favorites.map(f => {
-        const [p, m] = f.split('/');
-        return `<span class="badge badge-yellow cursor-pointer" onclick="removeFavorite('${f}')">${p.substring(0,3)}</span>`;
-      }).join('');
-    }
-
-    function removeFavorite(id) {
-      favorites = favorites.filter(f => f !== id);
-      localStorage.setItem('tt_favorites', JSON.stringify(favorites));
-      updateFavoritesUI();
-      renderResults();
-    }
-
-    function saveTemplate() {
-      const prompt = document.getElementById('prompt').value;
-      if (!prompt.trim()) { toast('Escribe algo primero', 'error'); return; }
-      const name = prompt.substring(0, 20) + (prompt.length > 20 ? '...' : '');
-      templates.push({ name, prompt });
-      localStorage.setItem('tt_templates', JSON.stringify(templates));
-      updateTemplatesUI();
-      toast('Plantilla guardada');
-    }
-
-    function updateTemplatesUI() {
-      const list = document.getElementById('templatesList');
-      list.innerHTML = templates.slice(0, 5).map((t, i) =>
-        `<span class="badge badge-blue cursor-pointer" onclick="loadTemplate(${i})">${t.name.substring(0,8)}</span>`
-      ).join('');
-    }
-
-    function loadTemplate(i) {
-      document.getElementById('prompt').value = templates[i].prompt;
-      updateCount();
-      if (autoCalc) calcularCostos();
-      toast('Plantilla cargada');
-    }
-
-    function addToRecent(provider, modelName) {
-      const id = `${provider}/${modelName}`;
-      recentModels = recentModels.filter(r => r !== id);
-      recentModels.unshift(id);
-      recentModels = recentModels.slice(0, 10);
-      localStorage.setItem('tt_recent', JSON.stringify(recentModels));
-      updateRecentUI();
-    }
-
-    // Search history
-    function addToSearchHistory(query) {
-      if (!query || query.length < 2) return;
-      let history = JSON.parse(localStorage.getItem('tt_search_history') || '[]');
-      history = history.filter(h => h !== query);
-      history.unshift(query);
-      history = history.slice(0, 10);
-      localStorage.setItem('tt_search_history', JSON.stringify(history));
-    }
-
-    // Copy shareable link
-    function copyShareLink() {
-      const url = new URL(window.location.href);
-      const prompt = document.getElementById('prompt').value;
-      if (prompt) url.searchParams.set('q', prompt);
-      const output = document.getElementById('outputTokens').value;
-      if (output) url.searchParams.set('out', output);
-      
-      navigator.clipboard.writeText(url.toString()).then(() => {
-        toast('Link copied!', 'success');
-      }).catch(() => toast('Failed to copy', 'error'));
-    }
-
-    // Load from URL params
-    function loadFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('q')) document.getElementById('prompt').value = params.get('q');
-      if (params.has('out')) document.getElementById('outputTokens').value = params.get('out');
-    }
-
-    function updateRecentUI() {
-      document.getElementById('recentCount').textContent = recentModels.length;
-      const list = document.getElementById('recentList');
-      list.innerHTML = recentModels.slice(0, 5).map(r => {
-        const [p, m] = r.split('/');
-        return `<span class="badge cursor-pointer" style="background:var(--surface-2);color:var(--text-2)" onclick="searchModel('${p}')">${p.substring(0,3)}</span>`;
-      }).join('');
-    }
-
-    function searchModel(provider) {
-      document.getElementById('providerFilter').value = provider;
-      calcularCostos();
-    }
-
-    function applyTypeFilter() {
-      currentTypeFilter = document.getElementById('typeFilter').value;
-      calcularCostos();
-    }
-
-    // Price Alerts
-    function loadAlerts() {
-      try {
-        priceAlerts = JSON.parse(localStorage.getItem('tt_alerts') || '[]');
-      } catch(e) {}
-      updateAlertsUI();
-    }
-
-    function addPriceAlert() {
-      const maxPrice = prompt('¿Precio máximo ($USD)?');
-      if (!maxPrice || isNaN(maxPrice)) return;
-      priceAlerts.push({ maxPrice: parseFloat(maxPrice), active: true });
-      localStorage.setItem('tt_alerts', JSON.stringify(priceAlerts));
-      updateAlertsUI();
-      toast('Alerta creada');
-    }
-
-    function removeAlert(i) {
-      priceAlerts.splice(i, 1);
-      localStorage.setItem('tt_alerts', JSON.stringify(priceAlerts));
-      updateAlertsUI();
-    }
-
-    function updateAlertsUI() {
-      const list = document.getElementById('alertsList');
-      if (!priceAlerts.length) {
-        list.innerHTML = '<span class="text-[9px] text-tertiary">Sin alertas</span>';
-        return;
-      }
-      list.innerHTML = priceAlerts.map((a, i) =>
-        `<div class="flex justify-between items-center text-[9px]">
-          <span class="text-tertiary">< $${a.maxPrice}</span>
-          <button onclick="removeAlert(${i})" class="text-red"><i class="fas fa-times"></i></button>
-        </div>`
-      ).join('');
-    }
-
-    function checkAlerts() {
-      if (!results.length || !priceAlerts.length) return;
-      priceAlerts.forEach((alert, i) => {
-        if (!alert.active) return;
-        const cheapest = results[0].total;
-        if (cheapest <= alert.maxPrice) {
-          toast(`<i class="fas fa-bell"></i> ¡Alerta! ${results[0].provider} está a $${cheapest.toFixed(4)}`, 'success');
-        }
-      });
-    }
-
-    // Batch Calculate
-    function loadBatch() {
-      try {
-        batchPrompts = JSON.parse(localStorage.getItem('tt_batch') || '[]');
-      } catch(e) {}
-      updateBatchUI();
-    }
-
-    function addBatchPrompt() {
-      const prompt = document.getElementById('prompt').value;
-      if (!prompt.trim()) { toast('Escribe un prompt primero', 'error'); return; }
-      const out = parseFloat(document.getElementById('outputTokens').value) || 500;
-      batchPrompts.push({ prompt, output: out, name: prompt.substring(0, 15) + '...' });
-      localStorage.setItem('tt_batch', JSON.stringify(batchPrompts));
-      updateBatchUI();
-      toast('Prompt añadido al lote');
-    }
-
-    function runBatch() {
-      if (!batchPrompts.length) return;
-      const resultsDiv = document.createElement('div');
-      resultsDiv.className = 'panel p-2 mt-2';
-      resultsDiv.innerHTML = '<div class="text-[10px] font-medium mb-1"><i class="fas fa-box"></i> Resultados:</div>';
-
-      batchPrompts.forEach(bp => {
-        const inT = estTokens(bp.prompt);
-        const cheapest = allModels
-          .filter(m => typeof m.input === 'number')
-          .map(m => ({ ...m, total: (inT * m.input + bp.output * m.output) / 1e6 }))
-          .sort((a, b) => a.total - b.total)[0];
-
-        if (cheapest) {
-          resultsDiv.innerHTML += `<div class="text-[9px] text-secondary mb-1">
-            <span class="text-primary">${bp.name}:</span>
-            ${cheapest.provider} - $${cheapest.total.toFixed(4)}
-          </div>`;
-        }
-      });
-
-      document.getElementById('toast').appendChild(resultsDiv);
-      setTimeout(() => resultsDiv.remove(), 10000);
-      toast('Cálculo en lote completado');
-    }
-
-    function clearBatch() {
-      batchPrompts = [];
-      localStorage.setItem('tt_batch', JSON.stringify(batchPrompts));
-      updateBatchUI();
-    }
-
-    function updateBatchUI() {
-      const list = document.getElementById('batchList');
-      if (!batchPrompts.length) {
-        list.innerHTML = '<span class="text-[9px] text-tertiary">Sin prompts</span>';
-        return;
-      }
-      list.innerHTML = batchPrompts.map((bp, i) =>
-        `<div class="flex justify-between items-center text-[9px]">
-          <span class="text-tertiary truncate" style="max-width:80px">${bp.name}</span>
-          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red"><i class="fas fa-times"></i></button>
-        </div>`
-      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]"><i class="fas fa-play"></i> Ejecutar</button>`;
-    }
-
-    function saveBatch() {
-      localStorage.setItem('tt_batch', JSON.stringify(batchPrompts));
-    }
-
-    function toast(msg, type = 'info') {
-      const colors = { info: 'var(--surface)', success: 'var(--green-dim)', error: 'var(--red-dim)' };
-      const icons = { info: '<i class="fas fa-info-circle"></i>', success: '<i class="fas fa-check-circle"></i>', error: '<i class="fas fa-exclamation-circle"></i>' };
-      const t = document.createElement('div');
-      t.className = 'toast-in mb-2 px-3 py-2 panel text-sm flex items-center gap-2';
-      t.style.background = colors[type] || colors.info;
-      t.innerHTML = '<span>' + (icons[type] || icons.info) + ' ' + msg + '</span>';
-      document.getElementById('toast').appendChild(t);
-      setTimeout(() => { t.classList.add('toast-out'); setTimeout(()=>t.remove(),250); }, 2500);
-    }
-
-    function updateSortIcons() {
-      document.querySelectorAll('.sort-icon').forEach(el => {
-        const field = el.dataset.sort;
-        el.innerHTML = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
-        el.classList.toggle('text-green', field === sortF);
-      });
-    }
-
+    // Theme
     function toggleTheme() {
       const btn = document.getElementById('themeBtn');
       if (isDark) {
-        document.body.classList.remove('theme-dark');
-        document.body.classList.add('theme-light');
-        btn.innerHTML = '<i class="fas fa-sun"></i>';
+        document.documentElement.classList.add('light');
+        btn.textContent = '☀️';
         localStorage.setItem('theme', 'light');
       } else {
-        document.body.classList.remove('theme-light');
-        document.body.classList.add('theme-dark');
-        btn.innerHTML = '<i class="fas fa-moon"></i>';
+        document.documentElement.classList.remove('light');
+        btn.textContent = '🌙';
         localStorage.setItem('theme', 'dark');
       }
       isDark = !isDark;
     }
 
+    // Compare mode
+    function toggleCompare() {
+      compareMode = !compareMode;
+      const btn = document.getElementById('compareBtn');
+      btn.classList.toggle('bg-blue-500/20', compareMode);
+      btn.classList.toggle('border-blue-500/30', compareMode);
+      selectedForCompare = [];
+      showToast(compareMode ? 'Modo comparación activado' : 'Modo comparación desactivado');
+    }
+
+    // Clear
     function clearPrompt() {
       document.getElementById('prompt').value = '';
       updateCount();
+      showToast('Limpiado');
     }
 
-    function clearAll() {
-      clearPrompt();
-      clearFilters();
-      results = [];
-      document.getElementById('tableBody').classList.add('hidden');
-      document.getElementById('emptyState').classList.remove('hidden');
-      document.getElementById('statsBar').classList.add('hidden');
-    }
-
-    function clearFilters() {
-      document.getElementById('search').value = '';
-      document.getElementById('providerFilter').value = '';
-      document.getElementById('limitInput').value = '50';
-      currentLimit = 50;
-      selectedModels = [];
-      selectedIndex = -1;
-      document.getElementById('clearBtn').classList.add('hidden');
-      calcularCostos();
-    }
-
-    function applyLimit() {
-      currentLimit = parseInt(document.getElementById('limitInput').value) || 50;
-      renderResults();
-    }
-
+    // Examples
     function useExample(type) {
       const ex = {
-        code: '// React login form\nfunction LoginForm() {\n  const [email, setEmail] = useState("");\n  return <input value={email} onChange={e => setEmail(e.target.value)} />;\n}',
-        summary: 'Write a comprehensive summary about how AI is transforming software development.',
-        email: 'Write a professional email to a client about project timeline update.',
-        translate: 'Translate to Spanish, French, and German: "Our AI platform helps businesses automate."',
-        blog: 'Write a blog post about AI in software development, SEO optimized, 1500 words.',
-        seo: 'Write SEO meta title and description for "Best AI Coding Assistants 2026".',
-        sql: 'Write SQL to find top 10 customers by total orders in 30 days.',
-        test: 'Write Jest unit tests for email validation function.'
+        code: `// React login form
+function Login() {
+  const [email, setEmail] = useState("");
+  return <input value={email} onChange={e => setEmail(e.target.value)} />;
+}`,
+        summary: `Write a comprehensive summary about how artificial intelligence is transforming software development. Include code generation, testing, and bug detection examples.`
       };
       document.getElementById('prompt').value = ex[type];
       updateCount();
-      if (autoCalc) calcularCostos();
-      toast('Ejemplo cargado');
+      showToast('Ejemplo cargado');
     }
 
-    function sortBy(f) {
-      if (sortF === f) sortA = !sortA;
-      else { sortF = f; sortA = true; }
-      updateSortIcons();
-      renderResults();
-    }
-
-    function selectModel(index, e) {
-      if (e && (e.ctrlKey || e.metaKey)) {
-        // Multi-select
-        const idx = selectedModels.indexOf(index);
-        if (idx > -1) {
-          selectedModels.splice(idx, 1);
-        } else if (selectedModels.length < 2) {
-          selectedModels.push(index);
-        }
-      } else {
-        selectedModels = [index];
-      }
-      selectedIndex = index;
-      renderResults();
-      updateCompareBtn();
-    }
-
-    function updateCompareBtn() {
-      document.getElementById('compareBtn').classList.toggle('hidden', selectedModels.length < 2);
-    }
-
-    function openCompare() {
-      if (selectedModels.length < 2) return;
-      const m1 = results[selectedModels[0]];
-      const m2 = results[selectedModels[1]];
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-
-      document.getElementById('compareContent').innerHTML = `
-        <div class="compare-item">
-          <div class="text-xs text-tertiary mb-2">${m1.provider} - ${m1.fullName}</div>
-          <div class="compare-label">Input</div>
-          <div class="compare-value">${symbol}${(m1.input * rate).toFixed(4)}</div>
-          <div class="compare-label mt-2">Output</div>
-          <div class="compare-value">${symbol}${(m1.output * rate).toFixed(4)}</div>
-          <div class="compare-label mt-2">Total</div>
-          <div class="compare-value text-green">${symbol}${(m1.total * rate).toFixed(4)}</div>
-          ${m1.context ? `<div class="compare-label mt-2">Context</div><div class="compare-value">${(m1.context / 1024).toFixed(0)}K</div>` : ''}
-        </div>
-        <div class="compare-item">
-          <div class="text-xs text-tertiary mb-2">${m2.provider} - ${m2.fullName}</div>
-          <div class="compare-label">Input</div>
-          <div class="compare-value">${symbol}${(m2.input * rate).toFixed(4)}</div>
-          <div class="compare-label mt-2">Output</div>
-          <div class="compare-value">${symbol}${(m2.output * rate).toFixed(4)}</div>
-          <div class="compare-label mt-2">Total</div>
-          <div class="compare-value text-green">${symbol}${(m2.total * rate).toFixed(4)}</div>
-          ${m2.context ? `<div class="compare-label mt-2">Context</div><div class="compare-value">${(m2.context / 1024).toFixed(0)}K</div>` : ''}
-        </div>
-      `;
-      document.getElementById('compareModal').classList.add('active');
-    }
-
-    function closeCompare() {
-      document.getElementById('compareModal').classList.remove('active');
-    }
-
-    function showDetails(index) {
-      const m = results[index];
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-
-      document.getElementById('detailsTitle').textContent = m.fullName;
-      document.getElementById('detailsContent').innerHTML = `
-        <div class="space-y-3">
-          <div><span class="text-tertiary">Proveedor:</span> <span class="font-medium">${m.provider}</span></div>
-          <div><span class="text-tertiary">Modelo:</span> <span class="font-medium">${m.fullName}</span></div>
-          <div><span class="text-tertiary">Input:</span> <span class="font-medium">${symbol}${(m.input * rate).toFixed(4)}</span></div>
-          <div><span class="text-tertiary">Output:</span> <span class="font-medium">${symbol}${(m.output * rate).toFixed(4)}</span></div>
-          <div><span class="text-tertiary">Coste Total:</span> <span class="font-medium text-green">${symbol}${(m.total * rate).toFixed(4)}</span></div>
-          ${m.context ? `<div><span class="text-tertiary">Context Window:</span> <span class="font-medium">${(m.context / 1024).toFixed(0)}K tokens</span></div>` : ''}
-          <div class="pt-2">
-            <button onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)" class="btn-secondary px-3 py-1 text-xs">
-              ${favorites.includes(`${m.provider}/${m.fullName}`) ? '<i class="fas fa-star"></i> Quitar Favorito' : '☆ Añadir Favorito'}
-            </button>
-          </div>
-        </div>
-      `;
-      document.getElementById('detailsModal').classList.add('active');
-    }
-
-    function closeDetails() {
-      document.getElementById('detailsModal').classList.remove('active');
-    }
-
-    function copyAll() {
-      if (!results.length) return;
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-      const text = results.slice(0, currentLimit).map(m =>
-        `${m.provider} - ${m.fullName}: ${symbol}${(m.total * rate).toFixed(4)}`
-      ).join('\n');
-      navigator.clipboard.writeText(text);
-      toast('Lista copiada');
-    }
-
-    async function loadModels() {
-      const loader = document.getElementById('loader'), modelText = document.getElementById('modelText');
-      loader.className = 'w-2 h-2 rounded-full bg-yellow-500';
-      modelText.textContent = 'Cargando...';
-
-      // REAL pricing data - March 2026 (verified from official docs)
-      const modelData = [
-        // OpenAI
-        {provider: 'OpenAI', name: 'GPT-5.2', fullName: 'gpt-5.2', input: 1.75, output: 14, context: 200000},
-        {provider: 'OpenAI', name: 'GPT-5.2 Pro', fullName: 'gpt-5.2-pro', input: 21, output: 168, context: 200000},
-        {provider: 'OpenAI', name: 'GPT-4o', fullName: 'gpt-4o', input: 5, output: 20, context: 128000},
-        {provider: 'OpenAI', name: 'GPT-4o Mini', fullName: 'gpt-4o-mini', input: 0.15, output: 0.6, context: 128000},
-        {provider: 'OpenAI', name: 'GPT-4 Turbo', fullName: 'gpt-4-turbo', input: 10, output: 30, context: 128000},
-        {provider: 'OpenAI', name: 'GPT-4', fullName: 'gpt-4', input: 30, output: 60, context: 8192},
-        {provider: 'OpenAI', name: 'GPT-3.5 Turbo', fullName: 'gpt-3.5-turbo', input: 0.5, output: 1.5, context: 16385},
-        
-        // Anthropic
-        {provider: 'Anthropic', name: 'Claude Opus 4.6', fullName: 'claude-opus-4-6', input: 5, output: 25, context: 200000},
-        {provider: 'Anthropic', name: 'Claude Sonnet 4.6', fullName: 'claude-sonnet-4-6', input: 3, output: 15, context: 200000},
-        {provider: 'Anthropic', name: 'Claude Haiku 4.5', fullName: 'claude-haiku-4-5', input: 1, output: 5, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3.5 Sonnet', fullName: 'claude-3.5-sonnet', input: 3, output: 15, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3 Opus', fullName: 'claude-3-opus', input: 15, output: 75, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3 Haiku', fullName: 'claude-3-haiku', input: 0.25, output: 1.25, context: 200000},
-        
-        // Google
-        {provider: 'Google', name: 'Gemini 3.1 Pro', fullName: 'gemini-3.1-pro', input: 2, output: 12, context: 200000},
-        {provider: 'Google', name: 'Gemini 3.1 Flash', fullName: 'gemini-3.1-flash', input: 0.35, output: 1.5, context: 200000},
-        {provider: 'Google', name: 'Gemini 2.5 Pro', fullName: 'gemini-2.5-pro', input: 1.25, output: 5, context: 1000000},
-        {provider: 'Google', name: 'Gemini 2.5 Flash', fullName: 'gemini-2.5-flash', input: 0.15, output: 0.6, context: 1000000},
-        {provider: 'Google', name: 'Gemini 1.5 Pro', fullName: 'gemini-1.5-pro', input: 1.25, output: 5, context: 200000},
-        {provider: 'Google', name: 'Gemini 1.5 Flash', fullName: 'gemini-1.5-flash', input: 0.07, output: 0.35, context: 128000},
-        
-        // xAI
-        {provider: 'xAI', name: 'Grok 4.1', fullName: 'grok-4.1', input: 0.2, output: 0.5, context: 131072},
-        {provider: 'xAI', name: 'Grok 3', fullName: 'grok-3', input: 3, output: 15, context: 131072},
-        {provider: 'xAI', name: 'Grok 2', fullName: 'grok-2', input: 2, output: 10, context: 131072},
-        {provider: 'xAI', name: 'Grok Beta', fullName: 'grok-beta', input: 5, output: 15, context: 131072},
-        
-        // Mistral
-        {provider: 'Mistral', name: 'Mistral Large 3', fullName: 'mistral-large-3', input: 2, output: 6, context: 128000},
-        {provider: 'Mistral', name: 'Mistral Small', fullName: 'mistral-small', input: 0.2, output: 0.6, context: 128000},
-        {provider: 'Mistral', name: 'Codestral', fullName: 'codestral', input: 0.2, output: 0.6, context: 128000},
-        
-        // Meta
-        {provider: 'Meta', name: 'Llama 4 Scout', fullName: 'llama-4-scout', input: 0.5, output: 1.5, context: 1000000},
-        {provider: 'Meta', name: 'Llama 4 Maverick', fullName: 'llama-4-maverick', input: 1, output: 4, context: 128000},
-        {provider: 'Meta', name: 'Llama 3.3 70B', fullName: 'llama-3.3-70b', input: 0.9, output: 0.9, context: 128000},
-        {provider: 'Meta', name: 'Llama 3.1 70B', fullName: 'llama-3.1-70b', input: 0.9, output: 0.9, context: 128000},
-        {provider: 'Meta', name: 'Llama 3.1 8B', fullName: 'llama-3.1-8b', input: 0.2, output: 0.2, context: 128000},
-        
-        // DeepSeek
-        {provider: 'DeepSeek', name: 'DeepSeek V3', fullName: 'deepseek-v3', input: 0.27, output: 1.1, context: 64000},
-        {provider: 'DeepSeek', name: 'DeepSeek R1', fullName: 'deepseek-r1', input: 0.55, output: 2.2, context: 64000},
-        {provider: 'DeepSeek', name: 'DeepSeek Chat', fullName: 'deepseek-chat', input: 0.14, output: 0.28, context: 64000},
-        
-        // Cohere
-        {provider: 'Cohere', name: 'Command A', fullName: 'command-a', input: 3, output: 15, context: 128000},
-        {provider: 'Cohere', name: 'Command R+', fullName: 'command-r-plus', input: 3, output: 15, context: 128000},
-        {provider: 'Cohere', name: 'Command R', fullName: 'command-r', input: 0.5, output: 1.5, context: 128000},
-        
-        // Others
-        {provider: 'Perplexity', name: 'Sonar Large', fullName: 'perplexity-sonar-large', input: 3, output: 15, context: 127072},
-        {provider: 'Perplexity', name: 'Sonar Medium', fullName: 'perplexity-sonar-medium', input: 1, output: 5, context: 127072},
-        {provider: 'Nvidia', name: 'Nemotron 70B', fullName: 'nemotron-70b', input: 0.4, output: 0.8, context: 128000},
-        {provider: 'AWS', name: 'Nova Pro', fullName: 'amazon.nova-pro-v1:0', input: 0.8, output: 3.2, context: 300000},
-        {provider: 'AWS', name: 'Nova Lite', fullName: 'amazon.nova-lite-v1:0', input: 0.04, output: 0.15, context: 300000},
-        {provider: 'Azure', name: 'GPT-4o Azure', fullName: 'azure/gpt-4o', input: 5, output: 20, context: 128000},
-        {provider: 'Vertex', name: 'Gemini Ultra', fullName: 'gemini-ultra', input: 3, output: 15, context: 200000}
-      ];
-
-      try {
-        allModels = modelData;
-        
-        // Sort by input price
-        allModels.sort((a, b) => a.input - b.input);
-
-        // Update provider filter
-        const provCounts = {};
-        allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
-        const provs = Object.keys(provCounts).sort();
-        const sel = document.getElementById('providerFilter');
-        sel.innerHTML = '<option value="">Todos los proveedores</option>';
-        provs.forEach(p => {
-          const o = document.createElement('option');
-          o.value = p;
-          o.textContent = p + ' (' + provCounts[p] + ')';
-          sel.appendChild(o);
-        });
-
-        loader.className = 'w-2 h-2 rounded-full bg-green-500';
-        modelText.textContent = allModels.length + ' modelos';
-        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
-        
-        // Initialize results with default values (1000 input tokens, 500 output tokens)
-        results = allModels.map(m => ({ ...m, total: (1000 * m.input + 500 * m.output) / 1e6 }));
-        
-        updateQuickProviders();
-        renderProviderPanel();
-        renderResults();
-        toast('Cargados: ' + allModels.length + ' modelos', 'success');
-
-      } catch(e) {
-        console.error('Error:', e);
-        loader.className = 'w-2 h-2 rounded-full bg-red-500';
-        modelText.textContent = 'Error';
-        document.getElementById('errorState').classList.remove('hidden');
-        document.getElementById('errorMsg').textContent = e.message;
-        toast('Error: ' + e.message, 'error');
-      }
-    }
-
-    function estTokens(t) { return t ? Math.ceil(t.length / 4) : 0; }
-    function updateCount() { const v = document.getElementById('prompt').value; document.getElementById('charCount').textContent = v.length + ' ch'; document.getElementById('tokenCount').textContent = '~' + estTokens(v) + ' tk'; }
-
-    function calcularCostos() {
-      const prompt = document.getElementById('prompt').value;
-      const out = parseFloat(document.getElementById('outputTokens').value) || 0;
-      const inT = estTokens(prompt);
-      const searchTerm = document.getElementById('search').value.toLowerCase();
-
-      if (!allModels.length) { toast('Cargando modelos...', 'info'); return; }
-      results = filtrar().map(m => ({ ...m, total: (inT * m.input + out * m.output) / 1e6 }));
-      if (!results.length) { toast('Sin resultados', 'error'); return; }
-      results.sort((a, b) => { const av = a[sortF], bv = b[sortF]; return typeof av === 'string' ? (sortA ? av.localeCompare(bv) : bv.localeCompare(av)) : (sortA ? av - bv : bv - av); });
-
-      const hasFilters = document.getElementById('search').value || document.getElementById('providerFilter').value;
-      document.getElementById('clearBtn').classList.toggle('hidden', !hasFilters);
-
-      renderResults();
-      updateStatsBar(prompt);
-    }
-
-    function renderResults(searchTerm = '') {
-      const limitedResults = results.slice(0, currentLimit);
-      const unit = pricePer1K ? 1000 : 1000000;
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-
-      let html = '';
-      limitedResults.forEach((m, i) => {
-        const top = i < 3;
-        const isHighlight = searchTerm && (m.name.toLowerCase().includes(searchTerm) || m.provider.toLowerCase().includes(searchTerm));
-        const providerIcon = getProviderIcon(m.provider);
-        const isFav = favorites.includes(m.provider + '/' + m.fullName);
-        const isSelected = selectedModels.includes(i);
-
-        html += '<tr class="' + (isHighlight ? 'highlight' : '') + ' ' + (top ? 'top3' : '') + ' ' + (isSelected ? 'selected' : '') + '" onclick="selectModel(' + i + ', event)" ondblclick="showDetails(' + i + ')">
-          <td><span class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="toggleFavorite(\'' + m.provider + '\', \'' + m.fullName + '\', event)">' + (isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>') + '</span></td>
-          <td class="' + (top ? 'text-green' : '') + '">' + providerIcon + (top ? '<span class="badge badge-green">TOP</span> ' : '') + m.provider + '</td>
-          <td title="' + m.fullName + '">' + m.name + '</td>
-          <td>' + symbol + (m.input / unit * rate).toFixed(4) + '</td>
-          <td>' + symbol + (m.output / unit * rate).toFixed(4) + '</td>
-          <td class="' + (top ? 'text-green' : '') + '">' + symbol + (m.total * rate).toFixed(4) + '</td>
-        </tr>';
-      });
-      document.getElementById('emptyState').classList.add('hidden');
-      document.getElementById('errorState').classList.add('hidden');
-      document.getElementById('tableBody').innerHTML = html;
-      document.getElementById('tableBody').classList.remove('hidden');
-      document.getElementById('count').textContent = limitedResults.length + ' / ' + results.length + ' modelos';
-      document.getElementById('exportBtn').classList.remove('hidden');
-      document.getElementById('pdfBtn').classList.remove('hidden');
-      document.getElementById('shareBtn').classList.remove('hidden');
-      document.getElementById('recBtn').classList.remove('hidden');
-      document.getElementById('copyAllBtn').classList.remove('hidden');
-      updateCompareBtn();
-    }
-
-    function updateStatsBar(prompt) {
-      if (!results.length) return;
-      const limited = results.slice(0, currentLimit);
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-      const min = limited[0].total, max = limited[limited.length-1].total, avg = limited.reduce((a,b) => a + b.total, 0) / limited.length;
-      document.getElementById('minCost').textContent = symbol + (min * rate).toFixed(4);
-      document.getElementById('maxCost').textContent = symbol + (max * rate).toFixed(4);
-      document.getElementById('avgCost').textContent = symbol + (avg * rate).toFixed(4);
-      document.getElementById('topProvider').textContent = limited[0].provider;
-      document.getElementById('statsBar').classList.remove('hidden');
-      
-      // Update stats bar with savings
-      const minCost = limited[0].total;
-      const maxCost = limited[limited.length-1].total;
-      const savings = ((parseFloat(maxCost) - parseFloat(minCost)) / parseFloat(maxCost) * 100).toFixed(1);
-      document.getElementById('statsBar').innerHTML = `
-        <div class="flex justify-between items-center text-xs">
-          <span><i class="fas fa-list"></i> ${limited.length} models</span>
-          <span><i class="fas fa-chart-line"></i> Avg: $${avg.toFixed(4)}</span>
-          <span class="text-green"><i class="fas fa-arrow-down"></i> Min: $${minCost}</span>
-          <span class="text-red"><i class="fas fa-arrow-up"></i> Max: $${maxCost}</span>
-          <button onclick="showSavingsInfo()" class="text-green hover:underline"><i class="fas fa-piggy-bank"></i> Save ${savings}%</button>
-        </div>`;
-      
-      if (prompt.length > 0) { stats.calcs++; stats.saved += (max - min); updateStats(); saveStats(); }
-    }
-
-    function filtrar() {
-      let filtered = allModels;
-      const s = document.getElementById('search').value.toLowerCase().trim();
-      const p = document.getElementById('providerFilter').value;
-
-      // Type filters
-      if (currentTypeFilter === 'vision') {
-        filtered = filtered.filter(m =>
-          m.fullName.toLowerCase().includes('vision') ||
-          m.fullName.toLowerCase().includes('visual') ||
-          m.fullName.toLowerCase().includes('gpt-4v') ||
-          m.fullName.toLowerCase().includes('gpt-4o') ||
-          m.fullName.toLowerCase().includes('claude-3-opus')
-        );
-      } else if (currentTypeFilter === 'reasoning') {
-        filtered = filtered.filter(m =>
-          m.fullName.toLowerCase().includes('reasoning') ||
-          m.fullName.toLowerCase().includes('o1') ||
-          m.fullName.toLowerCase().includes('o3') ||
-          m.fullName.toLowerCase().includes('deepseek-r1') ||
-          m.fullName.toLowerCase().includes('thinking')
-        );
-      } else if (currentTypeFilter === 'cheapest_provider') {
-        // Get cheapest per provider
-        const cheapest = {};
-        filtered.forEach(m => {
-          if (!cheapest[m.provider] || m.input < cheapest[m.provider].input) {
-            cheapest[m.provider] = m;
-          }
-        });
-        filtered = Object.values(cheapest);
-      }
-
-      return filtered.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
-    }
-
-    function exportCSV() {
-      if (!results.length) return;
-      const rate = currencyRates[currentCurrency];
-      const symbol = currencySymbols[currentCurrency];
-      const csv = [['Proveedor', 'Modelo', 'Input', 'Output', 'Coste'], ...results.map(m => [m.provider, m.fullName, (m.input * rate).toFixed(4), (m.output * rate).toFixed(4), (m.total * rate).toFixed(4)])].map(r => r.join(',')).join('\n');
-      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv])); a.download = 'tokentax.csv'; a.click();
-      toast('CSV exportado');
-    }
-
-    // Event listeners
-    document.getElementById('search').addEventListener('input', () => { if (autoCalc) calcularCostos(); else renderResults(); });
-    document.getElementById('providerFilter').addEventListener('change', () => { if (autoCalc) calcularCostos(); else renderResults(); });
-    document.getElementById('prompt').addEventListener('input', () => {
-      updateCount();
-      if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
-    });
-    document.getElementById('outputTokens').addEventListener('input', () => {
-      if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
-    });
-
-    // Keyboard shortcuts
-    document.addEventListener('keydown', e => {
-      if (e.ctrlKey && e.key === 'Enter') {
-        e.preventDefault();
-        calcularCostos();
-      }
-      if (e.key === 'Escape') {
-        clearPrompt();
-        document.getElementById('search').focus();
-      }
-      // Arrow navigation
-      if (e.key === 'ArrowDown' && results.length > 0) {
-        e.preventDefault();
-        selectedIndex = Math.min(selectedIndex + 1, results.length - 1);
-        selectedModels = [selectedIndex];
-        renderResults();
-        const row = document.querySelectorAll('.table-row')[selectedIndex];
-        if (row) row.scrollIntoView({ block: 'nearest' });
-      }
-      if (e.key === 'ArrowUp' && results.length > 0) {
-        e.preventDefault();
-        selectedIndex = Math.max(selectedIndex - 1, 0);
-        selectedModels = [selectedIndex];
-        renderResults();
-        const row = document.querySelectorAll('.table-row')[selectedIndex];
-        if (row) row.scrollIntoView({ block: 'nearest' });
-      }
-      // F11 for fullscreen
-      if (e.key === 'F11') {
-        e.preventDefault();
-        toggleFullscreen();
-      }
-      // ? for help
-      if (e.key === '?' && !e.ctrlKey && !e.altKey && !e.metaKey) {
-        showHelp();
-      }
-      // R for reset (with Ctrl)
-      if (e.ctrlKey && e.key === 'r') {
-        e.preventDefault();
-        resetAllSettings();
-      }
-    });
-
-    // Visitor counter
-    function updateVisitorCount() {
-      const today = new Date().toDateString();
-      let visitorData = JSON.parse(localStorage.getItem('tt_visitors') || '{"total":0,"lastVisit":"","today":0}');
-      
-      // Increment if new day
-      if (visitorData.lastVisit !== today) {
-        visitorData.total++;
-        visitorData.today = 1;
-        visitorData.lastVisit = today;
-      } else {
-        visitorData.today++;
-      }
-      
-      localStorage.setItem('tt_visitors', JSON.stringify(visitorData));
-      
-      // Format number with commas
-      const formatted = visitorData.total.toLocaleString();
-      document.getElementById('visitorCount').innerHTML = `<i class="fas fa-users"></i> ${formatted}`;
-    }
-
-    // Matrix-style background (white/gray)
-    function initMatrixBg() {
-      const canvas = document.getElementById('bgCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
-      const fontSize = 14;
-      const columns = Math.floor(canvas.width / fontSize);
-      const drops = Array(columns).fill(1);
-      function draw() {
-        ctx.fillStyle = 'rgba(0,0,0,0.03)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#666666';
-        ctx.font = fontSize + 'px monospace';
-        for (let i = 0; i < drops.length; i++) {
-          const char = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-          drops[i]++;
-        }
-      }
-      setInterval(draw, 50);
-    }
-
-    function clearProviderFilter() {
-      document.getElementById('providerFilter').value = '';
-      document.getElementById('typeFilter').value = '';
-      currentTypeFilter = '';
+    // Sort
+    function sortBy(field) {
+      if (sortField === field) sortAsc = !sortAsc;
+      else { sortField = field; sortAsc = true; }
       calcularCostos();
     }
 
-    // Initialize
-    window.onload = () => { 
-      loadModels(); 
-      updateCount(); 
-      updateSortIcons(); 
-      loadFromURL();
-      updateVisitorCount();
-      initMatrixBg();
-    };
+    // Copy
+    function copyTopResult() {
+      if (!currentResults.length) return;
+      const top = currentResults[0];
+      const text = `${top.provider} - ${top.fullName}\nCoste: $${top.total.toFixed(4)}\nInput: $${top.input}/M | Output: $${top.output}/M`;
+      navigator.clipboard.writeText(text);
+      showToast('Copiado');
+    }
+
+    // Init theme
+    (function() {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.add('light');
+        document.getElementById('themeBtn').textContent = '☀️';
+        isDark = false;
+      }
+    })();
+
+    // Load models
+    async function cargarModelos() {
+      try {
+        const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
+        const data = await res.json();
+        
+        allModels = Object.keys(data)
+          .filter(key => {
+            const m = data[key];
+            return m.mode === "chat" && 
+              typeof m.input_cost_per_token === "number" && 
+              typeof m.output_cost_per_token === "number" &&
+              m.input_cost_per_token > 0;
+          })
+          .map(key => {
+            const m = data[key];
+            const provider = m.litellm_provider || "other";
+            return {
+              provider: provider.charAt(0).toUpperCase() + provider.slice(1),
+              name: key.length > 45 ? key.substring(0,42) + "..." : key,
+              fullName: key,
+              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
+              output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4))
+            };
+          });
+
+        const providers = [...new Set(allModels.map(m => m.provider))].sort();
+        const sel = document.getElementById('providerFilter');
+        providers.forEach(p => {
+          const opt = document.createElement('option');
+          opt.value = p;
+          opt.textContent = p;
+          sel.appendChild(opt);
+        });
+
+        document.getElementById('loader').classList.add('bg-green-500');
+        document.getElementById('modelText').textContent = `${allModels.length} modelos`;
+        
+        const now = new Date();
+        document.getElementById('lastUpdate').textContent = now.toLocaleDateString('es');
+        
+        console.log(`✅ TokenTax: ${allModels.length} modelos`);
+      } catch(e) {
+        document.getElementById('modelText').textContent = "Error";
+        showToast('Error al cargar', 'error');
+      }
+    }
+
+    function estimateTokens(t) { return t ? Math.ceil(t.length / 4) : 0; }
+    
+    function updateCount() {
+      const v = document.getElementById('prompt').value;
+      document.getElementById('charCount').textContent = v.length + ' chars';
+      document.getElementById('tokenCount').textContent = '~' + estimateTokens(v) + ' tokens';
+    }
+
+    function calcularCostos() {
+      const prompt = document.getElementById('prompt').value;
+      const outTokens = parseFloat(document.getElementById('outputTokens').value) || 0;
+      const inTokens = estimateTokens(prompt);
+
+      if (!allModels.length) { showToast('Cargando...', 'info'); return; }
+
+      currentResults = filtrar().map(m => ({ ...m, total: (inTokens * m.input + outTokens * m.output) / 1e6 }));
+      
+      if (!currentResults.length) { showToast('Sin resultados', 'error'); return; }
+
+      currentResults.sort((a, b) => {
+        const av = a[sortField], bv = b[sortField];
+        return typeof av === 'string' ? (sortAsc ? av.localeCompare(bv) : bv.localeCompare(av)) : (sortAsc ? av - bv : bv - av);
+      });
+
+      // Update stats
+      const cheapest = currentResults[0].total;
+      const expensive = currentResults[currentResults.length - 1].total;
+      const avg = currentResults.reduce((a, b) => a + b.total, 0) / currentResults.length;
+      
+      document.getElementById('cheapest').textContent = '$' + cheapest.toFixed(4);
+      document.getElementById('expensive').textContent = '$' + expensive.toFixed(4);
+      document.getElementById('average').textContent = '$' + avg.toFixed(4);
+      document.getElementById('statsBar').classList.remove('hidden');
+
+      // Save to stats (compare with most expensive)
+      const savings = expensive - cheapest;
+      if (savings > 0 && prompt.length > 0) {
+        stats.calculations++;
+        stats.saved += savings;
+        updateStatsDisplay();
+        saveStats();
+        addToHistory(prompt, cheapest);
+      }
+
+      let html = '';
+      currentResults.forEach((m, i) => {
+        const top3 = i < 3;
+        const isSelected = selectedForCompare.includes(m.fullName);
+        html += `<tr class="table-row border-b border-white/[0.03] ${isSelected ? 'compare-highlight' : ''}" onclick="${compareMode ? `toggleSelect('${m.fullName}')` : ''}">
+          <td class="px-3 py-2.5 font-medium ${top3 ? 'text-green-400' : 'text-white/70'}">${m.provider}</td>
+          <td class="col-span-2 px-3 py-2.5 font-mono text-[11px] text-white/40" title="${m.fullName}">${m.name}</td>
+          <td class="px-3 py-2.5 text-right font-mono text-white/35">$${m.input.toFixed(4)}</td>
+          <td class="px-3 py-2.5 text-right font-mono text-white/35">$${m.output.toFixed(4)}</td>
+          <td class="px-3 py-2.5 text-right font-semibold ${top3 ? 'text-green-400' : 'text-white'}">$${m.total.toFixed(4)}</td>
+        </tr>`;
+      });
+
+      document.getElementById('emptyState').classList.add('hidden');
+      document.getElementById('tableBody').innerHTML = html;
+      document.getElementById('tableBody').classList.remove('hidden');
+      document.getElementById('count').textContent = currentResults.length + ' modelos';
+      document.getElementById('exportBtn').classList.remove('hidden');
+      document.getElementById('copyBtn').classList.remove('hidden');
+      document.getElementById('compareBtn').classList.remove('hidden');
+
+      document.querySelectorAll('#tableBody tr').forEach((r, i) => r.style.animationDelay = (i * 0.015) + 's');
+    }
+
+    function toggleSelect(fullName) {
+      if (selectedForCompare.includes(fullName)) {
+        selectedForCompare = selectedForCompare.filter(f => f !== fullName);
+      } else if (selectedForCompare.length < 2) {
+        selectedForCompare.push(fullName);
+      }
+      if (selectedForCompare.length > 0) {
+        showToast(selectedForCompare.length + ' seleccionados para comparar');
+      }
+      calcularCostos();
+    }
+
+    function filtrar() {
+      const s = document.getElementById('search').value.toLowerCase().trim();
+      const p = document.getElementById('providerFilter').value;
+      return allModels.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
+    }
+
+    function exportCSV() {
+      if (!currentResults.length) { showToast('Nada que exportar', 'error'); return; }
+      const headers = ['Proveedor', 'Modelo', 'Input', 'Output', 'Coste'];
+      const rows = currentResults.map(m => [m.provider, m.fullName, m.input, m.output, m.total.toFixed(4)]);
+      const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = 'tokentax.csv';
+      a.click();
+      showToast('CSV descargado');
+    }
+
+    // Events
+    ['search', 'providerFilter'].forEach(id => document.getElementById(id).addEventListener('input', calcularCostos));
+    document.getElementById('prompt').addEventListener('input', () => { updateCount(); if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
+    document.getElementById('outputTokens').addEventListener('input', () => { if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
+    document.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); calcularCostos(); } });
+    window.onload = () => { cargarModelos(); updateCount(); };
   </script>
 </body>
-<script>
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(e => console.log('SW registration failed:', e));
-    }
-  </script>
 </html>
