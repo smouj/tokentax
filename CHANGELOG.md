@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.4.0] - 2026-03-08
+
+### Added
+- **OLED Mode** - Pure black for OLED displays
+- **Improved Buttons** - Better icons and sizing
+- **Keyboard Shortcuts** - Alt+1-9 for quick actions
+
+---
+
 ## [v3.3.0] - 2026-03-08
 
 ### Added
