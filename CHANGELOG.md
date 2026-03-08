@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.3.0] - 2026-03-08
+
+### Added
+- **Improved Visual Structure** - Better spacing and layout
+- **Consistent Styling** - Uniform borders, padding, radius
+- **Professional UI** - Clean header, footer, panels
+
+---
+
 ## [v3.2.0] - 2026-03-08
 
 ### Added
