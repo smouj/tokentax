@@ -4,8 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Stars](https://img.shields.io/github/stars/smouj/tokentax?style=social)](https://github.com/smouj/tokentax/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/smouj/tokentax?style=social)](https://github.com/smouj/tokentax/network)
-[![GitHub Issues](https://img.shields.io/github/issues/smouj/tokentax)](https://github.com/smouj/tokentax/issues)
+[![Version](https://img.shields.io/badge/version-v1.4.0-blue)](CHANGELOG.md)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://smouj.github.io/tokentax/)
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen)](https://github.com/smouj/tokentax/pulls)
 [![Powered by LiteLLM](https://img.shields.io/badge/Powered%20by-LiteLLM-7B68EE)](https://github.com/BerriAI/litellm)
@@ -33,6 +32,13 @@ TokenTax is a free, open-source web tool that lets you compare pricing across **
 | 🌐 **Multi-language** | Available in 7 languages |
 | 📱 **Responsive Design** | Works perfectly on desktop and mobile |
 | 🔄 **Live Data** | Prices update automatically from LiteLLM |
+| 🌓 **Dark/Light Mode** | Toggle theme with persistence |
+| 📥 **CSV Export** | Download results as CSV |
+| 🔢 **Token Counter** | Real-time char/token estimation |
+| 🔃 **Column Sorting** | Sort by any column |
+| ⌨️ **Keyboard Shortcuts** | Ctrl+Enter to calculate |
+| 📋 **Copy Results** | Copy top result to clipboard |
+| 🍞 **Toast Notifications** | Visual feedback |
 
 ---
 
@@ -42,28 +48,19 @@ TokenTax is a free, open-source web tool that lets you compare pricing across **
 
 ---
 
-## 🌍 Available Languages
-
-| Language | README |
-|----------|--------|
-| 🇺🇸 English | [`README.md`](README.md) |
-| 🇪🇸 Spanish | [`README.es.md`](README.es.md) |
-| 🇫🇷 French | [`README.fr.md`](README.fr.md) |
-| 🇩🇪 German | [`README.de.md`](README.de.md) |
-| 🇮🇹 Italian | [`README.it.md`](README.it.md) |
-| 🇧🇷 Portuguese | [`README.pt.md`](README.pt.md) |
-| 🇯🇵 Japanese | [`README.ja.md`](README.ja.md) |
-| 🇨🇳 Chinese | [`README.zh.md`](README.zh.md) |
-
----
-
 ## 🛠️ Usage
 
 1. Open **[https://smouj.github.io/tokentax/](https://smouj.github.io/tokentax/)**
 2. Enter your prompt in the text area
 3. Set expected output tokens
-4. Click **"Calculate costs with +400 models"**
+4. Click **"Calculate costs with +400 models"** (or press `Ctrl+Enter`)
 5. See all models sorted by price — find the cheapest option! 🔥
+
+### Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl + Enter` | Calculate costs |
 
 ---
 
@@ -84,6 +81,27 @@ TokenTax is a free, open-source web tool that lets you compare pricing across **
 - Llama (via any provider)
 - Qwen
 - And 300+ more...
+
+---
+
+## 🌍 Available Languages
+
+| Language | README |
+|----------|--------|
+| 🇺🇸 English | [`README.md`](README.md) |
+| 🇪🇸 Spanish | [`README.es.md`](README.es.md) |
+| 🇫🇷 French | [`README.fr.md`](README.fr.md) |
+| 🇩🇪 German | [`README.de.md`](README.de.md) |
+| 🇮🇹 Italian | [`README.it.md`](README.it.md) |
+| 🇧🇷 Portuguese | [`README.pt.md`](README.pt.md) |
+| 🇯🇵 Japanese | [`README.ja.md`](README.ja.md) |
+| 🇨🇳 Chinese | [`README.zh.md`](README.zh.md) |
+
+---
+
+## 📋 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes.
 
 ---
 
