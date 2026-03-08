@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.2.0] - 2026-03-08
+
+### Added
+- **Quick Provider Filters** - Fast filter buttons for top providers
+- **Keyboard Help Modal** - Press ? to see all shortcuts
+- **Auto Theme Detection** - Follows system preference
+- **F11 Fullscreen** - Keyboard shortcut for fullscreen
+
+---
+
 ## [v3.1.0] - 2026-03-08
 
 ### Added
