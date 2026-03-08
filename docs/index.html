@@ -154,7 +154,7 @@
         <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
           <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span></h1>
-          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos</p>
+          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green">v3.4</span></p>
         </div>
       </div>
       
@@ -289,8 +289,9 @@
           </label>
         </div>
         <div class="flex gap-1 mt-2">
-          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1">Save Preset</button>
-          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1">Stats</button>
+          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-save"></i> Save</button>
+          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-chart-pie"></i> Stats</button>
+          <button onclick="resetAllSettings()" class="btn-secondary px-2 py-1 text-[9px]" title="Reset All"><i class="fas fa-redo"></i></button>
         </div>
       </div>
 
@@ -780,6 +781,13 @@
         document.documentElement.style.setProperty('--surface-2', '');
         toast('OLED Mode disabled');
       }
+    }
+
+    // Reset all settings
+    function resetAllSettings() {
+      if (!confirm('Reset all settings to default?')) return;
+      localStorage.clear();
+      location.reload();
     }
 
     // Keyboard accessible dropdowns
@@ -1490,6 +1498,11 @@
       // ? for help
       if (e.key === '?' && !e.ctrlKey && !e.altKey && !e.metaKey) {
         showHelp();
+      }
+      // R for reset (with Ctrl)
+      if (e.ctrlKey && e.key === 'r') {
+        e.preventDefault();
+        resetAllSettings();
       }
     });
     
