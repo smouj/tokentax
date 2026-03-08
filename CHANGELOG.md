@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.7.0] - 2026-03-08
+
+### Added
+- **Share Link** - Copy shareable URL with current settings
+- **URL Params** - Load state from URL parameters (?q=&out=)
+- **Error Handling** - Better error states and fallback to cache
+- **Loading States** - Visual feedback during loading
+
+---
+
 ## [v3.6.0] - 2026-03-08
 
 ### Added
