@@ -1051,7 +1051,7 @@
       
       navigator.clipboard.writeText(url.toString()).then(() => {
         toast('Link copied!', 'success');
-      }).catch(() => toast('Failed to copy', 'error');
+      }).catch(() => toast('Failed to copy', 'error'));
     }
 
     // Load from URL params
@@ -1510,15 +1510,15 @@
       document.getElementById('statsBar').classList.remove('hidden');
       
       // Update stats bar with savings
-      const min = limited[0].totalCost.toFixed(4);
-      const max = limited[limited.length-1].totalCost.toFixed(4);
-      const savings = ((parseFloat(max) - parseFloat(min)) / parseFloat(max) * 100).toFixed(1);
+      const minCost = limited[0].totalCost.toFixed(4);
+      const maxCost = limited[limited.length-1].totalCost.toFixed(4);
+      const savings = ((parseFloat(maxCost) - parseFloat(minCost)) / parseFloat(maxCost) * 100).toFixed(1);
       document.getElementById('statsBar').innerHTML = `
         <div class="flex justify-between items-center text-xs">
           <span><i class="fas fa-list"></i> ${limited.length} models</span>
           <span><i class="fas fa-chart-line"></i> Avg: $${avg.toFixed(4)}</span>
-          <span class="text-green"><i class="fas fa-arrow-down"></i> Min: $${min}</span>
-          <span class="text-red"><i class="fas fa-arrow-up"></i> Max: $${max}</span>
+          <span class="text-green"><i class="fas fa-arrow-down"></i> Min: $${minCost}</span>
+          <span class="text-red"><i class="fas fa-arrow-up"></i> Max: $${maxCost}</span>
           <button onclick="showSavingsInfo()" class="text-green hover:underline"><i class="fas fa-piggy-bank"></i> Save ${savings}%</button>
         </div>`;
       
