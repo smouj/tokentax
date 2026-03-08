@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://raw.githubusercontent.com">
 
-  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -44,8 +44,7 @@
       --red: #dc2626; --blue: #2563eb; --blue-dim: #dbeafe;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
-    html { touch-action: manipulation; }
+    html { font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; touch-action: manipulation; }
     
     /* Mobile optimizations */
     @media (max-width: 640px) {
@@ -61,8 +60,7 @@
     
     @media (max-width: 480px) {
       html { font-size: 13px; }
-      .quick-grid { grid-template-columns: repeat(2, !important; }
-      .header-title 1fr) { display: none; }
+      .quick-grid { grid-template-columns: repeat(2, 1fr) !important; }
     }
     body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
 
