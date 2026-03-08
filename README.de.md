@@ -25,15 +25,34 @@
 - 🏆 TOP 3 Badge
 - 🏢 Anbieter-Logos
 - 📝 8 Beispiele
+- ⭐ Favoriten
+- 📝 Eigene Vorlagen
+- 🕐 Letzte Modelle
+- 👁️ Vision-Filter
+- 🧠 Reasoning-Filter
+- 💰 Günstigster pro Anbieter
+- ⚖️ Modelle vergleichen
+- 💱 Multi-Währung
 - ⌨️ Tastenkürzel
 - 🌓 Dunkel/Hell
 - 📱 PWA
+- 📈 Statistiken
 
 ---
 
 ## 🚀 Demo
 
 **https://smouj.github.io/tokentax/**
+
+---
+
+## ⌨️ Tastenkürzel
+
+| Kürzel | Aktion |
+|--------|--------|
+| `Strg + Eingabe` | Berechnen |
+| `Esc` | Löschen |
+| `↑ / ↓` | Navigieren |
 
 ---
 

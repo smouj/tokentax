@@ -27,7 +27,15 @@
 | 🏆 **TOP Badges** | Highlight top 3 cheapest models |
 | 🏢 **Provider Logos** | Visual logos for each provider |
 | 📝 **Quick Examples** | 8 built-in prompt examples |
-| ⌨️ **Keyboard Shortcuts** | `Ctrl+Enter` calculate, `Esc` clear |
+| ⭐ **Favorites** | Save favorite models to localStorage |
+| 📝 **Custom Templates** | Save and load prompt templates |
+| 🕐 **Recent Models** | Access recently used models |
+| 👁️ **Vision Filter** | Filter vision-capable models |
+| 🧠 **Reasoning Filter** | Filter reasoning models (o1, r1...) |
+| 💰 **Cheapest per Provider** | Show cheapest model for each provider |
+| ⚖️ **Compare Models** | Compare 2 models side by side |
+| 💱 **Multi-Currency** | USD / EUR / GBP support |
+| ⌨️ **Keyboard Shortcuts** | `Ctrl+Enter` calculate, `Esc` clear, `↑↓` navigate |
 | 🌓 **Dark/Light Mode** | Toggle between themes |
 | 📱 **PWA** | Installable, works offline |
 | 📈 **Statistics** | Track calculations & savings |
@@ -46,6 +54,8 @@
 |----------|--------|
 | `Ctrl + Enter` | Calculate |
 | `Escape` | Clear prompt |
+| `↑ / ↓` | Navigate models |
+| `Ctrl + Click` | Select multiple to compare |
 
 ---
 
@@ -72,7 +82,7 @@ OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Toge
 
 ## 📝 Changelog
 
-See [`CHANGELOG.md`](CHANGELOG.md)
+See [`CHANGELOG.md`](CHANGELOG.md) for all versions.
 
 ---
 

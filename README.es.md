@@ -27,7 +27,15 @@
 | 🏆 **Badges TOP** | Resalta los 3 modelos más baratos |
 | 🏢 **Logos de proveedores** | Logotipos visuales para cada proveedor |
 | 📝 **Ejemplos rápidos** | 8 ejemplos de prompts incluidos |
-| ⌨️ **Atajos de teclado** | `Ctrl+Enter` calcular, `Esc` limpiar |
+| ⭐ **Favoritos** | Guarda modelos favoritos en localStorage |
+| 📝 **Plantillas custom** | Guarda y carga plantillas de prompts |
+| 🕐 **Modelos recientes** | Acceso a modelos usados recientemente |
+| 👁️ **Filtro Vision** | Filtra modelos con capacidades visuales |
+| 🧠 **Filtro Reasoning** | Filtra modelos de razonamiento (o1, r1...) |
+| 💰 **Más barato x provider** | Muestra el más barato de cada proveedor |
+| ⚖️ **Comparar modelos** | Compara 2 modelos lado a lado |
+| 💱 **Multi-moneda** | Soporte USD / EUR / GBP |
+| ⌨️ **Atajos de teclado** | `Ctrl+Enter` calcular, `Esc` limpiar, `↑↓` navegar |
 | 🌓 **Modo oscuro/claro** | Cambia entre temas |
 | 📱 **PWA** | Instalable, funciona sin conexión |
 | 📈 **Estadísticas** | Seguimiento de cálculos y ahorros |
@@ -46,6 +54,8 @@
 |-------|--------|
 | `Ctrl + Enter` | Calcular |
 | `Escape` | Limpiar prompt |
+| `↑ / ↓` | Navegar modelos |
+| `Ctrl + Click` | Seleccionar múltiples para comparar |
 
 ---
 
@@ -72,7 +82,7 @@ OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Toge
 
 ## 📝 Historial de Cambios
 
-Consulta [`CHANGELOG.md`](CHANGELOG.md)
+Consulta [`CHANGELOG.md`](CHANGELOG.md) para todas las versiones.
 
 ---
 

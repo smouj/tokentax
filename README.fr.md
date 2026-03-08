@@ -10,55 +10,62 @@
 
 </div>
 
-> **Compare 400+ AI models. Find the cheapest option instantly.**
+> **Comparez +400 modèles IA. Trouvez le moins cher !**
 
 ---
 
-## ✨ Features
+## ✨ Fonctionnalités
 
-| Feature | Description |
-|---------|-------------|
-| 📊 **400+ Models** | OpenAI, Anthropic, Google, xAI, Mistral... |
-| 💰 **Price Comparison** | Sorted cheapest to expensive |
-| 🔍 **Search & Filter** | By name or provider |
-| 🔢 **1K/1M Toggle** | Switch price units |
-| ⚡ **Auto-Calculate** | Calculate as you type |
-| 📥 **CSV Export** | Download results |
-| 🏆 **TOP Badges** | Highlight top 3 |
-| 🏢 **Provider Logos** | Visual logos |
-| 📝 **Quick Examples** | 8 built-in examples |
-| ⌨️ **Keyboard Shortcuts** | `Ctrl+Enter`, `Esc` |
-| 🌓 **Dark/Light Mode** | Toggle themes |
-| 📱 **PWA** | Installable |
-| 📈 **Statistics** | Track savings |
+- 📊 400+ Modèles (OpenAI, Anthropic, Google, Mistral...)
+- 💰 Comparaison de prix
+- 🔍 Recherche et filtre
+- 🔢 Bascule 1K/1M
+- ⚡ Auto-calcul
+- 📥 Export CSV
+- 🏆 TOP 3 Badge
+- 🏢 Logos fournisseurs
+- 📝 8 exemples
+- ⭐ Favoris
+- 📝 Modèles personnalisés
+- 🕐 Modèles récents
+- 👁️ Filtre Vision
+- 🧠 Filtre Reasoning
+- 💰 Moins cher par fournisseur
+- ⚖️ Comparer modèles
+- 💱 Multi-devises
+- ⌨️ Raccourcis clavier
+- 🌓 Mode sombre/clair
+- 📱 PWA
+- 📈 Statistiques
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Démo
 
 **https://smouj.github.io/tokentax/**
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## ⌨️ Raccourcis
 
-| Shortcut | Action |
-|----------|--------|
-| `Ctrl + Enter` | Calculate |
-| `Escape` | Clear prompt |
-
----
-
-## 📋 Supported Providers
-
-OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Together, AWS, Azure, Nvidia, Perplexity...
+| Raccourci | Action |
+|-----------|--------|
+| `Ctrl + Entrée` | Calculer |
+| `Échap` | Effacer |
+| `↑ / ↓` | Naviguer |
 
 ---
 
-## 🌍 Languages
+## 📋 Fournisseurs
 
-| Language | File |
-|----------|------|
+OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, AWS, Azure...
+
+---
+
+## 🌍 Langues
+
+| Langue | Fichier |
+|--------|---------|
 | EN | [`README.md`](README.md) |
 | ES | [`README.es.md`](README.es.md) |
 | FR | [`README.fr.md`](README.fr.md) |
@@ -70,13 +77,13 @@ OpenAI, Anthropic, Google, xAI, Mistral, DeepSeek, Meta, Cohere, Fireworks, Toge
 
 ---
 
-## 📝 Changelog
+## 📝 Changements
 
-See [`CHANGELOG.md`](CHANGELOG.md)
+Voir [`CHANGELOG.md`](CHANGELOG.md)
 
 ---
 
-## 📄 License
+## 📄 Licence
 
 MIT © 2026 [smouj](https://github.com/smouj)
 

@@ -25,15 +25,34 @@
 - 🏆 TOP 3 Badge
 - 🏢 Loghi provider
 - 📝 8 esempi
+- ⭐ Preferiti
+- 📝 Modelli personalizzati
+- 🕐 Modelli recenti
+- 👁️ Filtro Vision
+- 🧠 Filtro Reasoning
+- 💰 Più economico per provider
+- ⚖️ Confronta modelli
+- 💱 Multi-valuta
 - ⌨️ Scorciatoie
 - 🌓 Modo scuro/claro
 - 📱 PWA
+- 📈 Statistiche
 
 ---
 
 ## 🚀 Demo
 
 **https://smouj.github.io/tokentax/**
+
+---
+
+## ⌨️ Scorciatoie
+
+| Scorciatoia | Azione |
+|-------------|--------|
+| `Ctrl + Invio` | Calcola |
+| `Esc` | Cancella |
+| `↑ / ↓` | Naviga |
 
 ---
 

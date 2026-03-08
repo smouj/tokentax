@@ -25,15 +25,34 @@
 - 🏆 TOP 3 Badge
 - 🏢 Logos provedores
 - 📝 8 exemplos
+- ⭐ Favoritos
+- 📝 Modelos personalizados
+- 🕐 Modelos recentes
+- 👁️ Filtro Vision
+- 🧠 Filtro Reasoning
+- 💰 Mais barato por provedor
+- ⚖️ Comparar modelos
+- 💱 Multi-moeda
 - ⌨️ Atalhos
-- �чёт Modo escuro/claro
+- 🌓 Modo escuro/claro
 - 📱 PWA
+- 📈 Estatísticas
 
 ---
 
 ## 🚀 Demo
 
 **https://smouj.github.io/tokentax/**
+
+---
+
+## ⌨️ Atalhos
+
+| Atalho | Ação |
+|--------|------|
+| `Ctrl + Enter` | Calcular |
+| `Esc` | Limpar |
+| `↑ / ↓` | Navegar |
 
 ---
 
