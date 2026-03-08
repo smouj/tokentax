@@ -2,6 +2,14 @@
 
 ---
 
+## [v4.2.1] - 2026-03-08
+
+### Fixed
+- **Table Layout** - Simple HTML table with proper alignment
+- **Theme Icons** - Fixed toggle icons
+
+---
+
 ## [v4.1.0] - 2026-03-08
 
 ### Added
