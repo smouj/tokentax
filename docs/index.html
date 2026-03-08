@@ -290,6 +290,24 @@
         </div>
         <div id="favoritesList" class="flex flex-wrap gap-1"></div>
       </div>
+      
+      <!-- Custom Templates -->
+      <div class="panel p-2">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-[10px] text-secondary font-medium">📝 <span data-lang="templates">Plantillas</span></span>
+          <button onclick="saveTemplate()" class="text-[9px] text-tertiary hover:text-primary">+</button>
+        </div>
+        <div id="templatesList" class="flex flex-wrap gap-1"></div>
+      </div>
+      
+      <!-- Recent -->
+      <div class="panel p-2">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-[10px] text-secondary font-medium">🕐 <span data-lang="recent">Recientes</span></span>
+          <span id="recentCount" class="text-[9px] text-tertiary">0</span>
+        </div>
+        <div id="recentList" class="flex flex-wrap gap-1"></div>
+      </div>
     </aside>
 
     <!-- Right Panel -->
@@ -303,6 +321,14 @@
         </div>
         <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
           <option value="" data-lang="allProviders">Todos los proveedores</option>
+        </select>
+        
+        <!-- Extra Filters -->
+        <select id="typeFilter" class="px-2 py-1.5 input-field text-xs" onchange="applyTypeFilter()">
+          <option value="">Todos los tipos</option>
+          <option value="vision">👁️ Vision</option>
+          <option value="reasoning">🧠 Reasoning</option>
+          <option value="cheapest_provider">💰 Más barato x provider</option>
         </select>
         
         <!-- Limit -->
@@ -395,8 +421,8 @@
   <script>
     // Translations
     const translations = {
-      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles' },
-      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry', per1k: 'Prices per 1K', autoCalc: 'Auto-calculate', clearPrompt: 'clear', favorites: 'Favorites', compare: 'Compare', showContext: 'Show Context', context: 'Context', details: 'Details' }
+      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles', templates: 'Plantillas', recent: 'Recientes' },
+      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry', per1k: 'Prices per 1K', autoCalc: 'Auto-calculate', clearPrompt: 'clear', favorites: 'Favorites', compare: 'Compare', showContext: 'Show Context', context: 'Context', details: 'Details', templates: 'Templates', recent: 'Recent' }
     };
 
     // Currency rates (approximate)
@@ -427,6 +453,9 @@
     let favorites = [];
     let selectedModels = [];
     let selectedIndex = -1;
+    let templates = [];
+    let recentModels = [];
+    let currentTypeFilter = '';
 
     // Init
     (function() {
@@ -440,6 +469,18 @@
       try {
         favorites = JSON.parse(localStorage.getItem('tt_favorites') || '[]');
         updateFavoritesUI();
+      } catch(e) {}
+      
+      // Load templates
+      try {
+        templates = JSON.parse(localStorage.getItem('tt_templates') || '[]');
+        updateTemplatesUI();
+      } catch(e) {}
+      
+      // Load recent
+      try {
+        recentModels = JSON.parse(localStorage.getItem('tt_recent') || '[]');
+        updateRecentUI();
       } catch(e) {}
       
       // Load settings
@@ -540,6 +581,58 @@
       localStorage.setItem('tt_favorites', JSON.stringify(favorites));
       updateFavoritesUI();
       renderResults();
+    }
+
+    function saveTemplate() {
+      const prompt = document.getElementById('prompt').value;
+      if (!prompt.trim()) { toast('Escribe algo primero', 'error'); return; }
+      const name = prompt.substring(0, 20) + (prompt.length > 20 ? '...' : '');
+      templates.push({ name, prompt });
+      localStorage.setItem('tt_templates', JSON.stringify(templates));
+      updateTemplatesUI();
+      toast('Plantilla guardada');
+    }
+
+    function updateTemplatesUI() {
+      const list = document.getElementById('templatesList');
+      list.innerHTML = templates.slice(0, 5).map((t, i) => 
+        `<span class="badge badge-blue cursor-pointer" onclick="loadTemplate(${i})">${t.name.substring(0,8)}</span>`
+      ).join('');
+    }
+
+    function loadTemplate(i) {
+      document.getElementById('prompt').value = templates[i].prompt;
+      updateCount();
+      if (autoCalc) calcularCostos();
+      toast('Plantilla cargada');
+    }
+
+    function addToRecent(provider, modelName) {
+      const id = `${provider}/${modelName}`;
+      recentModels = recentModels.filter(r => r !== id);
+      recentModels.unshift(id);
+      recentModels = recentModels.slice(0, 10);
+      localStorage.setItem('tt_recent', JSON.stringify(recentModels));
+      updateRecentUI();
+    }
+
+    function updateRecentUI() {
+      document.getElementById('recentCount').textContent = recentModels.length;
+      const list = document.getElementById('recentList');
+      list.innerHTML = recentModels.slice(0, 5).map(r => {
+        const [p, m] = r.split('/');
+        return `<span class="badge cursor-pointer" style="background:var(--surface-2);color:var(--text-2)" onclick="searchModel('${p}')">${p.substring(0,3)}</span>`;
+      }).join('');
+    }
+
+    function searchModel(provider) {
+      document.getElementById('providerFilter').value = provider;
+      calcularCostos();
+    }
+
+    function applyTypeFilter() {
+      currentTypeFilter = document.getElementById('typeFilter').value;
+      calcularCostos();
     }
 
     function toast(msg, type = 'info') {
@@ -844,9 +937,39 @@
     }
 
     function filtrar() {
+      let filtered = allModels;
       const s = document.getElementById('search').value.toLowerCase().trim();
       const p = document.getElementById('providerFilter').value;
-      return allModels.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
+      
+      // Type filters
+      if (currentTypeFilter === 'vision') {
+        filtered = filtered.filter(m => 
+          m.fullName.toLowerCase().includes('vision') || 
+          m.fullName.toLowerCase().includes('visual') ||
+          m.fullName.toLowerCase().includes('gpt-4v') ||
+          m.fullName.toLowerCase().includes('gpt-4o') ||
+          m.fullName.toLowerCase().includes('claude-3-opus')
+        );
+      } else if (currentTypeFilter === 'reasoning') {
+        filtered = filtered.filter(m => 
+          m.fullName.toLowerCase().includes('reasoning') ||
+          m.fullName.toLowerCase().includes('o1') ||
+          m.fullName.toLowerCase().includes('o3') ||
+          m.fullName.toLowerCase().includes('deepseek-r1') ||
+          m.fullName.toLowerCase().includes('thinking')
+        );
+      } else if (currentTypeFilter === 'cheapest_provider') {
+        // Get cheapest per provider
+        const cheapest = {};
+        filtered.forEach(m => {
+          if (!cheapest[m.provider] || m.input < cheapest[m.provider].input) {
+            cheapest[m.provider] = m;
+          }
+        });
+        filtered = Object.values(cheapest);
+      }
+      
+      return filtered.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
     }
 
     function exportCSV() {
