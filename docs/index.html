@@ -91,7 +91,7 @@
     .badge-green { background: var(--green-dim); color: var(--green); }
     
     /* Provider logos */
-    .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+    .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
     .logo-openai { background: #10a37f; color: white; }
     .logo-anthropic { background: #d97757; color: white; }
     .logo-google { background: #4285f4; color: white; }
@@ -102,11 +102,26 @@
     .logo-azure { background: #0078d4; color: white; }
     .logo-xai { background: #000; color: white; }
     .logo-groq { background: #8b5cf6; color: white; }
+    .logo-fireworks { background: #000; color: white; }
+    .logo-together { background: #8b5cf6; color: white; }
+    .logo-cohere { background: #39594d; color: white; }
+    .logo-nvidia { background: #76b900; color: black; }
+    .logo-perplexity { background: #000; color: white; }
     .logo-default { background: var(--surface-2); color: var(--text-2); }
     
-    /* Limit controls */
     .limit-control { display: flex; align-items: center; gap: 8px; }
     .limit-control input { width: 60px; text-align: center; }
+    
+    /* Toggle switch */
+    .toggle-switch { position: relative; width: 36px; height: 20px; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--surface-2); transition: 0.2s; border-radius: 20px; }
+    .toggle-slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: var(--text); transition: 0.2s; border-radius: 50%; }
+    input:checked + .toggle-slider { background: var(--green); }
+    input:checked + .toggle-slider:before { transform: translateX(16px); }
+    
+    .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
+    .settings-label { font-size: 10px; color: var(--text-2); }
   </style>
 </head>
 <body class="theme-dark">
@@ -125,7 +140,7 @@
       </div>
       
       <div class="flex items-center gap-2">
-        <!-- Language selector -->
+        <!-- Language -->
         <select id="langSelect" onchange="changeLanguage(this.value)" class="px-2 py-1 input-field text-[10px]">
           <option value="es">🇪🇸 ES</option>
           <option value="en">🇺🇸 EN</option>
@@ -175,7 +190,7 @@
       <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
         <div class="flex justify-between items-center mb-1.5">
           <span class="text-[10px] text-secondary font-medium" data-lang="prompt">PROMPT</span>
-          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost">✕</button>
+          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)">✕</button>
         </div>
         <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
         <div class="flex justify-between mt-1.5 text-[9px] text-tertiary">
@@ -203,6 +218,24 @@
         <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span>🔍</span><span>SEO</span></button>
       </div>
 
+      <!-- Settings -->
+      <div class="panel p-2">
+        <div class="settings-row">
+          <span class="settings-label" data-lang="per1k">Precios por 1K</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="pricePer1K" onchange="togglePriceUnit()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="settings-row">
+          <span class="settings-label" data-lang="autoCalc">Auto-calcular</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="autoCalc" onchange="toggleAutoCalc()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
       <!-- Stats -->
       <div class="panel p-2">
         <div class="flex justify-between text-[9px] mb-1">
@@ -220,8 +253,8 @@
     <div class="right-panel panel">
       
       <!-- Filters -->
-      <div class="p-2 border-b flex gap-2" style="border-color: var(--border)">
-        <div class="flex-1 relative">
+      <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
+        <div class="flex-1 min-w-[150px] relative">
           <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs">🔍</span>
           <input id="search" type="text" placeholder="Buscar modelo..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
         </div>
@@ -250,7 +283,7 @@
 
       <!-- Table Header -->
       <div class="grid grid-cols-6 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
-        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider">↕</span></div>
+        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span</span> <span data-lang="provider">Proveedor class="sort-icon" data-sort="provider">↕</span></div>
         <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name">↕</span></div>
         <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input">↕</span></div>
         <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output">↕</span></div>
@@ -283,28 +316,29 @@
   <!-- Footer -->
   <footer class="flex-shrink-0 border-t p-2" style="border-color: var(--border)">
     <div class="text-center text-[9px] text-tertiary">
-      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a>
+      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">Esc</span> <span data-lang="clearPrompt">limpiar</span>
     </div>
   </footer>
 
   <script>
     // Translations
     const translations = {
-      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar' },
-      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry' },
-      fr: { prompt: 'PROMPT', calculate: 'CALCULER', calculations: 'Calculs', saved: 'Économisé', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Moy:', top: 'Top:', provider: 'Fournisseur', modelo: 'Modèle', input: 'Input', output: 'Output', cost: 'Coût', allProviders: 'Tous les fournisseurs', examplesBtn: 'Exemples', code: 'Code', summary: 'Résumé', email: 'Email', translate: 'Traduire', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Résumé', translateBtn: 'Trad', emptyState1: 'Entrez prompt + calculez', retry: 'Réessayer' },
-      de: { prompt: 'PROMPT', calculate: 'BERECHNEN', calculations: 'Berechnungen', saved: 'Gespart', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Durchschn:', top: 'Top:', provider: 'Anbieter', modelo: 'Modell', input: 'Eingabe', output: 'Ausgabe', cost: 'Kosten', allProviders: 'Alle Anbieter', examplesBtn: 'Beispiele', code: 'Code', summary: 'Zusammenfassung', email: 'E-Mail', translate: 'Übersetzen', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Zusammenf', translateBtn: 'Übers', emptyState1: 'Prompt eingeben + berechnen', retry: 'Wiederholen' },
-      it: { prompt: 'PROMPT', calculate: 'CALCOLA', calculations: 'Calcoli', saved: 'Risparmiato', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Fornitore', modelo: 'Modello', input: 'Input', output: 'Output', cost: 'Costo', allProviders: 'Tutti i fornitori', examplesBtn: 'Esempi', code: 'Codice', summary: 'Sommario', email: 'Email', translate: 'Traduci', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Test', codeBtn: 'Codice', summaryBtn: 'Somma', translateBtn: 'Trad', emptyState1: 'Inserisci prompt + calcola', retry: 'Riprova' },
-      pt: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Economizado', limit: 'Limite:', min: 'Mín:', max: 'Máx:', avg: 'Média:', top: 'Top:', provider: 'Provedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Custo', allProviders: 'Todos os provedores', examplesBtn: 'Exemplos', code: 'Código', summary: 'Resumo', email: 'Email', translate: 'Traduzir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Testes', codeBtn: 'Código', summaryBtn: 'Resumo', translateBtn: 'Trad', emptyState1: 'Digite prompt + calcule', retry: 'Tentar' },
-      ja: { prompt: 'プロンプト', calculate: '計算', calculations: '計算', saved: '節約', limit: '制限:', min: '最小:', max: '最大:', avg: '平均:', top: 'トップ:', provider: 'プロバイダー', modelo: 'モデル', input: '入力', output: '出力', cost: 'コスト', allProviders: 'すべて', examplesBtn: '例', code: 'コード', summary: '要約', email: 'メール', translate: '翻訳', blog: 'ブログ', seo: 'SEO', sql: 'SQL', test: 'テスト', codeBtn: 'コード', summaryBtn: '要約', translateBtn: '翻訳', emptyState1: 'プロンプト入力+計算', retry: '再試行' },
-      zh: { prompt: '提示词', calculate: '计算', calculations: '计算', saved: '节省', limit: '限制:', min: '最低:', max: '最高:', avg: '平均:', top: '最佳:', provider: '提供商', modelo: '模型', input: '输入', output: '输出', cost: '成本', allProviders: '全部', examplesBtn: '示例', code: '代码', summary: '摘要', email: '邮件', translate: '翻译', blog: '博客', seo: 'SEO', sql: 'SQL', test: '测试', codeBtn: '代码', summaryBtn: '摘要', translateBtn: '翻译', emptyState1: '输入提示词+计算', retry: '重试' }
+      es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar' },
+      en: { prompt: 'PROMPT', calculate: 'CALCULATE', calculations: 'Calculations', saved: 'Saved', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Avg:', top: 'Top:', provider: 'Provider', modelo: 'Model', input: 'Input', output: 'Output', cost: 'Cost', allProviders: 'All providers', examplesBtn: 'Examples', code: 'Code', summary: 'Summary', email: 'Email', translate: 'Translate', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Summary', translateBtn: 'Trans', emptyState1: 'Enter prompt + calculate', retry: 'Retry', per1k: 'Prices per 1K', autoCalc: 'Auto-calculate', clearPrompt: 'clear' },
+      fr: { prompt: 'PROMPT', calculate: 'CALCULER', calculations: 'Calculs', saved: 'Économisé', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Moy:', top: 'Top:', provider: 'Fournisseur', modelo: 'Modèle', input: 'Input', output: 'Output', cost: 'Coût', allProviders: 'Tous les fournisseurs', examplesBtn: 'Exemples', code: 'Code', summary: 'Résumé', email: 'Email', translate: 'Traduire', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Résumé', translateBtn: 'Trad', emptyState1: 'Entrez prompt + calculez', retry: 'Réessayer', per1k: 'Prix par 1K', autoCalc: 'Auto-calcul', clearPrompt: 'effacer' },
+      de: { prompt: 'PROMPT', calculate: 'BERECHNEN', calculations: 'Berechnungen', saved: 'Gespart', limit: 'Limit:', min: 'Min:', max: 'Max:', avg: 'Durchschn:', top: 'Top:', provider: 'Anbieter', modelo: 'Modell', input: 'Eingabe', output: 'Ausgabe', cost: 'Kosten', allProviders: 'Alle Anbieter', examplesBtn: 'Beispiele', code: 'Code', summary: 'Zusammenfassung', email: 'E-Mail', translate: 'Übersetzen', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Code', summaryBtn: 'Zusammenf', translateBtn: 'Übers', emptyState1: 'Prompt eingeben + berechnen', retry: 'Wiederholen', per1k: 'Preise pro 1K', autoCalc: 'Auto-berechnen', clearPrompt: 'löschen' },
+      it: { prompt: 'PROMPT', calculate: 'CALCOLA', calculations: 'Calcoli', saved: 'Risparmiato', limit: 'Limite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Fornitore', modelo: 'Modello', input: 'Input', output: 'Output', cost: 'Costo', allProviders: 'Tutti i fornitori', examplesBtn: 'Esempi', code: 'Codice', summary: 'Sommario', email: 'Email', translate: 'Traduci', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Test', codeBtn: 'Codice', summaryBtn: 'Somma', translateBtn: 'Trad', emptyState1: 'Inserisci prompt + calcola', retry: 'Riprova', per1k: 'Prezzi per 1K', autoCalc: 'Auto-calcola', clearPrompt: 'cancella' },
+      pt: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Economizado', limit: 'Limite:', min: 'Mín:', max: 'Máx:', avg: 'Média:', top: 'Top:', provider: 'Provedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Custo', allProviders: 'Todos os provedores', examplesBtn: 'Exemplos', code: 'Código', summary: 'Resumo', email: 'Email', translate: 'Traduzir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Testes', codeBtn: 'Código', summaryBtn: 'Resumo', translateBtn: 'Trad', emptyState1: 'Digite prompt + calcule', retry: 'Tentar', per1k: 'Preços por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpar' },
+      ja: { prompt: 'プロンプト', calculate: '計算', calculations: '計算', saved: '節約', limit: '制限:', min: '最小:', max: '最大:', avg: '平均:', top: 'トップ:', provider: 'プロバイダー', modelo: 'モデル', input: '入力', output: '出力', cost: 'コスト', allProviders: 'すべて', examplesBtn: '例', code: 'コード', summary: '要約', email: 'メール', translate: '翻訳', blog: 'ブログ', seo: 'SEO', sql: 'SQL', test: 'テスト', codeBtn: 'コード', summaryBtn: '要約', translateBtn: '翻訳', emptyState1: 'プロンプト入力+計算', retry: '再試行', per1k: '1K単価', autoCalc: '自動計算', clearPrompt: 'クリア' },
+      zh: { prompt: '提示词', calculate: '计算', calculations: '计算', saved: '节省', limit: '限制:', min: '最低:', max: '最高:', avg: '平均:', top: '最佳:', provider: '提供商', modelo: '模型', input: '输入', output: '输出', cost: '成本', allProviders: '全部', examplesBtn: '示例', code: '代码', summary: '摘要', email: '邮件', translate: '翻译', blog: '博客', seo: 'SEO', sql: 'SQL', test: '测试', codeBtn: '代码', summaryBtn: '摘要', translateBtn: '翻译', emptyState1: '输入提示词+计算', retry: '重试', per1k: '1K价格', autoCalc: '自动计算', clearPrompt: '清除' }
     };
 
-    // Provider logos
+    // Provider logos - expanded
     const providerLogos = {
       openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
       deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
-      xai: 'logo-xai', groq: 'logo-groq'
+      xai: 'logo-xai', groq: 'logo-groq', fireworks: 'logo-fireworks', together: 'logo-together',
+      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity'
     };
 
     function getProviderLogo(provider) {
@@ -316,6 +350,8 @@
     let stats = { calcs: 0, saved: 0 };
     let currentLimit = 50;
     let currentLang = 'es';
+    let pricePer1K = false;
+    let autoCalc = false;
 
     // Init
     (function() {
@@ -324,6 +360,8 @@
         stats = s;
         updateStats();
       } catch(e) {}
+      
+      // Load settings
       if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
@@ -333,6 +371,14 @@
       if (localStorage.getItem('lang')) {
         document.getElementById('langSelect').value = localStorage.getItem('lang');
         changeLanguage(localStorage.getItem('lang'));
+      }
+      if (localStorage.getItem('pricePer1K') === 'true') {
+        document.getElementById('pricePer1K').checked = true;
+        pricePer1K = true;
+      }
+      if (localStorage.getItem('autoCalc') === 'true') {
+        document.getElementById('autoCalc').checked = true;
+        autoCalc = true;
       }
     })();
 
@@ -345,6 +391,17 @@
         const key = el.dataset.lang;
         if (t[key]) el.textContent = t[key];
       });
+    }
+
+    function togglePriceUnit() {
+      pricePer1K = document.getElementById('pricePer1K').checked;
+      localStorage.setItem('pricePer1K', pricePer1K);
+      renderResults();
+    }
+
+    function toggleAutoCalc() {
+      autoCalc = document.getElementById('autoCalc').checked;
+      localStorage.setItem('autoCalc', autoCalc);
     }
 
     function updateStats() {
@@ -387,7 +444,10 @@
       isDark = !isDark;
     }
 
-    function clearPrompt() { document.getElementById('prompt').value = ''; updateCount(); }
+    function clearPrompt() { 
+      document.getElementById('prompt').value = ''; 
+      updateCount(); 
+    }
     
     function clearFilters() {
       document.getElementById('search').value = '';
@@ -416,6 +476,7 @@
       };
       document.getElementById('prompt').value = ex[type];
       updateCount();
+      if (autoCalc) calcularCostos();
       toast('Ejemplo cargado');
     }
 
@@ -488,6 +549,9 @@
 
     function renderResults(searchTerm = '') {
       const limitedResults = results.slice(0, currentLimit);
+      const unit = pricePer1K ? 1000 : 1000000;
+      const unitLabel = pricePer1K ? '$/1K' : '$/M';
+      
       let html = '';
       limitedResults.forEach((m, i) => {
         const top = i < 3;
@@ -499,8 +563,8 @@
             ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
           </td>
           <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">$${m.input.toFixed(2)}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">$${m.output.toFixed(2)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">$${(m.input / unit).toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">$${(m.output / unit).toFixed(4)}</td>
           <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">$${m.total.toFixed(4)}</td>
         </tr>`;
       });
@@ -538,11 +602,28 @@
       toast('CSV exportado');
     }
 
-    document.getElementById('search').addEventListener('input', calcularCostos);
-    document.getElementById('providerFilter').addEventListener('change', calcularCostos);
-    document.getElementById('prompt').addEventListener('input', () => { updateCount(); if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
-    document.getElementById('outputTokens').addEventListener('input', () => { if (!document.getElementById('tableBody').classList.contains('hidden')) calcularCostos(); });
-    document.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); calcularCostos(); } });
+    // Event listeners
+    document.getElementById('search').addEventListener('input', () => { if (autoCalc) calcularCostos(); else renderResults(); });
+    document.getElementById('providerFilter').addEventListener('change', () => { if (autoCalc) calcularCostos(); else renderResults(); });
+    document.getElementById('prompt').addEventListener('input', () => { 
+      updateCount(); 
+      if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
+    });
+    document.getElementById('outputTokens').addEventListener('input', () => { 
+      if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', e => { 
+      if (e.ctrlKey && e.key === 'Enter') { 
+        e.preventDefault(); 
+        calcularCostos(); 
+      }
+      if (e.key === 'Escape') {
+        clearPrompt();
+        document.getElementById('search').focus();
+      }
+    });
     
     window.onload = () => { loadModels(); updateCount(); updateSortIcons(); };
   </script>
