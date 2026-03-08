@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v2.0.1] - 2026-03-08
+
+### Fixed
+- 🔧 **Layout panels** - Left panel fixed height, right panel flexible with internal scroll
+- 📐 **Viewport fit** - Panels adapt to window height properly
+- 🎯 **Scroll behavior** - Only the results table scrolls, not the whole page
+
+---
+
 ## [v2.0.0] - 2026-03-08
 
 ### Added

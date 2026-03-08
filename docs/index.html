@@ -4,32 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TokenTax AI PRO | Compara +400 Modelos de IA - Precios 2026</title>
+  <title>TokenTax AI PRO | Compara +400 Modelos de IA</title>
   <meta name="title" content="TokenTax AI PRO | Compara +400 Modelos de IA">
-  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. OpenAI, Anthropic, Gemini, Grok, Mistral. Encuentra el más barato.">
-  <meta name="keywords" content="AI, LLM, pricing, comparison, OpenAI, Anthropic, Claude, Gemini, GPT-4, token pricing, API costs">
+  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores.">
   <meta name="author" content="smouj">
   <meta name="theme-color" content="#000000">
-  <meta name="robots" content="index, follow">
   
   <link rel="manifest" href="manifest.json">
   
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://smouj.github.io/tokentax/">
-  <meta property="og:title" content="TokenTax AI PRO | +400 Modelos de IA">
-  <meta property="og:description" content="Compara precios de +400 modelos de IA. Encuentra el más barato.">
-  
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="TokenTax AI PRO">
-  
+  <meta property="og:title" content="TokenTax AI PRO">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "TokenTax AI PRO",
-    "description": "Compara +400 modelos de IA",
-    "url": "https://smouj.github.io/tokentax/"
-  }
+  {"@context":"https://schema.org","@type":"WebApplication","name":"TokenTax AI PRO","url":"https://smouj.github.io/tokentax/"}
   </script>
   
   <script src="https://cdn.tailwindcss.com"></script>
@@ -52,7 +37,6 @@
       --green: #22c55e;
       --green-dim: rgba(34, 197, 94, 0.1);
       --red: #ef4444;
-      --red-dim: rgba(239, 68, 68, 0.1);
     }
     
     .theme-light {
@@ -71,7 +55,6 @@
       --green: #16a34a;
       --green-dim: #dcfce7;
       --red: #dc2626;
-      --red-dim: #fee2e2;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -81,26 +64,83 @@
       font-family: 'Space Grotesk', -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
-      overflow: hidden;
       height: 100vh;
       width: 100vw;
-      transition: background 0.2s, color 0.2s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     
-    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; }
-    .panel-hover:hover { background: var(--surface-3); border-color: var(--border-2); }
+    /* Layout containers */
+    .app-container {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
     
+    .left-panel {
+      width: 280px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 8px;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+    }
+    
+    .right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+    }
+    
+    /* Panel styles */
+    .panel { 
+      background: var(--surface); 
+      border: 1px solid var(--border); 
+      border-radius: 2px; 
+    }
+    
+    .panel-hover:hover { 
+      background: var(--surface-3); 
+      border-color: var(--border-2); 
+    }
+    
+    /* Left panel items */
+    .prompt-area {
+      flex: 1;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .output-area { flex-shrink: 0; }
+    .calc-btn { flex-shrink: 0; }
+    .quick-btns { flex-shrink: 0; display: flex; gap: 4px; }
+    .stats-area { flex-shrink: 0; }
+    
+    /* Inputs */
     .input-field {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 2px;
       color: var(--text);
-      transition: all 0.15s;
     }
     .input-field:focus { outline: none; border-color: var(--accent); }
     .input-field::placeholder { color: var(--placeholder); }
-    select.input-field { color: var(--text); cursor: pointer; }
-    select.input-field option { background: var(--surface); color: var(--text); }
+    
+    select.input-field { 
+      color: var(--text); 
+      cursor: pointer; 
+    }
+    select.input-field option { 
+      background: var(--surface); 
+      color: var(--text); 
+    }
     
     .btn-primary {
       background: var(--accent);
@@ -108,22 +148,20 @@
       border: none;
       border-radius: 2px;
       font-weight: 600;
-      transition: all 0.15s;
       cursor: pointer;
     }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-    .btn-primary:active { transform: scale(0.98); }
+    .btn-primary:hover { opacity: 0.9; }
     
+    /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .anim { animation: fadeIn 0.3s ease forwards; opacity: 0; }
-    .delay-1 { animation-delay: 0.02s; }
-    .delay-2 { animation-delay: 0.04s; }
-    .delay-3 { animation-delay: 0.06s; }
     
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
     
+    /* Table */
     .table-row { transition: background 0.1s; cursor: pointer; }
     .table-row:hover { background: var(--surface-3) !important; }
     
@@ -141,22 +179,7 @@
     .text-tertiary { color: var(--text-3); }
     .text-green { color: var(--green); }
     .text-red { color: var(--red); }
-    
     .stats-bar { background: var(--green-dim); }
-    
-    /* Compact badges */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 6px;
-      font-size: 9px;
-      font-weight: 500;
-      border-radius: 2px;
-      background: var(--surface-2);
-      color: var(--text-2);
-    }
-    .badge-green { background: var(--green-dim); color: var(--green); }
-    .badge-red { background: var(--red-dim); color: var(--red); }
   </style>
 </head>
 <body class="theme-dark">
@@ -164,12 +187,12 @@
   <div id="toast" class="fixed top-3 right-3 z-50"></div>
 
   <!-- Header -->
-  <header class="panel border-t-0 border-l-0 border-r-0 flex-shrink-0">
+  <header class="panel flex-shrink-0" style="border-left:0;border-right:0;border-top:0;">
     <div class="flex items-center justify-between px-4 py-2">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 panel flex items-center justify-center font-bold text-lg logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-sm tracking-tight">TokenTax <span class="text-secondary">AI</span></h1>
+          <h1 class="font-semibold text-sm">TokenTax <span class="text-secondary">AI</span></h1>
           <p class="text-[10px] text-tertiary uppercase tracking-wider">+400 Modelos</p>
         </div>
       </div>
@@ -179,7 +202,7 @@
           <span id="loader" class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
           <span id="modelText">Cargando...</span>
         </div>
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Cambiar tema">🌙</button>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs">🌙</button>
         <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 panel panel-hover flex items-center justify-center">
           <svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
@@ -187,14 +210,14 @@
     </div>
   </header>
 
-  <!-- Main -->
-  <main class="flex-1 flex gap-2 p-2 min-h-0">
+  <!-- Main Container -->
+  <main class="app-container">
     
-    <!-- Left Panel -->
-    <div class="w-[300px] flex-shrink-0 panel p-2 flex flex-col gap-2">
+    <!-- Left Panel - Fixed height -->
+    <aside class="left-panel">
       
       <!-- Prompt -->
-      <div class="panel p-2 flex flex-col flex-1 min-h-0">
+      <div class="panel prompt-area p-2">
         <div class="flex justify-between items-center mb-1.5">
           <span class="text-[10px] text-secondary font-medium">PROMPT</span>
           <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary">✕</button>
@@ -204,25 +227,25 @@
           <span id="charCount">0 ch</span>
           <span id="tokenCount">~0 tk</span>
         </div>
+      </div>
 
-      <!--</div>
-       Output -->
-      <div class="panel p-2">
+      <!-- Output -->
+      <div class="panel output-area p-2">
         <label class="block text-[10px] text-secondary font-medium mb-1">OUTPUT TOKENS</label>
         <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-lg font-semibold text-center focus:outline-none">
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="btn-primary py-2 text-sm">⚡ CALCULAR</button>
+      <button onclick="calcularCostos()" class="panel calc-btn btn-primary py-2 text-sm">⚡ CALCULAR</button>
 
       <!-- Quick -->
-      <div class="flex gap-1">
+      <div class="quick-btns">
         <button onclick="useExample('code')" class="flex-1 py-1.5 panel panel-hover text-[9px]">📝 Código</button>
         <button onclick="useExample('summary')" class="flex-1 py-1.5 panel panel-hover text-[9px]">📝 Resumen</button>
       </div>
 
       <!-- Stats -->
-      <div class="panel p-2">
+      <div class="panel stats-area p-2">
         <div class="flex justify-between text-[9px] mb-1">
           <span class="text-secondary">Cálculos</span>
           <span id="totalCalcs" class="text-primary">0</span>
@@ -232,10 +255,10 @@
           <span id="totalSaved" class="text-green">$0</span>
         </div>
       </div>
-    </div>
+    </aside>
 
-    <!-- Right Panel -->
-    <div class="flex-1 panel flex flex-col min-w-0">
+    <!-- Right Panel - Flexible -->
+    <div class="right-panel panel" style="margin:8px; margin-left:0;">
       
       <!-- Filters -->
       <div class="p-2 border-b flex gap-2" style="border-color: var(--border)">
@@ -267,7 +290,7 @@
         <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')">Coste <span class="sort-icon" data-sort="total">↕</span></div>
       </div>
 
-      <!-- Results -->
+      <!-- Results - Scrollable -->
       <div class="flex-1 overflow-y-auto">
         <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
           <p class="text-sm">Introduce prompt + calcula</p>
