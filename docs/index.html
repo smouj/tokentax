@@ -53,7 +53,10 @@
       .right-panel { margin: 4px !important; width: calc(100% - 8px) !important; }
       .header { padding: 8px !important; }
       .quick-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 4px !important; }
-      .table-row { padding: 8px 4px !important; font-size: 11px !important; }
+      .table-row { padding: 6px 4px !important; font-size: 10px !important; }
+      .td-col { padding: 2px 4px !important; font-size: 9px !important; }
+      .td-col:nth-child(2) { flex: 0 0 60px !important; }
+      .td-col:nth-child(3) { flex: 0 0 60px !important; }
       .panel { border-radius: 6px !important; }
       .btn-primary { padding: 10px 16px !important; }
       .header h1 { font-size: 14px !important; }
@@ -93,19 +96,30 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    .table-header { position: sticky; top: 0; background: var(--surface); z-index: 10; }
-    .table-row { transition: all 0.15s ease; cursor: pointer; display: flex; align-items: center; }
-    .table-row:hover { background: var(--surface-3) !important; transform: translateX(2px); }
-    .table-cell { flex: 1; min-width: 0; padding: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .table-cell:first-child { flex: 0 0 80px; }
-    .table-cell:nth-child(2) { flex: 0 0 120px; }
-    .table-cell:nth-child(3) { flex: 0 0 70px; text-align: right; }
-    .table-cell:nth-child(4) { flex: 0 0 70px; text-align: right; }
-    .table-cell:nth-child(5) { flex: 0 0 80px; text-align: right; }
-    .table-row.highlight { background: var(--blue-dim) !important; }
+    .table-header { position: sticky; top: 0; background: var(--surface-2); z-index: 10; display: flex; align-items: center; padding: 6px 8px; font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--text-3); }
+    .th-col { flex: 1; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .th-col:hover { color: var(--text); }
+    .th-col:first-child { flex: 0 0 24px; }
+    .th-col:nth-child(2) { flex: 0 0 100px; }
+    .th-col:nth-child(3) { flex: 0 0 100px; text-align: right; justify-content: flex-end; }
+    .th-col:nth-child(4) { flex: 0 0 70px; text-align: right; justify-content: flex-end; }
+    .th-col:nth-child(5) { flex: 0 0 70px; text-align: right; justify-content: flex-end; }
+    .th-col:nth-child(6) { flex: 0 0 80px; text-align: right; justify-content: flex-end; }
+    .sort-icon { opacity: 0.5; font-size: 8px; }
+    .sort-icon.active { opacity: 1; color: var(--green); }
+    .table-row { transition: all 0.15s ease; cursor: pointer; display: flex; align-items: center; padding: 8px; border-bottom: 1px solid var(--border); font-size: 12px; }
+    .table-row:hover { background: var(--surface-3); transform: translateX(2px); }
+    .table-row.highlight { background: var(--blue-dim); }
     .table-row.top-3 { background: rgba(34, 197, 94, 0.08); }
-    .table-row.selected { background: var(--blue-dim) !important; outline: 2px solid var(--blue); }
+    .table-row.selected { background: var(--blue-dim); outline: 2px solid var(--blue); }
     .theme-light .table-row.top-3 { background: var(--green-dim); }
+    .td-col { flex: 1; padding: 4px 8px; }
+    .td-col:first-child { flex: 0 0 28px; text-align: center; }
+    .td-col:nth-child(2) { flex: 0 0 90px; font-weight: 500; }
+    .td-col:nth-child(3) { flex: 0 0 90px; font-size: 10px; color: var(--text-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .td-col:nth-child(4) { flex: 0 0 65px; text-align: right; color: var(--text-3); font-size: 11px; }
+    .td-col:nth-child(5) { flex: 0 0 65px; text-align: right; color: var(--text-3); font-size: 11px; }
+    .td-col:nth-child(6) { flex: 0 0 75px; text-align: right; font-weight: 600; font-size: 11px; }
 
     /* Button hover effects */
     .panel-hover { transition: all 0.15s ease; }
@@ -453,13 +467,13 @@
       </div>
 
       <!-- Table Header -->
-      <div class="grid grid-cols-7 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
-        <div></div>
-        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
-        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
+      <div class="table-header">
+        <div class="th-col"></div>
+        <div class="th-col" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
+        <div class="th-col" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
       </div>
 
       <!-- Results -->
@@ -1509,19 +1523,14 @@
         const isFav = favorites.includes(`${m.provider}/${m.fullName}`);
         const isSelected = selectedModels.includes(i);
 
-        html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
-          <td class="px-1 py-1.5">
-            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star"></i>' : '☆'}</span>
-          </td>
-          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
-            <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
-            ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
-          </td>
-          <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.input / unit * rate).toFixed(4)}</td>
-          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.output / unit * rate).toFixed(4)}</td>
-          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">${symbol}${(m.total * rate).toFixed(4)}</td>
-        </tr>`;
+        html += `<div class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''}" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
+          <div class="td-col"><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></div>
+          <div class="td-col ${top ? 'text-green' : ''}"><span class="provider-logo ${logoClass}" style="margin-right:4px">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</div>
+          <div class="td-col text-[10px]" title="${m.fullName}">${m.name}</div>
+          <div class="td-col text-right">${symbol}${(m.input / unit * rate).toFixed(4)}</div>
+          <div class="td-col text-right">${symbol}${(m.output / unit * rate).toFixed(4)}</div>
+          <div class="td-col text-right font-semibold ${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</div>
+        </div>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
