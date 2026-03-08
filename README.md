@@ -1,5 +1,7 @@
 # 🔥 TokenTax AI PRO
 
+<img width="1211" height="697" alt="Captura de pantalla (944)" src="https://github.com/user-attachments/assets/3b12e5ca-3593-43c6-a5af-9b188887e94c" />
+
 <div align="center">
 
 [![Stars](https://img.shields.io/github/stars/smouj/tokentax?style=flat&color=yellow)](https://github.com/smouj/tokentax/stargazers)
