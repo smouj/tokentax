@@ -161,14 +161,14 @@
       <div class="flex items-center gap-2">
         <!-- Language -->
         <select id="langSelect" onchange="changeLanguage(this.value)" class="px-2 py-1 input-field text-[10px]">
-          <option value="es">🇪🇸 ES</option>
-          <option value="en">🇺🇸 EN</option>
-          <option value="fr">🇫🇷 FR</option>
-          <option value="de">🇩🇪 DE</option>
-          <option value="it">🇮🇹 IT</option>
-          <option value="pt">🇧🇷 PT</option>
-          <option value="ja">🇯🇵 JA</option>
-          <option value="zh">🇨🇳 ZH</option>
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+          <option value="it">IT</option>
+          <option value="pt">PT</option>
+          <option value="ja">JA</option>
+          <option value="zh">ZH</option>
         </select>
         
         <!-- Currency -->
@@ -179,9 +179,10 @@
         </select>
         
         <!-- Theme Toggle -->
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme"><i class="fas fa-moon"></i></button>
-        <button onclick="quickEstimate()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Quick Estimate">$</button>
-        <button onclick="loadPresets()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Load Preset">P</button>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button onclick="setOLEDMode(true)" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="OLED Mode"><i class="fas fa-square-full"></i></button>
+        <button onclick="quickEstimate()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Quick Estimate"><i class="fas fa-calculator"></i></button>
+        <button onclick="loadPresets()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Load Preset"><i class="fas fa-folder"></i></button>
         
         <!-- Examples -->
         <div class="dropdown">
@@ -764,6 +765,48 @@
       const cost = (inT * cheapest.input + out * cheapest.output) / 1e6;
       
       toast(`Estimacion rapida: $${cost.toFixed(4)} con ${cheapest.provider}`, 'info');
+    }
+
+    // Dark mode optimized for OLED
+    function setOLEDMode(enable) {
+      if (enable) {
+        document.documentElement.style.setProperty('--bg', '#000000');
+        document.documentElement.style.setProperty('--surface', '#000000');
+        document.documentElement.style.setProperty('--surface-2', '#0a0a0a');
+        toast('OLED Mode enabled');
+      } else {
+        document.documentElement.style.setProperty('--bg', '');
+        document.documentElement.style.setProperty('--surface', '');
+        document.documentElement.style.setProperty('--surface-2', '');
+        toast('OLED Mode disabled');
+      }
+    }
+
+    // Keyboard accessible dropdowns
+    document.addEventListener('keydown', e => {
+      // Number keys 1-9 for quick actions
+      if (e.altKey && e.key >= '1' && e.key <= '9') {
+        e.preventDefault();
+        const idx = parseInt(e.key) - 1;
+        const btns = document.querySelectorAll('.quick-btn');
+        if (btns[idx]) btns[idx].click();
+      }
+    });
+
+    // Toast notification helper
+    function showToast(message, type = 'info', duration = 3000) {
+      const colors = { 
+        info: 'var(--surface)', 
+        success: 'var(--green-dim)', 
+        error: 'var(--red-dim)',
+        warning: '#fef3c7'
+      };
+      const t = document.createElement('div');
+      t.className = 'toast-in mb-2 px-4 py-2 panel text-sm';
+      t.style.background = colors[type] || colors.info;
+      t.innerHTML = `<span class="font-medium">${message}</span>`;
+      document.getElementById('toast').appendChild(t);
+      setTimeout(() => t.remove(), duration);
     }
 
     // Save/load presets
