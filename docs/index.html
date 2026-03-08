@@ -163,8 +163,8 @@
       <div class="flex items-center gap-4">
         <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span></h1>
-          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green">v3.4</span></p>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v3.8</span></h1>
+          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
         </div>
       </div>
 
@@ -427,8 +427,9 @@
       <!-- Results -->
       <div class="flex-1 overflow-y-auto p-2" id="resultsContainer" style="padding: 8px;">
         <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
-          <p class="text-sm" data-lang="emptyState1">Introduce prompt + calcula</p>
-          <p class="text-xs mt-1"><span class="kbd">Ctrl</span>+<span class="kbd">↵</span></p>
+          <i class="fas fa-calculator text-4xl mb-3" style="opacity:0.3"></i>
+          <p class="text-sm" data-lang="emptyState1">Enter a prompt and calculate</p>
+          <p class="text-xs mt-1" style="opacity:0.6"><span class="kbd">Ctrl+Enter</span></p>
         </div>
         <div id="errorState" class="hidden h-full flex flex-col items-center justify-center text-red">
           <p class="text-sm" id="errorMsg">Error</p>
@@ -450,7 +451,7 @@
   <!-- Footer -->
   <footer class="flex-shrink-0 border-t p-3" style="border-color: var(--border); background: var(--surface);">
     <div class="text-center text-[10px] text-tertiary">
-      <span class="font-medium">TokenTax AI PRO</span> • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help • <span class="kbd">Esc</span> clear • <span class="kbd">F11</span> fullscreen
+      <span class="font-medium">TokenTax AI PRO</span> &copy; 2026 • <span id="visitorCount"><i class="fas fa-spinner fa-spin"></i></span> visits • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help
     </div>
   </footer>
 
@@ -1624,7 +1625,35 @@
       }
     });
 
-    window.onload = () => { loadModels(); updateCount(); updateSortIcons(); loadFromURL(); };
+    // Visitor counter
+    function updateVisitorCount() {
+      const today = new Date().toDateString();
+      let visitorData = JSON.parse(localStorage.getItem('tt_visitors') || '{"total":0,"lastVisit":"","today":0}');
+      
+      // Increment if new day
+      if (visitorData.lastVisit !== today) {
+        visitorData.total++;
+        visitorData.today = 1;
+        visitorData.lastVisit = today;
+      } else {
+        visitorData.today++;
+      }
+      
+      localStorage.setItem('tt_visitors', JSON.stringify(visitorData));
+      
+      // Format number with commas
+      const formatted = visitorData.total.toLocaleString();
+      document.getElementById('visitorCount').innerHTML = `<i class="fas fa-users"></i> ${formatted}`;
+    }
+
+    // Initialize
+    window.onload = () => { 
+      loadModels(); 
+      updateCount(); 
+      updateSortIcons(); 
+      loadFromURL();
+      updateVisitorCount();
+    };
   </script>
 </body>
 </html>
