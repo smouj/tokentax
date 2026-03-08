@@ -13,6 +13,7 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
     :root, .theme-dark {
@@ -178,22 +179,22 @@
         </select>
         
         <!-- Theme Toggle -->
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme">🌙</button>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme"><i class="fas fa-moon"></i></button>
         <button onclick="quickEstimate()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Quick Estimate">$</button>
         <button onclick="loadPresets()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Load Preset">P</button>
         
         <!-- Examples -->
         <div class="dropdown">
-          <button class="btn-secondary px-2 py-1 text-[10px]">📝 <span id="examplesBtn">Ejemplos</span> ▾</button>
+          <button class="btn-secondary px-2 py-1 text-[10px]"><i class="fas fa-edit"></i> <span id="examplesBtn">Ejemplos</span> ▾</button>
           <div class="dropdown-content">
-            <div class="dropdown-item" onclick="useExample('code')">💻 <span data-lang="code">Código</span></div>
-            <div class="dropdown-item" onclick="useExample('summary')">📄 <span data-lang="summary">Resumen</span></div>
-            <div class="dropdown-item" onclick="useExample('email')">📧 <span data-lang="email">Email</span></div>
-            <div class="dropdown-item" onclick="useExample('translate')">🌍 <span data-lang="translate">Traducir</span></div>
-            <div class="dropdown-item" onclick="useExample('blog')">📝 <span data-lang="blog">Blog</span></div>
-            <div class="dropdown-item" onclick="useExample('seo')">🔍 <span data-lang="seo">SEO</span></div>
-            <div class="dropdown-item" onclick="useExample('sql')">🗄️ <span data-lang="sql">SQL</span></div>
-            <div class="dropdown-item" onclick="useExample('test')">🧪 <span data-lang="test">Tests</span></div>
+            <div class="dropdown-item" onclick="useExample('code')"><i class="fas fa-laptop-code"></i> <span data-lang="code">Código</span></div>
+            <div class="dropdown-item" onclick="useExample('summary')"><i class="fas fa-file-alt"></i> <span data-lang="summary">Resumen</span></div>
+            <div class="dropdown-item" onclick="useExample('email')"><i class="fas fa-envelope"></i> <span data-lang="email">Email</span></div>
+            <div class="dropdown-item" onclick="useExample('translate')"><i class="fas fa-globe"></i> <span data-lang="translate">Traducir</span></div>
+            <div class="dropdown-item" onclick="useExample('blog')"><i class="fas fa-edit"></i> <span data-lang="blog">Blog</span></div>
+            <div class="dropdown-item" onclick="useExample('seo')"><i class="fas fa-search"></i> <span data-lang="seo">SEO</span></div>
+            <div class="dropdown-item" onclick="useExample('sql')"><i class="fas fa-database"></i> <span data-lang="sql">SQL</span></div>
+            <div class="dropdown-item" onclick="useExample('test')"><i class="fas fa-flask"></i> <span data-lang="test">Tests</span></div>
           </div>
         </div>
         
@@ -219,7 +220,7 @@
       <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
         <div class="flex justify-between items-center mb-1.5">
           <span class="text-[10px] text-secondary font-medium" data-lang="prompt">PROMPT</span>
-          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)">✕</button>
+          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)"><i class="fas fa-times"></i></button>
         </div>
         <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
         <div class="flex justify-between mt-1.5 text-[9px] text-tertiary">
@@ -235,16 +236,16 @@
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm">⚡ <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+↵</span></button>
+      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm"><i class="fas fa-bolt"></i> <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+↵</span></button>
 
       <!-- Quick Grid -->
       <div class="quick-grid">
-        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span>💻</span><span data-lang="codeBtn">Código</span></button>
-        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span>📄</span><span data-lang="summaryBtn">Resumen</span></button>
-        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span>🌍</span><span data-lang="translateBtn">Trad</span></button>
-        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span>🗄️</span><span>SQL</span></button>
-        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span>🧪</span><span>Tests</span></button>
-        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span>🔍</span><span>SEO</span></button>
+        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span><i class="fas fa-laptop-code"></i></span><span data-lang="codeBtn">Código</span></button>
+        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span><i class="fas fa-file-alt"></i></span><span data-lang="summaryBtn">Resumen</span></button>
+        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span><i class="fas fa-globe"></i></span><span data-lang="translateBtn">Trad</span></button>
+        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span><i class="fas fa-database"></i></span><span>SQL</span></button>
+        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span><i class="fas fa-flask"></i></span><span>Tests</span></button>
+        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span><i class="fas fa-search"></i></span><span>SEO</span></button>
       </div>
 
       <!-- Settings -->
@@ -298,7 +299,7 @@
       <!-- Favorites -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">⭐ <span data-lang="favorites">Favoritos</span></span>
+          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-star"></i> <span data-lang="favorites">Favoritos</span></span>
           <span id="favCount" class="text-[9px] text-tertiary">0</span>
         </div>
         <div id="favoritesList" class="flex flex-wrap gap-1"></div>
@@ -307,7 +308,7 @@
       <!-- Custom Templates -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">📝 <span data-lang="templates">Plantillas</span></span>
+          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-edit"></i> <span data-lang="templates">Plantillas</span></span>
           <button onclick="saveTemplate()" class="text-[9px] text-tertiary hover:text-primary">+</button>
         </div>
         <div id="templatesList" class="flex flex-wrap gap-1"></div>
@@ -316,7 +317,7 @@
       <!-- Recent -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">🕐 <span data-lang="recent">Recientes</span></span>
+          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-clock"></i> <span data-lang="recent">Recientes</span></span>
           <span id="recentCount" class="text-[9px] text-tertiary">0</span>
         </div>
         <div id="recentList" class="flex flex-wrap gap-1"></div>
@@ -325,7 +326,7 @@
       <!-- Price Alerts -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">🔔 <span data-lang="alerts">Alertas</span></span>
+          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-bell"></i> <span data-lang="alerts">Alertas</span></span>
           <button onclick="addPriceAlert()" class="text-[9px] text-tertiary hover:text-primary">+</button>
         </div>
         <div id="alertsList" class="flex flex-col gap-1"></div>
@@ -334,7 +335,7 @@
       <!-- Batch Calculate -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium">📦 <span data-lang="batch">Lote</span></span>
+          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-box"></i> <span data-lang="batch">Lote</span></span>
           <button onclick="addBatchPrompt()" class="text-[9px] text-tertiary hover:text-primary">+</button>
         </div>
         <div id="batchList" class="flex flex-col gap-1"></div>
@@ -347,7 +348,7 @@
       <!-- Filters -->
       <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
         <div class="flex-1 min-w-[150px] relative">
-          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs">🔍</span>
+          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs"><i class="fas fa-search"></i></span>
           <input id="search" type="text" placeholder="Buscar modelo..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
         </div>
         <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
@@ -357,9 +358,9 @@
         <!-- Extra Filters -->
         <select id="typeFilter" class="px-2 py-1.5 input-field text-xs" onchange="applyTypeFilter()">
           <option value="">Todos los tipos</option>
-          <option value="vision">👁️ Vision</option>
-          <option value="reasoning">🧠 Reasoning</option>
-          <option value="cheapest_provider">💰 Más barato x provider</option>
+          <option value="vision"><i class="fas fa-eye"></i> Vision</option>
+          <option value="reasoning"><i class="fas fa-brain"></i> Reasoning</option>
+          <option value="cheapest_provider"><i class="fas fa-dollar-sign"></i> Más barato x provider</option>
         </select>
         
         <!-- Limit -->
@@ -368,14 +369,14 @@
           <input type="number" id="limitInput" value="50" min="5" max="500" class="px-2 py-1 input-field text-xs" style="width:50px" onchange="applyLimit()">
         </div>
         
-        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]">✕</button>
-        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo">📋</button>
+        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]"><i class="fas fa-times"></i></button>
+        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><i class="fas fa-copy"></i></button>
         <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
         <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
         <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir">Share</button>
         <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado">AI</button>
         <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen">[]</button>
-        <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar">⚖️</button>
+        <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar"><i class="fas fa-balance-scale"></i></button>
       </div>
 
       <!-- Stats Bar -->
@@ -383,17 +384,17 @@
         <div><span class="text-secondary" data-lang="min">Min:</span> <span id="minCost" class="text-green font-medium">-</span></div>
         <div><span class="text-secondary" data-lang="max">Max:</span> <span id="maxCost" class="text-red font-medium">-</span></div>
         <div><span class="text-secondary" data-lang="avg">Media:</span> <span id="avgCost" class="text-primary font-medium">-</span></div>
-        <div class="ml-auto"><span class="text-secondary">🏆 <span data-lang="top">Top:</span></span> <span id="topProvider" class="text-green font-medium">-</span></div>
+        <div class="ml-auto"><span class="text-secondary"><i class="fas fa-trophy"></i> <span data-lang="top">Top:</span></span> <span id="topProvider" class="text-green font-medium">-</span></div>
       </div>
 
       <!-- Table Header -->
       <div class="grid grid-cols-7 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
         <div></div>
-        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider">↕</span></div>
-        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name">↕</span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input">↕</span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output">↕</span></div>
-        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total">↕</span></div>
+        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
+        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
       </div>
 
       <!-- Results -->
@@ -422,7 +423,7 @@
   <!-- Footer -->
   <footer class="flex-shrink-0 border-t p-2" style="border-color: var(--border)">
     <div class="text-center text-[9px] text-tertiary">
-      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">Esc</span> <span data-lang="clearPrompt">limpiar</span> • <span class="kbd">↑↓</span> navegar
+      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary">GitHub</a> • <span class="kbd">Esc</span> <span data-lang="clearPrompt">limpiar</span> • <span class="kbd"><i class="fas fa-arrow-up"></i><i class="fas fa-arrow-down"></i></span> navegar
     </div>
   </footer>
 
@@ -430,8 +431,8 @@
   <div id="compareModal" class="modal-overlay">
     <div class="modal">
       <div class="modal-header">
-        <span class="font-semibold">⚖️ <span data-lang="compare">Comparar Modelos</span></span>
-        <button onclick="closeCompare()" class="btn-ghost">✕</button>
+        <span class="font-semibold"><i class="fas fa-balance-scale"></i> <span data-lang="compare">Comparar Modelos</span></span>
+        <button onclick="closeCompare()" class="btn-ghost"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
         <div class="compare-grid" id="compareContent"></div>
@@ -447,7 +448,7 @@
     <div class="modal">
       <div class="modal-header">
         <span class="font-semibold" id="detailsTitle">Detalles</span>
-        <button onclick="closeDetails()" class="btn-ghost">✕</button>
+        <button onclick="closeDetails()" class="btn-ghost"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body" id="detailsContent"></div>
     </div>
@@ -532,7 +533,7 @@
       if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        document.getElementById('themeBtn').textContent = '☀️';
+        document.getElementById('themeBtn').textContent = '<i class="fas fa-sun"></i>';
         isDark = false;
       }
       if (localStorage.getItem('lang')) {
@@ -909,7 +910,7 @@
       list.innerHTML = priceAlerts.map((a, i) => 
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary">< $${a.maxPrice}</span>
-          <button onclick="removeAlert(${i})" class="text-red">✕</button>
+          <button onclick="removeAlert(${i})" class="text-red"><i class="fas fa-times"></i></button>
         </div>`
       ).join('');
     }
@@ -920,7 +921,7 @@
         if (!alert.active) return;
         const cheapest = results[0].total;
         if (cheapest <= alert.maxPrice) {
-          toast(`🔔 ¡Alerta! ${results[0].provider} está a $${cheapest.toFixed(4)}`, 'success');
+          toast(`<i class="fas fa-bell"></i> ¡Alerta! ${results[0].provider} está a $${cheapest.toFixed(4)}`, 'success');
         }
       });
     }
@@ -947,7 +948,7 @@
       if (!batchPrompts.length) return;
       const resultsDiv = document.createElement('div');
       resultsDiv.className = 'panel p-2 mt-2';
-      resultsDiv.innerHTML = '<div class="text-[10px] font-medium mb-1">📦 Resultados:</div>';
+      resultsDiv.innerHTML = '<div class="text-[10px] font-medium mb-1"><i class="fas fa-box"></i> Resultados:</div>';
       
       batchPrompts.forEach(bp => {
         const inT = estTokens(bp.prompt);
@@ -984,9 +985,9 @@
       list.innerHTML = batchPrompts.map((bp, i) => 
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary truncate" style="max-width:80px">${bp.name}</span>
-          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red">✕</button>
+          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red"><i class="fas fa-times"></i></button>
         </div>`
-      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]">▶ Ejecutar</button>`;
+      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]"><i class="fas fa-play"></i> Ejecutar</button>`;
     }
 
     function saveBatch() {
@@ -1006,7 +1007,7 @@
     function updateSortIcons() {
       document.querySelectorAll('.sort-icon').forEach(el => {
         const field = el.dataset.sort;
-        el.textContent = (field === sortF) ? (sortA ? '↑' : '↓') : '↕';
+        el.textContent = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
         el.classList.toggle('text-green', field === sortF);
       });
     }
@@ -1016,12 +1017,12 @@
       if (isDark) {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        btn.textContent = '☀️';
+        btn.textContent = '<i class="fas fa-sun"></i>';
         localStorage.setItem('theme', 'light');
       } else {
         document.body.classList.remove('theme-light');
         document.body.classList.add('theme-dark');
-        btn.textContent = '🌙';
+        btn.textContent = '<i class="fas fa-moon"></i>';
         localStorage.setItem('theme', 'dark');
       }
       isDark = !isDark;
@@ -1145,7 +1146,7 @@
           ${m.context ? `<div><span class="text-tertiary">Context Window:</span> <span class="font-medium">${(m.context / 1024).toFixed(0)}K tokens</span></div>` : ''}
           <div class="pt-2">
             <button onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)" class="btn-secondary px-3 py-1 text-xs">
-              ${favorites.includes(`${m.provider}/${m.fullName}`) ? '⭐ Quitar Favorito' : '☆ Añadir Favorito'}
+              ${favorites.includes(`${m.provider}/${m.fullName}`) ? '<i class="fas fa-star"></i> Quitar Favorito' : '☆ Añadir Favorito'}
             </button>
           </div>
         </div>
@@ -1258,7 +1259,7 @@
         
         html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
           <td class="px-1 py-1.5">
-            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '⭐' : '☆'}</span>
+            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star"></i>' : '☆'}</span>
           </td>
           <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
             <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
