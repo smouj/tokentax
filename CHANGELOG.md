@@ -4,16 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v2.7.0] - 2026-03-08
+
+### Added (Difficult List Start)
+- **Auto-refresh** - Auto-refresh data every 5 minutes
+- **PDF Export** - Export results to PDF
+- **Better stats** - More detailed statistics
+
+---
+
 ## [v2.6.0] - 2026-03-08
 
 ### Added (Medium List 11-20)
-- 📝 **Custom templates** - Save and load prompt templates
-- 🕐 **Recent models** - Recently used models access
-- 👁️ **Vision filter** - Filter models with vision capabilities
-- 🧠 **Reasoning filter** - Filter reasoning models (o1, r1, etc.)
-- 💰 **Cheapest per provider** - Show cheapest model for each provider
-- 🔔 **Price alerts** - Get notified when price drops below X
-- 📦 **Batch calculate** - Calculate multiple prompts at once
+- **Custom templates** - Save and load prompt templates
+- **Recent models** - Recently used models access
+- **Vision filter** - Filter models with vision capabilities
+- **Reasoning filter** - Filter reasoning models
+- **Cheapest per provider** - Show cheapest model for each provider
+- **Price alerts** - Get notified when price drops below X
+- **Batch calculate** - Calculate multiple prompts at once
 
 ---
 
