@@ -716,12 +716,7 @@
       list.innerHTML = sorted.map(([p, c]) => {
         const icon = getProviderIcon(p);
         const pct = Math.round(c / total * 100);
-        return '<div class="provider-row" onclick="filterProvider(\'' + p + '\')" title="' + p + ' (' + c + ')">
-          <span style="width:14px;height:14px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;">' + icon + '</span>
-          <span class="provider-row-name">' + p + '</span>
-          <span class="provider-row-count">${c}</span>
-          <div class="provider-bar-wrap"><div class="provider-bar-fill" style="width:${pct}%"></div></div>
-        </div>`;
+        return `<div class="provider-row" onclick="filterProvider('${p}')" title="${p} (${c})"><span style="width:14px;height:14px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;">${icon}</span><span class="provider-row-name">${p}</span><span class="provider-row-count">${c}</span><div class="provider-bar-wrap"><div class="provider-bar-fill" style="width:${pct}%"></div></div></div>`;
       }).join('');
     }
 
@@ -1632,14 +1627,7 @@
         const isFav = favorites.includes(m.provider + '/' + m.fullName);
         const isSelected = selectedModels.includes(i);
 
-        html += '<tr class="' + (isHighlight ? 'highlight' : '') + ' ' + (top ? 'top3' : '') + ' ' + (isSelected ? 'selected' : '') + '" onclick="selectModel(' + i + ', event)" ondblclick="showDetails(' + i + ')">
-          <td><span class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="toggleFavorite(\'' + m.provider + '\', \'' + m.fullName + '\', event)">' + (isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>') + '</span></td>
-          <td class="' + (top ? 'text-green' : '') + '">' + providerIcon + (top ? '<span class="badge badge-green">TOP</span> ' : '') + m.provider + '</td>
-          <td title="' + m.fullName + '">' + m.name + '</td>
-          <td>' + symbol + (m.input / unit * rate).toFixed(4) + '</td>
-          <td>' + symbol + (m.output / unit * rate).toFixed(4) + '</td>
-          <td class="' + (top ? 'text-green' : '') + '">' + symbol + (m.total * rate).toFixed(4) + '</td>
-        </tr>';
+        html += `<tr class="${isHighlight ? 'highlight' : ''} ${top ? 'top3' : ''} ${isSelected ? 'selected' : ''}" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})"><td><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></td><td class="${top ? 'text-green' : ''}">${providerIcon}${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</td><td title="${m.fullName}">${m.name}</td><td>${symbol}${(m.input / unit * rate).toFixed(4)}</td><td>${symbol}${(m.output / unit * rate).toFixed(4)}</td><td class="${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</td></tr>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
