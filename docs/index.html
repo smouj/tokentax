@@ -1578,6 +1578,10 @@
         loader.className = 'w-2 h-2 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
+        
+        // Initialize results with default values (1000 input tokens, 500 output tokens)
+        results = allModels.map(m => ({ ...m, total: (1000 * m.input + 500 * m.output) / 1e6 }));
+        
         updateQuickProviders();
         renderProviderPanel();
         renderResults();
