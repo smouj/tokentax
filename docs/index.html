@@ -16,9 +16,9 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" href="icon-white-bg-black.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" href="icon-black-bg-white.png" media="(prefers-color-scheme: light)">
-  <link rel="apple-touch-icon" href="icon-white-bg-black.png">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="apple-touch-icon" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://raw.githubusercontent.com">
@@ -112,6 +112,11 @@
     .tbl tr:hover td { background: var(--surface-2); }
     .tbl tr.top3 td { background: rgba(34, 197, 94, 0.06); }
     .tbl-wrap { overflow: auto; flex: 1; }
+    .tbl { table-layout: fixed; border-collapse: collapse; width: 100%; }
+    .tbl th, .tbl td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tbl thead { position: sticky; top: 0; z-index: 10; }
+    .tbl tr.selected td { background: var(--blue-dim) !important; }
+    .tbl tr.fav-row td:nth-child(1) { color: #fbbf24; }
 
     /* Button hover effects */
     .panel-hover { transition: all 0.15s ease; }
@@ -130,7 +135,7 @@
     .text-tertiary { color: var(--text-3); }
     .text-green { color: var(--green); }
     .text-red { color: var(--red); }
-    .stats-bar { background: var(--green-dim); }
+    .stats-bar { background: var(--green-dim); padding: 5px 12px !important; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; font-size: 10px; }
 
     .dropdown { position: relative; display: inline-block; }
     .dropdown-content { display: none; position: absolute; right: 0; top: 100%; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; z-index: 100; margin-top: 4px; max-height: 300px; overflow-y: auto; }
@@ -165,7 +170,19 @@
     .logo-cohere { background: #39594d; color: white; }
     .logo-nvidia { background: #76b900; color: black; }
     .logo-perplexity { background: #000; color: white; }
+    .logo-replicate { background: #6366f1; color: white; }
+    .logo-openrouter { background: #6d28d9; color: white; }
+    .logo-cerebras { background: #1e40af; color: white; }
+    .logo-sambanova { background: #0f172a; color: white; }
     .logo-default { background: var(--surface-2); color: var(--text-2); }
+
+    /* Provider panel */
+    .provider-row { display: flex; align-items: center; gap: 6px; padding: 3px 4px; border-radius: 3px; cursor: pointer; transition: background 0.1s; }
+    .provider-row:hover { background: var(--surface-2); }
+    .provider-row-name { font-size: 10px; flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .provider-row-count { font-size: 9px; color: var(--text-3); flex-shrink: 0; min-width: 22px; text-align: right; }
+    .provider-bar-wrap { width: 28px; height: 3px; background: var(--border); border-radius: 2px; flex-shrink: 0; overflow: hidden; }
+    .provider-bar-fill { height: 100%; background: var(--green); border-radius: 2px; }
 
     .limit-control { display: flex; align-items: center; gap: 8px; }
     .toggle-switch { position: relative; width: 36px; height: 20px; }
@@ -315,6 +332,7 @@
         <div class="flex gap-1 mt-2">
           <button onclick="showTop10()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-trophy"></i> Top 10</button>
           <button onclick="showAll()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-list"></i> All</button>
+          <button onclick="clearProviderFilter()" class="btn-secondary px-2 py-1 text-[9px]" title="Reset"><i class="fas fa-times"></i></button>
         </div>
       </div>
 
@@ -367,6 +385,15 @@
         </div>
       </div>
 
+
+      <!-- Proveedores Panel -->
+      <div class="panel p-2">
+        <div class="flex justify-between items-center mb-1.5">
+          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-building"></i> Proveedores</span>
+          <span id="providerTotal" class="text-[9px] text-tertiary">-</span>
+        </div>
+        <div id="providerStatsList" class="flex flex-col gap-0.5"></div>
+      </div>
       <!-- Favorites -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
@@ -483,7 +510,7 @@
   </main>
   <footer class="flex-shrink-0 border-t p-3" style="border-color: var(--border); background: var(--surface);">
     <div class="text-center text-[10px] text-tertiary">
-      <span class="font-medium">TokenTax AI PRO</span> &copy; 2026 • <span id="visitorCount"><i class="fas fa-spinner fa-spin"></i></span> visits • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help
+      <img src="logo.svg" alt="" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:3px"><span class="font-medium">TokenTax AI PRO</span> &copy; 2026 • <span id="visitorCount"><i class="fas fa-spinner fa-spin"></i></span> visits • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help
     </div>
   </footer>
 
@@ -530,7 +557,7 @@
       openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
       deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
       xai: 'logo-xai', groq: 'logo-groq', fireworks: 'logo-fireworks', together: 'logo-together',
-      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity'
+      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity', replicate: 'logo-replicate', openrouter: 'logo-openrouter', cerebras: 'logo-cerebras', sambanova: 'logo-sambanova'
     };
 
     function getProviderLogo(provider) {
@@ -651,6 +678,29 @@
       container.innerHTML = provs.map(p =>
         `<button onclick="filterProvider('${p}')" class="badge cursor-pointer" style="background:var(--surface-2);color:var(--text-2)">${p.substring(0,4)}</button>`
       ).join('');
+    }
+
+
+    function renderProviderPanel() {
+      if (!allModels.length) return;
+      const counts = {};
+      allModels.forEach(m => { counts[m.provider] = (counts[m.provider] || 0) + 1; });
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      const total = allModels.length;
+      const el = document.getElementById('providerTotal');
+      const list = document.getElementById('providerStatsList');
+      if (!el || !list) return;
+      el.textContent = Object.keys(counts).length + ' proveedores';
+      list.innerHTML = sorted.map(([p, c]) => {
+        const logo = getProviderLogo(p);
+        const pct = Math.round(c / total * 100);
+        return `<div class="provider-row" onclick="filterProvider('${p}')" title="${p} (${c})">
+          <span class="provider-logo ${logo}" style="width:14px;height:14px;font-size:8px;flex-shrink:0">${p.charAt(0)}</span>
+          <span class="provider-row-name">${p}</span>
+          <span class="provider-row-count">${c}</span>
+          <div class="provider-bar-wrap"><div class="provider-bar-fill" style="width:${pct}%"></div></div>
+        </div>`;
+      }).join('');
     }
 
     function filterProvider(p) {
@@ -1458,6 +1508,7 @@
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
         updateQuickProviders();
+        renderProviderPanel();
 
       } catch(e) {
         loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
@@ -1697,6 +1748,13 @@
         }
       }
       setInterval(draw, 50);
+    }
+
+    function clearProviderFilter() {
+      document.getElementById('providerFilter').value = '';
+      document.getElementById('typeFilter').value = '';
+      currentTypeFilter = '';
+      calcularCostos();
     }
 
     // Initialize
