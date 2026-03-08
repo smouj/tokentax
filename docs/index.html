@@ -1470,30 +1470,39 @@
       modelText.textContent = 'Cargando...';
 
       try {
-        const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
-        if (!res.ok) throw new Error('Error de red: ' + res.status);
+        // Fetch data
+        const url = 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json';
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Error: ' + res.status);
         
         const data = await res.json();
         
+        // Parse models
         allModels = [];
+        let parsed = 0;
         
         for (const [key, m] of Object.entries(data)) {
-          if (typeof m !== 'object' || m === null) continue;
-          if (!m.input_cost_per_token || !m.output_cost_per_token) continue;
-          if (typeof m.input_cost_per_token !== 'number' || typeof m.output_cost_per_token !== 'number') continue;
+          if (!m || typeof m !== 'object') continue;
           
-          allModels.push({
-            provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + ((m.litellm_provider || 'other').slice(1) || 'Other',
-            name: key.length > 40 ? key.substring(0,37) + '...' : key,
-            fullName: key,
-            input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
-            output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
-            context: m.max_input_tokens || m.max_model_len || m.context_window || 0
-          });
+          const inp = m.input_cost_per_token;
+          const out = m.output_cost_per_token;
+          
+          if (inp && out && inp > 0 && out > 0) {
+            parsed++;
+            const provider = m.litellm_provider || 'other';
+            allModels.push({
+              provider: provider.charAt(0).toUpperCase() + (provider.slice(1) || ''),
+              name: key.length > 35 ? key.substring(0,32) + '...' : key,
+              fullName: key,
+              input: inp * 1000000,
+              output: out * 1000000,
+              context: m.max_input_tokens || m.max_model_len || m.context_window || 0
+            });
+          }
         }
         
-        if (allModels.length === 0) throw new Error('No se encontraron modelos');
-
+        if (allModels.length === 0) throw new Error('No models found');
+        
         // Sort by input price
         allModels.sort((a, b) => a.input - b.input);
 
@@ -1515,15 +1524,15 @@
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
         updateQuickProviders();
         renderProviderPanel();
-        toast('Modelos cargados: ' + allModels.length, 'success');
+        toast('Cargados: ' + allModels.length + ' modelos', 'success');
 
       } catch(e) {
-        console.error('Error loading models:', e);
+        console.error('Error:', e);
         loader.className = 'w-2 h-2 rounded-full bg-red-500';
         modelText.textContent = 'Error';
         document.getElementById('errorState').classList.remove('hidden');
         document.getElementById('errorMsg').textContent = e.message;
-        toast('Error al cargar modelos', 'error');
+        toast('Error: ' + e.message, 'error');
       }
     }
 
