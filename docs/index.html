@@ -13,7 +13,7 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
   <style>
     :root, .theme-dark {
@@ -116,9 +116,9 @@
     .logo-default { background: var(--surface-2); }
 
     /* Material Symbols */
-    .material-symbol { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-size: 16px; line-height: 1; }
-    .material-symbol.sm { font-size: 14px; }
-    .material-symbol.xs { font-size: 12px; }
+    .material-icons { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; font-size: 16px; line-height: 1; }
+    .material-icons.sm { font-size: 14px; }
+    .material-icons.xs { font-size: 12px; }
     
     .limit-control { display: flex; align-items: center; gap: 8px; }
     .toggle-switch { position: relative; width: 36px; height: 20px; }
@@ -186,22 +186,22 @@
         </select>
         
         <!-- Theme Toggle -->
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme"><span class="material-symbol">dark_mode</span></button>
-        <button onclick="quickEstimate()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Quick Estimate"><span class="material-symbol">attach_money</span></button>
-        <button onclick="loadPresets()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Load Preset"><span class="material-symbol">folder_open</span></button>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Theme"><span class="material-icons">dark_mode</span></button>
+        <button onclick="quickEstimate()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Quick Estimate"><span class="material-icons">attach_money</span></button>
+        <button onclick="loadPresets()" class="w-7 h-7 panel panel-hover flex items-center justify-center text-[10px]" title="Load Preset"><span class="material-icons">folder_open</span></button>
         
         <!-- Examples -->
         <div class="dropdown">
-          <button class="btn-secondary px-2 py-1 text-[10px]"><span class="material-symbol sm">edit</span> <span id="examplesBtn">Ejemplos</span> <span class="material-symbol xs">arrow_drop_down</span></button>
+          <button class="btn-secondary px-2 py-1 text-[10px]"><span class="material-icons sm">edit</span> <span id="examplesBtn">Ejemplos</span> <span class="material-icons xs">arrow_drop_down</span></button>
           <div class="dropdown-content">
-            <div class="dropdown-item" onclick="useExample('code')"><span class="material-symbol sm">code</span> <span data-lang="code">Código</span></div>
-            <div class="dropdown-item" onclick="useExample('summary')"><span class="material-symbol sm">description</span> <span data-lang="summary">Resumen</span></div>
-            <div class="dropdown-item" onclick="useExample('email')"><span class="material-symbol sm">email</span> <span data-lang="email">Email</span></div>
-            <div class="dropdown-item" onclick="useExample('translate')"><span class="material-symbol sm">translate</span> <span data-lang="translate">Traducir</span></div>
-            <div class="dropdown-item" onclick="useExample('blog')"><span class="material-symbol sm">article</span> <span data-lang="blog">Blog</span></div>
-            <div class="dropdown-item" onclick="useExample('seo')"><span class="material-symbol sm">search</span> <span data-lang="seo">SEO</span></div>
-            <div class="dropdown-item" onclick="useExample('sql')"><span class="material-symbol sm">storage</span> <span data-lang="sql">SQL</span></div>
-            <div class="dropdown-item" onclick="useExample('test')"><span class="material-symbol sm">science</span> <span data-lang="test">Tests</span></div>
+            <div class="dropdown-item" onclick="useExample('code')"><span class="material-icons sm">code</span> <span data-lang="code">Código</span></div>
+            <div class="dropdown-item" onclick="useExample('summary')"><span class="material-icons sm">description</span> <span data-lang="summary">Resumen</span></div>
+            <div class="dropdown-item" onclick="useExample('email')"><span class="material-icons sm">email</span> <span data-lang="email">Email</span></div>
+            <div class="dropdown-item" onclick="useExample('translate')"><span class="material-icons sm">translate</span> <span data-lang="translate">Traducir</span></div>
+            <div class="dropdown-item" onclick="useExample('blog')"><span class="material-icons sm">article</span> <span data-lang="blog">Blog</span></div>
+            <div class="dropdown-item" onclick="useExample('seo')"><span class="material-icons sm">search</span> <span data-lang="seo">SEO</span></div>
+            <div class="dropdown-item" onclick="useExample('sql')"><span class="material-icons sm">storage</span> <span data-lang="sql">SQL</span></div>
+            <div class="dropdown-item" onclick="useExample('test')"><span class="material-icons sm">science</span> <span data-lang="test">Tests</span></div>
           </div>
         </div>
         
@@ -227,7 +227,7 @@
       <div class="panel p-2 flex flex-col" style="flex:1;min-height:150px;">
         <div class="flex justify-between items-center mb-1.5">
           <span class="text-[10px] text-secondary font-medium" data-lang="prompt">PROMPT</span>
-          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)"><span class="material-symbol sm">close</span></button>
+          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary btn-ghost" title="Limpiar (Esc)"><span class="material-icons sm">close</span></button>
         </div>
         <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
         <div class="flex justify-between mt-1.5 text-[9px] text-tertiary">
@@ -243,16 +243,16 @@
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm"><span class="material-symbol">bolt</span> <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+Enter</span></button>
+      <button onclick="calcularCostos()" class="panel btn-primary py-2 text-sm"><span class="material-icons">bolt</span> <span data-lang="calculate">CALCULAR</span> <span class="kbd">Ctrl+Enter</span></button>
 
       <!-- Quick Grid -->
       <div class="quick-grid">
-        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span class="material-symbol">code</span><span data-lang="codeBtn">Código</span></button>
-        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span class="material-symbol">description</span><span data-lang="summaryBtn">Resumen</span></button>
-        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span class="material-symbol">translate</span><span data-lang="translateBtn">Trad</span></button>
-        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span class="material-symbol">storage</span><span>SQL</span></button>
-        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span class="material-symbol">science</span><span>Tests</span></button>
-        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span class="material-symbol">search</span><span>SEO</span></button>
+        <button onclick="useExample('code')" class="quick-btn panel panel-hover"><span class="material-icons">code</span><span data-lang="codeBtn">Código</span></button>
+        <button onclick="useExample('summary')" class="quick-btn panel panel-hover"><span class="material-icons">description</span><span data-lang="summaryBtn">Resumen</span></button>
+        <button onclick="useExample('translate')" class="quick-btn panel panel-hover"><span class="material-icons">translate</span><span data-lang="translateBtn">Trad</span></button>
+        <button onclick="useExample('sql')" class="quick-btn panel panel-hover"><span class="material-icons">storage</span><span>SQL</span></button>
+        <button onclick="useExample('test')" class="quick-btn panel panel-hover"><span class="material-icons">science</span><span>Tests</span></button>
+        <button onclick="useExample('seo')" class="quick-btn panel panel-hover"><span class="material-icons">search</span><span>SEO</span></button>
       </div>
 
       <!-- Settings -->
@@ -286,8 +286,8 @@
           </label>
         </div>
         <div class="flex gap-1 mt-2">
-          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><span class="material-symbol xs">save</span></button>
-          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><span class="material-symbol xs">analytics</span></button>
+          <button onclick="savePreset()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><span class="material-icons xs">save</span></button>
+          <button onclick="showProviderStats()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><span class="material-icons xs">analytics</span></button>
         </div>
       </div>
 
@@ -306,7 +306,7 @@
       <!-- Favorites -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">star</span> <span data-lang="favorites">Favoritos</span></span>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-icons sm">star</span> <span data-lang="favorites">Favoritos</span></span>
           <span id="favCount" class="text-[9px] text-tertiary">0</span>
         </div>
         <div id="favoritesList" class="flex flex-wrap gap-1"></div>
@@ -315,7 +315,7 @@
       <!-- Custom Templates -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">edit_note</span> <span data-lang="templates">Plantillas</span></span>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-icons sm">edit_note</span> <span data-lang="templates">Plantillas</span></span>
           <button onclick="saveTemplate()" class="text-[9px] text-tertiary hover:text-primary">+</button>
         </div>
         <div id="templatesList" class="flex flex-wrap gap-1"></div>
@@ -324,7 +324,7 @@
       <!-- Recent -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">history</span> <span data-lang="recent">Recientes</span></span>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-icons sm">history</span> <span data-lang="recent">Recientes</span></span>
           <span id="recentCount" class="text-[9px] text-tertiary">0</span>
         </div>
         <div id="recentList" class="flex flex-wrap gap-1"></div>
@@ -333,8 +333,8 @@
       <!-- Price Alerts -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">notifications</span> <span data-lang="alerts">Alertas</span></span>
-          <button onclick="addPriceAlert()" class="text-[9px] text-tertiary hover:text-primary"><span class="material-symbol xs">add</span></button>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-icons sm">notifications</span> <span data-lang="alerts">Alertas</span></span>
+          <button onclick="addPriceAlert()" class="text-[9px] text-tertiary hover:text-primary"><span class="material-icons xs">add</span></button>
         </div>
         <div id="alertsList" class="flex flex-col gap-1"></div>
       </div>
@@ -342,8 +342,8 @@
       <!-- Batch Calculate -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-secondary font-medium"><span class="material-symbol sm">inventory_2</span> <span data-lang="batch">Lote</span></span>
-          <button onclick="addBatchPrompt()" class="text-[9px] text-tertiary hover:text-primary"><span class="material-symbol xs">add</span></button>
+          <span class="text-[10px] text-secondary font-medium"><span class="material-icons sm">inventory_2</span> <span data-lang="batch">Lote</span></span>
+          <button onclick="addBatchPrompt()" class="text-[9px] text-tertiary hover:text-primary"><span class="material-icons xs">add</span></button>
         </div>
         <div id="batchList" class="flex flex-col gap-1"></div>
       </div>
@@ -355,7 +355,7 @@
       <!-- Filters -->
       <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
         <div class="flex-1 min-w-[150px] relative">
-          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs"><span class="material-symbol">search</span></span>
+          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs"><span class="material-icons">search</span></span>
           <input id="search" type="text" placeholder="Buscar modelo..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
         </div>
         <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[130px]">
@@ -376,13 +376,13 @@
           <input type="number" id="limitInput" value="50" min="5" max="500" class="px-2 py-1 input-field text-xs" style="width:50px" onchange="applyLimit()">
         </div>
         
-        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]"><span class="material-symbol xs">close</span></button>
-        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><span class="material-symbol xs">content_copy</span></button>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV"><span class="material-symbol xs">download</span></button>
-        <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF"><span class="material-symbol xs">picture_as_pdf</span></button>
-        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir"><span class="material-symbol xs">share</span></button>
-        <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado"><span class="material-symbol xs">auto_awesome</span></button>
-        <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen"><span class="material-symbol xs">fullscreen</span></button>
+        <button onclick="clearFilters()" id="clearBtn" class="hidden px-2 py-1.5 btn-ghost text-[9px]"><span class="material-icons xs">close</span></button>
+        <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><span class="material-icons xs">content_copy</span></button>
+        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV"><span class="material-icons xs">download</span></button>
+        <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF"><span class="material-icons xs">picture_as_pdf</span></button>
+        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir"><span class="material-icons xs">share</span></button>
+        <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado"><span class="material-icons xs">auto_awesome</span></button>
+        <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen"><span class="material-icons xs">fullscreen</span></button>
         <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar">⚖️</button>
       </div>
 
@@ -928,7 +928,7 @@
       list.innerHTML = priceAlerts.map((a, i) => 
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary">< $${a.maxPrice}</span>
-          <button onclick="removeAlert(${i})" class="text-red"><span class="material-symbol xs">close</span></button>
+          <button onclick="removeAlert(${i})" class="text-red"><span class="material-icons xs">close</span></button>
         </div>`
       ).join('');
     }
@@ -1003,9 +1003,9 @@
       list.innerHTML = batchPrompts.map((bp, i) => 
         `<div class="flex justify-between items-center text-[9px]">
           <span class="text-tertiary truncate" style="max-width:80px">${bp.name}</span>
-          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red"><span class="material-symbol xs">close</span></button>
+          <button onclick="batchPrompts.splice(${i},1);localStorage.setItem('tt_batch',JSON.stringify(batchPrompts));updateBatchUI()" class="text-red"><span class="material-icons xs">close</span></button>
         </div>`
-      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]"><span class="material-symbol xs">play_arrow</span> Ejecutar</button>`;
+      ).join('') + `<button onclick="runBatch()" class="mt-1 btn-primary w-full py-1 text-[9px]"><span class="material-icons xs">play_arrow</span> Ejecutar</button>`;
     }
 
     function saveBatch() {
@@ -1286,7 +1286,7 @@
         
         html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
           <td class="px-1 py-1.5">
-            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<span class="material-symbol xs">star</span>' : '<span class="material-symbol xs">star_border</span>'}</span>
+            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<span class="material-icons xs">star</span>' : '<span class="material-icons xs">star_border</span>'}</span>
           </td>
           <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
             ${logoHtml}
