@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v2.9.0] - 2026-03-08
+
+### Added
+- **Fullscreen Mode** - Toggle fullscreen view
+- **Presets** - Save and load configuration presets
+- **Quick Estimate** - Fast cost estimate
+- **Provider Stats** - View provider statistics
+
+---
+
 ## [v2.8.0] - 2026-03-08
 
 ### Added
