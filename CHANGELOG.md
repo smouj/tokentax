@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.5.0] - 2026-03-08
+
+### Added
+- **Version Display** - Shows current version in header
+- **Reset Settings** - Reset all settings to default (Ctrl+R)
+- **Bug Fixes** - Code cleanup and improvements
+
+---
+
 ## [v3.4.0] - 2026-03-08
 
 ### Added
