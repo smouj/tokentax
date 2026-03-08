@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v3.8.0] - 2026-03-08
+
+### Added
+- **Savings Calculator** - Shows potential savings between cheapest and expensive
+- **High Contrast Mode** - Accessibility option for better visibility
+- **Top 10 Filter** - Quick button to show top 10 cheapest models
+
+---
+
 ## [v3.7.0] - 2026-03-08
 
 ### Added
