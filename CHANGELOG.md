@@ -4,13 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v4.0.0] - 2026-03-08
+
+### Added
+- **Mobile Optimization** - Responsive design for all screen sizes
+- **SEO Improvements** - Meta tags, Open Graph, Twitter Cards
+- **Performance** - Preconnect hints, deferred loading, improved caching
+- **PWA Improvements** - Better manifest, favicon, app icons
+- **Service Worker** - Network-first strategy, versioned cache
+
+---
+
 ## [v3.9.0] - 2026-03-08
 
 ### Added
-- **Visitor Counter** - Shows total visits in footer (localStorage based)
-- **Empty State** - Improved empty state with icon and instructions
+- **Visitor Counter** - Shows total visits in footer
+- **Empty State** - Improved empty state with icon
 - **2026 Badge** - Current year badge in header
-- **Cleaner Footer** - Simplified footer with copyright
 
 ---
 
