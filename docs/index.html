@@ -6,11 +6,10 @@
   
   <!-- SEO -->
   <title>TokenTax AI PRO | +400 Modelos de IA</title>
-  <meta name="title" content="TokenTax AI PRO | Compara +400 Modelos de IA - Precios 2026">
-  <meta name="description" content="Compara +400 modelos de IA. Encuentra el más barato. OpenAI, Anthropic, Gemini, Grok, Mistral, DeepSeek. Precios en tiempo real.">
-  <meta name="keywords" content="AI, LLM, pricing, cost comparison, OpenAI, Anthropic, Claude, Gemini, GPT-4, token pricing, API costs">
+  <meta name="title" content="TokenTax AI PRO | Compara +400 Modelos de IA">
+  <meta name="description" content="Compara +400 modelos de IA. Encuentra el más barato.">
+  <meta name="keywords" content="AI, LLM, pricing, OpenAI, Anthropic, Claude, Gemini">
   <meta name="author" content="smouj">
-  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#000000">
   
   <!-- PWA -->
@@ -20,37 +19,46 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://smouj.github.io/tokentax/">
   <meta property="og:title" content="TokenTax AI PRO | +400 Modelos de IA">
-  <meta property="og:description" content="Compara precios de +400 modelos de IA. Encuentra el más barato.">
-  
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="TokenTax AI PRO">
-  
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "TokenTax AI PRO",
-    "description": "Compara +400 modelos de IA",
-    "url": "https://smouj.github.io/tokentax/"
-  }
-  </script>
   
   <!-- Tailwind + Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
-    :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
+    /* Dark theme (default) */
+    :root, .theme-dark {
+      --bg: #000000;
+      --surface: #0a0a0a;
+      --surface-2: #111111;
       --border: #1f1f1f;
+      --border-2: #2a2a2a;
       --text: #fafafa;
-      --text-dim: #737373;
+      --text-2: #a3a3a3;
+      --text-3: #525252;
+      --text-4: #333333;
+      --placeholder: #404040;
       --accent: #ffffff;
       --green: #22c55e;
-      --radius: 2px;
+      --red: #ef4444;
+      --hover: #141414;
+    }
+    
+    /* Light theme */
+    .theme-light {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --surface-2: #e5e5e5;
+      --border: #d4d4d4;
+      --border-2: #a3a3a3;
+      --text: #171717;
+      --text-2: #525252;
+      --text-3: #737373;
+      --text-4: #d4d4d4;
+      --placeholder: #a3a3a3;
+      --accent: #000000;
+      --green: #16a34a;
+      --red: #dc2626;
+      --hover: #e5e5e5;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -67,43 +75,62 @@
       overflow: hidden;
       height: 100vh;
       width: 100vw;
+      transition: background 0.2s, color 0.2s;
     }
     
-    /* Square minimalist */
-    .square-panel {
+    /* Square panels */
+    .panel {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: 2px;
     }
     
-    .input-square {
+    .panel-hover:hover {
+      background: var(--hover);
+      border-color: var(--border-2);
+    }
+    
+    /* Inputs */
+    .input-field {
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color 0.15s;
+      border-radius: 2px;
+      color: var(--text);
+      transition: all 0.15s;
     }
     
-    .input-square:focus {
+    .input-field:focus {
       outline: none;
       border-color: var(--accent);
     }
     
-    .btn-square {
+    .input-field::placeholder {
+      color: var(--placeholder);
+    }
+    
+    /* Select */
+    select.input-field {
+      color: var(--text);
+    }
+    
+    select.input-field option {
+      background: var(--surface);
+      color: var(--text);
+    }
+    
+    /* Button */
+    .btn-primary {
       background: var(--accent);
       color: var(--bg);
       border: none;
-      border-radius: var(--radius);
+      border-radius: 2px;
       font-weight: 600;
       transition: all 0.15s;
     }
     
-    .btn-square:hover {
+    .btn-primary:hover {
       opacity: 0.9;
       transform: translateY(-1px);
-    }
-    
-    .btn-square:active {
-      transform: scale(0.98);
     }
     
     /* Animations */
@@ -121,7 +148,7 @@
     /* Scrollbar */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
     
     /* Table */
     .table-row {
@@ -129,12 +156,12 @@
     }
     
     .table-row:hover {
-      background: rgba(255,255,255,0.03);
+      background: var(--hover);
     }
     
-    /* Logo */
-    .logo {
-      background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+    /* Logo gradient */
+    .logo-text {
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-2) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -148,137 +175,134 @@
     
     .toast-in { animation: toastIn 0.2s ease forwards; }
     
-    /* Compact spacing */
-    .gap-xs { gap: 6px; }
-    .gap-sm { gap: 10px; }
-    .gap-md { gap: 14px; }
-    
-    .p-xs { padding: 8px; }
-    .p-sm { padding: 12px; }
-    .p-md { padding: 16px; }
-    
-    .text-xs { font-size: 0.7rem; }
-    .text-sm { font-size: 0.8rem; }
-    .text-base { font-size: 0.9rem; }
+    /* Colors utility */
+    .text-primary { color: var(--text); }
+    .text-secondary { color: var(--text-2); }
+    .text-tertiary { color: var(--text-3); }
+    .text-green { color: var(--green); }
+    .text-red { color: var(--red); }
+    .bg-surface { background: var(--surface); }
+    .bg-hover { background: var(--hover); }
+    .border-color { border-color: var(--border); }
   </style>
 </head>
-<body class="flex flex-col">
+<body class="theme-dark">
   
   <!-- Toast -->
   <div id="toast" class="fixed top-3 right-3 z-50"></div>
 
   <!-- Header -->
-  <header class="square-panel border-t-0 border-l-0 border-r-0 flex-shrink-0">
+  <header class="panel border-t-0 border-l-0 border-r-0 flex-shrink-0">
     <div class="flex items-center justify-between px-4 py-2.5">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 square-panel flex items-center justify-center font-bold text-lg logo">
+        <div class="w-8 h-8 panel flex items-center justify-center font-bold text-lg logo-text">
           T
         </div>
         <div>
-          <h1 class="font-semibold text-sm tracking-tight">TokenTax <span class="text-[#737373]">AI</span></h1>
-          <p class="text-[10px] text-[#525252] uppercase tracking-wider">+400 Modelos</p>
+          <h1 class="font-semibold text-sm tracking-tight">TokenTax <span class="text-secondary">AI</span></h1>
+          <p class="text-[10px] text-tertiary uppercase tracking-wider">+400 Modelos</p>
         </div>
       </div>
       
       <div class="flex items-center gap-2">
-        <div class="flex items-center gap-1.5 px-2 py-1 square-panel text-[10px] text-[#525252]">
-          <span id="loader" class="w-1.5 h-1.5 rounded-full bg-[#333]"></span>
+        <div class="flex items-center gap-1.5 px-2 py-1 panel text-[10px] text-tertiary">
+          <span id="loader" class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
           <span id="modelText">Cargando...</span>
         </div>
-        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 square-panel flex items-center justify-center text-xs hover:bg-[#1a1a1a]">🌙</button>
-        <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 square-panel flex items-center justify-center hover:bg-[#1a1a1a]">
-          <svg class="w-3.5 h-3.5 text-[#525252]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <button onclick="toggleTheme()" id="themeBtn" class="w-7 h-7 panel panel-hover flex items-center justify-center text-xs" title="Cambiar tema">🌙</button>
+        <a href="https://github.com/smouj/tokentax" target="_blank" class="w-7 h-7 panel panel-hover flex items-center justify-center">
+          <svg class="w-3.5 h-3.5 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Main - Full height -->
+  <!-- Main -->
   <main class="flex-1 flex gap-3 p-3 min-h-0">
     
     <!-- Left Panel -->
     <div class="w-[320px] flex-shrink-0 flex flex-col gap-2">
       
       <!-- Prompt -->
-      <div class="square-panel p-sm flex flex-col flex-1 min-h-0">
+      <div class="panel p-sm flex flex-col flex-1 min-h-0">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[10px] text-[#525252] font-medium">PROMPT</span>
-          <button onclick="clearPrompt()" class="text-[10px] text-[#333] hover:text-[#666]">✕</button>
+          <span class="text-[10px] text-secondary font-medium">PROMPT</span>
+          <button onclick="clearPrompt()" class="text-[10px] text-tertiary hover:text-primary">✕</button>
         </div>
-        <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-[#333]" placeholder="Tu prompt..."></textarea>
-        <div class="flex justify-between mt-2 text-[9px] text-[#404040]">
+        <textarea id="prompt" class="flex-1 w-full bg-transparent text-sm resize-none focus:outline-none placeholder:text-tertiary" placeholder="Tu prompt..."></textarea>
+        <div class="flex justify-between mt-2 text-[9px] text-tertiary">
           <span id="charCount">0 ch</span>
           <span id="tokenCount">~0 tk</span>
         </div>
       </div>
 
       <!-- Output -->
-      <div class="square-panel p-sm">
-        <label class="block text-[10px] text-[#525252] font-medium mb-1.5">OUTPUT TOKENS</label>
+      <div class="panel p-sm">
+        <label class="block text-[10px] text-secondary font-medium mb-1.5">OUTPUT TOKENS</label>
         <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-xl font-semibold text-center focus:outline-none">
       </div>
 
       <!-- Calculate -->
-      <button onclick="calcularCostos()" class="btn-square py-2.5 text-sm">
+      <button onclick="calcularCostos()" class="btn-primary py-2.5 text-sm">
         ⚡ CALCULAR
       </button>
 
       <!-- Quick -->
       <div class="flex gap-1.5">
-        <button onclick="useExample('code')" class="flex-1 py-1.5 square-panel text-[9px] hover:bg-[#1a1a1a]">📝 Código</button>
-        <button onclick="useExample('summary')" class="flex-1 py-1.5 square-panel text-[9px] hover:bg-[#1a1a1a]">📝 Resumen</button>
+        <button onclick="useExample('code')" class="flex-1 py-1.5 panel panel-hover text-[9px]">📝 Código</button>
+        <button onclick="useExample('summary')" class="flex-1 py-1.5 panel panel-hover text-[9px]">📝 Resumen</button>
       </div>
 
       <!-- Stats -->
-      <div class="square-panel p-sm">
+      <div class="panel p-sm">
         <div class="flex justify-between text-[9px] mb-1">
-          <span class="text-[#525252]">Cálculos</span>
-          <span id="totalCalcs" class="text-[#737373]">0</span>
+          <span class="text-secondary">Cálculos</span>
+          <span id="totalCalcs" class="text-primary">0</span>
         </div>
         <div class="flex justify-between text-[9px]">
-          <span class="text-[#525252]">Ahorrado</span>
-          <span id="totalSaved" class="text-[#22c55e]">$0</span>
+          <span class="text-secondary">Ahorrado</span>
+          <span id="totalSaved" class="text-green">$0</span>
         </div>
       </div>
     </div>
 
     <!-- Right Panel -->
-    <div class="flex-1 square-panel flex flex-col min-w-0">
+    <div class="flex-1 panel flex flex-col min-w-0">
       
       <!-- Filters -->
-      <div class="p-sm border-b border-[#1f1f1f] flex gap-2">
+      <div class="p-sm border-color flex gap-2" style="border-bottom: 1px solid var(--border)">
         <div class="flex-1 relative">
-          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-[#333] text-xs">🔍</span>
-          <input id="search" type="text" placeholder="Buscar..." class="w-full pl-7 pr-2 py-1.5 input-square text-xs">
+          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-tertiary text-xs">🔍</span>
+          <input id="search" type="text" placeholder="Buscar..." class="w-full pl-7 pr-2 py-1.5 input-field text-xs">
         </div>
-        <select id="providerFilter" class="px-2 py-1.5 input-square text-xs min-w-[100px]">
+        <select id="providerFilter" class="px-2 py-1.5 input-field text-xs min-w-[100px]">
           <option value="">Todos</option>
         </select>
-        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 bg-[#1a1a1a] text-[9px]">CSV</button>
-        <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 bg-[#1a1a1a] text-[9px]">Copy</button>
+        <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel text-[9px]">CSV</button>
+        <button onclick="copyTop()" id="copyBtn" class="hidden px-2 py-1.5 panel text-[9px]">Copy</button>
       </div>
 
       <!-- Stats Bar -->
-      <div id="statsBar" class="hidden px-3 py-1.5 bg-[#111] border-b border-[#1f1f1f] flex gap-4 text-[9px]">
-        <div><span class="text-[#525252]">Min:</span> <span id="minCost" class="text-[#22c55e]">-</span></div>
-        <div><span class="text-[#525252]">Max:</span> <span id="maxCost" class="text-[#ef4444]">-</span></div>
-        <div><span class="text-[#525252]">Media:</span> <span id="avgCost" class="text-[#737373]">-</span></div>
+      <div id="statsBar" class="hidden px-3 py-1.5 panel border-color flex gap-4 text-[9px]" style="background: var(--surface-2); border-bottom: 1px solid var(--border)">
+        <div><span class="text-secondary">Min:</span> <span id="minCost" class="text-green">-</span></div>
+        <div><span class="text-secondary">Max:</span> <span id="maxCost" class="text-red">-</span></div>
+        <div><span class="text-secondary">Media:</span> <span id="avgCost" class="text-primary">-</span></div>
+      </div>
 
-     ></div>
       <!-- Table Header -->
-      <div class="grid grid-cols-6 px-3 py-2 bg-[#0f0f0f] text-[9px] font-medium text-[#404040] uppercase">
-        <div class="cursor-pointer hover:text-[#737373]" onclick="sortBy('provider')">Proveedor</div>
-        <div class="col-span-2 cursor-pointer hover:text-[#737373]" onclick="sortBy('name')">Modelo</div>
-        <div class="text-right cursor-pointer hover:text-[#737373]" onclick="sortBy('input')">Input</div>
-        <div class="text-right cursor-pointer hover:text-[#737373]" onclick="sortBy('output')">Output</div>
-        <div class="text-right cursor-pointer hover:text-[#737373]" onclick="sortBy('total')">Coste</div>
+      <div class="grid grid-cols-6 px-3 py-2 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
+        <div class="cursor-pointer hover:text-primary" onclick="sortBy('provider')">Proveedor</div>
+        <div class="col-span-2 cursor-pointer hover:text-primary" onclick="sortBy('name')">Modelo</div>
+        <div class="text-right cursor-pointer hover:text-primary" onclick="sortBy('input')">Input</div>
+        <div class="text-right cursor-pointer hover:text-primary" onclick="sortBy('output')">Output</div>
+        <div class="text-right cursor-pointer hover:text-primary" onclick="sortBy('total')">Coste</div>
       </div>
 
       <!-- Results -->
       <div class="flex-1 overflow-y-auto">
-        <div id="emptyState" class="h-full flex flex-col items-center justify-center text-[#333]">
+        <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
           <p class="text-sm">Introduce prompt + calcula</p>
-          <p class="text-xs mt-1 text-[#262626]">Ctrl+Enter</p>
+          <p class="text-xs mt-1" style="color: var(--text-4)">Ctrl+Enter</p>
         </div>
         <table class="w-full text-xs">
           <tbody id="tableBody" class="hidden"></tbody>
@@ -286,7 +310,7 @@
       </div>
 
       <!-- Footer -->
-      <div class="px-3 py-1.5 border-t border-[#1f1f1f] flex justify-between text-[9px] text-[#333]">
+      <div class="px-3 py-1.5 border-t border-color flex justify-between text-[9px] text-tertiary">
         <span id="count"></span>
         <span>LiteLLM</span>
       </div>
@@ -294,9 +318,9 @@
   </main>
 
   <!-- Footer -->
-  <footer class="flex-shrink-0 border-t border-[#1f1f1f] py-1.5">
-    <div class="text-center text-[9px] text-[#262626]">
-      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="text-[#404040] hover:text-[#666]">GitHub</a>
+  <footer class="flex-shrink-0 border-t border-color py-1.5">
+    <div class="text-center text-[9px]" style="color: var(--text-4)">
+      TokenTax • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="text-tertiary hover:text-primary">GitHub</a>
     </div>
   </footer>
 
@@ -313,8 +337,11 @@
         updateStats();
       } catch(e) {}
       
-      if (localStorage.getItem('theme') === 'light') {
-        document.documentElement.classList.add('light');
+      // Load theme
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.body.classList.remove('theme-dark');
+        document.body.classList.add('theme-light');
         document.getElementById('themeBtn').textContent = '☀️';
         isDark = false;
       }
@@ -331,7 +358,7 @@
 
     function toast(msg) {
       const t = document.createElement('div');
-      t.className = 'toast-in mb-2 px-3 py-1.5 square-panel text-xs';
+      t.className = 'toast-in mb-2 px-3 py-1.5 panel text-xs';
       t.textContent = msg;
       document.getElementById('toast').appendChild(t);
       setTimeout(() => t.remove(), 2000);
@@ -340,11 +367,13 @@
     function toggleTheme() {
       const btn = document.getElementById('themeBtn');
       if (isDark) {
-        document.documentElement.classList.add('light');
+        document.body.classList.remove('theme-dark');
+        document.body.classList.add('theme-light');
         btn.textContent = '☀️';
         localStorage.setItem('theme', 'light');
       } else {
-        document.documentElement.classList.remove('light');
+        document.body.classList.remove('theme-light');
+        document.body.classList.add('theme-dark');
         btn.textContent = '🌙';
         localStorage.setItem('theme', 'dark');
       }
@@ -358,7 +387,7 @@
 
     function useExample(type) {
       const ex = {
-        code: '// React login\nfunction Login() {\n  const [e, s] = useState("");\n  return <input value={e}/>;\n}',
+        code: '// React login form\nfunction Login() {\n  const [e, s] = useState("");\n  return <input value={e}/>;\n}',
         summary: 'Write a summary about AI impact on software development.'
       };
       document.getElementById('prompt').value = ex[type];
@@ -405,11 +434,11 @@
         const sel = document.getElementById('providerFilter');
         provs.forEach(p => { const o = document.createElement('option'); o.value = p; o.textContent = p; sel.appendChild(o); });
 
-        document.getElementById('loader').classList.add('bg-[#22c55e]');
+        document.getElementById('loader').classList.add('bg-green-500');
         document.getElementById('modelText').textContent = allModels.length + ' model';
       } catch(e) {
         document.getElementById('modelText').textContent = 'Error';
-        toast('Error', 'error');
+        toast('Error');
       }
     }
 
@@ -456,12 +485,12 @@
       let html = '';
       results.forEach((m, i) => {
         const top = i < 3;
-        html += `<tr class="table-row border-b border-[#141414]">
-          <td class="px-2 py-1.5 font-medium ${top ? 'text-[#22c55e]' : 'text-[#a1a1a1]'}">${m.provider}</td>
-          <td class="col-span-2 px-2 py-1.5 text-[10px] text-[#525252]">${m.name}</td>
-          <td class="px-2 py-1.5 text-right text-[#404040]">$${m.input.toFixed(2)}</td>
-          <td class="px-2 py-1.5 text-right text-[#404040]">$${m.output.toFixed(2)}</td>
-          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-[#22c55e]' : 'text-[#e5e5e5]'}">$${m.total.toFixed(4)}</td>
+        html += `<tr class="table-row border-b" style="border-color: var(--border)">
+          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">${m.provider}</td>
+          <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary">${m.name}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">$${m.input.toFixed(2)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">$${m.output.toFixed(2)}</td>
+          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">$${m.total.toFixed(4)}</td>
         </tr>`;
       });
 

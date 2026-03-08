@@ -4,6 +4,17 @@ All notable changes are documented below.
 
 ---
 
+## [v1.9.1] - 2026-03-08
+
+### Fixed
+- 🔧 **Theme toggle** - Ahora funciona correctamente
+- 🎨 **Contrastos** - Textos con contraste correcto en dark/light
+- 💄 **Placeholders** - Gris oscuro en dark, gris claro en light
+- 🎯 **Select/Dropdown** - Colores adaptados al tema
+- ⚡ **CSS Variables** - Sistema de temas con variables
+
+---
+
 ## [v1.9.0] - 2026-03-08
 
 ### Added
