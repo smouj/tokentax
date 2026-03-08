@@ -2,16 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
   <title>TokenTax AI PRO | Compara +400 Modelos de IA</title>
-  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores.">
+  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato.">
   <meta name="author" content="smouj">
   <meta name="theme-color" content="#000000">
+  <meta name="keywords" content="AI,LLM,pricing,cost,comparison,models,OpenAI,Anthropic,Google">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="TokenTax AI PRO">
+  <meta property="og:description" content="Compara +400 modelos de IA y encuentra el más barato">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100' rx='20'/><text y='.9em' x='50%' text-anchor='middle' font-size='60' fill='white'>T</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100' rx='20'/><text y='.9em' x='50%' text-anchor='middle' font-size='60' fill='white'>T</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://raw.githubusercontent.com">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -33,7 +44,26 @@
       --red: #dc2626; --blue: #2563eb; --blue-dim: #dbeafe;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+    html { font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
+    html { touch-action: manipulation; }
+    
+    /* Mobile optimizations */
+    @media (max-width: 640px) {
+      .app-container { flex-direction: column !important; }
+      .left-panel { width: 100% !important; height: auto !important; max-height: 40vh !important; border-right: none !important; border-bottom: 1px solid var(--border); }
+      .right-panel { margin: 4px !important; }
+      .header { padding: 8px !important; }
+      .quick-grid { grid-template-columns: repeat(3, 1fr) !important; }
+      .table-row { padding: 8px 4px !important; font-size: 11px !important; }
+      .panel { border-radius: 6px !important; }
+      .btn-primary { padding: 10px 16px !important; }
+    }
+    
+    @media (max-width: 480px) {
+      html { font-size: 13px; }
+      .quick-grid { grid-template-columns: repeat(2, !important; }
+      .header-title 1fr) { display: none; }
+    }
     body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
 
     .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; gap: 0; }
