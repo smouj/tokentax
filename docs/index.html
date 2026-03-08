@@ -191,6 +191,7 @@
         <!-- Theme Toggle -->
         <button onclick="toggleTheme()" id="themeBtn" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Toggle Theme"><i class="fas fa-moon"></i></button>
         <button onclick="setOLEDMode(true)" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="OLED Mode"><i class="fas fa-square-full"></i></button>
+        <button onclick="toggleHighContrast()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="High Contrast"><i class="fas fa-eye"></i></button>
         <button onclick="quickEstimate()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Quick Estimate"><i class="fas fa-calculator"></i></button>
         <button onclick="loadPresets()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Load Preset"><i class="fas fa-folder"></i></button>
 
@@ -266,6 +267,10 @@
           <button onclick="showHelp()" class="text-[9px] text-tertiary"><i class="fas fa-question-circle"></i></button>
         </div>
         <div id="quickProviders" class="flex flex-wrap gap-1"></div>
+        <div class="flex gap-1 mt-2">
+          <button onclick="showTop10()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-trophy"></i> Top 10</button>
+          <button onclick="showAll()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-list"></i> All</button>
+        </div>
       </div>
 
       <!-- Settings -->
@@ -620,6 +625,18 @@
       calcularCostos();
     }
 
+    function showTop10() {
+      document.getElementById('limitSelect').value = '10';
+      calcularCostos();
+      toast('Showing top 10 cheapest models', 'info');
+    }
+
+    function showAll() {
+      document.getElementById('limitSelect').value = '100';
+      calcularCostos();
+      toast('Showing all models', 'info');
+    }
+
     function showHelp() {
       document.getElementById('detailsTitle').innerHTML = '<i class="fas fa-keyboard"></i> Keyboard Shortcuts';
       document.getElementById('detailsContent').innerHTML = `
@@ -741,6 +758,35 @@
       }
     }
 
+    // Savings calculator
+    function calculateSavings() {
+      if (!results.length) return { savings: 0, percentage: 0 };
+      const cheapest = results[0];
+      const expensive = results[results.length - 1];
+      const savings = expensive.totalCost - cheapest.totalCost;
+      const percentage = ((savings / expensive.totalCost) * 100).toFixed(1);
+      return { savings, percentage, cheapest, expensive };
+    }
+
+    function showSavingsInfo() {
+      const { savings, percentage, cheapest, expensive } = calculateSavings();
+      if (!results.length) return;
+      document.getElementById('detailsTitle').innerHTML = '<i class="fas fa-piggy-bank"></i> Savings Calculator';
+      document.getElementById('detailsContent').innerHTML = `
+        <div class="space-y-3">
+          <div class="panel p-3 bg-green-dim">
+            <div class="text-xs text-green">Potential Savings</div>
+            <div class="text-2xl font-bold text-green">$${savings.toFixed(4)}</div>
+            <div class="text-xs text-green">${percentage}% cheaper</div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.totalCost.toFixed(4)}</div></div>
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.totalCost.toFixed(4)}</div></div>
+          </div>
+        </div>`;
+      document.getElementById('detailsModal').classList.add('active');
+    }
+
     // Provider stats
     function showProviderStats() {
       if (!results.length) return;
@@ -799,6 +845,22 @@
       if (!confirm('Reset all settings to default?')) return;
       localStorage.clear();
       location.reload();
+    }
+
+    // High contrast mode
+    function toggleHighContrast() {
+      const isHigh = document.body.classList.toggle('high-contrast');
+      if (isHigh) {
+        document.documentElement.style.setProperty('--text', '#ffffff');
+        document.documentElement.style.setProperty('--bg', '#000000');
+        document.documentElement.style.setProperty('--border', '#ffffff');
+        toast('High Contrast enabled');
+      } else {
+        document.documentElement.style.setProperty('--text', '');
+        document.documentElement.style.setProperty('--bg', '');
+        document.documentElement.style.setProperty('--border', '');
+        toast('High Contrast disabled');
+      }
     }
 
     // Keyboard accessible dropdowns
@@ -1446,6 +1508,20 @@
       document.getElementById('avgCost').textContent = symbol + (avg * rate).toFixed(4);
       document.getElementById('topProvider').textContent = limited[0].provider;
       document.getElementById('statsBar').classList.remove('hidden');
+      
+      // Update stats bar with savings
+      const min = limited[0].totalCost.toFixed(4);
+      const max = limited[limited.length-1].totalCost.toFixed(4);
+      const savings = ((parseFloat(max) - parseFloat(min)) / parseFloat(max) * 100).toFixed(1);
+      document.getElementById('statsBar').innerHTML = `
+        <div class="flex justify-between items-center text-xs">
+          <span><i class="fas fa-list"></i> ${limited.length} models</span>
+          <span><i class="fas fa-chart-line"></i> Avg: $${avg.toFixed(4)}</span>
+          <span class="text-green"><i class="fas fa-arrow-down"></i> Min: $${min}</span>
+          <span class="text-red"><i class="fas fa-arrow-up"></i> Max: $${max}</span>
+          <button onclick="showSavingsInfo()" class="text-green hover:underline"><i class="fas fa-piggy-bank"></i> Save ${savings}%</button>
+        </div>`;
+      
       if (prompt.length > 0) { stats.calcs++; stats.saved += (max - min); updateStats(); saveStats(); }
     }
 
