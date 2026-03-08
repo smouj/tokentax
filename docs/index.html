@@ -1628,18 +1628,19 @@
 
         html += '<tr class="' + (isHighlight ? 'highlight' : '') + ' ' + (top ? 'top3' : '') + ' ' + (isSelected ? 'selected' : '') + '" onclick="selectModel(' + i + ', event)" ondblclick="showDetails(' + i + ')">
           <td><span class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="toggleFavorite(\'' + m.provider + '\', \'' + m.fullName + '\', event)">' + (isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>') + '</span></td>
-          <td class="' + (top ? 'text-green' : '') + '">' + providerIcon + (top ? '<span class="badge badge-green">TOP</span> ' : '') + m.provider + '</td>';
-          <td title="${m.fullName}">${m.name}</td>
-          <td>${symbol}${(m.input / unit * rate).toFixed(4)}</td>
-          <td>${symbol}${(m.output / unit * rate).toFixed(4)}</td>
-          <td class="${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</td>
-        </tr>`;
+          <td class="' + (top ? 'text-green' : '') + '">' + providerIcon + (top ? '<span class="badge badge-green">TOP</span> ' : '') + m.provider + '</td>
+          <td title="' + m.fullName + '">' + m.name + '</td>
+          <td>' + symbol + (m.input / unit * rate).toFixed(4) + '</td>
+          <td>' + symbol + (m.output / unit * rate).toFixed(4) + '</td>
+          <td class="' + (top ? 'text-green' : '') + '">' + symbol + (m.total * rate).toFixed(4) + '</td>
+        </tr>';
+      });
       });
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
       document.getElementById('tableBody').innerHTML = html;
       document.getElementById('tableBody').classList.remove('hidden');
-      document.getElementById('count').textContent = `${limitedResults.length} / ${results.length} modelos`;
+      document.getElementById('count').textContent = limitedResults.length + ' / ' + results.length + ' modelos';
       document.getElementById('exportBtn').classList.remove('hidden');
       document.getElementById('pdfBtn').classList.remove('hidden');
       document.getElementById('shareBtn').classList.remove('hidden');
