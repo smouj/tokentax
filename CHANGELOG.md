@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v4.0.2] - 2026-03-08
+
+### Fixed
+- **Sort Icons** - Fixed innerHTML to show arrow icons properly
+- **Table Layout** - Professional table design with proper columns
+- **Version** - Updated to v4.0.2
+
+---
+
 ## [v4.0.1] - 2026-03-08
 
 ### Fixed
