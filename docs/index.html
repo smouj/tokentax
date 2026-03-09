@@ -578,7 +578,7 @@
       } else if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        document.getElementById('themeBtn').textContent = '<i class="fas fa-sun"></i>';
+        document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
         isDark = false;
       }
       if (localStorage.getItem('lang')) {
@@ -1133,7 +1133,7 @@
     function updateSortIcons() {
       document.querySelectorAll('.sort-icon').forEach(el => {
         const field = el.dataset.sort;
-        el.textContent = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
+        el.innerHTML = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
         el.classList.toggle('text-green', field === sortF);
       });
     }
@@ -1143,12 +1143,12 @@
       if (isDark) {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        btn.textContent = '<i class="fas fa-sun"></i>';
+        btn.innerHTML = '<i class="fas fa-sun"></i>';
         localStorage.setItem('theme', 'light');
       } else {
         document.body.classList.remove('theme-light');
         document.body.classList.add('theme-dark');
-        btn.textContent = '<i class="fas fa-moon"></i>';
+        btn.innerHTML = '<i class="fas fa-moon"></i>';
         localStorage.setItem('theme', 'dark');
       }
       isDark = !isDark;
