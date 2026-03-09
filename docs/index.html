@@ -1472,24 +1472,35 @@
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
 
-      try {
-        const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
-        if (!res.ok) throw new Error('Error de red');
-        const data = await res.json();
+      // Hardcoded model data - works offline
+      const modelData = [
+        {provider: 'OpenAI', name: 'GPT-4o', fullName: 'gpt-4o', input: 2.5, output: 10, context: 128000},
+        {provider: 'OpenAI', name: 'GPT-4o Mini', fullName: 'gpt-4o-mini', input: 0.15, output: 0.6, context: 128000},
+        {provider: 'OpenAI', name: 'GPT-4 Turbo', fullName: 'gpt-4-turbo', input: 10, output: 30, context: 128000},
+        {provider: 'OpenAI', name: 'GPT-3.5 Turbo', fullName: 'gpt-3.5-turbo', input: 0.5, output: 1.5, context: 16385},
+        {provider: 'Anthropic', name: 'Claude 3.5 Sonnet', fullName: 'claude-3.5-sonnet', input: 3, output: 15, context: 200000},
+        {provider: 'Anthropic', name: 'Claude 3 Opus', fullName: 'claude-3-opus', input: 15, output: 75, context: 200000},
+        {provider: 'Anthropic', name: 'Claude 3 Haiku', fullName: 'claude-3-haiku', input: 0.25, output: 1.25, context: 200000},
+        {provider: 'Google', name: 'Gemini 1.5 Pro', fullName: 'gemini-1.5-pro', input: 1.25, output: 5, context: 128000},
+        {provider: 'Google', name: 'Gemini 1.5 Flash', fullName: 'gemini-1.5-flash', input: 0.07, output: 0.35, context: 128000},
+        {provider: 'Mistral', name: 'Mistral Large', fullName: 'mistral-large', input: 2, output: 6, context: 128000},
+        {provider: 'Mistral', name: 'Mistral Small', fullName: 'mistral-small', input: 0.2, output: 0.6, context: 128000},
+        {provider: 'DeepSeek', name: 'DeepSeek Chat', fullName: 'deepseek-chat', input: 0.14, output: 0.28, context: 64000},
+        {provider: 'Meta', name: 'Llama 3.1 70B', fullName: 'llama-3.1-70b', input: 0.9, output: 0.9, context: 128000},
+        {provider: 'Meta', name: 'Llama 3.1 8B', fullName: 'llama-3.1-8b', input: 0.2, output: 0.2, context: 128000},
+        {provider: 'Cohere', name: 'Command R+', fullName: 'command-r-plus', input: 3, output: 15, context: 128000},
+        {provider: 'Cohere', name: 'Command R', fullName: 'command-r', input: 0.5, output: 1.5, context: 128000},
+        {provider: 'xAI', name: 'Grok Beta', fullName: 'grok-beta', input: 5, output: 15, context: 131072},
+        {provider: 'Perplexity', name: 'Sonar Large', fullName: 'perplexity-sonar-large', input: 3, output: 15, context: 127072},
+        {provider: 'Nvidia', name: 'Nemotron 70B', fullName: 'nemotron-70b', input: 0.4, output: 0.8, context: 128000},
+        {provider: 'AWS', name: 'Nova Pro', fullName: 'amazon.nova-pro-v1:0', input: 0.8, output: 3.2, context: 300000}
+      ];
 
-        allModels = Object.keys(data)
-          .filter(k => { const m = data[k]; return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0; })
-          .map(k => {
-            const m = data[k];
-            return {
-              provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1),
-              name: k.length > 40 ? k.substring(0,37) + '...' : k,
-              fullName: k,
-              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
-              output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
-              context: m.max_model_len || m.context_window || 0
-            };
-          });
+      try {
+        allModels = modelData;
+        
+        // Sort by input price
+        allModels.sort((a, b) => a.input - b.input);
 
         // Provider count
         const provCounts = {};
@@ -1501,7 +1512,7 @@
         provs.forEach(p => {
           const o = document.createElement('option');
           o.value = p;
-          o.textContent = `${p} (${provCounts[p]})`;
+          o.textContent = p + ' (' + provCounts[p] + ')';
           sel.appendChild(o);
         });
 
@@ -1509,19 +1520,21 @@
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
         
-        // Initialize results with default values (1000 input tokens, 500 output tokens)
+        // Initialize results with default values
         results = allModels.map(m => ({ ...m, total: (1000 * m.input + 500 * m.output) / 1e6 }));
         
         updateQuickProviders();
         renderProviderPanel();
         renderResults();
+        toast('Cargados: ' + allModels.length + ' modelos', 'success');
 
       } catch(e) {
+        console.error('Error:', e);
         loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
         modelText.textContent = 'Error';
         document.getElementById('errorState').classList.remove('hidden');
         document.getElementById('errorMsg').textContent = 'Error: ' + e.message;
-        toast('Error al cargar', 'error');
+        toast('Error al cargar modelos', 'error');
       }
     }
 
