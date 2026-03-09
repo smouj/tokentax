@@ -1485,16 +1485,16 @@ function formatMoneyUSD(value) {
 async function fetchRealModelMap(forceRefresh = false) {
   try {
     const cached = localStorage.getItem(MODEL_CACHE_KEY);
-    const meta = JSON.parse(localStorage.getItem(MODEL_CACHE_META_KEY) || 'null');
+    const meta = JSON.parse(localStorage.getItem(MODEL_CACHE_META_KEY) || null;
     const isFresh = meta && typeof meta.ts === 'number' && Date.now() - meta.ts < MODEL_CACHE_TTL_MS;
     if (!forceRefresh && cached && isFresh) {
       return JSON.parse(cached);
     }
-    const res = await fetch(LITELLM_MODEL_COST_MAP_URL, { cache: 'no-store' });
+    const res = await fetch(LITELLM_MODEL_COST_MAP_URL, { cache: 'no-store' };
     if (!res.ok) throw new Error('LiteLLM HTTP ' + res.status);
     const json = await res.json();
     localStorage.setItem(MODEL_CACHE_KEY, JSON.stringify(json));
-    localStorage.setItem(MODEL_CACHE_META_KEY, JSON.stringify({ ts: Date.now() }));
+    localStorage.setItem(MODEL_CACHE_META_KEY, JSON.stringify({ ts: Date.now() });
     return json;
   } catch (err) {
     const cached = localStorage.getItem(MODEL_CACHE_KEY);
@@ -1505,8 +1505,8 @@ async function fetchRealModelMap(forceRefresh = false) {
 
 function normalizeLiteLLMModelMap(rawMap) {
   return Object.entries(rawMap)
-    .filter(([key, value]) => key !== 'sample_spec' && value && typeof value === 'object')
-    .map(([modelId, meta]) => {
+    .filter(([key, value] => key !== 'sample_spec' && value && typeof value === 'object')
+    .map(([modelId, meta] => {
       const provider = meta.litellm_provider || (modelId.includes('/') ? modelId.split('/')[0] : 'unknown');
       const inputPerToken = Number(meta.input_cost_per_token ?? 0);
       const outputPerToken = Number(meta.output_cost_per_token ?? 0);
