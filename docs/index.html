@@ -102,7 +102,8 @@
     .tbl th:nth-child(6) { width: 90px; text-align: right; }
     .tbl th.sortable { cursor: pointer; }
     .tbl th.sortable:hover { color: var(--text); }
-    .tbl td { padding: 6px 8px; border-bottom: 1px solid var(--border); font-size: 11px; vertical-align: middle; }
+    .tbl td { padding: 6px 8px; border-bottom: 1px solid var(--border); font-size: 11px; vertical-align: middle; height: 32px; box-sizing: border-box; }
+    .tbl tr { height: 32px; }
     .tbl td:nth-child(1) { width: 30px; text-align: center; }
     .tbl td:nth-child(2) { width: 90px; font-weight: 600; }
     .tbl td:nth-child(3) { width: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-2); }
@@ -1507,8 +1508,13 @@
         loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
+        
+        // Initialize results with default values (1000 input tokens, 500 output tokens)
+        results = allModels.map(m => ({ ...m, total: (1000 * m.input + 500 * m.output) / 1e6 }));
+        
         updateQuickProviders();
         renderProviderPanel();
+        renderResults();
 
       } catch(e) {
         loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
