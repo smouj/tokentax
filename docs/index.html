@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
-  <title>TokenTax AI PRO | Compara +400 Modelos de IA</title>
-  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato.">
+  <title>TokenTax AI PRO | Compara +100 Modelos de IA Reales</title>
+  <meta name="description" content="Compara +100 modelos de IA reales de todos los proveedores. Encuentra el más barato.">
   <meta name="author" content="smouj">
   <meta name="theme-color" content="#000000">
   <meta name="keywords" content="AI,LLM,pricing,cost,comparison,models,OpenAI,Anthropic,Google">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="TokenTax AI PRO">
-  <meta property="og:description" content="Compara +400 modelos de IA y encuentra el más barato">
+  <meta property="og:description" content="Compara +100 modelos de IA reales y encuentra el más barato">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -558,7 +558,11 @@
       openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
       deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
       xai: 'logo-xai', groq: 'logo-groq', fireworks: 'logo-fireworks', together: 'logo-together',
-      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity', replicate: 'logo-replicate', openrouter: 'logo-openrouter', cerebras: 'logo-cerebras', sambanova: 'logo-sambanova'
+      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity', replicate: 'logo-replicate',
+      openrouter: 'logo-openrouter', cerebras: 'logo-cerebras', sambanova: 'logo-sambanova',
+      alibaba: 'logo-alibaba', ai21: 'logo-ai21', minimax: 'logo-minimax', zhipu: 'logo-zhipu',
+      '01.ai': 'logo-01ai', moonshot: 'logo-moonshot', microsoft: 'logo-microsoft',
+      databricks: 'logo-databricks', writer: 'logo-writer', reka: 'logo-reka'
     };
 
     function getProviderLogo(provider) {
@@ -844,28 +848,30 @@
 
     // Savings calculator
     function calculateSavings() {
-      if (!results.length) return { savings: 0, percentage: 0 };
+      if (!results.length) return { savings: 0, percentage: 0, cheapest: null, expensive: null };
       const cheapest = results[0];
       const expensive = results[results.length - 1];
-      const savings = expensive.totalCost - cheapest.totalCost;
-      const percentage = ((savings / expensive.totalCost) * 100).toFixed(1);
+      const savings = expensive.total - cheapest.total;
+      const percentage = expensive.total > 0 ? ((savings / expensive.total) * 100).toFixed(1) : '0';
       return { savings, percentage, cheapest, expensive };
     }
 
     function showSavingsInfo() {
       const { savings, percentage, cheapest, expensive } = calculateSavings();
-      if (!results.length) return;
+      if (!results.length || !cheapest) return;
+      const rate = currencyRates[currentCurrency];
+      const symbol = currencySymbols[currentCurrency];
       document.getElementById('detailsTitle').innerHTML = '<i class="fas fa-piggy-bank"></i> Savings Calculator';
       document.getElementById('detailsContent').innerHTML = `
         <div class="space-y-3">
           <div class="panel p-3 bg-green-dim">
             <div class="text-xs text-green">Potential Savings</div>
-            <div class="text-2xl font-bold text-green">$${savings.toFixed(4)}</div>
+            <div class="text-2xl font-bold text-green">${symbol}${(savings * rate).toFixed(4)}</div>
             <div class="text-xs text-green">${percentage}% cheaper</div>
           </div>
           <div class="grid grid-cols-2 gap-2">
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.totalCost.toFixed(4)}</div></div>
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.totalCost.toFixed(4)}</div></div>
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">${symbol}${(cheapest.total * rate).toFixed(4)}</div></div>
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">${symbol}${(expensive.total * rate).toFixed(4)}</div></div>
           </div>
         </div>`;
       document.getElementById('detailsModal').classList.add('active');
@@ -1472,28 +1478,176 @@
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
 
-      // Hardcoded model data - works offline
+      // Comprehensive real model data with accurate pricing (per 1M tokens, USD)
       const modelData = [
+        // === OpenAI ===
+        {provider: 'OpenAI', name: 'GPT-4.1', fullName: 'gpt-4.1', input: 2.0, output: 8.0, context: 1047576},
+        {provider: 'OpenAI', name: 'GPT-4.1 Mini', fullName: 'gpt-4.1-mini', input: 0.4, output: 1.6, context: 1047576},
+        {provider: 'OpenAI', name: 'GPT-4.1 Nano', fullName: 'gpt-4.1-nano', input: 0.1, output: 0.4, context: 1047576},
         {provider: 'OpenAI', name: 'GPT-4o', fullName: 'gpt-4o', input: 2.5, output: 10, context: 128000},
         {provider: 'OpenAI', name: 'GPT-4o Mini', fullName: 'gpt-4o-mini', input: 0.15, output: 0.6, context: 128000},
         {provider: 'OpenAI', name: 'GPT-4 Turbo', fullName: 'gpt-4-turbo', input: 10, output: 30, context: 128000},
+        {provider: 'OpenAI', name: 'GPT-4', fullName: 'gpt-4', input: 30, output: 60, context: 8192},
         {provider: 'OpenAI', name: 'GPT-3.5 Turbo', fullName: 'gpt-3.5-turbo', input: 0.5, output: 1.5, context: 16385},
-        {provider: 'Anthropic', name: 'Claude 3.5 Sonnet', fullName: 'claude-3.5-sonnet', input: 3, output: 15, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3 Opus', fullName: 'claude-3-opus', input: 15, output: 75, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3 Haiku', fullName: 'claude-3-haiku', input: 0.25, output: 1.25, context: 200000},
-        {provider: 'Google', name: 'Gemini 1.5 Pro', fullName: 'gemini-1.5-pro', input: 1.25, output: 5, context: 128000},
-        {provider: 'Google', name: 'Gemini 1.5 Flash', fullName: 'gemini-1.5-flash', input: 0.07, output: 0.35, context: 128000},
-        {provider: 'Mistral', name: 'Mistral Large', fullName: 'mistral-large', input: 2, output: 6, context: 128000},
-        {provider: 'Mistral', name: 'Mistral Small', fullName: 'mistral-small', input: 0.2, output: 0.6, context: 128000},
-        {provider: 'DeepSeek', name: 'DeepSeek Chat', fullName: 'deepseek-chat', input: 0.14, output: 0.28, context: 64000},
+        {provider: 'OpenAI', name: 'o3', fullName: 'o3', input: 10, output: 40, context: 200000},
+        {provider: 'OpenAI', name: 'o3 Mini', fullName: 'o3-mini', input: 1.1, output: 4.4, context: 200000},
+        {provider: 'OpenAI', name: 'o4 Mini', fullName: 'o4-mini', input: 1.1, output: 4.4, context: 200000},
+        {provider: 'OpenAI', name: 'o1', fullName: 'o1', input: 15, output: 60, context: 200000},
+        {provider: 'OpenAI', name: 'o1 Mini', fullName: 'o1-mini', input: 3, output: 12, context: 128000},
+        {provider: 'OpenAI', name: 'o1 Pro', fullName: 'o1-pro', input: 150, output: 600, context: 200000},
+
+        // === Anthropic ===
+        {provider: 'Anthropic', name: 'Claude Opus 4', fullName: 'claude-opus-4', input: 15, output: 75, context: 200000},
+        {provider: 'Anthropic', name: 'Claude Sonnet 4', fullName: 'claude-sonnet-4', input: 3, output: 15, context: 200000},
+        {provider: 'Anthropic', name: 'Claude 3.5 Sonnet', fullName: 'claude-3-5-sonnet-20241022', input: 3, output: 15, context: 200000},
+        {provider: 'Anthropic', name: 'Claude 3.5 Haiku', fullName: 'claude-3-5-haiku-20241022', input: 0.8, output: 4, context: 200000},
+        {provider: 'Anthropic', name: 'Claude 3 Opus', fullName: 'claude-3-opus-20240229', input: 15, output: 75, context: 200000},
+        {provider: 'Anthropic', name: 'Claude 3 Haiku', fullName: 'claude-3-haiku-20240307', input: 0.25, output: 1.25, context: 200000},
+
+        // === Google ===
+        {provider: 'Google', name: 'Gemini 2.5 Pro', fullName: 'gemini-2.5-pro', input: 1.25, output: 10, context: 1048576},
+        {provider: 'Google', name: 'Gemini 2.5 Flash', fullName: 'gemini-2.5-flash', input: 0.15, output: 0.6, context: 1048576},
+        {provider: 'Google', name: 'Gemini 2.0 Flash', fullName: 'gemini-2.0-flash', input: 0.1, output: 0.4, context: 1048576},
+        {provider: 'Google', name: 'Gemini 1.5 Pro', fullName: 'gemini-1.5-pro', input: 1.25, output: 5, context: 2097152},
+        {provider: 'Google', name: 'Gemini 1.5 Flash', fullName: 'gemini-1.5-flash', input: 0.075, output: 0.3, context: 1048576},
+        {provider: 'Google', name: 'Gemini 1.5 Flash 8B', fullName: 'gemini-1.5-flash-8b', input: 0.0375, output: 0.15, context: 1048576},
+
+        // === Mistral ===
+        {provider: 'Mistral', name: 'Mistral Large', fullName: 'mistral-large-latest', input: 2, output: 6, context: 128000},
+        {provider: 'Mistral', name: 'Mistral Medium', fullName: 'mistral-medium-latest', input: 2.7, output: 8.1, context: 128000},
+        {provider: 'Mistral', name: 'Mistral Small', fullName: 'mistral-small-latest', input: 0.2, output: 0.6, context: 128000},
+        {provider: 'Mistral', name: 'Codestral', fullName: 'codestral-latest', input: 0.3, output: 0.9, context: 256000},
+        {provider: 'Mistral', name: 'Mistral Nemo', fullName: 'open-mistral-nemo', input: 0.15, output: 0.15, context: 128000},
+        {provider: 'Mistral', name: 'Mixtral 8x22B', fullName: 'open-mixtral-8x22b', input: 2, output: 6, context: 65536},
+        {provider: 'Mistral', name: 'Mixtral 8x7B', fullName: 'open-mixtral-8x7b', input: 0.7, output: 0.7, context: 32768},
+        {provider: 'Mistral', name: 'Pixtral Large', fullName: 'pixtral-large-latest', input: 2, output: 6, context: 128000},
+
+        // === DeepSeek ===
+        {provider: 'DeepSeek', name: 'DeepSeek V3', fullName: 'deepseek-chat', input: 0.27, output: 1.10, context: 64000},
+        {provider: 'DeepSeek', name: 'DeepSeek R1', fullName: 'deepseek-reasoner', input: 0.55, output: 2.19, context: 64000},
+        {provider: 'DeepSeek', name: 'DeepSeek Coder V2', fullName: 'deepseek-coder', input: 0.14, output: 0.28, context: 128000},
+
+        // === Meta (Llama) ===
+        {provider: 'Meta', name: 'Llama 4 Maverick', fullName: 'llama-4-maverick-17b-128e', input: 0.27, output: 0.35, context: 1048576},
+        {provider: 'Meta', name: 'Llama 4 Scout', fullName: 'llama-4-scout-17b-16e', input: 0.15, output: 0.2, context: 524288},
+        {provider: 'Meta', name: 'Llama 3.3 70B', fullName: 'llama-3.3-70b', input: 0.6, output: 0.6, context: 128000},
+        {provider: 'Meta', name: 'Llama 3.1 405B', fullName: 'llama-3.1-405b', input: 3, output: 3, context: 128000},
         {provider: 'Meta', name: 'Llama 3.1 70B', fullName: 'llama-3.1-70b', input: 0.9, output: 0.9, context: 128000},
         {provider: 'Meta', name: 'Llama 3.1 8B', fullName: 'llama-3.1-8b', input: 0.2, output: 0.2, context: 128000},
-        {provider: 'Cohere', name: 'Command R+', fullName: 'command-r-plus', input: 3, output: 15, context: 128000},
-        {provider: 'Cohere', name: 'Command R', fullName: 'command-r', input: 0.5, output: 1.5, context: 128000},
-        {provider: 'xAI', name: 'Grok Beta', fullName: 'grok-beta', input: 5, output: 15, context: 131072},
-        {provider: 'Perplexity', name: 'Sonar Large', fullName: 'perplexity-sonar-large', input: 3, output: 15, context: 127072},
-        {provider: 'Nvidia', name: 'Nemotron 70B', fullName: 'nemotron-70b', input: 0.4, output: 0.8, context: 128000},
-        {provider: 'AWS', name: 'Nova Pro', fullName: 'amazon.nova-pro-v1:0', input: 0.8, output: 3.2, context: 300000}
+
+        // === xAI ===
+        {provider: 'xAI', name: 'Grok 3', fullName: 'grok-3', input: 3, output: 15, context: 131072},
+        {provider: 'xAI', name: 'Grok 3 Mini', fullName: 'grok-3-mini', input: 0.3, output: 0.5, context: 131072},
+        {provider: 'xAI', name: 'Grok 2', fullName: 'grok-2', input: 2, output: 10, context: 131072},
+        {provider: 'xAI', name: 'Grok 2 Mini', fullName: 'grok-2-mini', input: 0.3, output: 0.5, context: 131072},
+
+        // === Cohere ===
+        {provider: 'Cohere', name: 'Command R+', fullName: 'command-r-plus', input: 2.5, output: 10, context: 128000},
+        {provider: 'Cohere', name: 'Command R', fullName: 'command-r', input: 0.15, output: 0.6, context: 128000},
+        {provider: 'Cohere', name: 'Command A', fullName: 'command-a', input: 2.5, output: 10, context: 256000},
+
+        // === AWS (Amazon Bedrock) ===
+        {provider: 'AWS', name: 'Nova Pro', fullName: 'amazon.nova-pro-v1:0', input: 0.8, output: 3.2, context: 300000},
+        {provider: 'AWS', name: 'Nova Lite', fullName: 'amazon.nova-lite-v1:0', input: 0.06, output: 0.24, context: 300000},
+        {provider: 'AWS', name: 'Nova Micro', fullName: 'amazon.nova-micro-v1:0', input: 0.035, output: 0.14, context: 128000},
+        {provider: 'AWS', name: 'Titan Text Express', fullName: 'amazon.titan-text-express-v1', input: 0.2, output: 0.6, context: 8192},
+
+        // === Azure (OpenAI) ===
+        {provider: 'Azure', name: 'GPT-4o (Azure)', fullName: 'azure/gpt-4o', input: 2.5, output: 10, context: 128000},
+        {provider: 'Azure', name: 'GPT-4o Mini (Azure)', fullName: 'azure/gpt-4o-mini', input: 0.15, output: 0.6, context: 128000},
+        {provider: 'Azure', name: 'GPT-4 Turbo (Azure)', fullName: 'azure/gpt-4-turbo', input: 10, output: 30, context: 128000},
+
+        // === Groq ===
+        {provider: 'Groq', name: 'Llama 3.3 70B (Groq)', fullName: 'groq/llama-3.3-70b', input: 0.59, output: 0.79, context: 128000},
+        {provider: 'Groq', name: 'Llama 3.1 8B (Groq)', fullName: 'groq/llama-3.1-8b', input: 0.05, output: 0.08, context: 128000},
+        {provider: 'Groq', name: 'Mixtral 8x7B (Groq)', fullName: 'groq/mixtral-8x7b', input: 0.24, output: 0.24, context: 32768},
+        {provider: 'Groq', name: 'Gemma 2 9B (Groq)', fullName: 'groq/gemma2-9b', input: 0.2, output: 0.2, context: 8192},
+        {provider: 'Groq', name: 'DeepSeek R1 (Groq)', fullName: 'groq/deepseek-r1-distill-llama-70b', input: 0.75, output: 0.99, context: 128000},
+
+        // === Together AI ===
+        {provider: 'Together', name: 'Llama 3.1 405B (Together)', fullName: 'together/llama-3.1-405b', input: 3.5, output: 3.5, context: 128000},
+        {provider: 'Together', name: 'Llama 3.1 70B (Together)', fullName: 'together/llama-3.1-70b', input: 0.88, output: 0.88, context: 128000},
+        {provider: 'Together', name: 'Llama 3.1 8B (Together)', fullName: 'together/llama-3.1-8b', input: 0.18, output: 0.18, context: 128000},
+        {provider: 'Together', name: 'Mixtral 8x22B (Together)', fullName: 'together/mixtral-8x22b', input: 1.2, output: 1.2, context: 65536},
+        {provider: 'Together', name: 'Qwen 2.5 72B (Together)', fullName: 'together/qwen-2.5-72b', input: 1.2, output: 1.2, context: 128000},
+        {provider: 'Together', name: 'DeepSeek V3 (Together)', fullName: 'together/deepseek-v3', input: 0.5, output: 0.5, context: 64000},
+
+        // === Fireworks AI ===
+        {provider: 'Fireworks', name: 'Llama 3.1 405B (Fireworks)', fullName: 'fireworks/llama-3.1-405b', input: 3, output: 3, context: 128000},
+        {provider: 'Fireworks', name: 'Llama 3.1 70B (Fireworks)', fullName: 'fireworks/llama-3.1-70b', input: 0.9, output: 0.9, context: 128000},
+        {provider: 'Fireworks', name: 'Llama 3.1 8B (Fireworks)', fullName: 'fireworks/llama-3.1-8b', input: 0.2, output: 0.2, context: 128000},
+        {provider: 'Fireworks', name: 'Mixtral MoE 8x22B (Fireworks)', fullName: 'fireworks/mixtral-8x22b', input: 1.2, output: 1.2, context: 65536},
+        {provider: 'Fireworks', name: 'Qwen 2.5 72B (Fireworks)', fullName: 'fireworks/qwen-2.5-72b', input: 0.9, output: 0.9, context: 128000},
+        {provider: 'Fireworks', name: 'DeepSeek V3 (Fireworks)', fullName: 'fireworks/deepseek-v3', input: 0.9, output: 0.9, context: 64000},
+
+        // === Perplexity ===
+        {provider: 'Perplexity', name: 'Sonar Pro', fullName: 'perplexity/sonar-pro', input: 3, output: 15, context: 200000},
+        {provider: 'Perplexity', name: 'Sonar', fullName: 'perplexity/sonar', input: 1, output: 1, context: 127072},
+        {provider: 'Perplexity', name: 'Sonar Deep Research', fullName: 'perplexity/sonar-deep-research', input: 2, output: 8, context: 128000},
+
+        // === Nvidia ===
+        {provider: 'Nvidia', name: 'Llama 3.1 Nemotron 70B', fullName: 'nvidia/llama-3.1-nemotron-70b', input: 0.35, output: 0.4, context: 128000},
+        {provider: 'Nvidia', name: 'Nemotron 4 340B', fullName: 'nvidia/nemotron-4-340b', input: 4.2, output: 4.2, context: 4096},
+
+        // === Replicate ===
+        {provider: 'Replicate', name: 'Llama 3.1 405B (Replicate)', fullName: 'replicate/llama-3.1-405b', input: 9.5, output: 9.5, context: 128000},
+        {provider: 'Replicate', name: 'Llama 3.1 70B (Replicate)', fullName: 'replicate/llama-3.1-70b', input: 0.65, output: 2.75, context: 128000},
+
+        // === OpenRouter ===
+        {provider: 'OpenRouter', name: 'Auto Router', fullName: 'openrouter/auto', input: 1, output: 3, context: 128000},
+        {provider: 'OpenRouter', name: 'Llama 3.1 405B (OR)', fullName: 'openrouter/llama-3.1-405b', input: 2.7, output: 2.7, context: 128000},
+
+        // === Cerebras ===
+        {provider: 'Cerebras', name: 'Llama 3.3 70B (Cerebras)', fullName: 'cerebras/llama-3.3-70b', input: 0.85, output: 1.2, context: 128000},
+        {provider: 'Cerebras', name: 'Llama 3.1 8B (Cerebras)', fullName: 'cerebras/llama-3.1-8b', input: 0.1, output: 0.1, context: 128000},
+
+        // === SambaNova ===
+        {provider: 'SambaNova', name: 'Llama 3.1 405B (SambaNova)', fullName: 'sambanova/llama-3.1-405b', input: 5, output: 10, context: 128000},
+        {provider: 'SambaNova', name: 'Llama 3.1 70B (SambaNova)', fullName: 'sambanova/llama-3.1-70b', input: 0.6, output: 1.2, context: 128000},
+
+        // === Alibaba (Qwen) ===
+        {provider: 'Alibaba', name: 'Qwen 2.5 Max', fullName: 'qwen-max', input: 1.6, output: 6.4, context: 131072},
+        {provider: 'Alibaba', name: 'Qwen 2.5 Plus', fullName: 'qwen-plus', input: 0.8, output: 2, context: 131072},
+        {provider: 'Alibaba', name: 'Qwen 2.5 72B', fullName: 'qwen-2.5-72b', input: 1.2, output: 1.2, context: 131072},
+        {provider: 'Alibaba', name: 'Qwen QwQ 32B', fullName: 'qwq-32b', input: 0.3, output: 1.2, context: 131072},
+        {provider: 'Alibaba', name: 'Qwen 2.5 Coder 32B', fullName: 'qwen-2.5-coder-32b', input: 0.8, output: 2, context: 131072},
+
+        // === AI21 Labs ===
+        {provider: 'AI21', name: 'Jamba 1.5 Large', fullName: 'jamba-1.5-large', input: 2, output: 8, context: 256000},
+        {provider: 'AI21', name: 'Jamba 1.5 Mini', fullName: 'jamba-1.5-mini', input: 0.2, output: 0.4, context: 256000},
+
+        // === Minimax ===
+        {provider: 'Minimax', name: 'MiniMax-01', fullName: 'minimax-01', input: 0.4, output: 1.1, context: 1000000},
+
+        // === Zhipu (GLM) ===
+        {provider: 'Zhipu', name: 'GLM-4 Plus', fullName: 'glm-4-plus', input: 1.4, output: 1.4, context: 128000},
+        {provider: 'Zhipu', name: 'GLM-4 Flash', fullName: 'glm-4-flash', input: 0.07, output: 0.07, context: 128000},
+
+        // === 01.AI (Yi) ===
+        {provider: '01.AI', name: 'Yi Large', fullName: 'yi-large', input: 3, output: 3, context: 32768},
+        {provider: '01.AI', name: 'Yi Medium', fullName: 'yi-medium', input: 0.6, output: 0.6, context: 16384},
+
+        // === Moonshot (Kimi) ===
+        {provider: 'Moonshot', name: 'Kimi k1.5', fullName: 'moonshot-v1-128k', input: 0.8, output: 0.8, context: 128000},
+
+        // === Google Vertex ===
+        {provider: 'Google', name: 'Gemma 2 27B', fullName: 'gemma-2-27b', input: 0.35, output: 0.35, context: 8192},
+        {provider: 'Google', name: 'Gemma 2 9B', fullName: 'gemma-2-9b', input: 0.08, output: 0.08, context: 8192},
+
+        // === Microsoft ===
+        {provider: 'Microsoft', name: 'Phi-4', fullName: 'phi-4', input: 0.07, output: 0.14, context: 16384},
+        {provider: 'Microsoft', name: 'Phi-3.5 Mini', fullName: 'phi-3.5-mini', input: 0.1, output: 0.1, context: 128000},
+        {provider: 'Microsoft', name: 'Phi-3 Medium', fullName: 'phi-3-medium', input: 0.17, output: 0.17, context: 128000},
+
+        // === Databricks ===
+        {provider: 'Databricks', name: 'DBRX', fullName: 'databricks/dbrx-instruct', input: 0.75, output: 2.25, context: 32768},
+
+        // === Writer ===
+        {provider: 'Writer', name: 'Palmyra X 004', fullName: 'palmyra-x-004', input: 2, output: 6, context: 128000},
+
+        // === Reka ===
+        {provider: 'Reka', name: 'Reka Core', fullName: 'reka-core', input: 3, output: 15, context: 128000},
+        {provider: 'Reka', name: 'Reka Flash', fullName: 'reka-flash', input: 0.8, output: 2, context: 128000},
       ];
 
       try {
@@ -1601,26 +1755,23 @@
       const rate = currencyRates[currentCurrency];
       const symbol = currencySymbols[currentCurrency];
       const min = limited[0].total, max = limited[limited.length-1].total, avg = limited.reduce((a,b) => a + b.total, 0) / limited.length;
-      document.getElementById('minCost').textContent = symbol + (min * rate).toFixed(4);
-      document.getElementById('maxCost').textContent = symbol + (max * rate).toFixed(4);
-      document.getElementById('avgCost').textContent = symbol + (avg * rate).toFixed(4);
-      document.getElementById('topProvider').textContent = limited[0].provider;
-      document.getElementById('statsBar').classList.remove('hidden');
-      
-      // Update stats bar with savings
-      const minCost = limited[0].totalCost.toFixed(4);
-      const maxCost = limited[limited.length-1].totalCost.toFixed(4);
-      const savings = ((parseFloat(maxCost) - parseFloat(minCost)) / parseFloat(maxCost) * 100).toFixed(1);
-      document.getElementById('statsBar').innerHTML = `
-        <div class="flex justify-between items-center text-xs">
-          <span><i class="fas fa-list"></i> ${limited.length} models</span>
-          <span><i class="fas fa-chart-line"></i> Avg: $${avg.toFixed(4)}</span>
-          <span class="text-green"><i class="fas fa-arrow-down"></i> Min: $${minCost}</span>
-          <span class="text-red"><i class="fas fa-arrow-up"></i> Max: $${maxCost}</span>
-          <button onclick="showSavingsInfo()" class="text-green hover:underline"><i class="fas fa-piggy-bank"></i> Save ${savings}%</button>
+
+      const minCost = (min * rate).toFixed(4);
+      const maxCost = (max * rate).toFixed(4);
+      const savings = max > 0 ? ((max - min) / max * 100).toFixed(1) : '0';
+
+      const statsEl = document.getElementById('statsBar');
+      statsEl.classList.remove('hidden');
+      statsEl.innerHTML = `
+        <div class="flex flex-wrap justify-between items-center gap-2 text-xs px-2">
+          <span><i class="fas fa-list"></i> ${limited.length} modelos</span>
+          <span><i class="fas fa-chart-line"></i> Media: ${symbol}${(avg * rate).toFixed(4)}</span>
+          <span class="text-green"><i class="fas fa-arrow-down"></i> Min: ${symbol}${minCost}</span>
+          <span class="text-red"><i class="fas fa-arrow-up"></i> Max: ${symbol}${maxCost}</span>
+          <button onclick="showSavingsInfo()" class="text-green hover:underline"><i class="fas fa-piggy-bank"></i> Ahorro ${savings}%</button>
         </div>`;
-      
-      if (prompt.length > 0) { stats.calcs++; stats.saved += (max - min); updateStats(); saveStats(); }
+
+      if (prompt && prompt.length > 0) { stats.calcs++; stats.saved += (max - min); updateStats(); saveStats(); }
     }
 
     function filtrar() {

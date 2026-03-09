@@ -1,8 +1,8 @@
-const CACHE_NAME = 'tokentax-v4.3';
+const CACHE_NAME = 'tokentax-v5.0';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  './',
+  './index.html',
+  './manifest.json'
 ];
 
 // Install - cache assets
