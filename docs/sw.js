@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tokentax-v4.3';
+const CACHE_NAME = 'tokentax-v5.1';
 const ASSETS = [
   '/',
   '/index.html',
@@ -37,6 +37,7 @@ self.addEventListener('fetch', event => {
   // Skip cross-origin except LiteLLm and fonts
   const url = event.request.url;
   if (!url.includes('litellm') && 
+      !url.includes('raw.githubusercontent.com') &&
       !url.includes('fonts.googleapis.com') &&
       !url.includes('fonts.gstatic.com') &&
       !url.includes('cdn.tailwindcss.com') &&
