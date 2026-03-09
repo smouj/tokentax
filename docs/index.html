@@ -112,6 +112,7 @@
     .tbl tr:hover td { background: var(--surface-2); }
     .tbl tr.top3 td { background: rgba(34, 197, 94, 0.06); }
     .tbl-wrap { overflow: auto; flex: 1; }
+    .tbl { table-layout: fixed; border-collapse: collapse; width: 100%; }
     .tbl th, .tbl td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .tbl thead { position: sticky; top: 0; z-index: 10; }
     .tbl tr.selected td { background: var(--blue-dim) !important; }
@@ -224,7 +225,7 @@
       <div class="flex items-center gap-4">
         <div class="w-10 h-10 panel flex items-center justify-center"><img src="icon-white-bg-black.png" alt="T" style="width:28px;height:28px;border-radius:4px;"></div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.3.0</span></h1>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.2.0</span></h1>
           <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
         </div>
       </div>
@@ -499,19 +500,6 @@
         </thead>
         <tbody id="tableBody"></tbody>
       </table>
-      
-      <!-- Empty State -->
-      <div id="emptyState" class="hidden p-8 text-center text-tertiary">
-        <i class="fas fa-table text-4xl mb-2"></i>
-        <p class="text-sm">Introduce prompt + calcula</p>
-      </div>
-      
-      <!-- Error State -->
-      <div id="errorState" class="hidden p-8 text-center text-red-400">
-        <i class="fas fa-exclamation-triangle text-4xl mb-2"></i>
-        <p id="errorMsg" class="text-sm"></p>
-        <button onclick="loadModels()" class="mt-2 px-3 py-1 bg-red-500 text-white rounded text-xs">Reintentar</button>
-      </div>
 
       <!-- Footer -->
       <div class="px-3 py-1.5 border-t flex justify-between items-center text-[9px] text-tertiary" style="border-color: var(--border)">
@@ -565,26 +553,16 @@
     const currencySymbols = { USD: '$', EUR: '€', GBP: '£' };
 
     // Provider logos
-    const providerIcons = {
-      openai: '<svg viewBox="0 0 24 24" width="14" height="14" fill="white"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.896zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>',
-      anthropic: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#d97757"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>',
-      google: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#4285f4"><path d="M12 11h8.533c.044.385.067.778.067 1.178 0 2.328-.777 4.49-2.133 6.222-1.356 1.733-3.333 2.933-5.733 3.333V15H8v-4H12V8.533c0-2.223 1.333-4.223 3.333-5.333.889-.494 1.944-.778 3.111-.889L20 2.4c-.133.044-.267.089-.4.133A8.533 8.533 0 0 0 12 2.667a8.527 8.527 0 0 0-6.978 3.7c-.222.489-.356 1.011-.4 1.556l1.378.422z"/></svg>',
-      mistral: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#eb4f38"><path d="M12 2L2 22h20L12 2zm0 4l6.5 14h-13L12 6z"/></svg>',
-      deepseek: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#2a2a2a"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>',
-      meta: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#0668e1"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18l6.9 3.45L12 11.09 5.1 7.64 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>',
-      xai: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#000"><circle cx="12" cy="12" r="10"/></svg>',
-      nvidia: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#76b900"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18l6.9 3.45L12 11.09 5.1 7.64 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>',
-      aws: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#ff9900"><path d="M6.763 10.036c0 .296.032.535.088.71.064.176.144.368.256.576.04.063.056.127.056.183 0 .08-.048.16-.152.24l-.503.335a.383.383 0 0 1-.208.072c-.08 0-.16-.04-.239-.112a2.47 2.47 0 0 1-.287-.375 6.18 6.18 0 0 1-.248-.471c-.622.734-1.405 1.101-2.347 1.101-.67 0-1.205-.191-1.596-.574-.391-.384-.59-.894-.59-1.533 0-.678.239-1.23.726-1.644.487-.415 1.133-.623 1.955-.623.272 0 .551.024.846.064.296.04.6.104.918.176v-.583c0-.607-.127-1.03-.375-1.277-.255-.248-.686-.367-1.3-.367-.28 0-.568.031-.863.103-.296.072-.583.16-.863.272a2.287 2.287 0 0 1-.28.104.488.488 0 0 1-.127.023c-.112 0-.168-.08-.168-.247v-.391c0-.128.016-.224.056-.28a.597.597 0 0 1 .224-.167c.279-.144.614-.264 1.005-.36a4.84 4.84 0 0 1 1.246-.151c.95 0 1.644.216 2.091.647.44.43.663 1.085.663 1.963v2.586zm-3.24 1.214c.263 0 .534-.048.822-.144.287-.096.543-.271.758-.51.128-.152.224-.32.272-.512.047-.191.08-.423.08-.694v-.335a6.66 6.66 0 0 0-.735-.136 6.02 6.02 0 0 0-.75-.048c-.535 0-.926.104-1.19.32-.263.215-.39.518-.39.917 0 .375.095.655.295.846.191.2.47.296.838.296zm6.41.862c-.144 0-.24-.024-.304-.08-.064-.056-.12-.16-.168-.311L7.586 5.55a1.398 1.398 0 0 1-.072-.32c0-.128.064-.2.191-.2h.783c.151 0 .255.025.31.08.065.048.113.152.16.312l1.342 5.284 1.245-5.284c.04-.16.088-.264.151-.312a.549.549 0 0 1 .32-.08h.638c.152 0 .256.025.32.08.063.048.12.152.151.312l1.261 5.348 1.381-5.348c.048-.16.104-.264.16-.312a.52.52 0 0 1 .311-.08h.743c.127 0 .2.065.2.2 0 .04-.009.08-.017.128a1.137 1.137 0 0 1-.056.2l-1.923 6.17c-.048.16-.104.264-.168.312a.549.549 0 0 1-.32.08h-.687c-.151 0-.255-.025-.32-.08-.063-.056-.119-.16-.15-.32l-1.238-5.148-1.23 5.14c-.04.16-.087.264-.15.32-.065.056-.177.08-.32.08zm10.256.215c-.415 0-.83-.048-1.229-.143-.399-.096-.71-.2-.918-.32-.128-.071-.215-.151-.247-.223a.563.563 0 0 1-.048-.224v-.407c0-.231.12-.344.36-.344a.83.83 0 0 1 .2.024c.071.016.16.04.263.08.279.12.558.215.838.279.28.064.543.088.806.088.494 0 .894-.088 1.165-.264a.86.86 0 0 0 .415-.758.777.777 0 0 0-.215-.559c-.144-.151-.416-.287-.807-.415l-1.157-.36c-.583-.183-1.014-.454-1.277-.813a1.902 1.902 0 0 1-.4-1.158c0-.335.073-.63.216-.886.144-.255.335-.479.575-.654.24-.184.51-.32.83-.415.32-.096.655-.136 1.006-.136.175 0 .359.008.535.032.183.024.35.056.518.088.16.04.312.08.455.127.144.048.256.096.336.144a.69.69 0 0 1 .24.2.43.43 0 0 1 .071.263v.375c0 .168-.064.256-.184.256a.83.83 0 0 1-.303-.096 3.652 3.652 0 0 0-1.532-.311c-.455 0-.815.071-1.062.223-.248.152-.375.383-.375.71 0 .224.08.416.24.567.159.152.454.304.877.44l1.134.358c.574.184.99.44 1.237.767.247.327.367.702.367 1.117 0 .343-.072.655-.207.926-.144.272-.336.511-.583.703-.248.2-.543.343-.886.447-.36.111-.734.167-1.142.167zM21.698 16.207c-2.626 1.94-6.442 2.969-9.722 2.969-4.598 0-8.74-1.7-11.87-4.526-.247-.223-.024-.527.27-.351 3.384 1.963 7.559 3.153 11.877 3.153 2.914 0 6.114-.607 9.06-1.852.439-.2.814.287.385.607zM22.792 14.961c-.336-.43-2.22-.207-3.074-.103-.255.032-.295-.192-.063-.36 1.5-1.053 3.967-.75 4.254-.399.287.36-.08 2.826-1.485 4.007-.215.184-.423.088-.327-.151.32-.79 1.03-2.57.685-2.994z"/></svg>',
-      azure: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#0078d4"><path d="M13.05 4.24L6.56 18.05a.5.5 0 0 0 .45.7h13.2a.5.5 0 0 0 .45-.7l-6.51-13.81h-.65z"/></svg>',
-      cohere: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#39594d"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>',
-      perplexity: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#000"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/></svg>',
-      vertex: '<svg viewBox="0 0 24 24" width="14" height="14" fill="#4285f4"><path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.18l6.9 3.45L12 11.09 5.1 7.64 12 4.18zM4 8.82l7 3.5v7.36l-7-3.5V8.82zm9 10.86v-7.36l7-3.5v7.36l-7 3.5z"/></svg>',
-      default: '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>'
+    const providerLogos = {
+      openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
+      deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
+      xai: 'logo-xai', groq: 'logo-groq', fireworks: 'logo-fireworks', together: 'logo-together',
+      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity', replicate: 'logo-replicate', openrouter: 'logo-openrouter', cerebras: 'logo-cerebras', sambanova: 'logo-sambanova'
     };
 
-    function getProviderIcon(provider) {
+    function getProviderLogo(provider) {
       const key = provider.toLowerCase();
-      return providerIcons[key] || providerIcons.default;
+      return providerLogos[key] || 'logo-default';
     }
 
     let allModels = [], results = [], isDark = true, sortF = 'input', sortA = true;
@@ -650,7 +628,7 @@
       } else if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        document.getElementById('themeBtn').innerHTML = '<i class="fas fa-sun"></i>';
+        document.getElementById('themeBtn').textContent = '<i class="fas fa-sun"></i>';
         isDark = false;
       }
       if (localStorage.getItem('lang')) {
@@ -714,14 +692,14 @@
       if (!el || !list) return;
       el.textContent = Object.keys(counts).length + ' proveedores';
       list.innerHTML = sorted.map(([p, c]) => {
-        const icon = getProviderIcon(p);
+        const logo = getProviderLogo(p);
         const pct = Math.round(c / total * 100);
-        return '<div class="provider-row" onclick="filterProvider(\'' + p + '\')" title="' + p + ' (' + c + ')">
-          <span style="width:14px;height:14px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;">' + icon + '</span>
-          <span class="provider-row-name">' + p + '</span>
-          <span class="provider-row-count">' + c + '</span>
-          <div class="provider-bar-wrap"><div class="provider-bar-fill" style="width:' + pct + '%"></div></div>
-        </div>';
+        return `<div class="provider-row" onclick="filterProvider('${p}')" title="${p} (${c})">
+          <span class="provider-logo ${logo}" style="width:14px;height:14px;font-size:8px;flex-shrink:0">${p.charAt(0)}</span>
+          <span class="provider-row-name">${p}</span>
+          <span class="provider-row-count">${c}</span>
+          <div class="provider-bar-wrap"><div class="provider-bar-fill" style="width:${pct}%"></div></div>
+        </div>`;
       }).join('');
     }
 
@@ -868,8 +846,8 @@
       if (!results.length) return { savings: 0, percentage: 0 };
       const cheapest = results[0];
       const expensive = results[results.length - 1];
-      const savings = expensive.total - cheapest.total;
-      const percentage = ((savings / expensive.total) * 100).toFixed(1);
+      const savings = expensive.totalCost - cheapest.totalCost;
+      const percentage = ((savings / expensive.totalCost) * 100).toFixed(1);
       return { savings, percentage, cheapest, expensive };
     }
 
@@ -885,8 +863,8 @@
             <div class="text-xs text-green">${percentage}% cheaper</div>
           </div>
           <div class="grid grid-cols-2 gap-2">
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.total.toFixed(4)}</div></div>
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.total.toFixed(4)}</div></div>
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.totalCost.toFixed(4)}</div></div>
+            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.totalCost.toFixed(4)}</div></div>
           </div>
         </div>`;
       document.getElementById('detailsModal').classList.add('active');
@@ -1307,7 +1285,7 @@
       const t = document.createElement('div');
       t.className = 'toast-in mb-2 px-3 py-2 panel text-sm flex items-center gap-2';
       t.style.background = colors[type] || colors.info;
-      t.innerHTML = '<span>' + (icons[type] || icons.info) + ' ' + msg + '</span>';
+      t.innerHTML = `<span>${icons[type] || icons.info} ${msg}</span>`;
       document.getElementById('toast').appendChild(t);
       setTimeout(() => { t.classList.add('toast-out'); setTimeout(()=>t.remove(),250); }, 2500);
     }
@@ -1488,112 +1466,56 @@
 
     async function loadModels() {
       const loader = document.getElementById('loader'), modelText = document.getElementById('modelText');
-      loader.className = 'w-2 h-2 rounded-full bg-yellow-500';
+      loader.className = 'w-1.5 h-1.5 rounded-full bg-tertiary';
       modelText.textContent = 'Cargando...';
-
-      // REAL pricing data - March 2026 (verified from official docs)
-      const modelData = [
-        // OpenAI
-        {provider: 'OpenAI', name: 'GPT-5.2', fullName: 'gpt-5.2', input: 1.75, output: 14, context: 200000},
-        {provider: 'OpenAI', name: 'GPT-5.2 Pro', fullName: 'gpt-5.2-pro', input: 21, output: 168, context: 200000},
-        {provider: 'OpenAI', name: 'GPT-4o', fullName: 'gpt-4o', input: 5, output: 20, context: 128000},
-        {provider: 'OpenAI', name: 'GPT-4o Mini', fullName: 'gpt-4o-mini', input: 0.15, output: 0.6, context: 128000},
-        {provider: 'OpenAI', name: 'GPT-4 Turbo', fullName: 'gpt-4-turbo', input: 10, output: 30, context: 128000},
-        {provider: 'OpenAI', name: 'GPT-4', fullName: 'gpt-4', input: 30, output: 60, context: 8192},
-        {provider: 'OpenAI', name: 'GPT-3.5 Turbo', fullName: 'gpt-3.5-turbo', input: 0.5, output: 1.5, context: 16385},
-        
-        // Anthropic
-        {provider: 'Anthropic', name: 'Claude Opus 4.6', fullName: 'claude-opus-4-6', input: 5, output: 25, context: 200000},
-        {provider: 'Anthropic', name: 'Claude Sonnet 4.6', fullName: 'claude-sonnet-4-6', input: 3, output: 15, context: 200000},
-        {provider: 'Anthropic', name: 'Claude Haiku 4.5', fullName: 'claude-haiku-4-5', input: 1, output: 5, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3.5 Sonnet', fullName: 'claude-3.5-sonnet', input: 3, output: 15, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3 Opus', fullName: 'claude-3-opus', input: 15, output: 75, context: 200000},
-        {provider: 'Anthropic', name: 'Claude 3 Haiku', fullName: 'claude-3-haiku', input: 0.25, output: 1.25, context: 200000},
-        
-        // Google
-        {provider: 'Google', name: 'Gemini 3.1 Pro', fullName: 'gemini-3.1-pro', input: 2, output: 12, context: 200000},
-        {provider: 'Google', name: 'Gemini 3.1 Flash', fullName: 'gemini-3.1-flash', input: 0.35, output: 1.5, context: 200000},
-        {provider: 'Google', name: 'Gemini 2.5 Pro', fullName: 'gemini-2.5-pro', input: 1.25, output: 5, context: 1000000},
-        {provider: 'Google', name: 'Gemini 2.5 Flash', fullName: 'gemini-2.5-flash', input: 0.15, output: 0.6, context: 1000000},
-        {provider: 'Google', name: 'Gemini 1.5 Pro', fullName: 'gemini-1.5-pro', input: 1.25, output: 5, context: 200000},
-        {provider: 'Google', name: 'Gemini 1.5 Flash', fullName: 'gemini-1.5-flash', input: 0.07, output: 0.35, context: 128000},
-        
-        // xAI
-        {provider: 'xAI', name: 'Grok 4.1', fullName: 'grok-4.1', input: 0.2, output: 0.5, context: 131072},
-        {provider: 'xAI', name: 'Grok 3', fullName: 'grok-3', input: 3, output: 15, context: 131072},
-        {provider: 'xAI', name: 'Grok 2', fullName: 'grok-2', input: 2, output: 10, context: 131072},
-        {provider: 'xAI', name: 'Grok Beta', fullName: 'grok-beta', input: 5, output: 15, context: 131072},
-        
-        // Mistral
-        {provider: 'Mistral', name: 'Mistral Large 3', fullName: 'mistral-large-3', input: 2, output: 6, context: 128000},
-        {provider: 'Mistral', name: 'Mistral Small', fullName: 'mistral-small', input: 0.2, output: 0.6, context: 128000},
-        {provider: 'Mistral', name: 'Codestral', fullName: 'codestral', input: 0.2, output: 0.6, context: 128000},
-        
-        // Meta
-        {provider: 'Meta', name: 'Llama 4 Scout', fullName: 'llama-4-scout', input: 0.5, output: 1.5, context: 1000000},
-        {provider: 'Meta', name: 'Llama 4 Maverick', fullName: 'llama-4-maverick', input: 1, output: 4, context: 128000},
-        {provider: 'Meta', name: 'Llama 3.3 70B', fullName: 'llama-3.3-70b', input: 0.9, output: 0.9, context: 128000},
-        {provider: 'Meta', name: 'Llama 3.1 70B', fullName: 'llama-3.1-70b', input: 0.9, output: 0.9, context: 128000},
-        {provider: 'Meta', name: 'Llama 3.1 8B', fullName: 'llama-3.1-8b', input: 0.2, output: 0.2, context: 128000},
-        
-        // DeepSeek
-        {provider: 'DeepSeek', name: 'DeepSeek V3', fullName: 'deepseek-v3', input: 0.27, output: 1.1, context: 64000},
-        {provider: 'DeepSeek', name: 'DeepSeek R1', fullName: 'deepseek-r1', input: 0.55, output: 2.2, context: 64000},
-        {provider: 'DeepSeek', name: 'DeepSeek Chat', fullName: 'deepseek-chat', input: 0.14, output: 0.28, context: 64000},
-        
-        // Cohere
-        {provider: 'Cohere', name: 'Command A', fullName: 'command-a', input: 3, output: 15, context: 128000},
-        {provider: 'Cohere', name: 'Command R+', fullName: 'command-r-plus', input: 3, output: 15, context: 128000},
-        {provider: 'Cohere', name: 'Command R', fullName: 'command-r', input: 0.5, output: 1.5, context: 128000},
-        
-        // Others
-        {provider: 'Perplexity', name: 'Sonar Large', fullName: 'perplexity-sonar-large', input: 3, output: 15, context: 127072},
-        {provider: 'Perplexity', name: 'Sonar Medium', fullName: 'perplexity-sonar-medium', input: 1, output: 5, context: 127072},
-        {provider: 'Nvidia', name: 'Nemotron 70B', fullName: 'nemotron-70b', input: 0.4, output: 0.8, context: 128000},
-        {provider: 'AWS', name: 'Nova Pro', fullName: 'amazon.nova-pro-v1:0', input: 0.8, output: 3.2, context: 300000},
-        {provider: 'AWS', name: 'Nova Lite', fullName: 'amazon.nova-lite-v1:0', input: 0.04, output: 0.15, context: 300000},
-        {provider: 'Azure', name: 'GPT-4o Azure', fullName: 'azure/gpt-4o', input: 5, output: 20, context: 128000},
-        {provider: 'Vertex', name: 'Gemini Ultra', fullName: 'gemini-ultra', input: 3, output: 15, context: 200000}
-      ];
+      document.getElementById('emptyState').classList.add('hidden');
+      document.getElementById('errorState').classList.add('hidden');
 
       try {
-        allModels = modelData;
-        
-        // Sort by input price
-        allModels.sort((a, b) => a.input - b.input);
+        const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
+        if (!res.ok) throw new Error('Error de red');
+        const data = await res.json();
 
-        // Update provider filter
+        allModels = Object.keys(data)
+          .filter(k => { const m = data[k]; return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0; })
+          .map(k => {
+            const m = data[k];
+            return {
+              provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1),
+              name: k.length > 40 ? k.substring(0,37) + '...' : k,
+              fullName: k,
+              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
+              output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
+              context: m.max_model_len || m.context_window || 0
+            };
+          });
+
+        // Provider count
         const provCounts = {};
         allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
+
         const provs = Object.keys(provCounts).sort();
         const sel = document.getElementById('providerFilter');
-        sel.innerHTML = '<option value="">Todos los proveedores</option>';
+        sel.innerHTML = '<option value="" data-lang="allProviders">Todos los proveedores</option>';
         provs.forEach(p => {
           const o = document.createElement('option');
           o.value = p;
-          o.textContent = p + ' (' + provCounts[p] + ')';
+          o.textContent = `${p} (${provCounts[p]})`;
           sel.appendChild(o);
         });
 
-        loader.className = 'w-2 h-2 rounded-full bg-green-500';
+        loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
         modelText.textContent = allModels.length + ' modelos';
         document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
-        
-        // Initialize results with default values (1000 input tokens, 500 output tokens)
-        results = allModels.map(m => ({ ...m, total: (1000 * m.input + 500 * m.output) / 1e6 }));
-        
         updateQuickProviders();
         renderProviderPanel();
-        renderResults();
-        toast('Cargados: ' + allModels.length + ' modelos', 'success');
 
       } catch(e) {
-        console.error('Error:', e);
-        loader.className = 'w-2 h-2 rounded-full bg-red-500';
+        loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
         modelText.textContent = 'Error';
         document.getElementById('errorState').classList.remove('hidden');
-        document.getElementById('errorMsg').textContent = e.message;
-        toast('Error: ' + e.message, 'error');
+        document.getElementById('errorMsg').textContent = 'Error: ' + e.message;
+        toast('Error al cargar', 'error');
       }
     }
 
@@ -1628,24 +1550,24 @@
       limitedResults.forEach((m, i) => {
         const top = i < 3;
         const isHighlight = searchTerm && (m.name.toLowerCase().includes(searchTerm) || m.provider.toLowerCase().includes(searchTerm));
-        const providerIcon = getProviderIcon(m.provider);
-        const isFav = favorites.includes(m.provider + '/' + m.fullName);
+        const logoClass = getProviderLogo(m.provider);
+        const isFav = favorites.includes(`${m.provider}/${m.fullName}`);
         const isSelected = selectedModels.includes(i);
 
-        html += '<tr class="' + (isHighlight ? 'highlight' : '') + ' ' + (top ? 'top3' : '') + ' ' + (isSelected ? 'selected' : '') + '" onclick="selectModel(' + i + ', event)" ondblclick="showDetails(' + i + ')">
-          <td><span class="fav-btn ' + (isFav ? 'active' : '') + '" onclick="toggleFavorite(\'' + m.provider + '\', \'' + m.fullName + '\', event)">' + (isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>') + '</span></td>
-          <td class="' + (top ? 'text-green' : '') + '">' + providerIcon + (top ? '<span class="badge badge-green">TOP</span> ' : '') + m.provider + '</td>
-          <td title="' + m.fullName + '">' + m.name + '</td>
-          <td>' + symbol + (m.input / unit * rate).toFixed(4) + '</td>
-          <td>' + symbol + (m.output / unit * rate).toFixed(4) + '</td>
-          <td class="' + (top ? 'text-green' : '') + '">' + symbol + (m.total * rate).toFixed(4) + '</td>
-        </tr>';
+        html += `<tr class="${isHighlight ? 'highlight' : ''} ${top ? 'top3' : ''} ${isSelected ? 'selected' : ''}" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
+          <td><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></td>
+          <td class="${top ? 'text-green' : ''}"><span class="provider-logo ${logoClass}">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</td>
+          <td title="${m.fullName}">${m.name}</td>
+          <td>${symbol}${(m.input / unit * rate).toFixed(4)}</td>
+          <td>${symbol}${(m.output / unit * rate).toFixed(4)}</td>
+          <td class="${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</td>
+        </tr>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
       document.getElementById('tableBody').innerHTML = html;
       document.getElementById('tableBody').classList.remove('hidden');
-      document.getElementById('count').textContent = limitedResults.length + ' / ' + results.length + ' modelos';
+      document.getElementById('count').textContent = `${limitedResults.length} / ${results.length} modelos`;
       document.getElementById('exportBtn').classList.remove('hidden');
       document.getElementById('pdfBtn').classList.remove('hidden');
       document.getElementById('shareBtn').classList.remove('hidden');
@@ -1667,8 +1589,8 @@
       document.getElementById('statsBar').classList.remove('hidden');
       
       // Update stats bar with savings
-      const minCost = limited[0].total;
-      const maxCost = limited[limited.length-1].total;
+      const minCost = limited[0].totalCost.toFixed(4);
+      const maxCost = limited[limited.length-1].totalCost.toFixed(4);
       const savings = ((parseFloat(maxCost) - parseFloat(minCost)) / parseFloat(maxCost) * 100).toFixed(1);
       document.getElementById('statsBar').innerHTML = `
         <div class="flex justify-between items-center text-xs">
