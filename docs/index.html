@@ -1596,7 +1596,9 @@ async function bootRealModels(forceRefresh = false) {
 }
 
 async function loadModels() {
+  alert('Loading...');
   await bootRealModels(false);
+  alert('Loaded: ' + allModels.length + ' models');
 }
 
     function estTokens(t) { return t ? Math.ceil(t.length / 4) : 0; }
