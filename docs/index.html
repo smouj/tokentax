@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://raw.githubusercontent.com">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -44,31 +44,27 @@
       --red: #dc2626; --blue: #2563eb; --blue-dim: #dbeafe;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; touch-action: manipulation; }
+    html { font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
+    html { touch-action: manipulation; }
     
     /* Mobile optimizations */
     @media (max-width: 640px) {
       .app-container { flex-direction: column !important; }
       .left-panel { width: 100% !important; height: auto !important; max-height: 40vh !important; border-right: none !important; border-bottom: 1px solid var(--border); }
-      .right-panel { margin: 4px !important; width: calc(100% - 8px) !important; }
+      .right-panel { margin: 4px !important; }
       .header { padding: 8px !important; }
-      .quick-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 4px !important; }
-      .table-row { padding: 6px 4px !important; font-size: 10px !important; }
-      .td-col { padding: 2px 4px !important; font-size: 9px !important; }
-      .td-col:nth-child(2) { flex: 0 0 60px !important; }
-      .td-col:nth-child(3) { flex: 0 0 60px !important; }
+      .quick-grid { grid-template-columns: repeat(3, 1fr) !important; }
+      .table-row { padding: 8px 4px !important; font-size: 11px !important; }
       .panel { border-radius: 6px !important; }
       .btn-primary { padding: 10px 16px !important; }
-      .header h1 { font-size: 14px !important; }
-      .badge { font-size: 7px !important; padding: 2px 4px !important; }
     }
     
     @media (max-width: 480px) {
       html { font-size: 13px; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 4px !important; }
-      .header { flex-wrap: wrap !important; gap: 4px !important; }
+      .quick-grid { grid-template-columns: repeat(2, !important; }
+      .header-title 1fr) { display: none; }
     }
-    body { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
 
     .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; gap: 0; }
     .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 8px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
@@ -96,103 +92,12 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    .table-header { 
-      position: sticky; 
-      top: 0; 
-      background: var(--surface-2); 
-      z-index: 10; 
-      display: flex; 
-      align-items: center; 
-      padding: 10px 12px; 
-      font-size: 11px; 
-      font-weight: 700; 
-      text-transform: uppercase; 
-      letter-spacing: 0.5px;
-      color: var(--text-2); 
-      border-bottom: 2px solid var(--border);
-    }
-    .th-col { 
-      flex: 1; 
-      display: flex; 
-      align-items: center; 
-      gap: 6px; 
-      cursor: pointer; 
-      transition: color 0.15s;
-    }
-    .th-col:hover { color: var(--text); }
-    .th-col:first-child { flex: 0 0 32px; justify-content: center; }
-    .th-col:nth-child(2) { flex: 0 0 110px; }
-    .th-col:nth-child(3) { flex: 0 0 120px; }
-    .th-col:nth-child(4) { flex: 0 0 80px; justify-content: flex-end; }
-    .th-col:nth-child(5) { flex: 0 0 80px; justify-content: flex-end; }
-    .th-col:nth-child(6) { flex: 0 0 90px; justify-content: flex-end; }
-    .sort-icon { font-size: 10px; opacity: 0.4; }
-    .sort-icon.active { opacity: 1; color: var(--green); }
-    .table-row { 
-      transition: all 0.15s ease; 
-      cursor: pointer; 
-      display: flex; 
-      align-items: center; 
-      padding: 10px 12px; 
-      border-bottom: 1px solid var(--border); 
-      font-size: 13px; 
-    }
-    .table-row:hover { 
-      background: var(--surface-2); 
-    }
-    .table-row.highlight { 
-      background: var(--blue-dim); 
-    }
-    .table-row.top-3 { 
-      background: rgba(34, 197, 94, 0.08); 
-    }
-    .table-row.selected { 
-      background: var(--blue-dim); 
-      outline: 2px solid var(--blue); 
-    }
-    .theme-light .table-row.top-3 { 
-      background: var(--green-dim); 
-    }
-    .td-col { 
-      flex: 1; 
-      padding: 4px 6px; 
-      display: flex; 
-      align-items: center; 
-    }
-    .td-col:first-child { 
-      flex: 0 0 32px; 
-      justify-content: center; 
-    }
-    .td-col:nth-child(2) { 
-      flex: 0 0 110px; 
-      font-weight: 600; 
-    }
-    .td-col:nth-child(3) { 
-      flex: 0 0 120px; 
-      font-size: 11px; 
-      color: var(--text-2); 
-      overflow: hidden; 
-      text-overflow: ellipsis; 
-      white-space: nowrap; 
-    }
-    .td-col:nth-child(4) { 
-      flex: 0 0 80px; 
-      justify-content: flex-end;
-      font-size: 12px; 
-      color: var(--text-3); 
-    }
-    .td-col:nth-child(5) { 
-      flex: 0 0 80px; 
-      justify-content: flex-end;
-      font-size: 12px; 
-      color: var(--text-3); 
-    }
-    .td-col:nth-child(6) { 
-      flex: 0 0 90px; 
-      justify-content: flex-end;
-      font-weight: 700; 
-      font-size: 12px; 
-    }
+    .table-row { transition: all 0.15s ease; cursor: pointer; }
+    .table-row:hover { background: var(--surface-3) !important; transform: translateX(2px); }
+    .table-row.highlight { background: var(--blue-dim) !important; }
+    .table-row.top-3 { background: rgba(34, 197, 94, 0.08); }
+    .table-row.selected { background: var(--blue-dim) !important; outline: 2px solid var(--blue); }
+    .theme-light .table-row.top-3 { background: var(--green-dim); }
 
     /* Button hover effects */
     .panel-hover { transition: all 0.15s ease; }
@@ -288,7 +193,7 @@
       <div class="flex items-center gap-4">
         <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.0.2</span></h1>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v3.8</span></h1>
           <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
         </div>
       </div>
@@ -540,13 +445,13 @@
       </div>
 
       <!-- Table Header -->
-      <div class="table-header">
-        <div class="th-col"></div>
-        <div class="th-col" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
-        <div class="th-col" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
+      <div class="grid grid-cols-7 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
+        <div></div>
+        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
+        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
       </div>
 
       <!-- Results -->
@@ -1336,7 +1241,7 @@
     function updateSortIcons() {
       document.querySelectorAll('.sort-icon').forEach(el => {
         const field = el.dataset.sort;
-        el.innerHTML = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
+        el.textContent = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
         el.classList.toggle('text-green', field === sortF);
       });
     }
@@ -1596,14 +1501,19 @@
         const isFav = favorites.includes(`${m.provider}/${m.fullName}`);
         const isSelected = selectedModels.includes(i);
 
-        html += `<div class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''}" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
-          <div class="td-col"><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></div>
-          <div class="td-col ${top ? 'text-green' : ''}"><span class="provider-logo ${logoClass}" style="margin-right:4px">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</div>
-          <div class="td-col text-[10px]" title="${m.fullName}">${m.name}</div>
-          <div class="td-col text-right">${symbol}${(m.input / unit * rate).toFixed(4)}</div>
-          <div class="td-col text-right">${symbol}${(m.output / unit * rate).toFixed(4)}</div>
-          <div class="td-col text-right font-semibold ${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</div>
-        </div>`;
+        html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
+          <td class="px-1 py-1.5">
+            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star"></i>' : '☆'}</span>
+          </td>
+          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
+            <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
+            ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
+          </td>
+          <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.input / unit * rate).toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.output / unit * rate).toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">${symbol}${(m.total * rate).toFixed(4)}</td>
+        </tr>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
       document.getElementById('errorState').classList.add('hidden');
