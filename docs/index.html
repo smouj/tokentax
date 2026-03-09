@@ -2,26 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>TokenTax AI PRO | Compara +400 Modelos de IA</title>
-  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores. Encuentra el más barato.">
+  <meta name="description" content="Compara +400 modelos de IA de todos los proveedores.">
   <meta name="author" content="smouj">
   <meta name="theme-color" content="#000000">
-  <meta name="keywords" content="AI,LLM,pricing,cost,comparison,models,OpenAI,Anthropic,Google">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="TokenTax AI PRO">
-  <meta property="og:description" content="Compara +400 modelos de IA y encuentra el más barato">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="icon" type="image/svg+xml" href="logo.svg">
-  <link rel="apple-touch-icon" href="logo.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://raw.githubusercontent.com">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -45,31 +33,14 @@
       --red: #dc2626; --blue: #2563eb; --blue-dim: #dbeafe;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; touch-action: manipulation; }
-    
-    /* Mobile optimizations */
-    @media (max-width: 640px) {
-      .app-container { flex-direction: column; }
-      .left-panel { width: 100%; height: auto; max-height: 40vh; border-right: none; border-bottom: 1px solid var(--border); }
-      .right-panel { margin: 4px; width: calc(100% - 8px); }
-      .header { padding: 8px; }
-      .quick-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
-    }
-    
-    @media (max-width: 480px) {
-      html { font-size: 13px; }
-      .quick-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    body { font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
+    html { font-size: 14px; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: var(--text); height: 100vh; width: 100vw; overflow: hidden; display: flex; flex-direction: column; }
 
     .app-container { display: flex; flex-direction: row; flex: 1; min-height: 0; overflow: hidden; gap: 0; }
-    .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 3px; padding: 3px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
-    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 3px; margin-left: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2px; }
+    .left-panel { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; padding: 8px; height: 100%; overflow-y: auto; border-right: 1px solid var(--border); }
+    .right-panel { flex: 1; display: flex; flex-direction: column; min-width: 0; margin: 8px; margin-left: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 2px; }
 
-    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; }
-    .panel:not(:last-child) { margin-bottom: 2px; }
-    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-    .quick-btn { padding: 6px 4px; font-size: 9px; }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; }
     .panel-hover:hover { background: var(--surface-3); }
     .input-field { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; color: var(--text); padding: 6px 10px; }
     .input-field:focus { outline: none; border-color: var(--accent); }
@@ -91,33 +62,12 @@
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    /* SIMPLE HTML TABLE - NO FLEXBOX */
-    .tbl { width: 100%; border-collapse: collapse; table-layout: fixed; }
-    .tbl th { background: var(--surface-2); position: sticky; top: 0; z-index: 10; padding: 8px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--text-3); border-bottom: 1px solid var(--border); text-align: left; }
-    .tbl th:nth-child(1) { width: 30px; text-align: center; }
-    .tbl th:nth-child(2) { width: 90px; }
-    .tbl th:nth-child(3) { width: auto; }
-    .tbl th:nth-child(4) { width: 80px; text-align: right; }
-    .tbl th:nth-child(5) { width: 80px; text-align: right; }
-    .tbl th:nth-child(6) { width: 90px; text-align: right; }
-    .tbl th.sortable { cursor: pointer; }
-    .tbl th.sortable:hover { color: var(--text); }
-    .tbl td { padding: 6px 8px; border-bottom: 1px solid var(--border); font-size: 11px; vertical-align: middle; height: 32px; box-sizing: border-box; }
-    .tbl tr { height: 32px; }
-    .tbl td:nth-child(1) { width: 30px; text-align: center; }
-    .tbl td:nth-child(2) { width: 90px; font-weight: 600; }
-    .tbl td:nth-child(3) { width: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-2); }
-    .tbl td:nth-child(4) { width: 80px; text-align: right; color: var(--text-3); }
-    .tbl td:nth-child(5) { width: 80px; text-align: right; color: var(--text-3); }
-    .tbl td:nth-child(6) { width: 90px; text-align: right; font-weight: 700; }
-    .tbl tr:hover td { background: var(--surface-2); }
-    .tbl tr.top3 td { background: rgba(34, 197, 94, 0.06); }
-    .tbl-wrap { overflow: auto; flex: 1; }
-    .tbl { table-layout: fixed; border-collapse: collapse; width: 100%; }
-    .tbl th, .tbl td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .tbl thead { position: sticky; top: 0; z-index: 10; }
-    .tbl tr.selected td { background: var(--blue-dim) !important; }
-    .tbl tr.fav-row td:nth-child(1) { color: #fbbf24; }
+    .table-row { transition: all 0.15s ease; cursor: pointer; }
+    .table-row:hover { background: var(--surface-3) !important; transform: translateX(2px); }
+    .table-row.highlight { background: var(--blue-dim) !important; }
+    .table-row.top-3 { background: rgba(34, 197, 94, 0.08); }
+    .table-row.selected { background: var(--blue-dim) !important; outline: 2px solid var(--blue); }
+    .theme-light .table-row.top-3 { background: var(--green-dim); }
 
     /* Button hover effects */
     .panel-hover { transition: all 0.15s ease; }
@@ -136,7 +86,7 @@
     .text-tertiary { color: var(--text-3); }
     .text-green { color: var(--green); }
     .text-red { color: var(--red); }
-    .stats-bar { background: var(--green-dim); padding: 5px 12px !important; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; font-size: 10px; }
+    .stats-bar { background: var(--green-dim); }
 
     .dropdown { position: relative; display: inline-block; }
     .dropdown-content { display: none; position: absolute; right: 0; top: 100%; min-width: 160px; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; z-index: 100; margin-top: 4px; max-height: 300px; overflow-y: auto; }
@@ -171,19 +121,7 @@
     .logo-cohere { background: #39594d; color: white; }
     .logo-nvidia { background: #76b900; color: black; }
     .logo-perplexity { background: #000; color: white; }
-    .logo-replicate { background: #6366f1; color: white; }
-    .logo-openrouter { background: #6d28d9; color: white; }
-    .logo-cerebras { background: #1e40af; color: white; }
-    .logo-sambanova { background: #0f172a; color: white; }
     .logo-default { background: var(--surface-2); color: var(--text-2); }
-
-    /* Provider panel */
-    .provider-row { display: flex; align-items: center; gap: 6px; padding: 3px 4px; border-radius: 3px; cursor: pointer; transition: background 0.1s; }
-    .provider-row:hover { background: var(--surface-2); }
-    .provider-row-name { font-size: 10px; flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-    .provider-row-count { font-size: 9px; color: var(--text-3); flex-shrink: 0; min-width: 22px; text-align: right; }
-    .provider-bar-wrap { width: 28px; height: 3px; background: var(--border); border-radius: 2px; flex-shrink: 0; overflow: hidden; }
-    .provider-bar-fill { height: 100%; background: var(--green); border-radius: 2px; }
 
     .limit-control { display: flex; align-items: center; gap: 8px; }
     .toggle-switch { position: relative; width: 36px; height: 20px; }
@@ -217,17 +155,16 @@
 </head>
 <body class="theme-dark">
 
-  <canvas id="bgCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.03;pointer-events:none"></canvas>
   <div id="toast" class="fixed top-3 right-3 z-50"></div>
 
   <!-- Header -->
   <header class="panel flex-shrink-0" style="border:none; border-bottom:1px solid var(--border); border-radius:0;">
     <div class="flex items-center justify-between px-4 py-3">
       <div class="flex items-center gap-4">
-        <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl">T</div>
+        <div class="w-10 h-10 panel flex items-center justify-center font-bold text-xl logo-text">T</div>
         <div>
-          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span> <span class="badge badge-green">v4.2.0</span></h1>
-          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green ml-1">2026</span></p>
+          <h1 class="font-semibold text-base">TokenTax <span class="text-secondary">AI PRO</span></h1>
+          <p class="text-[11px] text-tertiary uppercase tracking-wider">+400 Modelos <span class="text-green">v3.4</span></p>
         </div>
       </div>
 
@@ -254,7 +191,6 @@
         <!-- Theme Toggle -->
         <button onclick="toggleTheme()" id="themeBtn" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Toggle Theme"><i class="fas fa-moon"></i></button>
         <button onclick="setOLEDMode(true)" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="OLED Mode"><i class="fas fa-square-full"></i></button>
-        <button onclick="toggleHighContrast()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="High Contrast"><i class="fas fa-eye"></i></button>
         <button onclick="quickEstimate()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Quick Estimate"><i class="fas fa-calculator"></i></button>
         <button onclick="loadPresets()" class="w-8 h-8 panel panel-hover flex items-center justify-center text-sm" title="Load Preset"><i class="fas fa-folder"></i></button>
 
@@ -330,11 +266,6 @@
           <button onclick="showHelp()" class="text-[9px] text-tertiary"><i class="fas fa-question-circle"></i></button>
         </div>
         <div id="quickProviders" class="flex flex-wrap gap-1"></div>
-        <div class="flex gap-1 mt-2">
-          <button onclick="showTop10()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-trophy"></i> Top 10</button>
-          <button onclick="showAll()" class="btn-secondary px-2 py-1 text-[9px] flex-1"><i class="fas fa-list"></i> All</button>
-          <button onclick="clearProviderFilter()" class="btn-secondary px-2 py-1 text-[9px]" title="Reset"><i class="fas fa-times"></i></button>
-        </div>
       </div>
 
       <!-- Settings -->
@@ -386,15 +317,6 @@
         </div>
       </div>
 
-
-      <!-- Proveedores Panel -->
-      <div class="panel p-2">
-        <div class="flex justify-between items-center mb-1.5">
-          <span class="text-[10px] text-secondary font-medium"><i class="fas fa-building"></i> Proveedores</span>
-          <span id="providerTotal" class="text-[9px] text-tertiary">-</span>
-        </div>
-        <div id="providerStatsList" class="flex flex-col gap-0.5"></div>
-      </div>
       <!-- Favorites -->
       <div class="panel p-2">
         <div class="flex justify-between items-center mb-2">
@@ -442,7 +364,7 @@
     </aside>
 
     <!-- Right Panel -->
-    <div class="right-panel panel" style="width:100%">
+    <div class="right-panel panel">
 
       <!-- Filters -->
       <div class="p-2 border-b flex gap-2 flex-wrap" style="border-color: var(--border)">
@@ -472,8 +394,7 @@
         <button onclick="copyAll()" id="copyAllBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Copiar todo"><i class="fas fa-copy"></i></button>
         <button onclick="exportCSV()" id="exportBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar CSV">CSV</button>
         <button onclick="exportPDF()" id="pdfBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Exportar PDF">PDF</button>
-        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Share"><i class="fas fa-share-alt"></i></button>
-        <button onclick="copyShareLink()" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Copy Link"><i class="fas fa-link"></i></button>
+        <button onclick="shareResults()" id="shareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Compartir">Share</button>
         <button onclick="getRecommended()" id="recBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Recomendado">AI</button>
         <button onclick="toggleFullscreen()" id="fsBtn" class="px-2 py-1.5 panel panel-hover text-[9px]" title="Fullscreen">[]</button>
         <button onclick="openCompare()" id="compareBtn" class="hidden px-2 py-1.5 panel panel-hover text-[9px]" title="Comparar"><i class="fas fa-balance-scale"></i></button>
@@ -487,20 +408,30 @@
         <div class="ml-auto"><span class="text-secondary"><i class="fas fa-trophy"></i> <span data-lang="top">Top:</span></span> <span id="topProvider" class="text-green font-medium">-</span></div>
       </div>
 
-      <div class="table-wrap">
-      <table class="tbl">
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th class="sortable" onclick="sortBy('provider')">Proveedor</th>
-            <th class="sortable" onclick="sortBy('name')">Modelo</th>
-            <th class="sortable" onclick="sortBy('input')">Input</th>
-            <th class="sortable" onclick="sortBy('output')">Output</th>
-            <th class="sortable" onclick="sortBy('total')">Coste</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+      <!-- Table Header -->
+      <div class="grid grid-cols-7 px-3 py-1.5 text-[9px] font-medium text-tertiary uppercase" style="background: var(--surface-2)">
+        <div></div>
+        <div class="cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('provider')"><span data-lang="provider">Proveedor</span> <span class="sort-icon" data-sort="provider"><i class="fas fa-sort"></i></span></div>
+        <div class="col-span-2 cursor-pointer hover:text-primary flex items-center gap-1" onclick="sortBy('name')"><span data-lang="model">Modelo</span> <span class="sort-icon" data-sort="name"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('input')"><span data-lang="input">Input</span> <span class="sort-icon" data-sort="input"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('output')"><span data-lang="output">Output</span> <span class="sort-icon" data-sort="output"><i class="fas fa-sort"></i></span></div>
+        <div class="text-right cursor-pointer hover:text-primary flex items-center justify-end gap-1" onclick="sortBy('total')"><span data-lang="cost">Coste</span> <span class="sort-icon" data-sort="total"><i class="fas fa-sort"></i></span></div>
+      </div>
+
+      <!-- Results -->
+      <div class="flex-1 overflow-y-auto p-2" id="resultsContainer" style="padding: 8px;">
+        <div id="emptyState" class="h-full flex flex-col items-center justify-center text-tertiary">
+          <p class="text-sm" data-lang="emptyState1">Introduce prompt + calcula</p>
+          <p class="text-xs mt-1"><span class="kbd">Ctrl</span>+<span class="kbd">↵</span></p>
+        </div>
+        <div id="errorState" class="hidden h-full flex flex-col items-center justify-center text-red">
+          <p class="text-sm" id="errorMsg">Error</p>
+          <button onclick="loadModels()" class="text-xs mt-2 underline" data-lang="retry">Reintentar</button>
+        </div>
+        <table class="w-full text-xs">
+          <tbody id="tableBody" class="hidden"></tbody>
+        </table>
+      </div>
 
       <!-- Footer -->
       <div class="px-3 py-1.5 border-t flex justify-between items-center text-[9px] text-tertiary" style="border-color: var(--border)">
@@ -509,9 +440,11 @@
       </div>
     </div>
   </main>
+
+  <!-- Footer -->
   <footer class="flex-shrink-0 border-t p-3" style="border-color: var(--border); background: var(--surface);">
     <div class="text-center text-[10px] text-tertiary">
-      <img src="logo.svg" alt="" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:3px"><span class="font-medium">TokenTax AI PRO</span> &copy; 2026 • <span id="visitorCount"><i class="fas fa-spinner fa-spin"></i></span> visits • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help
+      <span class="font-medium">TokenTax AI PRO</span> • +400 Modelos • <a href="https://github.com/smouj/tokentax" class="hover:text-primary text-secondary">GitHub</a> • <span class="kbd">?</span> help • <span class="kbd">Esc</span> clear • <span class="kbd">F11</span> fullscreen
     </div>
   </footer>
 
@@ -558,7 +491,7 @@
       openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
       deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
       xai: 'logo-xai', groq: 'logo-groq', fireworks: 'logo-fireworks', together: 'logo-together',
-      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity', replicate: 'logo-replicate', openrouter: 'logo-openrouter', cerebras: 'logo-cerebras', sambanova: 'logo-sambanova'
+      cohere: 'logo-cohere', nvidia: 'logo-nvidia', perplexity: 'logo-perplexity'
     };
 
     function getProviderLogo(provider) {
@@ -681,44 +614,9 @@
       ).join('');
     }
 
-
-    function renderProviderPanel() {
-      if (!allModels.length) return;
-      const counts = {};
-      allModels.forEach(m => { counts[m.provider] = (counts[m.provider] || 0) + 1; });
-      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
-      const total = allModels.length;
-      const el = document.getElementById('providerTotal');
-      const list = document.getElementById('providerStatsList');
-      if (!el || !list) return;
-      el.textContent = Object.keys(counts).length + ' proveedores';
-      list.innerHTML = sorted.map(([p, c]) => {
-        const logo = getProviderLogo(p);
-        const pct = Math.round(c / total * 100);
-        return `<div class="provider-row" onclick="filterProvider('${p}')" title="${p} (${c})">
-          <span class="provider-logo ${logo}" style="width:14px;height:14px;font-size:8px;flex-shrink:0">${p.charAt(0)}</span>
-          <span class="provider-row-name">${p}</span>
-          <span class="provider-row-count">${c}</span>
-          <div class="provider-bar-wrap"><div class="provider-bar-fill" style="width:${pct}%"></div></div>
-        </div>`;
-      }).join('');
-    }
-
     function filterProvider(p) {
       document.getElementById('providerFilter').value = p;
       calcularCostos();
-    }
-
-    function showTop10() {
-      document.getElementById('limitSelect').value = '10';
-      calcularCostos();
-      toast('Showing top 10 cheapest models', 'info');
-    }
-
-    function showAll() {
-      document.getElementById('limitSelect').value = '100';
-      calcularCostos();
-      toast('Showing all models', 'info');
     }
 
     function showHelp() {
@@ -842,35 +740,6 @@
       }
     }
 
-    // Savings calculator
-    function calculateSavings() {
-      if (!results.length) return { savings: 0, percentage: 0 };
-      const cheapest = results[0];
-      const expensive = results[results.length - 1];
-      const savings = expensive.totalCost - cheapest.totalCost;
-      const percentage = ((savings / expensive.totalCost) * 100).toFixed(1);
-      return { savings, percentage, cheapest, expensive };
-    }
-
-    function showSavingsInfo() {
-      const { savings, percentage, cheapest, expensive } = calculateSavings();
-      if (!results.length) return;
-      document.getElementById('detailsTitle').innerHTML = '<i class="fas fa-piggy-bank"></i> Savings Calculator';
-      document.getElementById('detailsContent').innerHTML = `
-        <div class="space-y-3">
-          <div class="panel p-3 bg-green-dim">
-            <div class="text-xs text-green">Potential Savings</div>
-            <div class="text-2xl font-bold text-green">$${savings.toFixed(4)}</div>
-            <div class="text-xs text-green">${percentage}% cheaper</div>
-          </div>
-          <div class="grid grid-cols-2 gap-2">
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">CHEAPEST</div><div class="text-sm font-semibold">${cheapest.provider}</div><div class="text-xs">${cheapest.name}</div><div class="text-green">$${cheapest.totalCost.toFixed(4)}</div></div>
-            <div class="panel p-2"><div class="text-[9px] text-tertiary">EXPENSIVE</div><div class="text-sm font-semibold">${expensive.provider}</div><div class="text-xs">${expensive.name}</div><div class="text-red">$${expensive.totalCost.toFixed(4)}</div></div>
-          </div>
-        </div>`;
-      document.getElementById('detailsModal').classList.add('active');
-    }
-
     // Provider stats
     function showProviderStats() {
       if (!results.length) return;
@@ -929,22 +798,6 @@
       if (!confirm('Reset all settings to default?')) return;
       localStorage.clear();
       location.reload();
-    }
-
-    // High contrast mode
-    function toggleHighContrast() {
-      const isHigh = document.body.classList.toggle('high-contrast');
-      if (isHigh) {
-        document.documentElement.style.setProperty('--text', '#ffffff');
-        document.documentElement.style.setProperty('--bg', '#000000');
-        document.documentElement.style.setProperty('--border', '#ffffff');
-        toast('High Contrast enabled');
-      } else {
-        document.documentElement.style.setProperty('--text', '');
-        document.documentElement.style.setProperty('--bg', '');
-        document.documentElement.style.setProperty('--border', '');
-        toast('High Contrast disabled');
-      }
     }
 
     // Keyboard accessible dropdowns
@@ -1115,36 +968,6 @@
       updateRecentUI();
     }
 
-    // Search history
-    function addToSearchHistory(query) {
-      if (!query || query.length < 2) return;
-      let history = JSON.parse(localStorage.getItem('tt_search_history') || '[]');
-      history = history.filter(h => h !== query);
-      history.unshift(query);
-      history = history.slice(0, 10);
-      localStorage.setItem('tt_search_history', JSON.stringify(history));
-    }
-
-    // Copy shareable link
-    function copyShareLink() {
-      const url = new URL(window.location.href);
-      const prompt = document.getElementById('prompt').value;
-      if (prompt) url.searchParams.set('q', prompt);
-      const output = document.getElementById('outputTokens').value;
-      if (output) url.searchParams.set('out', output);
-      
-      navigator.clipboard.writeText(url.toString()).then(() => {
-        toast('Link copied!', 'success');
-      }).catch(() => toast('Failed to copy', 'error'));
-    }
-
-    // Load from URL params
-    function loadFromURL() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('q')) document.getElementById('prompt').value = params.get('q');
-      if (params.has('out')) document.getElementById('outputTokens').value = params.get('out');
-    }
-
     function updateRecentUI() {
       document.getElementById('recentCount').textContent = recentModels.length;
       const list = document.getElementById('recentList');
@@ -1294,7 +1117,7 @@
     function updateSortIcons() {
       document.querySelectorAll('.sort-icon').forEach(el => {
         const field = el.dataset.sort;
-        el.innerHTML = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
+        el.textContent = (field === sortF) ? (sortA ? '<i class="fas fa-arrow-up"></i>' : '<i class="fas fa-arrow-down"></i>') : '<i class="fas fa-sort"></i>';
         el.classList.toggle('text-green', field === sortF);
       });
     }
@@ -1304,12 +1127,12 @@
       if (isDark) {
         document.body.classList.remove('theme-dark');
         document.body.classList.add('theme-light');
-        btn.innerHTML = '<i class="fas fa-sun"></i>';
+        btn.textContent = '<i class="fas fa-sun"></i>';
         localStorage.setItem('theme', 'light');
       } else {
         document.body.classList.remove('theme-light');
         document.body.classList.add('theme-dark');
-        btn.innerHTML = '<i class="fas fa-moon"></i>';
+        btn.textContent = '<i class="fas fa-moon"></i>';
         localStorage.setItem('theme', 'dark');
       }
       isDark = !isDark;
@@ -1465,211 +1288,59 @@
       toast('Lista copiada');
     }
 
-    const LOCAL_MODEL_COST_MAP_URL = './model_prices_and_context_window.json';
-const REMOTE_MODEL_COST_MAP_URL = 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json';
-const MODEL_SOURCES = [LOCAL_MODEL_COST_MAP_URL, REMOTE_MODEL_COST_MAP_URL];
-const MODEL_CACHE_KEY = 'tokentax:model-cost-map:v3';
-const MODEL_CACHE_META_KEY = 'tokentax:model-cost-map-meta:v3';
-const MODEL_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
+    async function loadModels() {
+      const loader = document.getElementById('loader'), modelText = document.getElementById('modelText');
+      loader.className = 'w-1.5 h-1.5 rounded-full bg-tertiary';
+      modelText.textContent = 'Cargando...';
+      document.getElementById('emptyState').classList.add('hidden');
+      document.getElementById('errorState').classList.add('hidden');
 
-function escapeHtml(value = '') {
-  return String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
-}
-
-function formatMoneyUSD(value) {
-  if (!Number.isFinite(value)) return '-';
-  if (value === 0) return '$0';
-  if (value < 0.000001) return '$' + value.toExponential(2);
-  if (value < 0.01) return '$' + value.toFixed(6);
-  return '$' + value.toFixed(4);
-}
-
-async function fetchRealModelMap(forceRefresh = false) {
-  try {
-    const cached = localStorage.getItem(MODEL_CACHE_KEY);
-    const meta = JSON.parse(localStorage.getItem(MODEL_CACHE_META_KEY) || 'null');
-    const isFresh = meta && typeof meta.ts === 'number' && Date.now() - meta.ts < MODEL_CACHE_TTL_MS;
-    if (!forceRefresh && cached && isFresh) {
-      return JSON.parse(cached);
-    }
-
-    let lastError = null;
-    for (const url of MODEL_SOURCES) {
       try {
-        const res = await fetch(url, { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status + ' @ ' + url);
-        const json = await res.json();
-        localStorage.setItem(MODEL_CACHE_KEY, JSON.stringify(json);
-        localStorage.setItem(MODEL_CACHE_META_KEY, JSON.stringify({ ts: Date.now(), source: url });
-        return json;
-      } catch (err) {
-        lastError = err;
+        const res = await fetch('https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json');
+        if (!res.ok) throw new Error('Error de red');
+        const data = await res.json();
+
+        allModels = Object.keys(data)
+          .filter(k => { const m = data[k]; return m.mode === "chat" && typeof m.input_cost_per_token === "number" && typeof m.output_cost_per_token === "number" && m.input_cost_per_token > 0; })
+          .map(k => {
+            const m = data[k];
+            return {
+              provider: (m.litellm_provider || 'other').charAt(0).toUpperCase() + (m.litellm_provider || 'other').slice(1),
+              name: k.length > 40 ? k.substring(0,37) + '...' : k,
+              fullName: k,
+              input: parseFloat((m.input_cost_per_token * 1e6).toFixed(4)),
+              output: parseFloat((m.output_cost_per_token * 1e6).toFixed(4)),
+              context: m.max_model_len || m.context_window || 0
+            };
+          });
+
+        // Provider count
+        const provCounts = {};
+        allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
+
+        const provs = Object.keys(provCounts).sort();
+        const sel = document.getElementById('providerFilter');
+        sel.innerHTML = '<option value="" data-lang="allProviders">Todos los proveedores</option>';
+        provs.forEach(p => {
+          const o = document.createElement('option');
+          o.value = p;
+          o.textContent = `${p} (${provCounts[p]})`;
+          sel.appendChild(o);
+        });
+
+        loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
+        modelText.textContent = allModels.length + ' modelos';
+        document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
+        updateQuickProviders();
+
+      } catch(e) {
+        loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
+        modelText.textContent = 'Error';
+        document.getElementById('errorState').classList.remove('hidden');
+        document.getElementById('errorMsg').textContent = 'Error: ' + e.message;
+        toast('Error al cargar', 'error');
       }
     }
-
-    throw lastError || new Error('No se pudo cargar el mapa de modelos');
-  } catch (err) {
-    const cached = localStorage.getItem(MODEL_CACHE_KEY);
-    if (cached) return JSON.parse(cached);
-    throw err;
-  }
-}
-
-function normalizeLiteLLMModelMap(rawMap) {
-  return Object.entries(rawMap)
-    .filter(([key, value]) => key !== 'sample_spec' && value && typeof value === 'object')
-    .map(([modelId, meta]) => {
-      const provider = meta.litellm_provider || (modelId.includes('/') ? modelId.split('/')[0] : 'unknown');
-      const inputPerToken = Number(meta.input_cost_per_token ?? 0);
-      const outputPerToken = Number(meta.output_cost_per_token ?? 0);
-      const maxInputTokens = Number(meta.max_input_tokens ?? meta.max_tokens ?? 0);
-      const maxOutputTokens = Number(meta.max_output_tokens ?? meta.max_tokens ?? 0);
-      const mode = String(meta.mode || 'unknown');
-      return {
-        id: modelId,
-        provider: provider,
-        providerLabel: provider,
-        model: modelId,
-        fullName: modelId,
-        name: modelId,
-        mode: mode,
-        maxInputTokens: maxInputTokens,
-        maxOutputTokens: maxOutputTokens,
-        inputPerToken: inputPerToken,
-        outputPerToken: outputPerToken,
-        inputPer1k: inputPerToken * 1000,
-        outputPer1k: outputPerToken * 1000,
-        totalPer1k: (inputPerToken + outputPerToken) * 1000,
-        input: inputPerToken * 1000000,
-        output: outputPerToken * 1000000,
-        total: (inputPerToken + outputPerToken) * 1000000,
-        inputPer1m: inputPerToken * 1000000,
-        outputPer1m: outputPerToken * 1000000,
-        totalPer1m: (inputPerToken + outputPerToken) * 1000000,
-        context: maxInputTokens || 0,
-        vision: Boolean(meta.supports_vision || /vision|image|omni|vl|multimodal/i.test(modelId)),
-        reasoning: Boolean(meta.supports_reasoning || /reason|thinking|o1|o3|o4|r1|gpt-5/i.test(modelId))
-      };
-    })
-    .filter((m) => Number.isFinite(m.inputPerToken) && Number.isFinite(m.outputPerToken))
-    .filter((m) => ['chat', 'responses', 'completion', 'unknown'].includes(m.mode))
-    .sort((a, b) => {
-      if (a.totalPer1m !== b.totalPer1m) return a.totalPer1m - b.totalPer1m;
-      return a.model.localeCompare(b.model);
-    });
-}
-
-async function bootRealModels(forceRefresh = false) {
-  const loader = document.getElementById('loader'), modelText = document.getElementById('modelText');
-  loader.className = 'w-1.5 h-1.5 rounded-full bg-yellow-500';
-  modelText.textContent = 'Cargando modelos...';
-  document.getElementById('emptyState').classList.add('hidden');
-  document.getElementById('errorState').classList.add('hidden');
-
-  try {
-    const rawMap = await fetchRealModelMap(forceRefresh);
-    allModels = normalizeLiteLLMModelMap(rawMap);
-    
-    // Sort by input price
-    allModels.sort((a, b) => a.input - b.input);
-
-    // Provider count
-    const provCounts = {};
-    allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
-    const provs = Object.keys(provCounts).sort();
-    const sel = document.getElementById('providerFilter');
-    sel.innerHTML = '<option value="">Todos los proveedores</option>';
-    provs.forEach(p => {
-      const o = document.createElement('option');
-      o.value = p;
-      o.textContent = p + ' (' + provCounts[p] + ')';
-      sel.appendChild(o);
-    });
-
-    loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
-    modelText.textContent = allModels.length + ' modelos';
-    document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
-    
-    if (typeof updateQuickProviders === 'function') updateQuickProviders();
-    if (typeof renderProviderPanel === 'function') renderProviderPanel();
-    if (typeof updateCount === 'function') updateCount();
-    if (typeof calcularCostos === 'function') calcularCostos();
-    toast('Cargados: ' + allModels.length + ' modelos reales', 'success');
-  } catch (err) {
-    console.error('Error cargando modelos:', err);
-    loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
-    modelText.textContent = 'Error';
-    document.getElementById('errorState').classList.remove('hidden');
-    document.getElementById('errorMsg').textContent = 'Error: ' + err.message;
-    toast('Error al cargar modelos', 'error');
-  }
-}
-
-async function loadModels() {
-  const loader = document.getElementById('loader'), modelText = document.getElementById('modelText');
-  loader.className = 'w-1.5 h-1.5 rounded-full bg-yellow-500';
-  modelText.textContent = 'Cargando...';
-  document.getElementById('emptyState').classList.add('hidden');
-  document.getElementById('errorState').classList.add('hidden');
-
-  // Hardcoded model data - reliable
-  const modelData = [
-    {provider: 'OpenAI', name: 'GPT-4o', fullName: 'gpt-4o', input: 2.5, output: 10, context: 128000},
-    {provider: 'OpenAI', name: 'GPT-4o Mini', fullName: 'gpt-4o-mini', input: 0.15, output: 0.6, context: 128000},
-    {provider: 'OpenAI', name: 'GPT-4 Turbo', fullName: 'gpt-4-turbo', input: 10, output: 30, context: 128000},
-    {provider: 'OpenAI', name: 'GPT-3.5 Turbo', fullName: 'gpt-3.5-turbo', input: 0.5, output: 1.5, context: 16385},
-    {provider: 'Anthropic', name: 'Claude 3.5 Sonnet', fullName: 'claude-3.5-sonnet', input: 3, output: 15, context: 200000},
-    {provider: 'Anthropic', name: 'Claude 3 Opus', fullName: 'claude-3-opus', input: 15, output: 75, context: 200000},
-    {provider: 'Anthropic', name: 'Claude 3 Haiku', fullName: 'claude-3-haiku', input: 0.25, output: 1.25, context: 200000},
-    {provider: 'Google', name: 'Gemini 1.5 Pro', fullName: 'gemini-1.5-pro', input: 1.25, output: 5, context: 128000},
-    {provider: 'Google', name: 'Gemini 1.5 Flash', fullName: 'gemini-1.5-flash', input: 0.07, output: 0.35, context: 128000},
-    {provider: 'Mistral', name: 'Mistral Large', fullName: 'mistral-large', input: 2, output: 6, context: 128000},
-    {provider: 'Mistral', name: 'Mistral Small', fullName: 'mistral-small', input: 0.2, output: 0.6, context: 128000},
-    {provider: 'DeepSeek', name: 'DeepSeek Chat', fullName: 'deepseek-chat', input: 0.14, output: 0.28, context: 64000},
-    {provider: 'Meta', name: 'Llama 3.1 70B', fullName: 'llama-3.1-70b', input: 0.9, output: 0.9, context: 128000},
-    {provider: 'Meta', name: 'Llama 3.1 8B', fullName: 'llama-3.1-8b', input: 0.2, output: 0.2, context: 128000},
-    {provider: 'Cohere', name: 'Command R+', fullName: 'command-r-plus', input: 3, output: 15, context: 128000},
-    {provider: 'Cohere', name: 'Command R', fullName: 'command-r', input: 0.5, output: 1.5, context: 128000},
-    {provider: 'xAI', name: 'Grok Beta', fullName: 'grok-beta', input: 5, output: 15, context: 131072},
-    {provider: 'Perplexity', name: 'Sonar Large', fullName: 'perplexity-sonar-large', input: 3, output: 15, context: 127072},
-    {provider: 'Nvidia', name: 'Nemotron 70B', fullName: 'nemotron-70b', input: 0.4, output: 0.8, context: 128000},
-    {provider: 'AWS', name: 'Nova Pro', fullName: 'amazon.nova-pro-v1:0', input: 0.8, output: 3.2, context: 300000}
-  ];
-
-  try {
-    allModels = modelData;
-    allModels.sort((a, b) => a.input - b.input);
-
-    const provCounts = {};
-    allModels.forEach(m => { provCounts[m.provider] = (provCounts[m.provider] || 0) + 1; });
-    const provs = Object.keys(provCounts).sort();
-    const sel = document.getElementById('providerFilter');
-    sel.innerHTML = '<option value="">Todos los proveedores</option>';
-    provs.forEach(p => {
-      const o = document.createElement('option');
-      o.value = p;
-      o.textContent = p + ' (' + provCounts[p] + ')';
-      sel.appendChild(o);
-    });
-
-    loader.className = 'w-1.5 h-1.5 rounded-full bg-green-500';
-    modelText.textContent = allModels.length + ' modelos';
-    document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
-    results = allModels.map(m => ({ ...m, total: (1000 * m.input + 500 * m.output) / 1e6 });
-    
-    if (typeof updateQuickProviders === 'function') updateQuickProviders();
-    if (typeof renderProviderPanel === 'function') renderProviderPanel();
-    if (typeof renderResults === 'function') renderResults();
-    toast('Cargados: ' + allModels.length + ' modelos', 'success');
-  } catch(e) {
-    console.error('Error:', e);
-    loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
-    modelText.textContent = 'Error';
-    document.getElementById('errorState').classList.remove('hidden');
-    document.getElementById('errorMsg').textContent = 'Error: ' + e.message;
-    toast('Error al cargar modelos', 'error');
-  }
-}
 
     function estTokens(t) { return t ? Math.ceil(t.length / 4) : 0; }
     function updateCount() { const v = document.getElementById('prompt').value; document.getElementById('charCount').textContent = v.length + ' ch'; document.getElementById('tokenCount').textContent = '~' + estTokens(v) + ' tk'; }
@@ -1706,13 +1377,18 @@ async function loadModels() {
         const isFav = favorites.includes(`${m.provider}/${m.fullName}`);
         const isSelected = selectedModels.includes(i);
 
-        html += `<tr class="${isHighlight ? 'highlight' : ''} ${top ? 'top3' : ''} ${isSelected ? 'selected' : ''}" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
-          <td><span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star text-yellow-400"></i>' : '<i class="far fa-star"></i>'}</span></td>
-          <td class="${top ? 'text-green' : ''}"><span class="provider-logo ${logoClass}">${m.provider.charAt(0)}</span>${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}</td>
-          <td title="${m.fullName}">${m.name}</td>
-          <td>${symbol}${(m.input / unit * rate).toFixed(4)}</td>
-          <td>${symbol}${(m.output / unit * rate).toFixed(4)}</td>
-          <td class="${top ? 'text-green' : ''}">${symbol}${(m.total * rate).toFixed(4)}</td>
+        html += `<tr class="table-row ${isHighlight ? 'highlight' : ''} ${top ? 'top-3' : ''} ${isSelected ? 'selected' : ''} border-b" style="border-color: var(--border)" onclick="selectModel(${i}, event)" ondblclick="showDetails(${i})">
+          <td class="px-1 py-1.5">
+            <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star"></i>' : '☆'}</span>
+          </td>
+          <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
+            <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
+            ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
+          </td>
+          <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.input / unit * rate).toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right text-tertiary">${symbol}${(m.output / unit * rate).toFixed(4)}</td>
+          <td class="px-2 py-1.5 text-right font-semibold ${top ? 'text-green' : 'text-primary'}">${symbol}${(m.total * rate).toFixed(4)}</td>
         </tr>`;
       });
       document.getElementById('emptyState').classList.add('hidden');
@@ -1739,20 +1415,6 @@ async function loadModels() {
       document.getElementById('avgCost').textContent = symbol + (avg * rate).toFixed(4);
       document.getElementById('topProvider').textContent = limited[0].provider;
       document.getElementById('statsBar').classList.remove('hidden');
-      
-      // Update stats bar with savings
-      const minCost = limited[0].totalCost.toFixed(4);
-      const maxCost = limited[limited.length-1].totalCost.toFixed(4);
-      const savings = ((parseFloat(maxCost) - parseFloat(minCost)) / parseFloat(maxCost) * 100).toFixed(1);
-      document.getElementById('statsBar').innerHTML = `
-        <div class="flex justify-between items-center text-xs">
-          <span><i class="fas fa-list"></i> ${limited.length} models</span>
-          <span><i class="fas fa-chart-line"></i> Avg: $${avg.toFixed(4)}</span>
-          <span class="text-green"><i class="fas fa-arrow-down"></i> Min: $${minCost}</span>
-          <span class="text-red"><i class="fas fa-arrow-up"></i> Max: $${maxCost}</span>
-          <button onclick="showSavingsInfo()" class="text-green hover:underline"><i class="fas fa-piggy-bank"></i> Save ${savings}%</button>
-        </div>`;
-      
       if (prompt.length > 0) { stats.calcs++; stats.saved += (max - min); updateStats(); saveStats(); }
     }
 
@@ -1789,7 +1451,7 @@ async function loadModels() {
         filtered = Object.values(cheapest);
       }
 
-      return filtered.filter(m => (!s || m.fullName.toLowerCase().includes(s) || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
+      return filtered.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
     }
 
     function exportCSV() {
@@ -1802,8 +1464,8 @@ async function loadModels() {
     }
 
     // Event listeners
-    document.getElementById('search').addEventListener('input', () => { if (!allModels.length) return; calcularCostos(); });
-    document.getElementById('providerFilter').addEventListener('change', () => { if (!allModels.length) return; calcularCostos(); });
+    document.getElementById('search').addEventListener('input', () => { if (autoCalc) calcularCostos(); else renderResults(); });
+    document.getElementById('providerFilter').addEventListener('change', () => { if (autoCalc) calcularCostos(); else renderResults(); });
     document.getElementById('prompt').addEventListener('input', () => {
       updateCount();
       if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
@@ -1855,69 +1517,7 @@ async function loadModels() {
       }
     });
 
-    // Visitor counter
-    function updateVisitorCount() {
-      const today = new Date().toDateString();
-      let visitorData = JSON.parse(localStorage.getItem('tt_visitors') || '{"total":0,"lastVisit":"","today":0}');
-      
-      // Increment if new day
-      if (visitorData.lastVisit !== today) {
-        visitorData.total++;
-        visitorData.today = 1;
-        visitorData.lastVisit = today;
-      } else {
-        visitorData.today++;
-      }
-      
-      localStorage.setItem('tt_visitors', JSON.stringify(visitorData));
-      
-      // Format number with commas
-      const formatted = visitorData.total.toLocaleString();
-      document.getElementById('visitorCount').innerHTML = `<i class="fas fa-users"></i> ${formatted}`;
-    }
-
-    // Matrix-style background (white/gray)
-    function initMatrixBg() {
-      const canvas = document.getElementById('bgCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
-      const fontSize = 14;
-      const columns = Math.floor(canvas.width / fontSize);
-      const drops = Array(columns).fill(1);
-      function draw() {
-        ctx.fillStyle = 'rgba(0,0,0,0.03)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#666666';
-        ctx.font = fontSize + 'px monospace';
-        for (let i = 0; i < drops.length; i++) {
-          const char = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-          drops[i]++;
-        }
-      }
-      setInterval(draw, 50);
-    }
-
-    function clearProviderFilter() {
-      document.getElementById('providerFilter').value = '';
-      document.getElementById('typeFilter').value = '';
-      currentTypeFilter = '';
-      calcularCostos();
-    }
-
-    // Initialize
-    window.onload = async () => { 
-      loadFromURL();
-      updateCount(); 
-      updateSortIcons(); 
-      updateVisitorCount();
-      initMatrixBg();
-      await loadModels(); 
-    };
+    window.onload = () => { loadModels(); updateCount(); updateSortIcons(); };
   </script>
 </body>
 </html>
