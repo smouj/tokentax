@@ -105,7 +105,7 @@
     .badge-yellow { background: #fef3c7; color: #d97706; }
 
     /* Provider logos */
-    .provider-logo { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
+    .provider-logo { width: 24px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; flex-shrink: 0; }
     .logo-openai { background: #10a37f; color: white; }
     .logo-anthropic { background: #d97757; color: white; }
     .logo-google { background: #4285f4; color: white; }
@@ -486,7 +486,23 @@
     const currencyRates = { USD: 1, EUR: 0.92, GBP: 0.79 };
     const currencySymbols = { USD: '$', EUR: '€', GBP: '£' };
 
-    // Provider logos
+    // Provider logos - initials mapping
+    const providerInitials = {
+      openai: 'OP', anthropic: 'AN', google: 'GO', mistral: 'MI',
+      deepseek: 'DE', meta: 'ME', aws: 'AWS', azure: 'AZ',
+      xai: 'XAI', groq: 'GQ', fireworks: 'FW', together: 'TO',
+      cohere: 'CO', nvidia: 'NV', perplexity: 'PE', bedrock: 'BR',
+      vertex_ai: 'VX', bedrock_converse: 'BC', azure_ai: 'AZ',
+      sagemaker: 'SM', cloudflare: 'CF', Cohere: 'CO', deepinfra: 'DI',
+      fireworks_ai: 'FW', gigachat: 'GC', huggingface: 'HF', kafka: 'KA',
+      lemuria: 'LM', mistral_ai: 'MI', ollama: 'OL', openrouter: 'OR',
+      petals: 'PE', predibase: 'PB', replicate: 'RP', titanium: 'TI',
+      vllm: 'VL', was: 'WA', anyscale: 'AS', cerebras: 'CB'
+    };
+    function getProviderInitials(provider) {
+      const key = provider.toLowerCase().replace(/[_-].*$/, '');
+      return providerInitials[key] || provider.substring(0, 2).toUpperCase();
+    }
     const providerLogos = {
       openai: 'logo-openai', anthropic: 'logo-anthropic', google: 'logo-google', mistral: 'logo-mistral',
       deepseek: 'logo-deepseek', meta: 'logo-meta', aws: 'logo-aws', azure: 'logo-azure',
@@ -1382,7 +1398,7 @@
             <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${m.provider}', '${m.fullName}', event)">${isFav ? '<i class="fas fa-star"></i>' : '☆'}</span>
           </td>
           <td class="px-2 py-1.5 font-medium ${top ? 'text-green' : 'text-primary'}">
-            <span class="provider-logo ${logoClass}" style="margin-right:6px">${m.provider.charAt(0)}</span>
+            <span class="provider-logo ${logoClass}" style="margin-right:6px">${getProviderInitials(m.provider)}</span>
             ${top ? '<span class="badge badge-green">TOP</span> ' : ''}${m.provider}
           </td>
           <td class="col-span-2 px-2 py-1.5 text-[10px] text-secondary" title="${m.fullName}">${m.name}</td>
