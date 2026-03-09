@@ -1,25 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 160" role="img" aria-label="TokenTax logo">
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f59e0b"/>
-      <stop offset="100%" style="stop-color:#d97706"/>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d4d4d4"/>
     </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
   </defs>
-  <!-- Background -->
-  <rect fill="#000000" width="100" height="100" rx="18"/>
-  <!-- Subtle border accent -->
-  <rect fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.25" width="97" height="97" x="1.5" y="1.5" rx="17"/>
-  <!-- T horizontal bar -->
-  <rect x="16" y="22" width="68" height="14" rx="3" fill="url(#g)" filter="url(#glow)"/>
-  <!-- T vertical stem -->
-  <rect x="43" y="36" width="14" height="42" rx="3" fill="url(#g)" filter="url(#glow)"/>
-  <!-- $ accents bottom corners -->
-  <circle cx="22" cy="72" r="5" fill="#f59e0b" opacity="0.55"/>
-  <circle cx="78" cy="72" r="5" fill="#f59e0b" opacity="0.55"/>
-  <text x="22" y="76" font-family="monospace" font-size="7" fill="#000" font-weight="900" text-anchor="middle">$</text>
-  <text x="78" y="76" font-family="monospace" font-size="7" fill="#000" font-weight="900" text-anchor="middle">$</text>
+  <rect width="512" height="160" rx="24" fill="#000000"/>
+  <rect x="24" y="24" width="112" height="112" rx="24" fill="#111111" stroke="#2a2a2a"/>
+  <text x="80" y="98" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" fill="url(#g)">T</text>
+  <text x="168" y="100" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700" fill="#f5f5f5">TokenTax</text>
+  <text x="170" y="126" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#9ca3af">AI model pricing comparer</text>
 </svg>

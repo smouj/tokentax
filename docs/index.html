@@ -543,8 +543,6 @@
   </div>
 
   <script>
-    console.log('JS START');
-    alert('JS WORKS!');
     // Translations
     const translations = {
       es: { prompt: 'PROMPT', calculate: 'CALCULAR', calculations: 'Cálculos', saved: 'Ahorrado', limit: 'Límite:', min: 'Min:', max: 'Max:', avg: 'Media:', top: 'Top:', provider: 'Proveedor', modelo: 'Modelo', input: 'Input', output: 'Output', cost: 'Coste', allProviders: 'Todos los proveedores', examplesBtn: 'Ejemplos', code: 'Código', summary: 'Resumen', email: 'Email', translate: 'Traducir', blog: 'Blog', seo: 'SEO', sql: 'SQL', test: 'Tests', codeBtn: 'Código', summaryBtn: 'Resumen', translateBtn: 'Trad', emptyState1: 'Introduce prompt + calcula', retry: 'Reintentar', per1k: 'Precios por 1K', autoCalc: 'Auto-calcular', clearPrompt: 'limpiar', favorites: 'Favoritos', compare: 'Comparar', showContext: 'Mostrar Context', context: 'Context', details: 'Detalles', templates: 'Plantillas', recent: 'Recientes', alerts: 'Alertas', batch: 'Lote', autoRefresh: 'Auto-refresh' },
@@ -1467,9 +1465,11 @@
       toast('Lista copiada');
     }
 
-    const LITELLM_MODEL_COST_MAP_URL = 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json';
-const MODEL_CACHE_KEY = 'tokentax:model-cost-map:v2';
-const MODEL_CACHE_META_KEY = 'tokentax:model-cost-map-meta:v2';
+    const LOCAL_MODEL_COST_MAP_URL = './model_prices_and_context_window.json';
+const REMOTE_MODEL_COST_MAP_URL = 'https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json';
+const MODEL_SOURCES = [LOCAL_MODEL_COST_MAP_URL, REMOTE_MODEL_COST_MAP_URL];
+const MODEL_CACHE_KEY = 'tokentax:model-cost-map:v3';
+const MODEL_CACHE_META_KEY = 'tokentax:model-cost-map-meta:v3';
 const MODEL_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 
 function escapeHtml(value = '') {
@@ -1487,17 +1487,27 @@ function formatMoneyUSD(value) {
 async function fetchRealModelMap(forceRefresh = false) {
   try {
     const cached = localStorage.getItem(MODEL_CACHE_KEY);
-    const meta = JSON.parse(localStorage.getItem(MODEL_CACHE_META_KEY) || null;
+    const meta = JSON.parse(localStorage.getItem(MODEL_CACHE_META_KEY) || 'null');
     const isFresh = meta && typeof meta.ts === 'number' && Date.now() - meta.ts < MODEL_CACHE_TTL_MS;
     if (!forceRefresh && cached && isFresh) {
       return JSON.parse(cached);
     }
-    const res = await fetch(LITELLM_MODEL_COST_MAP_URL, { cache: 'no-store' };
-    if (!res.ok) throw new Error('LiteLLM HTTP ' + res.status);
-    const json = await res.json();
-    localStorage.setItem(MODEL_CACHE_KEY, JSON.stringify(json));
-    localStorage.setItem(MODEL_CACHE_META_KEY, JSON.stringify({ ts: Date.now() });
-    return json;
+
+    let lastError = null;
+    for (const url of MODEL_SOURCES) {
+      try {
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' @ ' + url);
+        const json = await res.json();
+        localStorage.setItem(MODEL_CACHE_KEY, JSON.stringify(json));
+        localStorage.setItem(MODEL_CACHE_META_KEY, JSON.stringify({ ts: Date.now(), source: url }));
+        return json;
+      } catch (err) {
+        lastError = err;
+      }
+    }
+
+    throw lastError || new Error('No se pudo cargar el mapa de modelos');
   } catch (err) {
     const cached = localStorage.getItem(MODEL_CACHE_KEY);
     if (cached) return JSON.parse(cached);
@@ -1507,8 +1517,8 @@ async function fetchRealModelMap(forceRefresh = false) {
 
 function normalizeLiteLLMModelMap(rawMap) {
   return Object.entries(rawMap)
-    .filter(([key, value] => key !== 'sample_spec' && value && typeof value === 'object')
-    .map(([modelId, meta] => {
+    .filter(([key, value]) => key !== 'sample_spec' && value && typeof value === 'object')
+    .map(([modelId, meta]) => {
       const provider = meta.litellm_provider || (modelId.includes('/') ? modelId.split('/')[0] : 'unknown');
       const inputPerToken = Number(meta.input_cost_per_token ?? 0);
       const outputPerToken = Number(meta.output_cost_per_token ?? 0);
@@ -1521,7 +1531,7 @@ function normalizeLiteLLMModelMap(rawMap) {
         providerLabel: provider,
         model: modelId,
         fullName: modelId,
-        name: modelId.length > 40 ? modelId.substring(0,37) + '...' : modelId,
+        name: modelId,
         mode: mode,
         maxInputTokens: maxInputTokens,
         maxOutputTokens: maxOutputTokens,
@@ -1580,13 +1590,11 @@ async function bootRealModels(forceRefresh = false) {
     modelText.textContent = allModels.length + ' modelos';
     document.getElementById('lastUpdate').textContent = new Date().toLocaleDateString();
     
-    // Initialize results with default values
-    results = allModels.map(m => ({ ...m, total: (1000 * m.input + 500 * m.output) / 1e6 }));
-    
     if (typeof updateQuickProviders === 'function') updateQuickProviders();
     if (typeof renderProviderPanel === 'function') renderProviderPanel();
-    if (typeof renderResults === 'function') renderResults();
-    toast('Cargados: ' + allModels.length + ' modelos', 'success');
+    if (typeof updateCount === 'function') updateCount();
+    if (typeof calcularCostos === 'function') calcularCostos();
+    toast('Cargados: ' + allModels.length + ' modelos reales', 'success');
   } catch (err) {
     console.error('Error cargando modelos:', err);
     loader.className = 'w-1.5 h-1.5 rounded-full bg-red-500';
@@ -1598,9 +1606,7 @@ async function bootRealModels(forceRefresh = false) {
 }
 
 async function loadModels() {
-  alert('Loading...');
   await bootRealModels(false);
-  alert('Loaded: ' + allModels.length + ' models');
 }
 
     function estTokens(t) { return t ? Math.ceil(t.length / 4) : 0; }
@@ -1721,7 +1727,7 @@ async function loadModels() {
         filtered = Object.values(cheapest);
       }
 
-      return filtered.filter(m => (!s || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
+      return filtered.filter(m => (!s || m.fullName.toLowerCase().includes(s) || m.name.toLowerCase().includes(s) || m.provider.toLowerCase().includes(s)) && (!p || m.provider === p));
     }
 
     function exportCSV() {
@@ -1734,8 +1740,8 @@ async function loadModels() {
     }
 
     // Event listeners
-    document.getElementById('search').addEventListener('input', () => { if (autoCalc) calcularCostos(); else renderResults(); });
-    document.getElementById('providerFilter').addEventListener('change', () => { if (autoCalc) calcularCostos(); else renderResults(); });
+    document.getElementById('search').addEventListener('input', () => { if (!allModels.length) return; calcularCostos(); });
+    document.getElementById('providerFilter').addEventListener('change', () => { if (!allModels.length) return; calcularCostos(); });
     document.getElementById('prompt').addEventListener('input', () => {
       updateCount();
       if (autoCalc && !document.getElementById('tableBody').classList.contains('hidden')) calcularCostos();
@@ -1842,13 +1848,13 @@ async function loadModels() {
     }
 
     // Initialize
-    window.onload = () => { 
-      loadModels(); 
+    window.onload = async () => { 
+      loadFromURL();
       updateCount(); 
       updateSortIcons(); 
-      loadFromURL();
       updateVisitorCount();
       initMatrixBg();
+      await loadModels(); 
     };
   </script>
 </body>

@@ -1,5 +1,13 @@
 # TokenTax AI PRO - Changelog
 
+## [v4.2.2] - 2026-03-09
+
+### Fixed
+- **Real model loading** - app now loads a bundled LiteLLM model cost map snapshot from `docs/model_prices_and_context_window.json` with remote fallback
+- **Initial table render** - the table now calculates and renders real models immediately after load
+- **Search/provider filters** - filters now recalculate against the real model list instead of reusing stale rows
+- **GitHub Pages cache** - service worker now caches relative app assets and the bundled model map correctly
+
 ---
 
 ## [v4.2.1] - 2026-03-08

@@ -1,8 +1,9 @@
-const CACHE_NAME = 'tokentax-v5.1';
+const CACHE_NAME = 'tokentax-v5.2';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  './',
+  './index.html',
+  './manifest.json',
+  './model_prices_and_context_window.json'
 ];
 
 // Install - cache assets
@@ -31,33 +32,29 @@ self.addEventListener('activate', event => {
 
 // Fetch - network first, fallback to cache
 self.addEventListener('fetch', event => {
-  // Skip non-GET requests
   if (event.request.method !== 'GET') return;
-  
-  // Skip cross-origin except LiteLLm and fonts
+
   const url = event.request.url;
-  if (!url.includes('litellm') && 
-      !url.includes('raw.githubusercontent.com') &&
-      !url.includes('fonts.googleapis.com') &&
-      !url.includes('fonts.gstatic.com') &&
-      !url.includes('cdn.tailwindcss.com') &&
-      !url.includes('cdnjs.cloudflare.com')) {
-    return;
-  }
-  
+  const isSameOrigin = new URL(url).origin === self.location.origin;
+  const isAllowedCrossOrigin =
+    url.includes('litellm') ||
+    url.includes('raw.githubusercontent.com') ||
+    url.includes('fonts.googleapis.com') ||
+    url.includes('fonts.gstatic.com') ||
+    url.includes('cdn.tailwindcss.com') ||
+    url.includes('cdnjs.cloudflare.com');
+
+  if (!isSameOrigin && !isAllowedCrossOrigin) return;
+
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        // Clone and cache successful responses
         if (response.ok) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }
         return response;
       })
-      .catch(() => {
-        // Fallback to cache
-        return caches.match(event.request);
-      })
+      .catch(() => caches.match(event.request))
   );
 });
