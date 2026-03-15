@@ -244,6 +244,13 @@
       <div class="panel p-2">
         <label class="block text-[10px] text-secondary font-medium mb-1">OUTPUT TOKENS</label>
         <input type="number" id="outputTokens" value="500" class="w-full bg-transparent text-lg font-semibold text-center focus:outline-none">
+        <div class="flex gap-1 mt-1 justify-center">
+          <button onclick="setOutputTokens(250)" class="text-[8px] px-1 py-0.5 btn-ghost rounded" style="background:var(--surface-2)">256</button>
+          <button onclick="setOutputTokens(500)" class="text-[8px] px-1 py-0.5 btn-ghost rounded" style="background:var(--surface-2)">512</button>
+          <button onclick="setOutputTokens(1000)" class="text-[8px] px-1 py-0.5 btn-ghost rounded" style="background:var(--surface-2)">1K</button>
+          <button onclick="setOutputTokens(2000)" class="text-[8px] px-1 py-0.5 btn-ghost rounded" style="background:var(--surface-2)">2K</button>
+          <button onclick="setOutputTokens(4000)" class="text-[8px] px-1 py-0.5 btn-ghost rounded" style="background:var(--surface-2)">4K</button>
+        </div>
       </div>
 
       <!-- Calculate -->
@@ -1358,8 +1365,62 @@
       }
     }
 
-    function estTokens(t) { return t ? Math.ceil(t.length / 4) : 0; }
-    function updateCount() { const v = document.getElementById('prompt').value; document.getElementById('charCount').textContent = v.length + ' ch'; document.getElementById('tokenCount').textContent = '~' + estTokens(v) + ' tk'; }
+    // Quick output token presets
+    function setOutputTokens(n) { document.getElementById('outputTokens').value = n; calcularCostos(); }
+    
+    // Improved tokenizer v2 - more accurate than char/4
+    let tiktokenLoaded = false;
+    let tiktokenEncoder = null;
+
+    async function loadTiktoken() {
+      if (tiktokenLoaded) return;
+      try {
+        const { Tiktoken } = await import('https://esm.sh/@dqbd/tiktoken@1.0.7/lite');
+        tiktokenEncoder = await Tiktoken.load('cl100k_base');
+        tiktokenLoaded = true;
+        console.log('Tiktoken loaded');
+      } catch (e) {
+        console.log('Tiktoken not available, using approximation');
+        tiktokenLoaded = true; // Prevent retry
+      }
+    }
+
+    // Estimate tokens more accurately based on content type
+    function detectContentType(text) {
+      const codeChars = /[{}[\]();=><!]/;
+      const codeRatio = (text.match(/[{}[\]();=><!]/g) || []).length / text.length;
+      if (codeRatio > 0.05 || codeChars.test(text.substring(0, 100))) return 'code';
+      return 'text';
+    }
+
+    function estTokens(t) {
+      if (!t || !t.trim()) return 0;
+      
+      // Try tiktoken first (most accurate)
+      if (tiktokenEncoder) {
+        try {
+          const tokens = tiktokenEncoder.encode(t);
+          return tokens.length;
+        } catch (e) {}
+      }
+      
+      // Fallback: more accurate approximation
+      const contentType = detectContentType(t);
+      const avgCharsPerToken = contentType === 'code' ? 3.5 : 4.2;
+      const overhead = contentType === 'code' ? 10 : 5; // formatting overhead
+      return Math.ceil(t.length / avgCharsPerToken) + overhead;
+    }
+
+    function updateCount() { 
+      const v = document.getElementById('prompt').value; 
+      document.getElementById('charCount').textContent = v.length + ' ch'; 
+      const tokens = estTokens(v);
+      const accuracy = tiktokenEncoder ? '(≈)' : '(~)';
+      document.getElementById('tokenCount').textContent = accuracy + tokens + ' tk'; 
+    }
+
+    // Auto-load tokenizer on init
+    loadTiktoken();
 
     function calcularCostos() {
       const prompt = document.getElementById('prompt').value;
